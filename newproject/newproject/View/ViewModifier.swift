@@ -13,7 +13,7 @@ struct customModifier: ViewModifier{
     let strokeColor: Color
     let strokeWidth: CGFloat
     let cornerRadius: CGFloat
-    let shadowRadius: CGFloat
+    let shadowRadius:CGFloat
     let font: Font
     let frame:(width:CGFloat,height:CGFloat,alignment:Alignment)
     let Maxframe:(minWidth: CGFloat, idealWidth:CGFloat, maxWidth: CGFloat, minHeight: CGFloat, idealHeight: CGFloat?, maxHeight: CGFloat, alignment: Alignment)
@@ -73,7 +73,7 @@ extension View {
                 bottom: 0,
                 trailing: 0))-> some View {
                     
-                    modifier(newproject.customModifier(backgroundColor: backgroundColor, foregroundColor: foregroundColor, strokeColor: strokeColor, strokeWidth: strokeWidth, cornerRadius: cornerRadius, shadowRadius:shadowRadius, font:font, frame:frame, Maxframe:maxframe, alignment:alignment,lineLimit:lineLimit, opacity:opacity, offset:offset, padding:padding
+                    modifier(newproject.customModifier(backgroundColor: backgroundColor, foregroundColor: foregroundColor, strokeColor: strokeColor, strokeWidth: strokeWidth, cornerRadius: cornerRadius,shadowRadius:shadowRadius, font:font, frame:frame, Maxframe:maxframe, alignment:alignment,lineLimit:lineLimit, opacity:opacity, offset:offset, padding:padding
                     ))
                     
                 }
@@ -82,29 +82,25 @@ extension View {
 struct ContentView: View {
     var body: some View {
         ZStack{
-            HStack{
-                
-              
-                
+            HStack() {
                 VStack {
-                    
                     Spacer()
-                    
                     Text("hello world")
                         .customModifier(backgroundColor: .blue, frame: (width:.init(w:200), height:.init(h:50,for:200), alignment:.center))
                     
                     Button("press the button") {
                         //
                     }
-                    .customModifier(backgroundColor: .red,foregroundColor:.white,strokeColor:.white,strokeWidth:5,cornerRadius:10,shadowRadius:5, frame:(width:.init(w:200), height:.init(h:50,for:200), alignment:.center))
-                     
-                }
+                    .customModifier(backgroundColor: .red,foregroundColor:.white,strokeColor:.white,strokeWidth:3,cornerRadius:10,shadowRadius:15, frame:(width:.init(w:200), height:.init(h:50,for:200), alignment:.center))
+            }
+                
                 Spacer()
             }
+           
             .padding(.horizontal,100)
         }
+        
     }
-    
 }
 
 

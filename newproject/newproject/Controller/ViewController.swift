@@ -11,7 +11,7 @@ class ViewController: UIViewController {
     
     //MARK: - Properties
     let testButton: UIButton = {
-        let thisView = UIButton().button(title: "press here", backgroundColor: .red,cornerRadius:10,shadow: UIColor.cyan.cgColor,shadowOpacity:1.0, shadowRadius:5)
+        let thisView = UIButton().button(title: "press here", backgroundColor: .red,cornerRadius:10,shadow: UIColor.cyan.cgColor,shadowOpacity:1.0, shadowRadius:5,borderColor:UIColor.white.cgColor,borderWidth:3)
         return thisView
     }()
     
