@@ -40,7 +40,7 @@ class ViewController: UIViewController {
         view.addSubview(testButton)
        
        
-        testlabel.anchorView(top: view.topAnchor, left: view.leftAnchor, paddingTop:.init(h: 700), paddingLeft: .init(w:120), width: .init(w:150), height:.init(h:50, for: 200))
+        testlabel.anchorView(top: view.topAnchor, left: view.leftAnchor, paddingTop:.init(h: 700), paddingLeft: .init(w:120), width: .init(w:150), height:.init(h:50, for:150))
         testButton.anchorView(bottom: view.bottomAnchor, paddingBottom: .init(h:50), width: .init(w: 150), height: .init(h: 50, for: 150))
         testButton.centerX(inView:view)
     }

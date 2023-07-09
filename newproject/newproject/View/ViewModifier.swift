@@ -82,16 +82,26 @@ extension View {
 struct ContentView: View {
     var body: some View {
         ZStack{
-            VStack {
-                Spacer()
-                Text("hello world")
-                    .customModifier(backgroundColor: .blue, frame: (width:200, height:50, alignment:.center))
+            HStack{
                 
-                Button("press the button") {
-                    //
+              
+                
+                VStack {
+                    
+                    Spacer()
+                    
+                    Text("hello world")
+                        .customModifier(backgroundColor: .blue, frame: (width:.init(w:200), height:.init(h:50,for:200), alignment:.center))
+                    
+                    Button("press the button") {
+                        //
+                    }
+                    .customModifier(backgroundColor: .red,foregroundColor:.white,strokeColor:.white,strokeWidth:5,cornerRadius:10,shadowRadius:5, frame:(width:.init(w:200), height:.init(h:50,for:200), alignment:.center))
+                     
                 }
-                .customModifier(backgroundColor: .red,frame: (width:200, height:50, alignment:.center))
+                Spacer()
             }
+            .padding(.horizontal,100)
         }
     }
     
