@@ -19,11 +19,17 @@ struct defaultViewModiFer:ViewModifier {
     }
 }
 
+extension View {
+    func defaultView ()-> some View {
+        modifier(defaultViewModiFer())
+    }
+}
+
 struct ContentView: View {
     var body: some View {
         VStack {
             Text("Hello, world!")
-                .modifier(defaultViewModiFer())
+                .defaultView()
                
         }
         .padding()
