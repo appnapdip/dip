@@ -11,20 +11,16 @@ class ViewController: UIViewController {
     
     //MARK: - Properties
     let testButton: UIButton = {
-        let thisView = UIButton().button(title: "press here", backgroundColor: .red)
+        let thisView = UIButton().button(title: "press here", backgroundColor: .red,cornerRadius:10,shadow: UIColor.cyan.cgColor,shadowOpacity:1.0, shadowRadius:5)
         return thisView
     }()
     
     let testlabel: UILabel = {
-        let thisView = UILabel().label(title: "DipDutt", textColor: .black)
+        let thisView = UILabel().label(title: "DipDutt", textColor: .black,backgroundColor:.green)
         return thisView
     }()
     
-    let topButton:UIButton = {
-        let thisView = UIButton().button(title:"press here2", backgroundColor: .green,cornerRadius:10)
-        return thisView
-        
-    }()
+   
     
     //MARK: - viewDidLoad
     override func viewDidLoad() {
@@ -35,19 +31,18 @@ class ViewController: UIViewController {
     //MARK: - viewDidAppear
     override func viewDidAppear(_ animated: Bool) {
         print(testlabel.frame.size,testButton.frame.size)
-        print(topButton.frame.size)
+        
     }
     
     private func loadUI(){
         view.backgroundColor = .white
         view.addSubview(testlabel)
         view.addSubview(testButton)
-        view.addSubview(topButton)
        
-        testlabel.anchorView(top: view.topAnchor, left: view.leftAnchor, paddingTop:.init(h: 100), paddingLeft: .init(w:40), width: .init(w:200), height:.init(h:50, for: 200))
-        testButton.anchorView(bottom: view.bottomAnchor, paddingBottom: .init(h:50), width: .init(w: 100), height: .init(h: 50, for: 100))
+       
+        testlabel.anchorView(top: view.topAnchor, left: view.leftAnchor, paddingTop:.init(h: 700), paddingLeft: .init(w:120), width: .init(w:150), height:.init(h:50, for: 200))
+        testButton.anchorView(bottom: view.bottomAnchor, paddingBottom: .init(h:50), width: .init(w: 150), height: .init(h: 50, for: 150))
         testButton.centerX(inView:view)
-        topButton.anchorView(top:view.topAnchor, left:testlabel.leftAnchor, paddingTop:.init(h:100), paddingLeft: .init(w:200), width:.init(w:100), height:.init(h:50,for:100))
     }
     
     

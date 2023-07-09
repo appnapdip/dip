@@ -8,7 +8,7 @@
 import UIKit
 
 extension UIButton{
-    func button(title: String? = nil, titleColor: UIColor = .white, backgroundImage: UIImage? = nil, backgroundColor: UIColor = .white, titleEdgeInsetsLeft: CGFloat = 0, tag: Int = 0, font: UIFont = UIFont.systemFont(ofSize: 15, weight: .regular), alpha: CGFloat = 1.0, cornerRadius:CGFloat = 0) -> UIButton{
+    func button(title: String? = nil, titleColor: UIColor = .white, backgroundImage: UIImage? = nil, backgroundColor: UIColor = .white, titleEdgeInsetsLeft: CGFloat = 0, tag: Int = 0, font: UIFont = UIFont.systemFont(ofSize: 15, weight: .regular), alpha: CGFloat = 1.0, cornerRadius:CGFloat = 0,shadow:CGColor = UIColor.blue.cgColor,shadowOpacity:Float = 0,shadowRadius:Float = 0) -> UIButton{
         let finalFont = font.withSize(UIDevice.current.userInterfaceIdiom == .pad ? font.pointSize*1.5 : font.pointSize)
         let button = UIButton(type: .system)
         (title != nil ) ?  button.setTitle(title, for: .normal)  : button.setTitle(.none, for: .normal)
@@ -22,6 +22,9 @@ extension UIButton{
         button.tag = tag
         button.alpha = alpha
         button.layer.cornerRadius = cornerRadius
+        button.layer.shadowColor = shadow
+        button.layer.shadowOpacity = shadowOpacity
+        button.layer.shadowRadius = CGFloat(shadowRadius)
         return button
     }
 }
