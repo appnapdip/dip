@@ -8,12 +8,12 @@
 import UIKit
 
 extension UILabel{
-    func label(title: String = "", textColor: UIColor = UIColor.black, lines: Int = 0, fontStyle: UIFont? = nil, allignment: NSTextAlignment = .center) -> UILabel{
+    func label(title: String = "", textColor: UIColor = UIColor.black, lines: Int = 0, fontStyle: UIFont? = nil, allignment: NSTextAlignment = .center, backgroundColor: UIColor = .clear) -> UILabel{
         let finalFont = fontStyle?.withSize(UIDevice.current.userInterfaceIdiom == .pad ? fontStyle!.pointSize*1.5 : fontStyle!.pointSize)
         let label = UILabel()
         label.text = title
         label.textColor = textColor == .black ? UIColor.black : textColor
-        label.backgroundColor = .clear
+        label.backgroundColor = backgroundColor
         label.font = finalFont
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = lines
