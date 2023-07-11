@@ -58,12 +58,12 @@ class ViewController: UIViewController {
             vc.modalPresentationStyle = .overFullScreen
             vc.modalTransitionStyle = .crossDissolve
             present(vc, animated: true)
-        }else{
-            print("Already shown")
-        }
-        
+       }
+//        else {
+//           print("on borading shown")
+//        }
     }
-    
+    // MARK: - loading userInterface
     private func loadUI(){
         
         view.addSubview(networkImage)

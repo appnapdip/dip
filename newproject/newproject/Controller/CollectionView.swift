@@ -9,6 +9,8 @@ import UIKit
 
 class collectionViewController:UIViewController {
     
+    // MARK: - creating properties
+    
     var onboardingmodels:[onBoardingModel] = []
     var currentcell = 0
     
@@ -46,8 +48,8 @@ class collectionViewController:UIViewController {
         collectioView.centerY(inView:view)
         collectioView.centerX(inView:view)
         view.addSubview(nextButton)
-        nextButton.anchorView(left: view.leftAnchor, bottom:view.bottomAnchor,paddingLeft:.init(w:172), paddingBottom:.init(h:70),width:.init(w:68), height: .init(h:68, for:68))
-        
+        nextButton.anchorView(bottom:view.bottomAnchor, paddingBottom:.init(h:70),width:.init(w:68), height: .init(h:68, for:68))
+        nextButton.centerX(inView: view)
         //nextButton
         
     }
@@ -63,6 +65,8 @@ class collectionViewController:UIViewController {
         }
     }
 }
+
+// MARK: create extension of collectionViewController
 
 extension collectionViewController:UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
@@ -86,12 +90,12 @@ extension collectionViewController:UICollectionViewDataSource, UICollectionViewD
     }
     
 }
-
+// MARK: - create customcell
 class CustomCell: UICollectionViewCell{
     
     let onboardingimageView = UIImageView()
-    let onboardingTitle = UILabel().label(fontStyle:UIFont(name: "Poppins-SemiBold", size:24), allignment:.center)
-    let onboardingSubTitle = UILabel().label(fontStyle:UIFont(name: "Poppins-Regular", size:16), allignment:.center)
+    let onboardingTitle = UILabel().label(lines: 1, fontStyle:UIFont(name: "Poppins-SemiBold", size:24), allignment:.center)
+    let onboardingSubTitle = UILabel().label(lines: 2, fontStyle:UIFont(name: "Poppins-Regular", size:16), allignment:.center)
     
     override init(frame: CGRect) {
         super.init(frame:frame)
@@ -107,13 +111,13 @@ class CustomCell: UICollectionViewCell{
         contentView.addSubview(onboardingTitle)
         contentView.addSubview(onboardingSubTitle)
         
-        onboardingimageView.anchorView(top:topAnchor, paddingTop: .init(h:75),width: .init(w:414), height:.init(h:450,for:414))
+        onboardingimageView.contentMode = .scaleAspectFill
+        onboardingimageView.anchorView(top:topAnchor, paddingTop: .init(h:75), width: UIdeviceSize.width, height:.init(h:450,for:UIdeviceSize.width))
         onboardingimageView.centerX(inView:contentView)
-        onboardingTitle.anchorView(top:topAnchor,paddingTop:.init(h:531),width:.init(w:UIdeviceSize.width - .init(w:64)), height: .init(h:24, for:187))
+        onboardingTitle.anchorView(bottom:bottomAnchor, paddingBottom: .init(h:UIdeviceSize.width < 376 ? 300 : 341), width:.init(w:UIdeviceSize.width - .init(w:64)))
         onboardingTitle.centerX(inView:contentView)
-        onboardingSubTitle.anchorView(top:onboardingTitle.bottomAnchor, paddingTop:.init(h:12),width:.init(w:UIdeviceSize.width - .init(w:64)), height: .init(h:39, for:350))
+        onboardingSubTitle.anchorView(top:onboardingTitle.bottomAnchor, paddingTop:.init(h:12),width:.init(w:UIdeviceSize.width - .init(w:64)))
         onboardingSubTitle.centerX(inView: contentView)
-        
     }
 }
 
