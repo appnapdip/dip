@@ -17,6 +17,7 @@ class collectionViewController:UIViewController {
         var thisCollection = UICollectionView(frame:.zero, collectionViewLayout:thisLayout)
         thisCollection.register(CustomCell.self, forCellWithReuseIdentifier: "CustomCell")
         thisCollection.isPagingEnabled = true
+        thisLayout.minimumLineSpacing = 0
         return thisCollection
     }()
     
@@ -76,8 +77,8 @@ extension collectionViewController:UICollectionViewDataSource, UICollectionViewD
 class CustomCell: UICollectionViewCell{
     
     let onboardingimageView = UIImageView()
-    let onboardingTitle = UILabel()
-    let onboardingSubTitle = UILabel().label()
+    let onboardingTitle = UILabel().label(fontStyle:UIFont(name: "Poppins-SemiBold", size:24), allignment:.center)
+    let onboardingSubTitle = UILabel().label(fontStyle:UIFont(name: "Poppins-Regular", size:16), allignment:.center)
     
     override init(frame: CGRect) {
         super.init(frame:frame)
@@ -93,10 +94,11 @@ class CustomCell: UICollectionViewCell{
         contentView.addSubview(onboardingTitle)
         contentView.addSubview(onboardingSubTitle)
         
-        onboardingimageView.anchorView(top:topAnchor, paddingTop: .init(h:75),paddingLeft: .init(w:327),width: .init(w:414), height:.init(h:450,for:414))
-        onboardingTitle.anchorView(top:topAnchor,left:leftAnchor,paddingTop:.init(h:531), paddingLeft:.init(w:113),width:.init(w: 187), height: .init(h:24, for:187))
-        onboardingTitle.centerX(inView:self)
-        onboardingSubTitle.anchorView(left:leftAnchor, bottom:bottomAnchor,paddingLeft:.init(w:32),paddingBottom:.init(h:290),width:.init(w:350), height: .init(h:39, for:350))
+        onboardingimageView.anchorView(top:topAnchor, paddingTop: .init(h:75),width: .init(w:414), height:.init(h:450,for:414))
+        onboardingimageView.centerX(inView:contentView)
+        onboardingTitle.anchorView(top:topAnchor,paddingTop:.init(h:531),width:.init(w:UIdeviceSize.width - .init(w:64)), height: .init(h:24, for:187))
+        onboardingTitle.centerX(inView:contentView)
+        onboardingSubTitle.anchorView(top:onboardingTitle.bottomAnchor, paddingTop:.init(h:12),width:.init(w:UIdeviceSize.width - .init(w:64)), height: .init(h:39, for:350))
         onboardingSubTitle.centerX(inView: contentView)
         
     }
@@ -109,11 +111,11 @@ extension collectionViewController {
     
     func onBoradingModelData()->[onBoardingModel] {
         
-        let  onboading1 = onBoardingModel(onboardingImage: UIImage(named:"1")!, onboardingText: "Strong Security", onboradingSubTitle: "Protect your album with separate password for each album")
-        let onboading2 = onBoardingModel(onboardingImage:UIImage(named: "2")!, onboardingText: "Secure Cloud Storage", onboradingSubTitle:"Protect your album with separate password for each album")
+        let  onboading1 = onBoardingModel(onboardingImage: UIImage(named:"1")!, onboardingText: "Strong Security", onboradingSubTitle: "Protect your album with separate password\nfor each album")
+        let onboading2 = onBoardingModel(onboardingImage:UIImage(named: "2")!, onboardingText: "Secure Cloud Storage", onboradingSubTitle:"Protect your album with separate password\nfor each album")
         let onboarding3 = onBoardingModel(onboardingImage: UIImage(named: "3")!, onboardingText: "Intruder Alerts", onboradingSubTitle: "Snap a secret photo and record the time & incorrect PIN attempts by would-be intruders")
-        let onboading4 = onBoardingModel(onboardingImage: UIImage(named: "4")!, onboardingText: "Decoy Vault", onboradingSubTitle: "Create a second PIN that opens to decoy photo vault with its own albums and content.")
-        let onboarding5 = onBoardingModel(onboardingImage: UIImage(named: "5")!, onboardingText: "Password Proceted Album", onboradingSubTitle: "Protect your album with separate password for each album")
+        let onboading4 = onBoardingModel(onboardingImage: UIImage(named: "4")!, onboardingText: "Decoy Vault", onboradingSubTitle: "Create a second PIN that opens to decoy\nphoto vault with its own albums and content.")
+        let onboarding5 = onBoardingModel(onboardingImage: UIImage(named: "5")!, onboardingText: "Password Proceted Album", onboradingSubTitle: "Protect your album with separate password\nfor each album")
         return [onboading1,onboading2,onboarding3,onboading4,onboarding5]
     }
 }
