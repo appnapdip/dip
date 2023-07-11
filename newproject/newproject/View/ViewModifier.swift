@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-
+//MARK: - create properties
 struct customModifier: ViewModifier{
     let backgroundColor: Color
     let foregroundColor: Color
@@ -47,6 +47,8 @@ struct customModifier: ViewModifier{
     }
 }
 
+//MARK:- create viewExtension
+
 extension View {
     func customModifier (
         backgroundColor: Color = .clear,
@@ -86,7 +88,7 @@ struct ContentView: View {
                 VStack {
                     Spacer()
                     Text("hello world")
-                        .customModifier(backgroundColor: .blue, frame: (width:.init(w:200), height:.init(h:50,for:200), alignment:.center))
+                        .customModifier(font:.headline,frame: (width:.init(w:200), height:.init(h:50,for:200), alignment:.center))
                     
                     Button("press the button") {
                         //

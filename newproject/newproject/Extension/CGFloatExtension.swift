@@ -7,6 +7,14 @@
 
 import Foundation
 import UIKit
+
+
+struct UIdeviceSize {
+    static let height = UIScreen.main.bounds.size.height
+    static let width = UIScreen.main.bounds.size.width
+}
+
+
 extension CGFloat {
     init(w: CGFloat, for h: CGFloat = 0){
         if UIDevice.current.userInterfaceIdiom == .pad {
