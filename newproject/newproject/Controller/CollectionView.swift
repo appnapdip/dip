@@ -10,6 +10,7 @@ import UIKit
 class collectionViewController:UIViewController {
     
     var onboardingmodels:[onBoardingModel] = []
+    var currentcell = 0
     
     let collectioView: UICollectionView = {
         let thisLayout =  UICollectionViewFlowLayout()
@@ -21,11 +22,12 @@ class collectionViewController:UIViewController {
         return thisCollection
     }()
     
-    let nextButton:UIButton = {
+      lazy var nextButton:UIButton = {
         let hexColor = UIColor(hex:"#2EA7FF")
         let image = UIImage(named:"arrow-right")
         var thisButton = UIButton().button(backgroundImage: image,backgroundColor:hexColor, cornerRadius:.init(h:68,for:68)/2, shadow:UIColor.blue.cgColor, shadowOpacity:0.5,shadowRadius:65)
         thisButton.tintColor = .white
+        thisButton.addTarget(self, action:#selector(press(_:)), for:.touchUpInside)
         return thisButton
     }()
     
@@ -48,6 +50,17 @@ class collectionViewController:UIViewController {
         
         //nextButton
         
+    }
+    
+    @objc func press(_ button: UIButton) {
+        currentcell += 1
+        if currentcell > 4 {
+            dismiss(animated: true) {
+                UserDefaults.standard.set(true, forKey:"onboardingShown")
+            }
+        }else {
+            collectioView.scrollToItem(at: [0, currentcell], at: .centeredHorizontally, animated: true)
+        }
     }
 }
 

@@ -44,7 +44,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .red
-        loadUI()//
+//        loadUI()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -53,10 +53,15 @@ class ViewController: UIViewController {
     
     //MARK: - viewDidAppear
     override func viewDidAppear(_ animated: Bool) {
-        let vc = collectionViewController()
-        vc.modalPresentationStyle = .overFullScreen
-        vc.modalTransitionStyle = .crossDissolve
-        present(vc, animated: true)
+        if !UserDefaults.standard.bool(forKey:"onboardingShown") {
+            let vc = collectionViewController()
+            vc.modalPresentationStyle = .overFullScreen
+            vc.modalTransitionStyle = .crossDissolve
+            present(vc, animated: true)
+        }else{
+            print("Already shown")
+        }
+        
     }
     
     private func loadUI(){
