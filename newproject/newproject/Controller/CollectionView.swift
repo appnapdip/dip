@@ -24,7 +24,7 @@ class collectionViewController:UIViewController {
         return thisCollection
     }()
     
-      lazy var nextButton:UIButton = {
+    lazy var nextButton:UIButton = {
         let hexColor = UIColor(hex:"#2EA7FF")
         let image = UIImage(named:"arrow-right")
         var thisButton = UIButton().button(backgroundImage: image,backgroundColor:hexColor, cornerRadius:.init(h:68,for:68)/2, shadow:UIColor.blue.cgColor, shadowOpacity:0.5,shadowRadius:65)
@@ -34,11 +34,12 @@ class collectionViewController:UIViewController {
     }()
     
     lazy var skipButton:UIButton = {
-      let hexColor = UIColor(hex:"#323336")
+        let hexColor = UIColor(hex:"#323336")
         var thisButton = UIButton().button(title:"Skip",titleColor:.black,font: UIFont(name:"Poppins-Regular", size: 16)!)
-      return thisButton
-  }()
-  
+        thisButton.addTarget(self, action:#selector(skippress), for:.touchUpInside)
+        return thisButton
+    }()
+    
     
     
     
@@ -63,8 +64,8 @@ class collectionViewController:UIViewController {
         view.addSubview(skipButton)
         nextButton.anchorView(bottom:view.bottomAnchor, paddingBottom:.init(h:70),width:.init(w:68), height: .init(h:68, for:68))
         nextButton.centerX(inView: view)
-        skipButton.anchorView(top:view.topAnchor,right:view.rightAnchor,paddingTop:.init(h:72),paddingRight:.init(w:5), width: UIdeviceSize.width - .init(w:350))
-}
+        skipButton.anchorView(top:view.topAnchor,right:view.rightAnchor, paddingTop:.init(h:72), paddingRight: .init(w:8), width: UIdeviceSize.width*0.145)
+    }
     
     @objc func press(_ button: UIButton) {
         currentcell += 1
@@ -75,6 +76,13 @@ class collectionViewController:UIViewController {
         }else {
             collectioView.scrollToItem(at: [0, currentcell], at: .centeredHorizontally, animated: true)
         }
+    }
+    
+    @objc func skippress() {
+        dismiss(animated: true) {
+            UserDefaults.standard.set(true, forKey:"onboardingShown")
+        }
+        
     }
 }
 
@@ -124,7 +132,7 @@ class CustomCell: UICollectionViewCell{
         contentView.addSubview(onboardingSubTitle)
         
         onboardingimageView.contentMode = .scaleAspectFill
-        onboardingimageView.anchorView(top:topAnchor,paddingTop:.init(h:75),width:UIdeviceSize.width)
+        onboardingimageView.anchorView(top:topAnchor,paddingTop:.init(h:UIdeviceSize.width < 376 ? 32 : 75),width:UIdeviceSize.width)
         onboardingimageView.centerX(inView:contentView)
         onboardingTitle.anchorView(bottom:bottomAnchor, paddingBottom: .init(h:UIdeviceSize.width < 376 ? 300 : 341), width:.init(w:UIdeviceSize.width - .init(w:64)))
         onboardingTitle.centerX(inView:contentView)
