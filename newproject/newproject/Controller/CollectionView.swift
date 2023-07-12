@@ -41,7 +41,16 @@ class collectionViewController:UIViewController {
     }()
     
     
-    
+    let onboradinpageControll:UIPageControl = {
+        let thispagecontrol = UIPageControl()
+        let hexColor = UIColor(hex:"#D6D8E2")
+        thispagecontrol.tintColor = hexColor
+        thispagecontrol.backgroundColor = .blue
+        thispagecontrol.currentPageIndicatorTintColor = .black
+        thispagecontrol.numberOfPages = 5
+        return thispagecontrol
+        
+    }()
     
     
     
@@ -62,9 +71,12 @@ class collectionViewController:UIViewController {
         collectioView.centerX(inView:view)
         view.addSubview(nextButton)
         view.addSubview(skipButton)
+        view.addSubview(onboradinpageControll)
         nextButton.anchorView(bottom:view.bottomAnchor, paddingBottom:.init(h:70),width:.init(w:68), height: .init(h:68, for:68))
         nextButton.centerX(inView: view)
         skipButton.anchorView(top:view.topAnchor,right:view.rightAnchor, paddingTop:.init(h:72), paddingRight: .init(w:8), width: UIdeviceSize.width*0.145)
+        onboradinpageControll.anchorView(bottom:nextButton.topAnchor,paddingBottom:.init(h:54))
+        onboradinpageControll.centerX(inView:view)
     }
     
     @objc func press(_ button: UIButton) {
