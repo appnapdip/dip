@@ -81,12 +81,12 @@ class collectionViewController:UIViewController {
     }
     // MARK: - creating page changebutton
     @objc func changepage(_ pageControl: UIPageControl) {
-        print(pageControl.currentPage)
+        print("changebutton \(pageControl.currentPage)")
         currentcell = pageControl.currentPage
         collectioView.scrollToItem(at: [0, currentcell], at: .centeredHorizontally, animated: true)
         
     }
-    // MARK: - create pressbutton fuction
+    // MARK: - create pressbutton fuction to scrollling the cell
     @objc func press(_ button: UIButton) {
         currentcell += 1
         if currentcell > 4 {
@@ -95,10 +95,11 @@ class collectionViewController:UIViewController {
             }
         }else {
             onboradinpageControll.currentPage = currentcell
+            print("press button \(currentcell)")
             collectioView.scrollToItem(at: [0, currentcell], at: .centeredHorizontally, animated: true)
         }
     }
-    // MARK: - create skipbuton fuction
+    // MARK: - create skipbuton fuction 
     @objc func skippress() {
         dismiss(animated: true) {
             UserDefaults.standard.set(true, forKey:"onboardingShown")
@@ -129,9 +130,11 @@ extension collectionViewController:UICollectionViewDataSource, UICollectionViewD
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width:UIdeviceSize.width, height:UIdeviceSize.height)
     }
-    
+
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         onboradinpageControll.currentPage = Int(floorf(Float(scrollView.contentOffset.x) / Float(scrollView.frame.size.width)))
+        currentcell = onboradinpageControll.currentPage
+        print("scorllview \(currentcell)")
     }
     
 }

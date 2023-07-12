@@ -27,7 +27,7 @@ struct customModifier: ViewModifier{
     func body(content: Content) -> some View {
         content
             .frame(width:frame.width, height:frame.height, alignment:frame.alignment)
-            //.frame(minWidth: Maxframe.minWidth, idealWidth:Maxframe.idealWidth, maxWidth: Maxframe.maxWidth, minHeight: Maxframe.minHeight, idealHeight: Maxframe.idealHeight, maxHeight: Maxframe.maxHeight, alignment: Maxframe.alignment)
+        //.frame(minWidth: Maxframe.minWidth, idealWidth:Maxframe.idealWidth, maxWidth: Maxframe.maxWidth, minHeight: Maxframe.minHeight, idealHeight: Maxframe.idealHeight, maxHeight: Maxframe.maxHeight, alignment: Maxframe.alignment)
             .padding(.top, padding.top)
             .padding(.leading, padding.leading)
             .padding(.bottom, padding.bottom)
@@ -76,34 +76,45 @@ extension View {
                 trailing: 0))-> some View {
                     
                     modifier(newproject.customModifier(backgroundColor: backgroundColor, foregroundColor: foregroundColor, strokeColor: strokeColor, strokeWidth: strokeWidth, cornerRadius: cornerRadius,shadowRadius:shadowRadius, font:font, frame:frame, Maxframe:maxframe, alignment:alignment,lineLimit:lineLimit, opacity:opacity, offset:offset, padding:padding
-                    ))
+                                                      ))
                     
                 }
 }
 
 struct ContentView: View {
+    @State var currentPosition:Int = 0
     var body: some View {
-        ZStack{
-            HStack() {
-                VStack {
-                    Spacer()
-                    Text("hello world")
-                        .customModifier(font:.headline,frame: (width:.init(w:200), height:.init(h:50,for:200), alignment:.center))
-                    
-                    Button("press the button") {
-                        //
-                    }
-                    .customModifier(backgroundColor: .red,foregroundColor:.white,strokeColor:.white,strokeWidth:3,cornerRadius:10,shadowRadius:15, frame:(width:.init(w:200), height:.init(h:50,for:200), alignment:.center))
+        VStack(spacing: 0){
+            TabView(selection:$currentPosition) {
+                ForEach(AppOnboardingModel.list) { viewdata in
+                    OnboradingView(data:viewdata)
+                        .tag(viewdata.id)
+                }
             }
-                
-                Spacer()
-            }
-           
-            .padding(.horizontal,100)
+            .tabViewStyle(PageTabViewStyle())
+            .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
+            .padding(.bottom, 54)
+            nextButton
         }
-        
     }
 }
+
+extension ContentView{
+    
+    var nextButton: some View {
+        Button {
+            
+        } label: {
+        
+                Image(systemName:"arrow.right")
+                .customModifier(backgroundColor:.blue,foregroundColor:.white, cornerRadius:.init(h:34),frame: (width:.init(w:68), height:.init(h:68), alignment:.center))
+            }
+            
+        }
+}
+    
+    
+
 
 
 struct ContentView_Previews: PreviewProvider {
