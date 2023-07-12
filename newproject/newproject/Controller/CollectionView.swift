@@ -48,7 +48,7 @@ class collectionViewController:UIViewController {
         thispagecontrol.currentPageIndicatorTintColor = .black
         thispagecontrol.pageIndicatorTintColor = hexColor
         thispagecontrol.numberOfPages = 5
-        thispagecontrol.addTarget(self, action:#selector(changepage), for: .valueChanged)
+        thispagecontrol.addTarget(self, action:#selector(changepage(_:)), for: .valueChanged)
         return thispagecontrol
         
     }()
@@ -79,9 +79,10 @@ class collectionViewController:UIViewController {
         onboradinpageControll.anchorView(bottom:nextButton.topAnchor,paddingBottom:.init(h:54))
         onboradinpageControll.centerX(inView:view)
     }
-    // MARK: - creating page changebutton v
-    @objc func changepage(_ sender:UIPageControl) {
-        currentcell = sender.currentPage
+    // MARK: - creating page changebutton
+    @objc func changepage(_ pageControl: UIPageControl) {
+        print(pageControl.currentPage)
+        currentcell = pageControl.currentPage
         collectioView.scrollToItem(at: [0, currentcell], at: .centeredHorizontally, animated: true)
         
     }
@@ -93,6 +94,7 @@ class collectionViewController:UIViewController {
                 UserDefaults.standard.set(true, forKey:"onboardingShown")
             }
         }else {
+            onboradinpageControll.currentPage = currentcell
             collectioView.scrollToItem(at: [0, currentcell], at: .centeredHorizontally, animated: true)
         }
     }
@@ -126,6 +128,10 @@ extension collectionViewController:UICollectionViewDataSource, UICollectionViewD
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width:UIdeviceSize.width, height:UIdeviceSize.height)
+    }
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        onboradinpageControll.currentPage = Int(floorf(Float(scrollView.contentOffset.x) / Float(scrollView.frame.size.width)))
     }
     
 }
@@ -175,3 +181,6 @@ extension collectionViewController {
         return [onboading1,onboading2,onboarding3,onboading4,onboarding5]
     }
 }
+
+
+
