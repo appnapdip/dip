@@ -41,13 +41,14 @@ class collectionViewController:UIViewController {
     }()
     
     
-    let onboradinpageControll:UIPageControl = {
+    lazy var onboradinpageControll:UIPageControl = {
         let thispagecontrol = UIPageControl()
         let hexColor = UIColor(hex:"#D6D8E2")
         thispagecontrol.tintColor = hexColor
         thispagecontrol.backgroundColor = .blue
         thispagecontrol.currentPageIndicatorTintColor = .black
         thispagecontrol.numberOfPages = 5
+        thispagecontrol.addTarget(self, action:#selector(changepage), for: .valueChanged)
         return thispagecontrol
         
     }()
@@ -77,6 +78,12 @@ class collectionViewController:UIViewController {
         skipButton.anchorView(top:view.topAnchor,right:view.rightAnchor, paddingTop:.init(h:72), paddingRight: .init(w:8), width: UIdeviceSize.width*0.145)
         onboradinpageControll.anchorView(bottom:nextButton.topAnchor,paddingBottom:.init(h:54))
         onboradinpageControll.centerX(inView:view)
+    }
+    
+    @objc func changepage() {
+        currentcell += 1
+        collectioView.scrollToItem(at: [0, currentcell], at: .centeredHorizontally, animated: true)
+        
     }
     
     @objc func press(_ button: UIButton) {
