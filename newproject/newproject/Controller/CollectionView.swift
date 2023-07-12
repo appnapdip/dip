@@ -33,6 +33,18 @@ class collectionViewController:UIViewController {
         return thisButton
     }()
     
+    lazy var skipButton:UIButton = {
+      let hexColor = UIColor(hex:"#323336")
+        var thisButton = UIButton().button(title:"Skip",titleColor:.black,font: UIFont(name:"Poppins-Regular", size: 16)!)
+      return thisButton
+  }()
+  
+    
+    
+    
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         loadUI()
@@ -48,11 +60,11 @@ class collectionViewController:UIViewController {
         collectioView.centerY(inView:view)
         collectioView.centerX(inView:view)
         view.addSubview(nextButton)
+        view.addSubview(skipButton)
         nextButton.anchorView(bottom:view.bottomAnchor, paddingBottom:.init(h:70),width:.init(w:68), height: .init(h:68, for:68))
         nextButton.centerX(inView: view)
-        //nextButton
-        
-    }
+        skipButton.anchorView(top:view.topAnchor,right:view.rightAnchor,paddingTop:.init(h:72),paddingRight:.init(w:5), width: UIdeviceSize.width - .init(w:350))
+}
     
     @objc func press(_ button: UIButton) {
         currentcell += 1
@@ -112,7 +124,7 @@ class CustomCell: UICollectionViewCell{
         contentView.addSubview(onboardingSubTitle)
         
         onboardingimageView.contentMode = .scaleAspectFill
-        onboardingimageView.anchorView(top:topAnchor, paddingTop: .init(h:75), width: UIdeviceSize.width, height:.init(h:450,for:UIdeviceSize.width))
+        onboardingimageView.anchorView(top:topAnchor,paddingTop:.init(h:75),width:UIdeviceSize.width)
         onboardingimageView.centerX(inView:contentView)
         onboardingTitle.anchorView(bottom:bottomAnchor, paddingBottom: .init(h:UIdeviceSize.width < 376 ? 300 : 341), width:.init(w:UIdeviceSize.width - .init(w:64)))
         onboardingTitle.centerX(inView:contentView)
