@@ -14,6 +14,7 @@ class collectionViewController:UIViewController {
     var onboardingmodels:[onBoardingModel] = []
     var currentcell = 0
     
+    // MARK: - creating collectionview
     let collectioView: UICollectionView = {
         let thisLayout =  UICollectionViewFlowLayout()
         thisLayout.scrollDirection = .horizontal
@@ -23,7 +24,7 @@ class collectionViewController:UIViewController {
         thisLayout.minimumLineSpacing = 0
         return thisCollection
     }()
-    
+    // MARK: - creating nextButton
     lazy var nextButton:UIButton = {
         let hexColor = UIColor(hex:"#2EA7FF")
         let image = UIImage(named:"arrow-right")
@@ -32,7 +33,7 @@ class collectionViewController:UIViewController {
         thisButton.addTarget(self, action:#selector(press(_:)), for:.touchUpInside)
         return thisButton
     }()
-    
+    // MARK: - creating skipButton
     lazy var skipButton:UIButton = {
         let hexColor = UIColor(hex:"#323336")
         var thisButton = UIButton().button(title:"Skip",titleColor:.black,font: UIFont(name:"Poppins-Regular", size: 16)!)
@@ -40,13 +41,12 @@ class collectionViewController:UIViewController {
         return thisButton
     }()
     
-    
+    // MARK: - creating UIPagecontroll
     lazy var onboradinpageControll:UIPageControl = {
         let thispagecontrol = UIPageControl()
         let hexColor = UIColor(hex:"#D6D8E2")
-        thispagecontrol.tintColor = hexColor
-        thispagecontrol.backgroundColor = .blue
         thispagecontrol.currentPageIndicatorTintColor = .black
+        thispagecontrol.pageIndicatorTintColor = hexColor
         thispagecontrol.numberOfPages = 5
         thispagecontrol.addTarget(self, action:#selector(changepage), for: .valueChanged)
         return thispagecontrol
@@ -62,7 +62,7 @@ class collectionViewController:UIViewController {
         onboardingmodels = onBoradingModelData()
     }
     
-    
+    // MARK: - creating uiload function
     private func loadUI(){
         view.addSubview(collectioView)
         collectioView.delegate = self
@@ -79,13 +79,13 @@ class collectionViewController:UIViewController {
         onboradinpageControll.anchorView(bottom:nextButton.topAnchor,paddingBottom:.init(h:54))
         onboradinpageControll.centerX(inView:view)
     }
-    
-    @objc func changepage() {
-        currentcell += 1
+    // MARK: - creating page changebutton v
+    @objc func changepage(_ sender:UIPageControl) {
+        currentcell = sender.currentPage
         collectioView.scrollToItem(at: [0, currentcell], at: .centeredHorizontally, animated: true)
         
     }
-    
+    // MARK: - create pressbutton fuction
     @objc func press(_ button: UIButton) {
         currentcell += 1
         if currentcell > 4 {
@@ -96,7 +96,7 @@ class collectionViewController:UIViewController {
             collectioView.scrollToItem(at: [0, currentcell], at: .centeredHorizontally, animated: true)
         }
     }
-    
+    // MARK: - create skipbuton fuction
     @objc func skippress() {
         dismiss(animated: true) {
             UserDefaults.standard.set(true, forKey:"onboardingShown")
