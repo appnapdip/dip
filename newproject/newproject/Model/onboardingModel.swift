@@ -23,6 +23,4 @@ struct AppOnboardingModel:Hashable,Identifiable {
         AppOnboardingModel(id: 3, imageName: "4", title: "Decoy Vault", subTitle:"Create a second PIN that opens to decoy\nphoto vault with its own albums and content."),
         AppOnboardingModel(id: 4, imageName: "5", title: "Password Proceted Album", subTitle:"Protect your album with separate password\nfor each album"),
     ]
-    
-    
 }

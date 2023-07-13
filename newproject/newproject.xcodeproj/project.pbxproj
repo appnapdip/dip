@@ -25,6 +25,8 @@
 		B2392A6B2A5A625900401305 /* ButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2392A6A2A5A625900401305 /* ButtonExtension.swift */; };
 		B2392A8C2A5AACE800401305 /* ViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2392A8B2A5AACE800401305 /* ViewModifier.swift */; };
 		B2401B9C2A5D0D3F00AF1F93 /* OnboradingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2401B9B2A5D0D3F00AF1F93 /* OnboradingModel.swift */; };
+		B29DBA752A5FEA6F00A49225 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B29DBA742A5FEA6F00A49225 /* MainView.swift */; };
+		B29DBA772A5FEBF300A49225 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B29DBA762A5FEBF300A49225 /* ContentView.swift */; };
 		B2CE5D3D2A5EBC2B0022720D /* onboardingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2CE5D3C2A5EBC2B0022720D /* onboardingModel.swift */; };
 		B2CE5D3F2A5EC0A40022720D /* onboradingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2CE5D3E2A5EC0A40022720D /* onboradingView.swift */; };
 /* End PBXBuildFile section */
@@ -50,6 +52,8 @@
 		B2392A6A2A5A625900401305 /* ButtonExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonExtension.swift; sourceTree = "<group>"; };
 		B2392A8B2A5AACE800401305 /* ViewModifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModifier.swift; sourceTree = "<group>"; };
 		B2401B9B2A5D0D3F00AF1F93 /* OnboradingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboradingModel.swift; sourceTree = "<group>"; };
+		B29DBA742A5FEA6F00A49225 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		B29DBA762A5FEBF300A49225 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		B2CE5D3C2A5EBC2B0022720D /* onboardingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = onboardingModel.swift; sourceTree = "<group>"; };
 		B2CE5D3E2A5EC0A40022720D /* onboradingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = onboradingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -103,6 +107,7 @@
 			isa = PBXGroup;
 			children = (
 				B2401B9B2A5D0D3F00AF1F93 /* OnboradingModel.swift */,
+				B2CE5D3C2A5EBC2B0022720D /* onboardingModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -119,9 +124,7 @@
 		B217A4CF2A56B2E90012A133 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				B2392A8B2A5AACE800401305 /* ViewModifier.swift */,
-				B2CE5D3C2A5EBC2B0022720D /* onboardingModel.swift */,
-				B2CE5D3E2A5EC0A40022720D /* onboradingView.swift */,
+				B29DBA6F2A5FE53A00A49225 /* SwiftUIViews */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -163,6 +166,17 @@
 				B227FCCE2A5BE5E700D8EAF4 /* Poppins-SemiBold.ttf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		B29DBA6F2A5FE53A00A49225 /* SwiftUIViews */ = {
+			isa = PBXGroup;
+			children = (
+				B2CE5D3E2A5EC0A40022720D /* onboradingView.swift */,
+				B2392A8B2A5AACE800401305 /* ViewModifier.swift */,
+				B29DBA742A5FEA6F00A49225 /* MainView.swift */,
+				B29DBA762A5FEBF300A49225 /* ContentView.swift */,
+			);
+			path = SwiftUIViews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -245,9 +259,11 @@
 				B217A4D62A56B3D10012A133 /* CGFloatExtension.swift in Sources */,
 				B227FCD52A5BFEFA00D8EAF4 /* CollectionView.swift in Sources */,
 				B217A4A62A5678C00012A133 /* AppDelegate.swift in Sources */,
+				B29DBA772A5FEBF300A49225 /* ContentView.swift in Sources */,
 				B2CE5D3F2A5EC0A40022720D /* onboradingView.swift in Sources */,
 				B217A4D42A56B3B10012A133 /* ViewExtension.swift in Sources */,
 				B227FCDB2A5C182B00D8EAF4 /* ViewController.swift in Sources */,
+				B29DBA752A5FEA6F00A49225 /* MainView.swift in Sources */,
 				B217A4A82A5678C00012A133 /* SceneDelegate.swift in Sources */,
 				B2CE5D3D2A5EBC2B0022720D /* onboardingModel.swift in Sources */,
 				B2392A8C2A5AACE800401305 /* ViewModifier.swift in Sources */,
