@@ -16,7 +16,7 @@ struct ContentView: View {
     
     var body: some View {
         VStack(alignment:.center, spacing: 0) {
-            ZStack(alignment: .topTrailing){
+           ZStack(alignment: .topTrailing){
                 TabView(selection:$currentPosition) {
                     ForEach(AppOnboardingModel.list) { viewdata in
                         OnboradingView(data:viewdata)
@@ -37,6 +37,8 @@ struct ContentView: View {
             nextButton
                 .padding(.bottom, .init(h: UIdeviceSize.width < 376 ? 30 : 70))
         }
+        .background(Color.init(hex:"#FFFFFF"))
+        
         .ignoresSafeArea()
     }
 }
