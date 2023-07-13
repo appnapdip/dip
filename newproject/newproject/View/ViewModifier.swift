@@ -93,8 +93,10 @@ struct ContentView: View {
             }
             .tabViewStyle(PageTabViewStyle())
             .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
-            .padding(.bottom, 54)
+            .padding(.bottom, .init(h: 54))
+            
             nextButton
+                .padding(.bottom, .init(h: UIdeviceSize.width < 376 ? 30 : 70))
         }
     }
 }
@@ -103,11 +105,11 @@ extension ContentView{
     
     var nextButton: some View {
         Button {
-            
+            currentPosition += 1
         } label: {
         
                 Image(systemName:"arrow.right")
-                .customModifier(backgroundColor:.blue,foregroundColor:.white, cornerRadius:.init(h:34),frame: (width:.init(w:68), height:.init(h:68), alignment:.center))
+                .customModifier(backgroundColor:.blue,foregroundColor:.white, cornerRadius:.init(h:68,for:68)/2 ,frame: (width:.init(w:68), height:.init(h:68,for:68), alignment:.center))
             }
             
         }

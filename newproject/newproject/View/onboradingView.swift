@@ -10,22 +10,24 @@ import SwiftUI
 struct OnboradingView: View {
     var data: AppOnboardingModel
     var body: some View {
-        VStack(alignment:.center, spacing:12) {
+        ZStack (alignment: .top){
+            Image(data.imageName)
+                .resizable()
+                .scaledToFit()
             
-                Image(data.imageName)
-                    .resizable()
-                    .scaledToFit()
-            
-            
-            Text(data.title)
-            Text(data.subTitle)
-                .multilineTextAlignment(.center)
-            
-            Spacer()
+            VStack(spacing: 0){
+                Spacer()
+                
+                Text(data.title)
+                    .font(.custom("Poppins-SemiBold", size:24))
+                Text(data.subTitle)
+                    .font(.custom("Poppins-Regular", size:16))
+                    .multilineTextAlignment(.center)
+                    .padding()
+            }
+            .padding(.bottom, .init(h: 92))
             
         }
-       
-        
     }
 }
 
