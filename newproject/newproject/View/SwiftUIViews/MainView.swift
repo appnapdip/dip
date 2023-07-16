@@ -13,16 +13,18 @@ struct MainView: View {
     var body: some View {
         ZStack{
             Color.red
+            Text("\(onboardingShown.description)")
             if !onboardingShown{
                 ContentView(onboardingShown: $onboardingShown)
+              
             }
         }
         .ignoresSafeArea()
         .onAppear{
             //UserDefaults.standard.set(false, forKey: "onboardingShown")
             onboardingShown = UserDefaults.standard.bool(forKey: "onboardingShown")
+            
         }
-        
     }
 }
 
