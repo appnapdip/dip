@@ -28,7 +28,7 @@ class collectionViewController:UIViewController {
     lazy var nextButton:UIButton = {
         let hexColor = UIColor(hex:"#2EA7FF")
         let image = UIImage(named:"arrow-right")
-        var thisButton = UIButton().button(backgroundImage: image,backgroundColor:hexColor, cornerRadius:.init(h:68,for:68)/2, shadow:UIColor.blue.cgColor, shadowOpacity:0.5,shadowRadius:65)
+        var thisButton = UIButton().button(backgroundImage:image,backgroundColor:hexColor,cornerRadius:.init(h:68,for:68)/2,shadow:UIColor.blue.cgColor,shadowOpacity:0.5,shadowRadius:65)
         thisButton.tintColor = .white
         thisButton.addTarget(self, action:#selector(press(_:)), for:.touchUpInside)
         return thisButton
