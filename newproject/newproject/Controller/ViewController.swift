@@ -20,7 +20,7 @@ class ViewController: UIViewController,Onboarding {
         super.viewDidLoad()
         let backgroundColor = UIColor(hex:"#F2F3FA")
         view.backgroundColor = backgroundColor
-        collectionViewController().delegate = self
+        
         
     }
     
@@ -40,6 +40,7 @@ class ViewController: UIViewController,Onboarding {
         
         if !UserDefaults.standard.bool(forKey:"onboardingShown") {
             let vc = collectionViewController()
+            vc.delegate = self
             vc.modalPresentationStyle = .overFullScreen
             vc.modalTransitionStyle = .crossDissolve
             present(vc, animated: true)
