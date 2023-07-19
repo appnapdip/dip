@@ -152,16 +152,16 @@ class ViewController: UIViewController {
         
         //MARK: - ButtonStacksAnchoring
         
-        ButtonStackView1.anchorView(top:pinStackView.bottomAnchor,paddingTop: .init(h:84))
+        ButtonStackView1.anchorView(top:pinStackView.bottomAnchor,paddingTop: .init(h: .init(h:84)))
         ButtonStackView1.centerX(inView:view)
         
-        ButtonStackView2.anchorView(top:ButtonStackView1.bottomAnchor,paddingTop: .init(h:20))
+        ButtonStackView2.anchorView(top:ButtonStackView1.bottomAnchor,paddingTop: .init(h:.init(h:20)))
         ButtonStackView2.centerX(inView:view)
         
-        ButtonStackView3.anchorView(top:ButtonStackView2.bottomAnchor,paddingTop: .init(h:20))
+        ButtonStackView3.anchorView(top:ButtonStackView2.bottomAnchor,paddingTop: .init(h:.init(h:20)))
         ButtonStackView3.centerX(inView:view)
         
-        ButtonStackView4.anchorView(top:ButtonStackView3.bottomAnchor,paddingTop: .init(h:20) )
+        ButtonStackView4.anchorView(top:ButtonStackView3.bottomAnchor,paddingTop: .init(h:.init(h:20)) )
         ButtonStackView4.centerX(inView:view)
         
         // MARK: - LOOP FOR Buttons
@@ -204,12 +204,17 @@ class ViewController: UIViewController {
     
     @objc private func  clickButtonAction(_ sender: UIButton){
         
+       
+        
         switch sender.tag  {
         case 1,2,3,4,5,6,7,8,9,11:
             guard currentItem < 5 else {return}
             currentItem += 1
+            currentPin.append("\(currentItem)")
+            UserDefaults.standard.set(currentPin, forKey: "save pin")
+            print(currentPin)
             pinviews[currentItem].backgroundColor = UIColor(hex:"#2EA7FF")
-            print(currentItem)
+           
             
             if let okButton = ButtonStackView4.subviews.first(where: {$0.tag == 10}){
                 okButton.isUserInteractionEnabled = currentItem > 4 ? true : false
@@ -221,13 +226,34 @@ class ViewController: UIViewController {
             pinviews[currentItem].backgroundColor = UIColor(hex:"#D6D8E2")
             currentItem -= 1
             
+             print(currentItem)
+            
             if let okButton = ButtonStackView4.subviews.first(where: {$0.tag == 10}){
                 okButton.isUserInteractionEnabled = false
                 okButton.alpha = 0
             }
             
         default:
-            print("dip")
+            pinTitle.text = "Confirm Pin"
+            pinSubTitle.text = "Re-enter PIN to confirm"
+            
+            print(UserDefaults.standard.bool(forKey:"save pin"))
+            
+           
+            for pinview in pinviews {
+                pinview.backgroundColor = UIColor(hex:"#D6D8E2")
+              
+            }
+            
+            currentItem  = -1
+            print(currentItem)
+            
+            if let okButton = ButtonStackView4.subviews.first(where: {$0.tag == 10}){
+                okButton.isUserInteractionEnabled = currentItem < 0 ? false : true
+                okButton.alpha = currentItem < 0 ? 0 : 1
+            }
+            
+           
             
         }
     }
