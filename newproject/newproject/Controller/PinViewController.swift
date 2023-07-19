@@ -13,7 +13,7 @@ class PinViewController: UIViewController {
     
     //MARK: - Properties
     
-    let pinTitle:UILabel = {
+    var pinTitle:UILabel = {
         let hexColor = UIColor(hex:"#000000")
         let thisLabel = UILabel().label(title:"Create PIN", textColor:hexColor,fontStyle:UIFont(name: "Poppins-Regular", size:28),allignment:.center)
         thisLabel.tag = 0
@@ -21,7 +21,7 @@ class PinViewController: UIViewController {
         
     }()
     
-    let pinSubTitle:UILabel = {
+    var pinSubTitle:UILabel = {
         let hexColor = UIColor(hex:"#5A5F73")
         let thisLabel = UILabel().label(title:"Create a PIN to lock your account", textColor:hexColor,fontStyle:UIFont(name: "Poppins-Regular", size:16),allignment:.center)
         thisLabel.tag = 1

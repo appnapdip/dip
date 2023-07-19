@@ -27,6 +27,10 @@ class ViewController: UIViewController,Onboarding {
     func dismissCall() {
         dismiss(animated: true) {
             UserDefaults.standard.set(true, forKey:"onboardingShown")
+            let pin = PinViewController()
+            pin.modalPresentationStyle = .fullScreen
+            pin.modalTransitionStyle = .crossDissolve
+            self.present(pin, animated:true)
         }
     }
     
@@ -44,6 +48,20 @@ class ViewController: UIViewController,Onboarding {
             vc.modalPresentationStyle = .overFullScreen
             vc.modalTransitionStyle = .crossDissolve
             present(vc, animated: true)
+        }
+        
+        else {
+            let vc = PinViewController()
+            
+            if let EnterPin = UserDefaults.standard.string(forKey:"savePin") {
+                
+                vc.pinSubTitle.text = "Enter PIN"
+                vc.pinTitle.text = "Please enter your 6 digit PIN"
+                
+            }
+            
+        
+          
         }
     }
     
