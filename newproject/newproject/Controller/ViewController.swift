@@ -210,8 +210,7 @@ class ViewController: UIViewController {
         case 1,2,3,4,5,6,7,8,9,11:
             guard currentItem < 5 else {return}
             currentItem += 1
-            currentPin.append("\(currentItem)")
-            UserDefaults.standard.set(currentPin, forKey: "save pin")
+            currentPin.append("\(sender.tag == 11 ? 0 : sender.tag)")
             print(currentPin)
             pinviews[currentItem].backgroundColor = UIColor(hex:"#2EA7FF")
            
@@ -237,8 +236,9 @@ class ViewController: UIViewController {
             pinTitle.text = "Confirm Pin"
             pinSubTitle.text = "Re-enter PIN to confirm"
             
-            print(UserDefaults.standard.bool(forKey:"save pin"))
             
+            // save pin user default and check pin correct or not
+
            
             for pinview in pinviews {
                 pinview.backgroundColor = UIColor(hex:"#D6D8E2")
@@ -252,6 +252,29 @@ class ViewController: UIViewController {
                 okButton.isUserInteractionEnabled = currentItem < 0 ? false : true
                 okButton.alpha = currentItem < 0 ? 0 : 1
             }
+            
+            
+            
+            
+            if let CurrentPin = UserDefaults.standard.string(forKey:"savePin") {
+
+                if CurrentPin == currentPin {
+                    print("get the pin")
+                }
+
+                else {
+                    pinSubTitle.text = "incorrect Pin"
+
+                }
+
+            }
+
+            else {
+
+                UserDefaults.standard.set(currentPin, forKey:"savePin")
+
+            }
+
             
            
             
