@@ -141,7 +141,7 @@ class ViewController: UIViewController {
             
         }
         
-    //MARK: - PinTitleSubTilte and PinStackView Anchoring
+        //MARK: - PinTitleSubTilte and PinStackView Anchoring
         
         pinTitle.anchorView(top: view.topAnchor,paddingTop:.init(h:66),width: UIdeviceSize.width - .init(w:173))
         pinTitle.centerX(inView:view)
@@ -185,8 +185,8 @@ class ViewController: UIViewController {
                     thisButton.alpha = 0
                 }
                 
-    
-             if i == 12 {thisButton.tintColor = .gray}
+                
+                if i == 12 {thisButton.tintColor = .gray}
                 thisButton.tag = i
                 ButtonStackView4.addArrangedSubview(thisButton)
                 thisButton.anchorView(width: UIdeviceSize.width*0.19, height: UIdeviceSize.width*0.19)
@@ -204,8 +204,6 @@ class ViewController: UIViewController {
     
     @objc private func  clickButtonAction(_ sender: UIButton){
         
-       
-        
         switch sender.tag  {
         case 1,2,3,4,5,6,7,8,9,11:
             guard currentItem < 5 else {return}
@@ -213,7 +211,7 @@ class ViewController: UIViewController {
             currentPin.append("\(sender.tag == 11 ? 0 : sender.tag)")
             print(currentPin)
             pinviews[currentItem].backgroundColor = UIColor(hex:"#2EA7FF")
-           
+            
             
             if let okButton = ButtonStackView4.subviews.first(where: {$0.tag == 10}){
                 okButton.isUserInteractionEnabled = currentItem > 4 ? true : false
@@ -225,7 +223,7 @@ class ViewController: UIViewController {
             pinviews[currentItem].backgroundColor = UIColor(hex:"#D6D8E2")
             currentItem -= 1
             
-             print(currentItem)
+            print(currentItem)
             
             if let okButton = ButtonStackView4.subviews.first(where: {$0.tag == 10}){
                 okButton.isUserInteractionEnabled = false
@@ -238,13 +236,12 @@ class ViewController: UIViewController {
             
             
             // save pin user default and check pin correct or not
-
-           
+            
+            
             for pinview in pinviews {
                 pinview.backgroundColor = UIColor(hex:"#D6D8E2")
-              
+                
             }
-            
             currentItem  = -1
             print(currentItem)
             
@@ -254,29 +251,33 @@ class ViewController: UIViewController {
             }
             
             
-            UserDefaults.standard.set(currentPin, forKey:"savePin")
             
-            if let CurrentPin = UserDefaults.standard.string(forKey:"savePin") {
-
-                if CurrentPin == currentPin {
+            
+            if let PreviousPin = UserDefaults.standard.string(forKey:"savePin") {
+                
+                if PreviousPin == currentPin {
                     print("get the pin")
                 }
-
+                
                 else {
-                    pinSubTitle.text = "incorrect Pin"
-
+                    pinSubTitle.text = "Incorrect PIN "
+                    pinSubTitle.textColor = UIColor(hex:"#FF4D4D")
+                    
                 }
-
+                
+            } else {
+                UserDefaults.standard.set(currentPin, forKey:"savePin")
+                currentPin = ""
             }
-
-        
-
             
-
             
-
             
-           
+            
+            
+            
+            
+            
+            
             
         }
     }
