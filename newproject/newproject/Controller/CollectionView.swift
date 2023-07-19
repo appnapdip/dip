@@ -7,12 +7,25 @@
 
 import UIKit
 
+
+protocol Onboarding {
+    
+    func dismissCall()
+}
+
 class collectionViewController:UIViewController {
+  
+    
+
+ 
     
     // MARK: - creating properties
     
     var onboardingmodels:[onBoardingModel] = []
     var currentcell = 0
+    var delegate:Onboarding?
+    
+
     
     // MARK: - creating collectionview
     let collectioView: UICollectionView = {
@@ -88,11 +101,12 @@ class collectionViewController:UIViewController {
     }
     // MARK: - create pressbutton fuction to scrollling the cell
     @objc func press(_ button: UIButton) {
+        
+        
+    
         currentcell += 1
         if currentcell > 4 {
-            dismiss(animated: true) {
-                UserDefaults.standard.set(true, forKey:"onboardingShown")
-            }
+            delegate?.dismissCall()
         }else {
             onboradinpageControll.currentPage = currentcell
             print("press button \(currentcell)")
@@ -101,16 +115,13 @@ class collectionViewController:UIViewController {
     }
     // MARK: - create skipbuton fuction 
     @objc func skippress() {
-        dismiss(animated: true) {
-            UserDefaults.standard.set(true, forKey:"onboardingShown")
-        }
-        
+        delegate?.dismissCall()
     }
 }
 
 // MARK: create extension of collectionViewController
 
-extension collectionViewController:UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+extension collectionViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
