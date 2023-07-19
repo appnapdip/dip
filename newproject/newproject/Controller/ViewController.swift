@@ -254,7 +254,7 @@ class ViewController: UIViewController {
             }
             
             
-            
+            UserDefaults.standard.set(currentPin, forKey:"savePin")
             
             if let CurrentPin = UserDefaults.standard.string(forKey:"savePin") {
 
@@ -269,11 +269,11 @@ class ViewController: UIViewController {
 
             }
 
-            else {
+        
 
-                UserDefaults.standard.set(currentPin, forKey:"savePin")
+            
 
-            }
+            
 
             
            
