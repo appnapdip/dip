@@ -21,6 +21,9 @@ class ViewController: UIViewController,Onboarding {
         let backgroundColor = UIColor(hex:"#F2F3FA")
         view.backgroundColor = backgroundColor
         
+        DispatchQueue.main.async {
+            self.checkOnboardingAndPin()
+        }
         
     }
     
@@ -41,7 +44,9 @@ class ViewController: UIViewController,Onboarding {
     //MARK: - viewDidAppear
     override func viewDidAppear(_ animated: Bool) {
         
-        
+    }
+    
+    private func checkOnboardingAndPin(){
         if !UserDefaults.standard.bool(forKey:"onboardingShown") {
             let vc = collectionViewController()
             vc.delegate = self
@@ -52,18 +57,12 @@ class ViewController: UIViewController,Onboarding {
         
         else {
             let vc = PinViewController()
-            
-            if let EnterPin = UserDefaults.standard.string(forKey:"savePin") {
-                
-                vc.pinSubTitle.text = "Enter PIN"
-                vc.pinTitle.text = "Please enter your 6 digit PIN"
-                
-            }
-            
-        
-          
+            vc.modalPresentationStyle = .fullScreen
+            vc.modalTransitionStyle = .crossDissolve
+            vc.pinTitle.text = "Enter PIN"
+            vc.pinSubTitle.text = "Please enter your 6 digit PIN"
+            self.present(vc, animated:true)
         }
     }
-    
     
 }
