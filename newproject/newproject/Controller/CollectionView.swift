@@ -63,7 +63,7 @@ class collectionViewController:UIViewController {
         thispagecontrol.numberOfPages = 5
         thispagecontrol.addTarget(self, action:#selector(changepage(_:)), for: .valueChanged)
         return thispagecontrol
-        
+
     }()
     
     
@@ -97,13 +97,10 @@ class collectionViewController:UIViewController {
         print("changebutton \(pageControl.currentPage)")
         currentcell = pageControl.currentPage
         collectioView.scrollToItem(at: [0, currentcell], at: .centeredHorizontally, animated: true)
-        
+
     }
-    // MARK: - create pressbutton fuction to scrollling the cell
+     // MARK: - create pressbutton fuction to scrollling the cell
     @objc func press(_ button: UIButton) {
-        
-        
-    
         currentcell += 1
         if currentcell > 4 {
             delegate?.dismissCall()
@@ -113,7 +110,8 @@ class collectionViewController:UIViewController {
             collectioView.scrollToItem(at: [0, currentcell], at: .centeredHorizontally, animated: true)
         }
     }
-    // MARK: - create skipbuton fuction 
+    // MARK: - create skipbuton fuction
+    
     @objc func skippress() {
         delegate?.dismissCall()
     }
@@ -141,6 +139,8 @@ extension collectionViewController: UICollectionViewDataSource, UICollectionView
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width:UIdeviceSize.width, height:UIdeviceSize.height)
     }
+    
+    // pagescrolling section
 
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         onboradinpageControll.currentPage = Int(floorf(Float(scrollView.contentOffset.x) / Float(scrollView.frame.size.width)))

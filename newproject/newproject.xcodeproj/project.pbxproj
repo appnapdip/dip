@@ -129,6 +129,7 @@
 		B217A4CF2A56B2E90012A133 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				B2392A8B2A5AACE800401305 /* ViewModifier.swift */,
 				B29DBA6F2A5FE53A00A49225 /* SwiftUIViews */,
 			);
 			path = View;
@@ -178,7 +179,6 @@
 			isa = PBXGroup;
 			children = (
 				B2CE5D3E2A5EC0A40022720D /* onboradingView.swift */,
-				B2392A8B2A5AACE800401305 /* ViewModifier.swift */,
 				B29DBA742A5FEA6F00A49225 /* MainView.swift */,
 				B29DBA762A5FEBF300A49225 /* ContentView.swift */,
 			);

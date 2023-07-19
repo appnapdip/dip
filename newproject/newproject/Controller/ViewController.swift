@@ -8,11 +8,6 @@
 import UIKit
 
 class ViewController: UIViewController,Onboarding {
- 
-    
-    
-  
-    
     
     
     //MARK: - viewDidLoad
@@ -20,13 +15,14 @@ class ViewController: UIViewController,Onboarding {
         super.viewDidLoad()
         let backgroundColor = UIColor(hex:"#F2F3FA")
         view.backgroundColor = backgroundColor
-        
         DispatchQueue.main.async {
             self.checkOnboardingAndPin()
         }
         
-    }
+        
+    }// viewload
     
+    // MARK: - Protocol Function
     func dismissCall() {
         dismiss(animated: true) {
             UserDefaults.standard.set(true, forKey:"onboardingShown")
@@ -36,7 +32,7 @@ class ViewController: UIViewController,Onboarding {
             self.present(pin, animated:true)
         }
     }
-    
+    // MARK: - viewWillAppear
     override func viewWillAppear(_ animated: Bool) {
         
     }
@@ -46,7 +42,9 @@ class ViewController: UIViewController,Onboarding {
         
     }
     
-    private func checkOnboardingAndPin(){
+    
+    //MARK: - Function CheckOanboarding and EnterPin
+    func checkOnboardingAndPin(){
         if !UserDefaults.standard.bool(forKey:"onboardingShown") {
             let vc = collectionViewController()
             vc.delegate = self
@@ -66,3 +64,5 @@ class ViewController: UIViewController,Onboarding {
     }
     
 }
+
+

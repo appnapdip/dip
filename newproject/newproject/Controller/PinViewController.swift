@@ -225,6 +225,8 @@ class PinViewController: UIViewController {
                 okButton.alpha = 0
             }
             
+            // MARK: - OK Button
+            
         default:
             pinTitle.text = "Confirm Pin"
             pinSubTitle.text = "Re-enter PIN to confirm"
@@ -246,7 +248,7 @@ class PinViewController: UIViewController {
             }
             
             
-            
+            // MARK: - Checking Pin Save
             
             if let PreviousPin = UserDefaults.standard.string(forKey:"savePin") {
                 // check the pin
