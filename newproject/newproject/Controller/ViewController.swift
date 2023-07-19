@@ -254,7 +254,7 @@ class ViewController: UIViewController {
             
             
             if let PreviousPin = UserDefaults.standard.string(forKey:"savePin") {
-                
+                // check the pin
                 if PreviousPin == currentPin {
                     print("get the pin")
                 }
@@ -266,6 +266,8 @@ class ViewController: UIViewController {
                 }
                 
             } else {
+                //save the pin
+                
                 UserDefaults.standard.set(currentPin, forKey:"savePin")
                 currentPin = ""
             }
