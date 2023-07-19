@@ -222,6 +222,7 @@ class ViewController: UIViewController {
             guard currentItem > -1 else {return}
             pinviews[currentItem].backgroundColor = UIColor(hex:"#D6D8E2")
             currentItem -= 1
+            currentPin.removeLast()
             
             print(currentItem)
             
@@ -256,7 +257,9 @@ class ViewController: UIViewController {
             if let PreviousPin = UserDefaults.standard.string(forKey:"savePin") {
                 // check the pin
                 if PreviousPin == currentPin {
-                    print("get the pin")
+                    dismiss(animated:true) {
+                       
+                    }
                 }
                 
                 else {
