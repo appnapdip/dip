@@ -50,7 +50,7 @@ extension ContentView{
         Button {
             currentPosition += 1
             if currentPosition > 4 {
-                UserDefaults.standard.set(true, forKey: "onboardingShown")
+                UserDefaults.standard.set(true, forKey: ONBOARDING_SHOWN_KEY)
                 onboardingShown = true
                 
             }
@@ -68,7 +68,7 @@ extension ContentView{
     
     var skipButton: some View {
         Button {
-            UserDefaults.standard.set(true, forKey: "onboardingShown")
+            UserDefaults.standard.set(true, forKey: ONBOARDING_SHOWN_KEY)
             onboardingShown = true
             
         } label: {

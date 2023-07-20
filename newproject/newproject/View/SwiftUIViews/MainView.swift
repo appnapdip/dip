@@ -21,8 +21,8 @@ struct MainView: View {
         }
         .ignoresSafeArea()
         .onAppear{
-            //UserDefaults.standard.set(false, forKey: "onboardingShown")
-            onboardingShown = UserDefaults.standard.bool(forKey: "onboardingShown")
+            //UserDefaults.standard.set(false, forKey: ONBOARDING_SHOWN_KEY)
+            onboardingShown = UserDefaults.standard.bool(forKey: ONBOARDING_SHOWN_KEY)
             
         }
     }

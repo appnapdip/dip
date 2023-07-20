@@ -24,7 +24,7 @@ func showToast(message : String, font: UIFont) {
     toastLabel.layer.cornerRadius = 10
     toastLabel.clipsToBounds  =  true
     self.view.addSubview(toastLabel)
-    toastLabel.anchorView(top: view.topAnchor,paddingTop:UIdeviceSize.height * 0.5, width: .init(w:380), height: .init(h:14))
+    toastLabel.anchorView(top: view.topAnchor,paddingTop:UIdeviceSize.height * 0.45, width: .init(w:364), height: .init(h:62))
     toastLabel.centerX(inView:view)
     UIView.animate(withDuration: 5.0, delay: 0.1, options:.curveEaseInOut, animations: {
          toastLabel.alpha = 0.0

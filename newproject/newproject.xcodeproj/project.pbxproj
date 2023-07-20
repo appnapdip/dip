@@ -28,6 +28,8 @@
 		B2401B9C2A5D0D3F00AF1F93 /* OnboradingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2401B9B2A5D0D3F00AF1F93 /* OnboradingModel.swift */; };
 		B2674D5F2A67BDD3000F8150 /* PinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2674D5E2A67BDD3000F8150 /* PinViewController.swift */; };
 		B2674D612A68F6FB000F8150 /* UIToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2674D602A68F6FB000F8150 /* UIToastView.swift */; };
+		B2674D652A690C51000F8150 /* Refactors.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2674D642A690C51000F8150 /* Refactors.swift */; };
+		B2674D672A690C81000F8150 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2674D662A690C81000F8150 /* Constants.swift */; };
 		B29DBA752A5FEA6F00A49225 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B29DBA742A5FEA6F00A49225 /* MainView.swift */; };
 		B29DBA772A5FEBF300A49225 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B29DBA762A5FEBF300A49225 /* ContentView.swift */; };
 		B2CE5D3D2A5EBC2B0022720D /* onboardingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2CE5D3C2A5EBC2B0022720D /* onboardingModel.swift */; };
@@ -58,6 +60,8 @@
 		B2401B9B2A5D0D3F00AF1F93 /* OnboradingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboradingModel.swift; sourceTree = "<group>"; };
 		B2674D5E2A67BDD3000F8150 /* PinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinViewController.swift; sourceTree = "<group>"; };
 		B2674D602A68F6FB000F8150 /* UIToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIToastView.swift; sourceTree = "<group>"; };
+		B2674D642A690C51000F8150 /* Refactors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Refactors.swift; sourceTree = "<group>"; };
+		B2674D662A690C81000F8150 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		B29DBA742A5FEA6F00A49225 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		B29DBA762A5FEBF300A49225 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		B2CE5D3C2A5EBC2B0022720D /* onboardingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = onboardingModel.swift; sourceTree = "<group>"; };
@@ -97,8 +101,6 @@
 				B217A4C92A56B2330012A133 /* Model */,
 				B217A4CF2A56B2E90012A133 /* View */,
 				B217A4CE2A56B2BE0012A133 /* Controller */,
-				B217A4A52A5678C00012A133 /* AppDelegate.swift */,
-				B217A4A72A5678C00012A133 /* SceneDelegate.swift */,
 				B217A4D12A56B32D0012A133 /* Helper */,
 				B217A4D22A56B34F0012A133 /* Extension */,
 				B217A4AB2A5678C00012A133 /* Main.storyboard */,
@@ -140,6 +142,8 @@
 		B217A4D12A56B32D0012A133 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				B2674D632A690BD3000F8150 /* Configure */,
+				B2674D622A690BB2000F8150 /* Delegates */,
 				B227FCCA2A5BE55000D8EAF4 /* Resources */,
 			);
 			path = Helper;
@@ -176,6 +180,24 @@
 				B226A0422A640615007646BE /* Poppins-Light.ttf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		B2674D622A690BB2000F8150 /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				B217A4A52A5678C00012A133 /* AppDelegate.swift */,
+				B217A4A72A5678C00012A133 /* SceneDelegate.swift */,
+			);
+			path = Delegates;
+			sourceTree = "<group>";
+		};
+		B2674D632A690BD3000F8150 /* Configure */ = {
+			isa = PBXGroup;
+			children = (
+				B2674D642A690C51000F8150 /* Refactors.swift */,
+				B2674D662A690C81000F8150 /* Constants.swift */,
+			);
+			path = Configure;
 			sourceTree = "<group>";
 		};
 		B29DBA6F2A5FE53A00A49225 /* SwiftUIViews */ = {
@@ -273,6 +295,7 @@
 				B217A4A62A5678C00012A133 /* AppDelegate.swift in Sources */,
 				B29DBA772A5FEBF300A49225 /* ContentView.swift in Sources */,
 				B2CE5D3F2A5EC0A40022720D /* onboradingView.swift in Sources */,
+				B2674D672A690C81000F8150 /* Constants.swift in Sources */,
 				B217A4D42A56B3B10012A133 /* ViewExtension.swift in Sources */,
 				B227FCDB2A5C182B00D8EAF4 /* ViewController.swift in Sources */,
 				B29DBA752A5FEA6F00A49225 /* MainView.swift in Sources */,
@@ -281,6 +304,7 @@
 				B2392A8C2A5AACE800401305 /* ViewModifier.swift in Sources */,
 				B2401B9C2A5D0D3F00AF1F93 /* OnboradingModel.swift in Sources */,
 				B227FCC72A5BDCC200D8EAF4 /* ColorExtension.swift in Sources */,
+				B2674D652A690C51000F8150 /* Refactors.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

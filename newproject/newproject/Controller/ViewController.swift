@@ -28,7 +28,7 @@ class ViewController: UIViewController,Onboarding,PinDismiss {
     // MARK: - Protocol Function
     func OnboradingdismissCall() {
         dismiss(animated: true) {
-            UserDefaults.standard.set(true, forKey:"onboardingShown")
+            UserDefaults.standard.set(true, forKey:ONBOARDING_SHOWN_KEY)
             let pin = PinViewController()
             pin.delegate = self
             pin.modalPresentationStyle = .fullScreen
@@ -40,7 +40,7 @@ class ViewController: UIViewController,Onboarding,PinDismiss {
     
     func pinDismissCall() {
         dismiss(animated:true) {
-            self.showToast(message: "welcome to ViewController", font: .systemFont(ofSize:12))
+            self.showToast(message: ToastMessage.welcome.description, font: .systemFont(ofSize:12))
             
         }
     }
@@ -61,7 +61,7 @@ class ViewController: UIViewController,Onboarding,PinDismiss {
     
     //MARK: - Function CheckOanboarding and EnterPin
     func checkOnboardingAndPin(){
-        if !UserDefaults.standard.bool(forKey:"onboardingShown") {
+        if !UserDefaults.standard.bool(forKey:ONBOARDING_SHOWN_KEY) {
             let vc = collectionViewController()
             vc.delegate = self
             vc.modalPresentationStyle = .overFullScreen
@@ -71,6 +71,7 @@ class ViewController: UIViewController,Onboarding,PinDismiss {
         
         else {
             let vc = PinViewController()
+            vc.delegate = self
             vc.modalPresentationStyle = .fullScreen
             vc.modalTransitionStyle = .crossDissolve
             vc.pinTitle.text = "Enter PIN"
