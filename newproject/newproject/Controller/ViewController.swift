@@ -9,10 +9,6 @@ import UIKit
 
 class ViewController: UIViewController,Onboarding,PinDismiss {
     
-    
-   
-    
-    
     //MARK: - viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,11 +17,23 @@ class ViewController: UIViewController,Onboarding,PinDismiss {
         DispatchQueue.main.async {
             self.checkOnboardingAndPin()
         }
-     
+        
         
     }// viewload
     
+    
+    // MARK: - viewWillAppear
+    override func viewWillAppear(_ animated: Bool) {
+        
+    }
+    
+    //MARK: - viewDidAppear
+    override func viewDidAppear(_ animated: Bool) {
+        
+    }
+    
     // MARK: - Protocol Function
+    
     func OnboradingdismissCall() {
         dismiss(animated: true) {
             UserDefaults.standard.set(true, forKey:ONBOARDING_SHOWN_KEY)
@@ -40,26 +48,13 @@ class ViewController: UIViewController,Onboarding,PinDismiss {
     
     func pinDismissCall() {
         dismiss(animated:true) {
-            self.showToast(message: ToastMessage.welcome.description, font: .systemFont(ofSize:12))
+            self.showToast(message: ToastMessage.welcome.description, font:UIFont(name:"Poppins-Medium", size:14)!)
             
         }
     }
     
-    
-    
-    
-    // MARK: - viewWillAppear
-    override func viewWillAppear(_ animated: Bool) {
-        
-    }
-    
-    //MARK: - viewDidAppear
-    override func viewDidAppear(_ animated: Bool) {
-        
-    }
-    
-    
     //MARK: - Function CheckOanboarding and EnterPin
+    
     func checkOnboardingAndPin(){
         if !UserDefaults.standard.bool(forKey:ONBOARDING_SHOWN_KEY) {
             let vc = collectionViewController()

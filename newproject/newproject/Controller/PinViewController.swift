@@ -194,16 +194,12 @@ class PinViewController: UIViewController {
                 thisButton.addTarget(self, action: #selector(clickButtonAction(_:)), for: .touchUpInside)
                 
             }
-            
         }
-        
-        
     }
     
     //MARK: - Action Button Fuction
     
     @objc private func  clickButtonAction(_ sender: UIButton){
-        
         switch sender.tag  {
         case 1,2,3,4,5,6,7,8,9,11:
             guard currentItem < 5 else {return}
@@ -211,7 +207,6 @@ class PinViewController: UIViewController {
             currentPin.append("\(sender.tag == 11 ? 0 : sender.tag)")
             print(currentPin)
             pinviews[currentItem].backgroundColor = UIColor(hex:"#2EA7FF")
-            
             
             if let okButton = ButtonStackView4.subviews.first(where: {$0.tag == 10}){
                 okButton.isUserInteractionEnabled = currentItem > 4 ? true : false
@@ -240,10 +235,8 @@ class PinViewController: UIViewController {
             
             // save pin user default and check pin correct or not
             
-            
             for pinview in pinviews {
                 pinview.backgroundColor = UIColor(hex:"#D6D8E2")
-                
             }
             currentItem  = -1
             print(currentItem)
@@ -271,15 +264,12 @@ class PinViewController: UIViewController {
                 
             } else {
                 //save the pin
-                
                 UserDefaults.standard.set(currentPin, forKey:"savePin")
                 currentPin = ""
             }
             
-            
         }
         
     }
-    
     
 }

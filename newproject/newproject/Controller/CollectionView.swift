@@ -14,18 +14,12 @@ protocol Onboarding {
 }
 
 class collectionViewController:UIViewController {
-  
-    
-
- 
     
     // MARK: - creating properties
     
     var onboardingmodels:[onBoardingModel] = []
     var currentcell = 0
     var delegate:Onboarding?
-    
-
     
     // MARK: - creating collectionview
     let collectioView: UICollectionView = {
@@ -37,6 +31,7 @@ class collectionViewController:UIViewController {
         thisLayout.minimumLineSpacing = 0
         return thisCollection
     }()
+    
     // MARK: - creating nextButton
     lazy var nextButton:UIButton = {
         let hexColor = UIColor(hex:"#2EA7FF")
@@ -46,6 +41,7 @@ class collectionViewController:UIViewController {
         thisButton.addTarget(self, action:#selector(press(_:)), for:.touchUpInside)
         return thisButton
     }()
+    
     // MARK: - creating skipButton
     lazy var skipButton:UIButton = {
         let hexColor = UIColor(hex:"#323336")
@@ -63,10 +59,8 @@ class collectionViewController:UIViewController {
         thispagecontrol.numberOfPages = 5
         thispagecontrol.addTarget(self, action:#selector(changepage(_:)), for: .valueChanged)
         return thispagecontrol
-
+        
     }()
-    
-    
     
     
     override func viewDidLoad() {
@@ -97,9 +91,9 @@ class collectionViewController:UIViewController {
         print("changebutton \(pageControl.currentPage)")
         currentcell = pageControl.currentPage
         collectioView.scrollToItem(at: [0, currentcell], at: .centeredHorizontally, animated: true)
-
+        
     }
-     // MARK: - create pressbutton fuction to scrollling the cell
+    // MARK: - create pressbutton fuction to scrollling the cell
     @objc func press(_ button: UIButton) {
         currentcell += 1
         if currentcell > 4 {
@@ -121,7 +115,6 @@ class collectionViewController:UIViewController {
 
 extension collectionViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return onboardingmodels.count
     }
@@ -141,7 +134,6 @@ extension collectionViewController: UICollectionViewDataSource, UICollectionView
     }
     
     // pagescrolling section
-
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         onboradinpageControll.currentPage = Int(floorf(Float(scrollView.contentOffset.x) / Float(scrollView.frame.size.width)))
         currentcell = onboradinpageControll.currentPage
@@ -179,9 +171,6 @@ class CustomCell: UICollectionViewCell{
         onboardingSubTitle.centerX(inView: contentView)
     }
 }
-
-
-
 
 extension collectionViewController {
     

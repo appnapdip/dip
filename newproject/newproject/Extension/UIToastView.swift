@@ -21,12 +21,14 @@ func showToast(message : String, font: UIFont) {
     toastLabel.textAlignment = .center;
     toastLabel.text = message
     toastLabel.alpha = 1.0
-    toastLabel.layer.cornerRadius = 10
-    toastLabel.clipsToBounds  =  true
+    toastLabel.layer.cornerRadius = .init(h:16)
+    toastLabel.layer.borderColor = UIColor(hex:"#1AB662").cgColor
+    toastLabel.layer.borderWidth = .init(h:0.5)
+    toastLabel.clipsToBounds =  true
     self.view.addSubview(toastLabel)
     toastLabel.anchorView(top: view.topAnchor,paddingTop:UIdeviceSize.height * 0.45, width: .init(w:364), height: .init(h:62))
     toastLabel.centerX(inView:view)
-    UIView.animate(withDuration: 5.0, delay: 0.1, options:.curveEaseInOut, animations: {
+    UIView.animate(withDuration: 2.0, delay: 0.1, options:.curveEaseInOut, animations: {
          toastLabel.alpha = 0.0
     }, completion: {(isCompleted) in
         toastLabel.removeFromSuperview()
