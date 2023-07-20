@@ -7,7 +7,10 @@
 
 import UIKit
 
-class ViewController: UIViewController,Onboarding {
+class ViewController: UIViewController,Onboarding,PinDismiss {
+    
+    
+   
     
     
     //MARK: - viewDidLoad
@@ -18,12 +21,12 @@ class ViewController: UIViewController,Onboarding {
         DispatchQueue.main.async {
             self.checkOnboardingAndPin()
         }
-        
+     
         
     }// viewload
     
     // MARK: - Protocol Function
-    func dismissCall() {
+    func OnboradingdismissCall() {
         dismiss(animated: true) {
             UserDefaults.standard.set(true, forKey:"onboardingShown")
             let pin = PinViewController()
@@ -32,6 +35,17 @@ class ViewController: UIViewController,Onboarding {
             self.present(pin, animated:true)
         }
     }
+    
+    
+    func pinDismissCall() {
+        dismiss(animated:true) {
+            
+        }
+    }
+    
+    
+    
+    
     // MARK: - viewWillAppear
     override func viewWillAppear(_ animated: Bool) {
         

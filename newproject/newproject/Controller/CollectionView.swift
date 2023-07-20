@@ -10,7 +10,7 @@ import UIKit
 
 protocol Onboarding {
     
-    func dismissCall()
+    func OnboradingdismissCall()
 }
 
 class collectionViewController:UIViewController {
@@ -103,7 +103,7 @@ class collectionViewController:UIViewController {
     @objc func press(_ button: UIButton) {
         currentcell += 1
         if currentcell > 4 {
-            delegate?.dismissCall()
+            delegate?.OnboradingdismissCall()
         }else {
             onboradinpageControll.currentPage = currentcell
             print("press button \(currentcell)")
@@ -113,7 +113,7 @@ class collectionViewController:UIViewController {
     // MARK: - create skipbuton fuction
     
     @objc func skippress() {
-        delegate?.dismissCall()
+        delegate?.OnboradingdismissCall()
     }
 }
 

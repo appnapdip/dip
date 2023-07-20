@@ -8,6 +8,11 @@
 import Foundation
 import UIKit
 
+protocol PinDismiss {
+    func pinDismissCall()
+    
+}
+
 
 class PinViewController: UIViewController {
     
@@ -33,6 +38,7 @@ class PinViewController: UIViewController {
     
     var currentItem:Int = -1
     var currentPin:String  = ""
+    var delegate:PinDismiss?
     
     
     //MARK: - StackItems
@@ -253,9 +259,7 @@ class PinViewController: UIViewController {
             if let PreviousPin = UserDefaults.standard.string(forKey:"savePin") {
                 // check the pin
                 if PreviousPin == currentPin {
-                    dismiss(animated:true) {
-                        
-                    }
+                    delegate?.pinDismissCall()
                 }
                 
                 else {

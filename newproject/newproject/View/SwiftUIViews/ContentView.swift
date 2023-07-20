@@ -10,7 +10,6 @@ import SwiftUI
 struct ContentView: View {
     
     @State var currentPosition:Int = 0
-    @State var showSheet:Bool = false
     @Binding var onboardingShown: Bool
     let hexColor = UIColor(hex:"#2EA7FF")
     
@@ -53,7 +52,7 @@ extension ContentView{
             if currentPosition > 4 {
                 UserDefaults.standard.set(true, forKey: "onboardingShown")
                 onboardingShown = true
-
+                
             }
         } label: {
             
@@ -63,7 +62,7 @@ extension ContentView{
                 .frame(width:.init(w:24), height:.init(h:24))
                 .customModifier(backgroundColor: .init(hex: "#2EA7FF"),foregroundColor:.white, cornerRadius:.init(h:68,for:68)/2 ,frame: (width:.init(w:68), height:.init(h:68,for:68), alignment:.center))
                 .shadow(color: .init(hex: "#2EA7FF").opacity(0.5), radius: 10, x: 0, y: 10)
-               
+            
         }
     }
     
