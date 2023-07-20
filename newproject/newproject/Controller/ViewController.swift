@@ -8,7 +8,7 @@
 import UIKit
 
 class ViewController: UIViewController,Onboarding,PinDismiss,AleartRemove {
-  
+    
     
     
     //MARK: - viewDidLoad
@@ -53,11 +53,11 @@ class ViewController: UIViewController,Onboarding,PinDismiss,AleartRemove {
             
         }
         // ALEART CONTROLLER
-//        let Aleartvc = AleartViewController()
-//        Aleartvc.delegate = self
-//        Aleartvc.modalPresentationStyle = .fullScreen
-//        Aleartvc.modalTransitionStyle = .crossDissolve
-//        self.present(Aleartvc, animated:true)
+        //        let Aleartvc = AleartViewController()
+        //        Aleartvc.delegate = self
+        //        Aleartvc.modalPresentationStyle = .fullScreen
+        //        Aleartvc.modalTransitionStyle = .crossDissolve
+        //        self.present(Aleartvc, animated:true)
     }
     
     // MARK: - PRESS CANCEL FUNCTION

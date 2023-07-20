@@ -8,16 +8,12 @@
 import Foundation
 import UIKit
 
-
 protocol AleartRemove {
     func pressAction(firstButton: Bool)
 }
 
-
 class AleartViewController: ViewController  {
-    
     // MARK: - PROPERTIES
-    
     var AleartTitle:UILabel = {
         let hexColor = UIColor(hex:"#323336")
         let thisLabel = UILabel().label(title:"Remove Album Password", textColor:hexColor,fontStyle:UIFont(name: "Poppins-SemiBold", size: .init(w:16)),allignment:.center)
@@ -70,7 +66,6 @@ class AleartViewController: ViewController  {
     }()
     
     var delegate:AleartRemove?
-    
     
     // MARK: - ViewDidLoad Fuction
     override func viewDidLoad() {
