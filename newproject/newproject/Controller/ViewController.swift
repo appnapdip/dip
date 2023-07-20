@@ -24,7 +24,10 @@ class ViewController: UIViewController,Onboarding,PinDismiss {
     
     // MARK: - viewWillAppear
     override func viewWillAppear(_ animated: Bool) {
-        
+        let Aleartvc = AleartViewController()
+        Aleartvc.modalPresentationStyle = .fullScreen
+        Aleartvc.modalTransitionStyle = .crossDissolve
+        self.present(Aleartvc, animated:true)
     }
     
     //MARK: - viewDidAppear
