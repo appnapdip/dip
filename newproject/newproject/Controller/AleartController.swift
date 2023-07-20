@@ -9,6 +9,12 @@ import Foundation
 import UIKit
 
 
+protocol AleartRemove {
+    func PressCancel()
+    func PressRemove()
+}
+
+
 class AleartViewController: ViewController  {
     
     // MARK: - PROPERTIES
@@ -41,6 +47,7 @@ class AleartViewController: ViewController  {
         var thisButton = UIButton().button(title:"Cancel",titleColor:hexColor,font:UIFont(name:"Poppins-Medium", size: .init(h:16))!,cornerRadius:.init(w:12))
         thisButton.layer.borderColor = UIColor(hex:"#323336").cgColor
         thisButton.layer.borderWidth = .init(h:1)
+        thisButton.addTarget(self, action:#selector(cancel), for: .touchUpInside)
         return thisButton
     }()
     
@@ -48,6 +55,7 @@ class AleartViewController: ViewController  {
     lazy var RemoveButton:UIButton = {
         let hexColor = UIColor(hex:"#FFFFFF")
         var thisButton = UIButton().button(title:"Remove",titleColor:hexColor,backgroundColor: UIColor(hex: "#FF4D4D"),font:UIFont(name:"Poppins-Medium", size:.init(h:16))!,cornerRadius:.init(w:12))
+        thisButton.addTarget(self, action:#selector(remove), for: .touchUpInside)
         return thisButton
         
     }()
@@ -62,7 +70,7 @@ class AleartViewController: ViewController  {
         return ButtonSStackView
     }()
     
-    
+    var delegate:AleartRemove?
     
     
     // MARK: - ViewDidLoad Fuction
@@ -91,7 +99,18 @@ class AleartViewController: ViewController  {
         
         ButtonSStackView.anchorView(bottom:AleartView.bottomAnchor,paddingBottom:.init(h:20),width:UIdeviceSize.width*0.6715, height: UIdeviceSize.height*0.0536)
         ButtonSStackView.centerX(inView:view)
-        
+    }
+    
+    //MARK: - CANCEL BUTTON ACTION
+    
+    @objc func cancel() {
+        delegate?.PressCancel()
+    }
+    
+    //MARK: - REMOVE BUTTON ACTION
+    
+    @objc func remove() {
+        delegate?.PressRemove()
     }
     
 }

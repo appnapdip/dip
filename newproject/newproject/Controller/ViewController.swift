@@ -7,7 +7,9 @@
 
 import UIKit
 
-class ViewController: UIViewController,Onboarding,PinDismiss {
+class ViewController: UIViewController,Onboarding,PinDismiss,AleartRemove {
+  
+    
     
     //MARK: - viewDidLoad
     override func viewDidLoad() {
@@ -50,12 +52,33 @@ class ViewController: UIViewController,Onboarding,PinDismiss {
             self.showToast(message: ToastMessage.welcome.description, font:UIFont(name:"Poppins-Medium", size:14)!)
             
         }
-        
+        // ALEART CONTROLLER
         let Aleartvc = AleartViewController()
+        Aleartvc.delegate = self
         Aleartvc.modalPresentationStyle = .fullScreen
         Aleartvc.modalTransitionStyle = .crossDissolve
         self.present(Aleartvc, animated:true)
     }
+    
+    // MARK: - PRESS CANCEL FUNCTION
+    func PressCancel() {
+        dismiss(animated:true) {
+            
+        }
+    }
+    
+    // MARK: - PRESS REMOVE FUNCTION
+    func PressRemove() {
+        dismiss(animated:true) {
+            
+        }
+    }
+    
+    
+    
+    
+    
+    
     
     //MARK: - Function CheckOanboarding and EnterPin
     
