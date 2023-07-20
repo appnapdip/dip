@@ -24,10 +24,6 @@ class ViewController: UIViewController,Onboarding,PinDismiss {
     
     // MARK: - viewWillAppear
     override func viewWillAppear(_ animated: Bool) {
-        let Aleartvc = AleartViewController()
-        Aleartvc.modalPresentationStyle = .fullScreen
-        Aleartvc.modalTransitionStyle = .crossDissolve
-        self.present(Aleartvc, animated:true)
     }
     
     //MARK: - viewDidAppear
@@ -54,6 +50,11 @@ class ViewController: UIViewController,Onboarding,PinDismiss {
             self.showToast(message: ToastMessage.welcome.description, font:UIFont(name:"Poppins-Medium", size:14)!)
             
         }
+        
+        let Aleartvc = AleartViewController()
+        Aleartvc.modalPresentationStyle = .fullScreen
+        Aleartvc.modalTransitionStyle = .crossDissolve
+        self.present(Aleartvc, animated:true)
     }
     
     //MARK: - Function CheckOanboarding and EnterPin

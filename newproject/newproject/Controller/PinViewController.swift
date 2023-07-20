@@ -179,7 +179,7 @@ class PinViewController: UIViewController {
                 
                 let title: String = i == 10 ? "OK" : i == 11 ? "0" : ""
                 let image: UIImage? = i == 12 ? UIImage(named: "tag-cross") : nil
-                let thisButton = UIButton().button(title:title,titleColor: i == 10 ? UIColor(hex:"#2EA7FF") : .black, backgroundImage: image, backgroundColor: i == 11 ? .white : .clear,font:UIFont(name:"Poppins-Light", size:32)!)
+                let thisButton = UIButton().button(title:title,titleColor: i == 10 ? UIColor(hex:"#2EA7FF") : .black, backgroundImage: image, backgroundColor: i == 11 ? .white : .clear,font:UIFont(name:"Poppins-Light", size: i == 10 ? 24 : 32)!)
                 if i == 10 {
                     thisButton.isUserInteractionEnabled = false
                     thisButton.alpha = 0

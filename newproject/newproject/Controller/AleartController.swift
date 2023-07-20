@@ -11,6 +11,8 @@ import UIKit
 
 class AleartViewController: ViewController  {
     
+    // MARK: - PROPERTIES
+    
     var AleartTitle:UILabel = {
         let hexColor = UIColor(hex:"#323336")
         let thisLabel = UILabel().label(title:"Remove Album Password", textColor:hexColor,fontStyle:UIFont(name: "Poppins-SemiBold", size:16),allignment:.center)
@@ -32,72 +34,67 @@ class AleartViewController: ViewController  {
         return thisView
     }()
     
+    // MARK: - create Cancel Button
     
     lazy var CancelButton:UIButton = {
-        let hexColor = UIColor(hex:"#2EA7FF")
-        let image = UIImage(named:"arrow-right")
-        var thisButton = UIButton().button(backgroundImage:image,backgroundColor:hexColor,cornerRadius:.init(h:68,for:68)/2,shadow:UIColor.blue.cgColor,shadowOpacity:0.5,shadowRadius:65)
-        thisButton.tintColor = .white
+        let hexColor = UIColor(hex:"#5A5F73")
+        var thisButton = UIButton().button(title:"Cancel",titleColor:hexColor,font:UIFont(name:"Poppins-Medium", size:16)!,cornerRadius:.init(w:12))
+        thisButton.layer.borderColor = UIColor(hex:"#323336").cgColor
+        thisButton.layer.borderWidth = .init(h:1)
         return thisButton
     }()
     
-    // MARK: - creating skipButton
+    
     lazy var RemoveButton:UIButton = {
-        let hexColor = UIColor(hex:"#323336")
-        var thisButton = UIButton().button(title:"Skip",titleColor:.black,font: UIFont(name:"Poppins-Regular", size: 16)!)
+        let hexColor = UIColor(hex:"#FFFFFF")
+        var thisButton = UIButton().button(title:"Remove",titleColor:hexColor,backgroundColor: UIColor(hex: "#FF4D4D"),font:UIFont(name:"Poppins-Medium", size:16)!,cornerRadius:.init(w:12))
         return thisButton
         
     }()
     
     
     let ButtonSStackView:UIStackView = {
-        let thisPinStackView = UIStackView()
-        thisPinStackView.axis = NSLayoutConstraint.Axis.horizontal
-        thisPinStackView.distribution = .fillEqually
+        let ButtonSStackView = UIStackView()
+        ButtonSStackView.axis = NSLayoutConstraint.Axis.horizontal
+        ButtonSStackView.distribution = .fillEqually
         //thisPinStackView.alignment = .fill
-        thisPinStackView.spacing = .init(w:18)
-        thisPinStackView.backgroundColor = .green
-        return thisPinStackView
+        ButtonSStackView.spacing = .init(w:18)
+        return ButtonSStackView
     }()
     
     
     
     
-    
+    // MARK: - ViewDidLoad Fuction
     override func viewDidLoad() {
         loadUI()
-       
+        
     }
+    
+    // MARK: - LoadUI Fuction
     
     private func loadUI() {
         
         view.addSubview(AleartView)
-        view.addSubview(AleartTitle)
-        view.addSubview(AleartSubTitle)
-        view.addSubview(CancelButton)
-        view.addSubview(RemoveButton)
-        view.addSubview(ButtonSStackView)
+        AleartView.addSubview(AleartTitle)
+        AleartView.addSubview(AleartSubTitle)
+        AleartView.addSubview(ButtonSStackView)
+        ButtonSStackView.addArrangedSubview(CancelButton)
+        ButtonSStackView.addArrangedSubview(RemoveButton)
         
         AleartView.anchorView(top:view.topAnchor,paddingTop: .init(h:355) , width:.init(w:334) , height:.init(h:187))
         AleartView.centerX(inView:view)
         
-        AleartTitle.anchorView(top:view.topAnchor,paddingTop: .init(h:379) , width:.init(w:208) , height:.init(h:16))
+        AleartTitle.anchorView(top:AleartView.topAnchor,paddingTop: .init(h:20) , width:.init(w:208) , height:.init(h:16))
         AleartTitle.centerX(inView:view)
         
-        AleartSubTitle.anchorView(top:view.topAnchor,paddingTop: .init(h:403) , width:.init(w:266) , height:.init(h:35))
+        AleartSubTitle.anchorView(top:AleartTitle.bottomAnchor,paddingTop: .init(h:10), width:.init(w:266), height:.init(h:35))
         AleartSubTitle.centerX(inView:view)
         
-        ButtonSStackView.anchorView(bottom:view.bottomAnchor,paddingBottom:.init(h:-378), width: .init(w:278), height: .init(w:48))
+        ButtonSStackView.anchorView(top:AleartSubTitle.bottomAnchor,paddingTop:.init(h:20),width:.init(w:278) , height:.init(h:48))
         ButtonSStackView.centerX(inView:view)
-                              
-                              
-        
         
     }
-    
-    
-    
-    
     
 }
 
