@@ -53,31 +53,23 @@ class ViewController: UIViewController,Onboarding,PinDismiss,AleartRemove {
             
         }
         // ALEART CONTROLLER
-        let Aleartvc = AleartViewController()
-        Aleartvc.delegate = self
-        Aleartvc.modalPresentationStyle = .fullScreen
-        Aleartvc.modalTransitionStyle = .crossDissolve
-        self.present(Aleartvc, animated:true)
+//        let Aleartvc = AleartViewController()
+//        Aleartvc.delegate = self
+//        Aleartvc.modalPresentationStyle = .fullScreen
+//        Aleartvc.modalTransitionStyle = .crossDissolve
+//        self.present(Aleartvc, animated:true)
     }
     
     // MARK: - PRESS CANCEL FUNCTION
-    func PressCancel() {
+    func pressAction(firstButton: Bool) {
         dismiss(animated:true) {
-            
+            if firstButton{
+                print("First")
+            }else{
+                print("Second")
+            }
         }
     }
-    
-    // MARK: - PRESS REMOVE FUNCTION
-    func PressRemove() {
-        dismiss(animated:true) {
-            
-        }
-    }
-    
-    
-    
-    
-    
     
     
     //MARK: - Function CheckOanboarding and EnterPin
