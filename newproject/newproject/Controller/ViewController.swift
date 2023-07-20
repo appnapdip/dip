@@ -30,6 +30,7 @@ class ViewController: UIViewController,Onboarding,PinDismiss {
         dismiss(animated: true) {
             UserDefaults.standard.set(true, forKey:"onboardingShown")
             let pin = PinViewController()
+            pin.delegate = self
             pin.modalPresentationStyle = .fullScreen
             pin.modalTransitionStyle = .crossDissolve
             self.present(pin, animated:true)
@@ -39,6 +40,7 @@ class ViewController: UIViewController,Onboarding,PinDismiss {
     
     func pinDismissCall() {
         dismiss(animated:true) {
+            self.showToast(message: "welcome to ViewController", font: .systemFont(ofSize:12))
             
         }
     }
