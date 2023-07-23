@@ -39,21 +39,21 @@ class AleartViewController: ViewController  {
     
     // MARK: - create Cancel Button
     
-    lazy var CancelButton:UIButton = {
+    lazy var primrayButton:UIButton = {
         let hexColor = UIColor(hex:"#5A5F73")
         var thisButton = UIButton().button(title:"Cancel",titleColor:hexColor,font:UIFont(name:"Poppins-Medium", size: .init(h:16))!,cornerRadius:.init(w:12))
         thisButton.layer.borderColor = UIColor(hex:"#323336").cgColor
         thisButton.layer.borderWidth = .init(h:1)
-        thisButton.addTarget(self, action:#selector(cancel), for: .touchUpInside)
+        thisButton.addTarget(self, action:#selector(primary), for: .touchUpInside)
         return thisButton
     }()
     
     // MARK: - create Remove Button
     
-    lazy var RemoveButton:UIButton = {
+    lazy var secondaryButton:UIButton = {
         let hexColor = UIColor(hex:"#FFFFFF")
         var thisButton = UIButton().button(title:"Remove",titleColor:hexColor,backgroundColor: UIColor(hex: "#FF4D4D"),font:UIFont(name:"Poppins-Medium", size:.init(h:16))!,cornerRadius:.init(w:12))
-        thisButton.addTarget(self, action:#selector(remove), for: .touchUpInside)
+        thisButton.addTarget(self, action:#selector(secondary), for: .touchUpInside)
         return thisButton
         
     }()
@@ -87,8 +87,8 @@ class AleartViewController: ViewController  {
         AleartView.addSubview(ButtonSStackView)
         AleartView.centerY(inView: view)
         
-        ButtonSStackView.addArrangedSubview(CancelButton)
-        if !showSingleButton {ButtonSStackView.addArrangedSubview(RemoveButton)}
+        ButtonSStackView.addArrangedSubview(primrayButton)
+        if !showSingleButton {ButtonSStackView.addArrangedSubview(secondaryButton)}
         
         AleartView.anchorView(width:UIdeviceSize.width * 0.80 , height:UIdeviceSize.height * 0.20 )
         AleartView.centerX(inView:view)
@@ -102,7 +102,7 @@ class AleartViewController: ViewController  {
     
     //MARK: -  BUTTON ACTIONS
     
-    @objc func cancel() {
+    @objc func primary() {
         delegate?.pressAction(firstButton: true)
         dismiss(animated:true) {
             self.buttonAction?()
@@ -111,7 +111,7 @@ class AleartViewController: ViewController  {
     }
     
     
-    @objc func remove() {
+    @objc func secondary() {
         delegate?.pressAction(firstButton: false)
         dismiss(animated:true) {
             self.buttonAction?()
