@@ -8,10 +8,9 @@
 import UIKit
 
 class ViewController: UIViewController,Onboarding,PinDismiss,AleartRemove {
-    
-    
-    
     //MARK: - viewDidLoad
+    var firstButton: Bool = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         let backgroundColor = UIColor(hex:"#F2F3FA")
@@ -50,25 +49,26 @@ class ViewController: UIViewController,Onboarding,PinDismiss,AleartRemove {
     func pinDismissCall() {
         dismiss(animated:true) {
             self.showToast(message: ToastMessage.welcome.description, font:UIFont(name:"Poppins-Medium", size:14)!)
-            
+            self.showAlert()
         }
-        // ALEART CONTROLLER
-        //        let Aleartvc = AleartViewController()
-        //        Aleartvc.delegate = self
-        //        Aleartvc.modalPresentationStyle = .fullScreen
-        //        Aleartvc.modalTransitionStyle = .crossDissolve
-        //        self.present(Aleartvc, animated:true)
+
+    }
+    
+    func showAlert(){
+        let sAVC = self.singleButtonAlert {
+            if self.firstButton {
+                
+            }else{
+                
+            }
+        }
+        sAVC.delegate = self
+        self.present(sAVC, animated: true)
     }
     
     // MARK: - PRESS CANCEL FUNCTION
     func pressAction(firstButton: Bool) {
-        dismiss(animated:true) {
-            if firstButton{
-                print("First")
-            }else{
-                print("Second")
-            }
-        }
+        self.firstButton = firstButton
     }
     
     

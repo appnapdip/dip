@@ -14,6 +14,7 @@ protocol AleartRemove {
 
 class AleartViewController: ViewController  {
     // MARK: - PROPERTIES
+    var buttonAction: (()->Void)? = nil
     
     var AleartTitle:UILabel = {
         let hexColor = UIColor(hex:"#323336")
@@ -68,6 +69,7 @@ class AleartViewController: ViewController  {
     }()
     
     var delegate:AleartRemove?
+    var showSingleButton:Bool = false
     
     // MARK: - ViewDidLoad Fuction
     override func viewDidLoad() {
@@ -84,8 +86,9 @@ class AleartViewController: ViewController  {
         AleartView.addSubview(AleartSubTitle)
         AleartView.addSubview(ButtonSStackView)
         AleartView.centerY(inView: view)
+        
         ButtonSStackView.addArrangedSubview(CancelButton)
-        ButtonSStackView.addArrangedSubview(RemoveButton)
+        if !showSingleButton {ButtonSStackView.addArrangedSubview(RemoveButton)}
         
         AleartView.anchorView(width:UIdeviceSize.width * 0.80 , height:UIdeviceSize.height * 0.20 )
         AleartView.centerX(inView:view)
@@ -101,11 +104,18 @@ class AleartViewController: ViewController  {
     
     @objc func cancel() {
         delegate?.pressAction(firstButton: true)
+        dismiss(animated:true) {
+            self.buttonAction?()
+        }
+        
     }
     
     
     @objc func remove() {
         delegate?.pressAction(firstButton: false)
+        dismiss(animated:true) {
+            self.buttonAction?()
+        }
     }
     
 }

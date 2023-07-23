@@ -36,11 +36,16 @@ extension UIViewController {
     }
     
     
-    func firstButton(firstButtonTitle:String,firstButtonTitleColor:CGColor,firstButtonFont:UIFont,firstButtonCornerRadius:CGFloat,firstButtonBorderColor:CGColor,firstButtonBorderWidth:CGFloat) {
-        
+    func singleButtonAlert(aleartViewTittle:String = "Remove Album Password" , aleartViewSubTitle:String = "This album will no longer required any password to be viewed", firstButtonTitle:String = "OK",firstButtonBackGrounColor:UIColor = UIColor.clear, completion: @escaping()->Void) -> AleartViewController{
+        let thisVC = AleartViewController()
+        thisVC.buttonAction = completion
+        return thisVC
     }
     
-    func secondButton(secondButtonTitle:String,secondButtonTitleColor:CGColor,secondButtonFont:UIFont,secondButtonCorneRadius:CGFloat) {
+    func doubleButtonAleart( aleartViewTittle:String = "Remove Album Password", aleartViewSubTitle:String = "This album will no longer required any password to be viewed", firstButtonTitle:String = "OK",firstButtonBackGrounColor:UIColor = UIColor.clear,secondButtonTitle:String = "Remove",secondButtonBackGroundColor:UIColor = UIColor.red,completion: @escaping() -> Void)-> AleartViewController {
+        let thisVC = AleartViewController()
+        thisVC.buttonAction = completion
+        return thisVC
         
     }
     
