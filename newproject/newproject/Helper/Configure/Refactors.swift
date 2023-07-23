@@ -45,22 +45,22 @@ enum ProjectFont{
 
 enum AleartMessage {
     
-    var Title:String {
+    var messageTitle:String {
         return "Remove Album Password"
         
         
     }
     
-    var SubTitle:String {
+    var messageSubTitle:String {
         return  "This album will no longer required any password to be viewed"
     }
     
-    var  FirstButtonTitle:String {
-        return "Cancel"
+    var  firstButtonTitle:String {
+        return "firstButton"
     }
     
-    var SecondButtonTitle:String {
-        return "Remove"
+    var secondButtonTitle:String {
+        return "secondButton"
     }
     
     

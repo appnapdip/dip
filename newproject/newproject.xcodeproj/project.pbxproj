@@ -27,7 +27,7 @@
 		B2392A8C2A5AACE800401305 /* ViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2392A8B2A5AACE800401305 /* ViewModifier.swift */; };
 		B2401B9C2A5D0D3F00AF1F93 /* OnboradingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2401B9B2A5D0D3F00AF1F93 /* OnboradingModel.swift */; };
 		B2674D5F2A67BDD3000F8150 /* PinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2674D5E2A67BDD3000F8150 /* PinViewController.swift */; };
-		B2674D612A68F6FB000F8150 /* UIToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2674D602A68F6FB000F8150 /* UIToastView.swift */; };
+		B2674D612A68F6FB000F8150 /* ExtensionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2674D602A68F6FB000F8150 /* ExtensionController.swift */; };
 		B2674D652A690C51000F8150 /* Refactors.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2674D642A690C51000F8150 /* Refactors.swift */; };
 		B2674D672A690C81000F8150 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2674D662A690C81000F8150 /* Constants.swift */; };
 		B2674D692A692336000F8150 /* Poppins-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B2674D682A692336000F8150 /* Poppins-Medium.ttf */; };
@@ -61,7 +61,7 @@
 		B2392A8B2A5AACE800401305 /* ViewModifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModifier.swift; sourceTree = "<group>"; };
 		B2401B9B2A5D0D3F00AF1F93 /* OnboradingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboradingModel.swift; sourceTree = "<group>"; };
 		B2674D5E2A67BDD3000F8150 /* PinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinViewController.swift; sourceTree = "<group>"; };
-		B2674D602A68F6FB000F8150 /* UIToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIToastView.swift; sourceTree = "<group>"; };
+		B2674D602A68F6FB000F8150 /* ExtensionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionController.swift; sourceTree = "<group>"; };
 		B2674D642A690C51000F8150 /* Refactors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Refactors.swift; sourceTree = "<group>"; };
 		B2674D662A690C81000F8150 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		B2674D682A692336000F8150 /* Poppins-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Medium.ttf"; sourceTree = "<group>"; };
@@ -164,7 +164,7 @@
 				B227FCC42A5BC68300D8EAF4 /* ImageExtension.swift */,
 				B227FCC62A5BDCC200D8EAF4 /* ColorExtension.swift */,
 				B227FCD02A5BF4AB00D8EAF4 /* UIViewExtension.swift */,
-				B2674D602A68F6FB000F8150 /* UIToastView.swift */,
+				B2674D602A68F6FB000F8150 /* ExtensionController.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -293,7 +293,7 @@
 			files = (
 				B2674D6B2A692540000F8150 /* AleartController.swift in Sources */,
 				B227FCC52A5BC68300D8EAF4 /* ImageExtension.swift in Sources */,
-				B2674D612A68F6FB000F8150 /* UIToastView.swift in Sources */,
+				B2674D612A68F6FB000F8150 /* ExtensionController.swift in Sources */,
 				B2392A6B2A5A625900401305 /* ButtonExtension.swift in Sources */,
 				B2674D5F2A67BDD3000F8150 /* PinViewController.swift in Sources */,
 				B227FCD12A5BF4AB00D8EAF4 /* UIViewExtension.swift in Sources */,
