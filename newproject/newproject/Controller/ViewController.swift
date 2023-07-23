@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController,Onboarding,PinDismiss,AleartRemove {
+class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView {
     //MARK: - viewDidLoad
     var firstButton: Bool = false
     
@@ -55,7 +55,8 @@ class ViewController: UIViewController,Onboarding,PinDismiss,AleartRemove {
     }
     
     func showAlert(){
-        let sAVC = self.doubleButtonAleart(){
+        let sAVC = self.singleButtonAlert() {
+    
             if self.firstButton {
                 
             }else{

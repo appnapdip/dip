@@ -53,64 +53,61 @@ enum AleartMessage {
     
     var messageTitle:String {
         switch self {
-            
         case .welcome:
-           return "Welcome!"
+            return "Welcome!"
         case .networkError:
-             return "networkError!"
+            return "NetworkError!"
         case .succes:
-           return "sucessfully loading!"
+            return "Sucessfully Loading!"
         case .failed:
-            return "failed to show!"
+            return "Failed to Show!"
         case .somethingWrong:
-            return "something wrong happend"
+            return "Something Wrong Happend"
         }
     }
     
     var messageSubTitle:String {
         switch self {
-            
         case .welcome:
-            return "welcome here"
+            return "Welcome Here"
         case .networkError:
-            return "networkError shown here"
+            return "NetworkError Shown Here"
         case .succes:
-           return "sucessfully loading to the view"
+            return "Sucessfully Loading To The View"
         case .failed:
-           return "failing to show data"
+            return "Failing To Show Data"
         case .somethingWrong:
-            return "something wrong happend"
+            return "Something Wrong Happend"
         }
     }
     
     var  firstButtonTitle:String {
         switch self {
-            
         case .welcome:
-             return "welcome"
+            return "Welcome"
         case .networkError:
-            return "error"
+            return "Error"
         case .succes:
-            return "sucess"
+            return "Sucess"
         case .failed:
-            return "failed"
+            return "Failed"
         case .somethingWrong:
-            return "wrong"
+            return "Wrong"
         }
     }
     
     var secondButtonTitle:String {
         switch self {
-            case .welcome:
-            return "welcome"
+        case .welcome:
+            return "Welcome"
         case .networkError:
-            return "error"
+            return "Error"
         case .succes:
-            return "sucess"
+            return "Sucess"
         case .failed:
-            return "failed"
+            return "Failed"
         case .somethingWrong:
-            return "wrong"
+            return "Wrong"
         }
     }
     

@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-protocol AleartRemove {
+protocol RemoveAleartView {
     func pressAction(firstButton: Bool)
 }
 
@@ -68,8 +68,8 @@ class AleartViewController: ViewController  {
         return ButtonSStackView
     }()
     
-    var delegate:AleartRemove?
-    var showSingleButton:Bool = false
+    var delegate: RemoveAleartView?
+    var showSingleButton:Bool = true
     
     // MARK: - ViewDidLoad Fuction
     override func viewDidLoad() {
@@ -88,7 +88,7 @@ class AleartViewController: ViewController  {
         AleartView.centerY(inView: view)
         
         ButtonSStackView.addArrangedSubview(primrayButton)
-        if !showSingleButton {ButtonSStackView.addArrangedSubview(secondaryButton)}
+        if !showSingleButton {ButtonSStackView.addArrangedSubview(secondaryButton)} else {primrayButton.anchorView(width:.init(w:130), height:.init(h:48))}
         
         AleartView.anchorView(width:UIdeviceSize.width * 0.80 , height:UIdeviceSize.height * 0.20 )
         AleartView.centerX(inView:view)

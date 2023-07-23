@@ -40,7 +40,7 @@ extension UIViewController {
         
         let thisVC = AleartViewController()
         thisVC.buttonAction = completion
-        //thisVC.showSingleButton = true
+        thisVC.showSingleButton = true
         thisVC.AleartTitle.text = aleartViewTittle
         thisVC.AleartSubTitle.text = aleartViewSubTitle
         thisVC.primrayButton.setTitle(firstButtonTitle, for:.normal)
@@ -53,7 +53,7 @@ extension UIViewController {
         
         let thisVC = AleartViewController()
         thisVC.buttonAction = completion
-        //thisVC.showSingleButton = false
+        thisVC.showSingleButton = false
         thisVC.AleartTitle.text = aleartViewTittle
         thisVC.AleartSubTitle.text = aleartViewSubTitle
         thisVC.primrayButton.setTitle(firstButtonTitle, for:.normal)
