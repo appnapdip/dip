@@ -69,7 +69,7 @@ enum AlertMessage {
     var messageSubTitle:String {
         switch self {
         case .welcome:
-            return "Hello There Hope you Liking Our Application"
+            return "Hello There!, Hope You Liking Our Application  And Try To Use It"
         case .networkError:
             return "NetworkError Shown Here"
         case .succes:
