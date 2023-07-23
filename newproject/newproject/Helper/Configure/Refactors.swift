@@ -45,10 +45,26 @@ enum ProjectFont{
 
 enum AleartMessage {
     
+    case welcome
+    case networkError
+    case succes
+    case failed
+    case somethingWrong
+    
     var messageTitle:String {
-        return "Remove Album Password"
-        
-        
+        switch self {
+            
+        case .welcome:
+           return "Welcome!"
+        case .networkError:
+             return "networkError Happen!"
+        case .succes:
+           return "sucessfully loading!"
+        case .failed:
+            return "failed to show data!"
+        case .somethingWrong:
+            return "something wrong happend"
+        }
     }
     
     var messageSubTitle:String {

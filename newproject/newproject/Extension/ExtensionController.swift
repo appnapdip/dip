@@ -52,6 +52,11 @@ extension UIViewController {
         
         let thisVC = AleartViewController()
         thisVC.buttonAction = completion
+        thisVC.AleartTitle.text = aleartViewTittle
+        thisVC.AleartSubTitle.text = aleartViewSubTitle
+        thisVC.CancelButton.setTitle(firstButtonTitle, for:.normal)
+        thisVC.modalPresentationStyle = .fullScreen
+        thisVC.modalTransitionStyle = .crossDissolve
         return thisVC
         
     }
