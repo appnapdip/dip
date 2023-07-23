@@ -88,7 +88,7 @@ class AleartViewController: ViewController  {
         AleartView.centerY(inView: view)
         
         ButtonSStackView.addArrangedSubview(primrayButton)
-        if !showSingleButton {ButtonSStackView.addArrangedSubview(secondaryButton)} else {primrayButton.anchorView(width:.init(w:130), height:.init(h:48))}
+        if !showSingleButton {ButtonSStackView.addArrangedSubview(secondaryButton)}
         
         AleartView.anchorView(width:UIdeviceSize.width * 0.80 , height:UIdeviceSize.height * 0.20 )
         AleartView.centerX(inView:view)
@@ -96,7 +96,7 @@ class AleartViewController: ViewController  {
         AleartTitle.anchorView(top:AleartView.topAnchor,left:AleartView.leftAnchor ,right:AleartView.rightAnchor, paddingTop: .init(h:20), paddingLeft:.init(w:20), paddingRight:.init(w:20))
         AleartSubTitle.anchorView(top:AleartTitle.bottomAnchor,left:AleartView.leftAnchor ,right:AleartView.rightAnchor, paddingLeft:.init(w:20), paddingRight:.init(w:20))
         
-        ButtonSStackView.anchorView(bottom:AleartView.bottomAnchor,paddingBottom:.init(h:20),width:UIdeviceSize.width*0.6715, height: UIdeviceSize.height*0.0536)
+        ButtonSStackView.anchorView(bottom:AleartView.bottomAnchor,paddingBottom:.init(h:20),width:UIdeviceSize.width*(showSingleButton ? 0.617 / 2 : 0.617), height: UIdeviceSize.height*0.0536)
         ButtonSStackView.centerX(inView:view)
     }
     
