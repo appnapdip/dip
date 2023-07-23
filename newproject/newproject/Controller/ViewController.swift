@@ -51,11 +51,11 @@ class ViewController: UIViewController,Onboarding,PinDismiss,AleartRemove {
             self.showToast(message: ToastMessage.welcome.description, font:UIFont(name:"Poppins-Medium", size:14)!)
             self.showAlert()
         }
-
+        
     }
     
     func showAlert(){
-        let sAVC = self.singleButtonAlert {
+        let sAVC = self.singleButtonAlert(firstButtonTitle:"ok") {
             if self.firstButton {
                 
             }else{

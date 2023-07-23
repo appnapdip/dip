@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 
-// MARK: - showToast
+// MARK: - showToast,singleButtonAlert,doubleButtonAleart
 extension UIViewController {
     
     func showToast(message : String, font: UIFont) {
@@ -36,13 +36,16 @@ extension UIViewController {
     }
     
     
-    func singleButtonAlert(aleartViewTittle:String = "Remove Album Password" , aleartViewSubTitle:String = "This album will no longer required any password to be viewed", firstButtonTitle:String = "OK",firstButtonBackGrounColor:UIColor = UIColor.clear, completion: @escaping()->Void) -> AleartViewController{
+    func singleButtonAlert(aleartViewTittle:String = "" , aleartViewSubTitle:String = "", firstButtonTitle:String = "",firstButtonBackGrounColor:UIColor = UIColor.clear, completion: @escaping()->Void) -> AleartViewController{
+        
         let thisVC = AleartViewController()
+        thisVC.title = firstButtonTitle
         thisVC.buttonAction = completion
         return thisVC
     }
     
-    func doubleButtonAleart( aleartViewTittle:String = "Remove Album Password", aleartViewSubTitle:String = "This album will no longer required any password to be viewed", firstButtonTitle:String = "OK",firstButtonBackGrounColor:UIColor = UIColor.clear,secondButtonTitle:String = "Remove",secondButtonBackGroundColor:UIColor = UIColor.red,completion: @escaping() -> Void)-> AleartViewController {
+    func doubleButtonAleart( aleartViewTittle:String = "", aleartViewSubTitle:String = "", firstButtonTitle:String = "",firstButtonBackGrounColor:UIColor = UIColor.clear,secondButtonTitle:String = "",secondButtonBackGroundColor:UIColor = UIColor.clear,completion: @escaping() -> Void)-> AleartViewController {
+        
         let thisVC = AleartViewController()
         thisVC.buttonAction = completion
         return thisVC
