@@ -55,7 +55,7 @@ class ViewController: UIViewController,Onboarding,PinDismiss,AleartRemove {
     }
     
     func showAlert(){
-        let sAVC = self.singleButtonAlert(){
+        let sAVC = self.doubleButtonAleart(){
             if self.firstButton {
                 
             }else{

@@ -69,7 +69,7 @@ class AleartViewController: ViewController  {
     }()
     
     var delegate:AleartRemove?
-    var showSingleButton:Bool = true
+    var showSingleButton:Bool = false
     
     // MARK: - ViewDidLoad Fuction
     override func viewDidLoad() {
