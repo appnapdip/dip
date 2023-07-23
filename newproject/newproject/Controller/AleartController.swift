@@ -14,6 +14,7 @@ protocol AleartRemove {
 
 class AleartViewController: ViewController  {
     // MARK: - PROPERTIES
+    
     var AleartTitle:UILabel = {
         let hexColor = UIColor(hex:"#323336")
         let thisLabel = UILabel().label(title:"Remove Album Password", textColor:hexColor,fontStyle:UIFont(name: "Poppins-SemiBold", size: .init(w:16)),allignment:.center)
@@ -46,6 +47,7 @@ class AleartViewController: ViewController  {
         return thisButton
     }()
     
+    // MARK: - create Remove Button
     
     lazy var RemoveButton:UIButton = {
         let hexColor = UIColor(hex:"#FFFFFF")
@@ -95,13 +97,12 @@ class AleartViewController: ViewController  {
         ButtonSStackView.centerX(inView:view)
     }
     
-    //MARK: - CANCEL BUTTON ACTION
+    //MARK: -  BUTTON ACTIONS
     
     @objc func cancel() {
         delegate?.pressAction(firstButton: true)
     }
     
-    //MARK: - REMOVE BUTTON ACTION
     
     @objc func remove() {
         delegate?.pressAction(firstButton: false)

@@ -41,3 +41,27 @@ enum ProjectFont{
     }
 }
 
+
+
+enum AleartMessage {
+    
+    var Title:String {
+        return "Remove Album Password"
+        
+        
+    }
+    
+    var SubTitle:String {
+        return  "This album will no longer required any password to be viewed"
+    }
+    
+    var  FirstButtonTitle:String {
+        return "Cancel"
+    }
+    
+    var SecondButtonTitle:String {
+        return "Remove"
+    }
+    
+    
+}
