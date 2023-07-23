@@ -57,26 +57,61 @@ enum AleartMessage {
         case .welcome:
            return "Welcome!"
         case .networkError:
-             return "networkError Happen!"
+             return "networkError!"
         case .succes:
            return "sucessfully loading!"
         case .failed:
-            return "failed to show data!"
+            return "failed to show!"
         case .somethingWrong:
             return "something wrong happend"
         }
     }
     
     var messageSubTitle:String {
-        return  "This album will no longer required any password to be viewed"
+        switch self {
+            
+        case .welcome:
+            return "welcome here"
+        case .networkError:
+            return "networkError shown here"
+        case .succes:
+           return "sucessfully loading to the view"
+        case .failed:
+           return "failing to show data"
+        case .somethingWrong:
+            return "something wrong happend"
+        }
     }
     
     var  firstButtonTitle:String {
-        return "firstButton"
+        switch self {
+            
+        case .welcome:
+             return "welcome"
+        case .networkError:
+            return "error"
+        case .succes:
+            return "sucess"
+        case .failed:
+            return "failed"
+        case .somethingWrong:
+            return "wrong"
+        }
     }
     
     var secondButtonTitle:String {
-        return "secondButton"
+        switch self {
+            case .welcome:
+            return "welcome"
+        case .networkError:
+            return "error"
+        case .succes:
+            return "sucess"
+        case .failed:
+            return "failed"
+        case .somethingWrong:
+            return "wrong"
+        }
     }
     
     

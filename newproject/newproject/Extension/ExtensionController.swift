@@ -36,7 +36,7 @@ extension UIViewController {
     }
     
     
-    func singleButtonAlert(aleartViewTittle:String = "" , aleartViewSubTitle:String = "", firstButtonTitle:String = "",firstButtonBackGrounColor:UIColor = UIColor.clear, completion: @escaping()->Void) -> AleartViewController{
+    func singleButtonAlert(aleartViewTittle:String = AleartMessage.welcome.messageTitle , aleartViewSubTitle:String = AleartMessage.welcome.messageSubTitle, firstButtonTitle:String = AleartMessage.welcome.firstButtonTitle, firstButtonBackGrounColor:UIColor = UIColor.clear, completion: @escaping()->Void) -> AleartViewController{
         
         let thisVC = AleartViewController()
         thisVC.buttonAction = completion
@@ -48,7 +48,7 @@ extension UIViewController {
         return thisVC
     }
     
-    func doubleButtonAleart( aleartViewTittle:String = "", aleartViewSubTitle:String = "", firstButtonTitle:String = "",firstButtonBackGrounColor:UIColor = UIColor.clear,secondButtonTitle:String = "",secondButtonBackGroundColor:UIColor = UIColor.clear,completion: @escaping() -> Void)-> AleartViewController {
+    func doubleButtonAleart( aleartViewTittle:String = AleartMessage.succes.messageTitle , aleartViewSubTitle:String = AleartMessage.succes.messageSubTitle , firstButtonTitle:String = AleartMessage.welcome.firstButtonTitle ,firstButtonBackGrounColor:UIColor = UIColor.clear,secondButtonTitle:String = AleartMessage.succes.secondButtonTitle,secondButtonBackGroundColor:UIColor = UIColor.clear,completion: @escaping() -> Void)-> AleartViewController {
         
         let thisVC = AleartViewController()
         thisVC.buttonAction = completion
