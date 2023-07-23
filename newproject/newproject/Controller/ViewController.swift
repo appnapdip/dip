@@ -55,7 +55,7 @@ class ViewController: UIViewController,Onboarding,PinDismiss,AleartRemove {
     }
     
     func showAlert(){
-        let sAVC = self.singleButtonAlert(firstButtonTitle:"ok") {
+        let sAVC = self.singleButtonAlert(aleartViewTittle: "show first aleart", aleartViewSubTitle: "showing first aleart",firstButtonTitle:"ok") {
             if self.firstButton {
                 
             }else{

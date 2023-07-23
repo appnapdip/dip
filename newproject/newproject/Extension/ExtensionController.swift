@@ -39,8 +39,12 @@ extension UIViewController {
     func singleButtonAlert(aleartViewTittle:String = "" , aleartViewSubTitle:String = "", firstButtonTitle:String = "",firstButtonBackGrounColor:UIColor = UIColor.clear, completion: @escaping()->Void) -> AleartViewController{
         
         let thisVC = AleartViewController()
-        thisVC.title = firstButtonTitle
         thisVC.buttonAction = completion
+        thisVC.AleartTitle.text = aleartViewTittle
+        thisVC.AleartSubTitle.text = aleartViewSubTitle
+        thisVC.CancelButton.setTitle(firstButtonTitle, for:.normal)
+        thisVC.modalPresentationStyle = .fullScreen
+        thisVC.modalTransitionStyle = .crossDissolve
         return thisVC
     }
     
