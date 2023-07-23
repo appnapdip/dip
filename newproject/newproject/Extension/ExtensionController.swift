@@ -36,26 +36,26 @@ extension UIViewController {
     }
     
     
-    func singleButtonAlert(aleartViewTittle:String = AleartMessage.welcome.messageTitle , aleartViewSubTitle:String = AleartMessage.welcome.messageSubTitle, firstButtonTitle:String = AleartMessage.welcome.firstButtonTitle, firstButtonBackGrounColor:UIColor = UIColor.clear, completion: @escaping()->Void) -> AleartViewController{
+    func singleButtonAlert(tittle:String = AlertMessage.welcome.messageTitle ,subTitle:String = AlertMessage.welcome.messageSubTitle, firstButtonTitle:String = AlertMessage.welcome.firstButtonTitle, firstButtonBackGrounColor:UIColor = UIColor.clear, completion: @escaping()->Void) -> AleartViewController{
         
         let thisVC = AleartViewController()
         thisVC.buttonAction = completion
         //thisVC.showSingleButton = true
-        thisVC.AleartTitle.text = aleartViewTittle
-        thisVC.AleartSubTitle.text = aleartViewSubTitle
+        thisVC.AleartTitle.text = tittle
+        thisVC.AleartSubTitle.text = subTitle
         thisVC.primrayButton.setTitle(firstButtonTitle, for:.normal)
         thisVC.modalPresentationStyle = .fullScreen
         thisVC.modalTransitionStyle = .crossDissolve
         return thisVC
     }
     
-    func doubleButtonAleart( aleartViewTittle:String = AleartMessage.succes.messageTitle , aleartViewSubTitle:String = AleartMessage.succes.messageSubTitle , firstButtonTitle:String = AleartMessage.welcome.firstButtonTitle ,firstButtonBackGrounColor:UIColor = UIColor.clear,secondButtonTitle:String = AleartMessage.succes.secondButtonTitle,secondButtonBackGroundColor:UIColor = UIColor.clear,completion: @escaping() -> Void)-> AleartViewController {
+    func doubleButtonAleart(tittle:String = AlertMessage.succes.messageTitle , subTitle:String = AlertMessage.succes.messageSubTitle , firstButtonTitle:String = AlertMessage.welcome.firstButtonTitle ,firstButtonBackGrounColor:UIColor = UIColor.clear,secondButtonTitle:String = AlertMessage.succes.secondButtonTitle,secondButtonBackGroundColor:UIColor = UIColor.clear,completion: @escaping() -> Void)-> AleartViewController {
         
         let thisVC = AleartViewController()
         thisVC.buttonAction = completion
         //thisVC.showSingleButton = false
-        thisVC.AleartTitle.text = aleartViewTittle
-        thisVC.AleartSubTitle.text = aleartViewSubTitle
+        thisVC.AleartTitle.text = tittle
+        thisVC.AleartSubTitle.text = subTitle
         thisVC.primrayButton.setTitle(firstButtonTitle, for:.normal)
         thisVC.secondaryButton.setTitle(secondButtonTitle, for: .normal)
         thisVC.modalPresentationStyle = .fullScreen

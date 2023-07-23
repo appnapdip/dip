@@ -43,7 +43,7 @@ enum ProjectFont{
 
 
 
-enum AleartMessage {
+enum AlertMessage {
     
     case welcome
     case networkError
@@ -69,7 +69,7 @@ enum AleartMessage {
     var messageSubTitle:String {
         switch self {
         case .welcome:
-            return "Welcome Here"
+            return "Hello There Hope you Liking Our Application"
         case .networkError:
             return "NetworkError Shown Here"
         case .succes:
@@ -84,7 +84,7 @@ enum AleartMessage {
     var  firstButtonTitle:String {
         switch self {
         case .welcome:
-            return "Welcome"
+            return "Okay"
         case .networkError:
             return "Error"
         case .succes:
