@@ -20,48 +20,88 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView {
     }()
     
     
-    let firstStackView:UIStackView = {
+    lazy var firstStackView:UIStackView = {
         
         let thisStackView = UIStackView()
-        thisStackView.axis = NSLayoutConstraint.Axis.horizontal
-        thisStackView.distribution = .fillProportionally
+        thisStackView.axis = .horizontal
+        thisStackView.distribution = .fill
+        thisStackView.spacing = 0
         return thisStackView
         
     }()
     
-    
-    let secondStackView:UIStackView = {
+    lazy var headerButtonsStack:UIStackView = {
         let thisStackView = UIStackView()
-        thisStackView.axis = NSLayoutConstraint.Axis.horizontal
-        thisStackView.backgroundColor = .orange
+        thisStackView.axis = .horizontal
+        thisStackView.distribution = .fillEqually
+        thisStackView.spacing = 10
+        thisStackView.anchorView(width: .init(w: 100))
         return thisStackView
     }()
     
     
-    let headerTitleView:UILabel = {
-        let thislabel = UILabel().label(title:"Photo Vault",textColor:UIColor(hex:"#323336"),fontStyle:UIFont(name:"Poppins-SemiBold", size:.init(h:28)))
+    lazy var secondStackView:UIStackView = {
+        let thisStackView = UIStackView()
+        thisStackView.axis = .horizontal
+        thisStackView.distribution = .fillEqually
+        thisStackView.spacing = 0
+        return thisStackView
+    }()
+    
+    
+    lazy var headerTitleView:UILabel = {
+        let thislabel = UILabel().label(title:"Photo Vault",textColor:UIColor(hex:"#323336"),fontStyle:UIFont(name:"Poppins-SemiBold", size:.init(h:28)), allignment: .left)
+        thislabel.anchorView(width: .init(w: 165), height: .init(h: 42))
         return thislabel
     }()
     
     
     lazy var homeButton:UIButton = {
-        let hexColor = UIColor(hex:"#323336")
-        let image = UIImage(named:"home")
-        var thisButton = UIButton().button(backgroundImage:image)
+        let image = UIImage(named:"cloud")
+        var thisButton = UIButton().button(backgroundImage:image,cornerRadius: .init(w:10))
         thisButton.tintColor = .black
+        thisButton.layer.borderColor = UIColor(hex:"#D6D8E2").cgColor
+        thisButton.layer.borderWidth = .init(h:1.0)
          return thisButton
     }()
     
-    // MARK: - creating skipButton
+    
     lazy var settingButton:UIButton = {
         let image = UIImage(named:"setting")
-        var thisButton = UIButton().button(backgroundImage:image)
+        var thisButton = UIButton().button(backgroundImage:image, cornerRadius:.init(w:10))
         thisButton.tintColor = .black
+        thisButton.layer.borderColor = UIColor(hex:"#D6D8E2").cgColor
+        thisButton.layer.borderWidth = .init(h:1.0)
+        //thisButton.anchorView(width: .init(h: 42), height: .init(h: 42))
         return thisButton
     }()
     
     
   
+    lazy var albumsButton:UIButton = {
+        let image = UIImage(named:"albums")
+        var thisButton = UIButton().button(title:"Albums",titleColor:UIColor(hex:"#2EA7FF"),backgroundImage:image,font:UIFont(name:"Poppins-Semibold", size:16)!)
+        thisButton.tintColor =  UIColor(hex:"#2EA7FF")
+         return thisButton
+    }()
+    
+    
+    lazy var itemsButton:UIButton = {
+        let image = UIImage(named:"items-grid")
+        var thisButton = UIButton().button(title:"Items",titleColor:UIColor(hex:"#838BA7"),backgroundImage:image,font: UIFont(name:"Poppins-Semibold", size:16)!)
+        thisButton.tintColor = UIColor(hex:"#838BA7")
+        //thisButton.anchorView(width: .init(h: 42), height: .init(h: 42))
+        return thisButton
+    }()
+    
+    
+    
+    lazy var mainScrollView: UIScrollView = {
+        let thisScrollView = UIScrollView()
+        thisScrollView.backgroundColor = .green
+        return thisScrollView
+        
+    }()
     
   
     
@@ -157,15 +197,21 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView {
     
     private func loadUI() {
         view.addSubview(headerView)
+        view.addSubview(mainScrollView)
         headerView.addSubview(firstStackView)
         headerView.addSubview(secondStackView)
-        firstStackView.addArrangedSubview(headerTitleView)
-        firstStackView.addArrangedSubview(homeButton)
-        firstStackView.addArrangedSubview(settingButton)
         
-        headerView.anchorView(left:view.leftAnchor ,right:view.rightAnchor,paddingLeft:.init(w:0), paddingRight:.init(w:0),height:.init(h:160))
-        firstStackView.anchorView(top: headerView.topAnchor,left: headerView.leftAnchor,right: headerView.rightAnchor,paddingTop: .init(h:58),paddingLeft: .init(w:16),paddingRight: .init(w:14),height:.init(h:42))
+        headerView.anchorView(top: view.topAnchor, left:view.leftAnchor ,right:view.rightAnchor,height:.init(h:160))
+        firstStackView.anchorView(top: headerView.topAnchor,left: headerView.leftAnchor, right: headerView.rightAnchor,paddingTop: .init(h:58), paddingLeft: .init(w: 16), paddingRight: .init(w: 16), height:.init(h:42))
+        
+        firstStackView.addArrangedSubview(headerTitleView)
+        firstStackView.addArrangedSubview(headerButtonsStack)
+        headerButtonsStack.addArrangedSubview(homeButton)
+        headerButtonsStack.addArrangedSubview(settingButton)
+        secondStackView.addArrangedSubview(albumsButton)
+        secondStackView.addArrangedSubview(itemsButton)
         secondStackView.anchorView(left:headerView.leftAnchor,bottom: headerView.bottomAnchor, right:headerView.rightAnchor, height:.init(h:48))
+        mainScrollView.anchorView(top:secondStackView.bottomAnchor,left:view.leftAnchor, right:view.rightAnchor)
         
         
     }
