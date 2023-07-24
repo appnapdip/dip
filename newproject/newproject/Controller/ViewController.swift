@@ -15,7 +15,6 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView {
     
     let headerView:UIView = {
         let thisView = UIView()
-        thisView.backgroundColor = .green
         return thisView
         
     }()
@@ -25,7 +24,7 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView {
         
         let thisStackView = UIStackView()
         thisStackView.axis = NSLayoutConstraint.Axis.horizontal
-        thisStackView.backgroundColor = .red
+        thisStackView.distribution = .fillProportionally
         return thisStackView
         
     }()
@@ -34,7 +33,7 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView {
     let secondStackView:UIStackView = {
         let thisStackView = UIStackView()
         thisStackView.axis = NSLayoutConstraint.Axis.horizontal
-        thisStackView.backgroundColor = .green
+        thisStackView.backgroundColor = .orange
         return thisStackView
     }()
     
@@ -46,22 +45,25 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView {
     
     
     lazy var homeButton:UIButton = {
-        let hexColor = UIColor(hex:"#2EA7FF")
-        let image = UIImage(named:"arrow-right")
-        var thisButton = UIButton().button(backgroundImage:image,backgroundColor:hexColor,cornerRadius:.init(h:68,for:68)/2,shadow:UIColor.blue.cgColor,shadowOpacity:0.5,shadowRadius:65)
-        thisButton.tintColor = .white
-        return thisButton
+        let hexColor = UIColor(hex:"#323336")
+        let image = UIImage(named:"home")
+        var thisButton = UIButton().button(backgroundImage:image)
+        thisButton.tintColor = .black
+         return thisButton
     }()
     
     // MARK: - creating skipButton
-    lazy var setingButton:UIButton = {
-        let hexColor = UIColor(hex:"#323336")
-        var thisButton = UIButton().button(title:"Skip",titleColor:.black,font: UIFont(name:"Poppins-Regular", size: 16)!)
+    lazy var settingButton:UIButton = {
+        let image = UIImage(named:"setting")
+        var thisButton = UIButton().button(backgroundImage:image)
+        thisButton.tintColor = .black
         return thisButton
     }()
     
     
+  
     
+  
     
     
     
@@ -157,9 +159,13 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView {
         view.addSubview(headerView)
         headerView.addSubview(firstStackView)
         headerView.addSubview(secondStackView)
+        firstStackView.addArrangedSubview(headerTitleView)
+        firstStackView.addArrangedSubview(homeButton)
+        firstStackView.addArrangedSubview(settingButton)
+        
         headerView.anchorView(left:view.leftAnchor ,right:view.rightAnchor,paddingLeft:.init(w:0), paddingRight:.init(w:0),height:.init(h:160))
-        firstStackView.anchorView(top: headerView.topAnchor,left: headerView.leftAnchor,right: headerView.rightAnchor,paddingTop: .init(h:58),paddingLeft: .init(w:16),paddingRight: .init(w:14))
-        secondStackView.anchorView()
+        firstStackView.anchorView(top: headerView.topAnchor,left: headerView.leftAnchor,right: headerView.rightAnchor,paddingTop: .init(h:58),paddingLeft: .init(w:16),paddingRight: .init(w:14),height:.init(h:42))
+        secondStackView.anchorView(left:headerView.leftAnchor,bottom: headerView.bottomAnchor, right:headerView.rightAnchor, height:.init(h:48))
         
         
     }
