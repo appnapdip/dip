@@ -243,7 +243,7 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView, U
         secondStackView.anchorView(left:headerView.leftAnchor,bottom: headerView.bottomAnchor, right:headerView.rightAnchor, height:.init(h:48))
         mainScrollView.anchorView(top:headerView.bottomAnchor,left:view.leftAnchor,bottom:view.bottomAnchor, right:view.rightAnchor)
         addAlbumButton.anchorView(top:mainScrollView.topAnchor,right:view.rightAnchor, paddingTop:.init(h:9),width: .init(h:44), height:.init(h:44))
-        buttonsCollectioView.anchorView(top:mainScrollView.topAnchor,left:mainScrollView.leftAnchor,right:addAlbumButton.leftAnchor, paddingTop:.init(h:12),paddingLeft:.init(w:16),paddingRight:.init(w:98),height:.init(h:38))
+        buttonsCollectioView.anchorView(top:mainScrollView.topAnchor,left:mainScrollView.leftAnchor,right:addAlbumButton.leftAnchor, paddingTop:.init(h:12),height:.init(h:38))
         
         
     }
