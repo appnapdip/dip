@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView {
+class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView, UIScrollViewDelegate {
     //MARK: - viewDidLoad
     var firstButton: Bool = false
     
@@ -80,7 +80,7 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView {
     
     lazy var albumsButton:UIButton = {
         let image = UIImage(named:"albums")
-        var thisButton = UIButton().button(title:"Albums",titleColor:UIColor(hex:"#2EA7FF"),backgroundImage:image,font:UIFont(name:"Poppins-Semibold", size:16)!)
+        var thisButton = UIButton().button(title:"Albums",titleColor:UIColor(hex:"#2EA7FF"),backgroundImage:image,titleEdgeInsetsLeft:.init(w:8),font:UIFont(name:"Poppins-Semibold", size:16)!)
         thisButton.tintColor =  UIColor(hex:"#2EA7FF")
         return thisButton
     }()
@@ -88,7 +88,7 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView {
     
     lazy var itemsButton:UIButton = {
         let image = UIImage(named:"items-grid")
-        var thisButton = UIButton().button(title:"Items",titleColor:UIColor(hex:"#838BA7"),backgroundImage:image,font: UIFont(name:"Poppins-Semibold", size:16)!)
+        var thisButton = UIButton().button(title:"Items",titleColor:UIColor(hex:"#838BA7"),backgroundImage:image,titleEdgeInsetsLeft:.init(w:8),font: UIFont(name:"Poppins-Semibold", size:16)!)
         thisButton.tintColor = UIColor(hex:"#838BA7")
         //thisButton.anchorView(width: .init(h: 42), height: .init(h: 42))
         return thisButton
@@ -122,6 +122,7 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView {
         thisLayout.scrollDirection = .horizontal
         var thisCollection = UICollectionView(frame:.zero, collectionViewLayout:thisLayout)
         thisCollection.register(CustomCell.self, forCellWithReuseIdentifier: "CustomCell")
+        thisCollection.backgroundColor = .red
         return thisCollection
     }()
     
@@ -220,13 +221,15 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView {
     private func loadUI() {
         view.addSubview(headerView)
         view.addSubview(mainScrollView)
+        mainScrollView.delegate = self
         mainScrollView.addSubview(addAlbumButton)
         headerView.addSubview(firstStackView)
         headerView.addSubview(secondStackView)
-        mainScrollView.addSubview(buttonsCollectioView)
-        //        buttonsCollectioView.delegate = self
-        //        buttonsCollectioView.dataSource = self
-        
+        view.addSubview(buttonsCollectioView)
+        //
+        //                buttonsCollectioView.delegate = self
+        //                buttonsCollectioView.dataSource = self
+        //
         
         headerView.anchorView(top: view.topAnchor, left:view.leftAnchor ,right:view.rightAnchor,height:.init(h:160))
         firstStackView.anchorView(top: headerView.topAnchor,left: headerView.leftAnchor, right: headerView.rightAnchor,paddingTop: .init(h:58), paddingLeft: .init(w: 16), paddingRight: .init(w: 16), height:.init(h:42))
@@ -239,8 +242,8 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView {
         secondStackView.addArrangedSubview(itemsButton)
         secondStackView.anchorView(left:headerView.leftAnchor,bottom: headerView.bottomAnchor, right:headerView.rightAnchor, height:.init(h:48))
         mainScrollView.anchorView(top:headerView.bottomAnchor,left:view.leftAnchor,bottom:view.bottomAnchor, right:view.rightAnchor)
-        addAlbumButton.anchorView(top:mainScrollView.topAnchor,right:mainScrollView.rightAnchor, paddingTop:.init(h:9),height:.init(h:44))
-        
+        addAlbumButton.anchorView(top:mainScrollView.topAnchor,right:view.rightAnchor, paddingTop:.init(h:9),width: .init(h:44), height:.init(h:44))
+        buttonsCollectioView.anchorView(top:mainScrollView.topAnchor,left:mainScrollView.leftAnchor,right:addAlbumButton.leftAnchor, paddingTop:.init(h:12),paddingLeft:.init(w:16),paddingRight:.init(w:98),height:.init(h:38))
         
         
     }
@@ -248,7 +251,7 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView {
 }
 
 
-
+//
 //extension ViewController :  UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
 //
 //    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
