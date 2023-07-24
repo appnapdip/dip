@@ -62,7 +62,7 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView {
         thisButton.tintColor = .black
         thisButton.layer.borderColor = UIColor(hex:"#D6D8E2").cgColor
         thisButton.layer.borderWidth = .init(h:1.0)
-         return thisButton
+        return thisButton
     }()
     
     
@@ -77,12 +77,12 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView {
     }()
     
     
-  
+    
     lazy var albumsButton:UIButton = {
         let image = UIImage(named:"albums")
         var thisButton = UIButton().button(title:"Albums",titleColor:UIColor(hex:"#2EA7FF"),backgroundImage:image,font:UIFont(name:"Poppins-Semibold", size:16)!)
         thisButton.tintColor =  UIColor(hex:"#2EA7FF")
-         return thisButton
+        return thisButton
     }()
     
     
@@ -125,7 +125,7 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView {
         return thisCollection
     }()
     
-  
+    
     
     
     
@@ -224,8 +224,8 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView {
         headerView.addSubview(firstStackView)
         headerView.addSubview(secondStackView)
         mainScrollView.addSubview(buttonsCollectioView)
-//        buttonsCollectioView.delegate = self
-//        buttonsCollectioView.dataSource = self
+        //        buttonsCollectioView.delegate = self
+        //        buttonsCollectioView.dataSource = self
         
         
         headerView.anchorView(top: view.topAnchor, left:view.leftAnchor ,right:view.rightAnchor,height:.init(h:160))
@@ -239,8 +239,8 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView {
         secondStackView.addArrangedSubview(itemsButton)
         secondStackView.anchorView(left:headerView.leftAnchor,bottom: headerView.bottomAnchor, right:headerView.rightAnchor, height:.init(h:48))
         mainScrollView.anchorView(top:headerView.bottomAnchor,left:view.leftAnchor,bottom:view.bottomAnchor, right:view.rightAnchor)
-        addAlbumButton.anchorView(top:mainScrollView.bottomAnchor,right:mainScrollView.rightAnchor,paddingTop:.init(h:9),height:.init(h:44))
-        addAlbumButton.centerY(inView:mainScrollView)
+        addAlbumButton.anchorView(top:mainScrollView.topAnchor,right:mainScrollView.rightAnchor, paddingTop:.init(h:9),height:.init(h:44))
+        
         
         
     }
