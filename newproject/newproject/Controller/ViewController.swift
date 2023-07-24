@@ -211,7 +211,7 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView {
         secondStackView.addArrangedSubview(albumsButton)
         secondStackView.addArrangedSubview(itemsButton)
         secondStackView.anchorView(left:headerView.leftAnchor,bottom: headerView.bottomAnchor, right:headerView.rightAnchor, height:.init(h:48))
-        mainScrollView.anchorView(top:secondStackView.bottomAnchor,left:view.leftAnchor, right:view.rightAnchor)
+        mainScrollView.anchorView(top:secondStackView.bottomAnchor,left:view.leftAnchor,bottom:view.bottomAnchor, right:view.rightAnchor)
         
         
     }
