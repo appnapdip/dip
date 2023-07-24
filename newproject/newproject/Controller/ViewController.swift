@@ -51,7 +51,7 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView {
     
     lazy var headerTitleView:UILabel = {
         let thislabel = UILabel().label(title:"Photo Vault",textColor:UIColor(hex:"#323336"),fontStyle:UIFont(name:"Poppins-SemiBold", size:.init(h:28)), allignment: .left)
-        thislabel.anchorView(width: .init(w: 165), height: .init(h: 42))
+        //thislabel.anchorView(width: .init(w: 165), height: .init(h: 42))
         return thislabel
     }()
     
@@ -96,11 +96,33 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView {
     
     
     
+    
+    
+    
     lazy var mainScrollView: UIScrollView = {
         let thisScrollView = UIScrollView()
-        thisScrollView.backgroundColor = .green
         return thisScrollView
         
+    }()
+    
+    
+    
+    lazy var addAlbumButton:UIButton = {
+        let image = UIImage(named:"album")
+        var thisButton = UIButton().button(backgroundImage:image)
+        thisButton.tintColor = UIColor(hex:"#2EA7FF")
+        return thisButton
+    }()
+    
+    
+    
+    
+    let buttonsCollectioView: UICollectionView = {
+        let thisLayout =  UICollectionViewFlowLayout()
+        thisLayout.scrollDirection = .horizontal
+        var thisCollection = UICollectionView(frame:.zero, collectionViewLayout:thisLayout)
+        thisCollection.register(CustomCell.self, forCellWithReuseIdentifier: "CustomCell")
+        return thisCollection
     }()
     
   
@@ -198,8 +220,13 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView {
     private func loadUI() {
         view.addSubview(headerView)
         view.addSubview(mainScrollView)
+        mainScrollView.addSubview(addAlbumButton)
         headerView.addSubview(firstStackView)
         headerView.addSubview(secondStackView)
+        mainScrollView.addSubview(buttonsCollectioView)
+//        buttonsCollectioView.delegate = self
+//        buttonsCollectioView.dataSource = self
+        
         
         headerView.anchorView(top: view.topAnchor, left:view.leftAnchor ,right:view.rightAnchor,height:.init(h:160))
         firstStackView.anchorView(top: headerView.topAnchor,left: headerView.leftAnchor, right: headerView.rightAnchor,paddingTop: .init(h:58), paddingLeft: .init(w: 16), paddingRight: .init(w: 16), height:.init(h:42))
@@ -211,7 +238,9 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView {
         secondStackView.addArrangedSubview(albumsButton)
         secondStackView.addArrangedSubview(itemsButton)
         secondStackView.anchorView(left:headerView.leftAnchor,bottom: headerView.bottomAnchor, right:headerView.rightAnchor, height:.init(h:48))
-        mainScrollView.anchorView(top:secondStackView.bottomAnchor,left:view.leftAnchor,bottom:view.bottomAnchor, right:view.rightAnchor)
+        mainScrollView.anchorView(top:headerView.bottomAnchor,left:view.leftAnchor,bottom:view.bottomAnchor, right:view.rightAnchor)
+        addAlbumButton.anchorView(top:mainScrollView.bottomAnchor,right:mainScrollView.rightAnchor,paddingTop:.init(h:9),height:.init(h:44))
+        addAlbumButton.centerY(inView:mainScrollView)
         
         
     }
@@ -219,3 +248,16 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView {
 }
 
 
+
+//extension ViewController :  UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+//
+//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+//
+//    }
+//
+//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+//
+//    }
+//
+//
+//}
