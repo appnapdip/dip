@@ -13,27 +13,48 @@ struct User {
     var id:String
     var pin:Int
     var settings:String
-    var categories = [catagorie]()
-    var items = [item]()
+    var categories = [Catagorie]()
+    var items = [Item]()
+    
+    init(name: String, id: String, pin: Int, settings: String, categories: [Catagorie] = [Catagorie](), items: [Item] = [Item]()) {
+        self.name = name
+        self.id = id
+        self.pin = pin
+        self.settings = settings
+        self.categories = categories
+        self.items = items
+    }
     
     
 }
 
 
 
-struct catagorie {
+struct Catagorie {
     var id:String
     var name:String
     var albums:String
+    
+    init(id: String, name: String, albums: String) {
+        self.id = id
+        self.name = name
+        self.albums = albums
+    }
 }
 
 
-struct item {
+struct Item {
     var id:String
     var name:String
     var type:String
     var Size:CGFloat
     var resource:String
     
-    
+    init(id: String, name: String, type: String, Size: CGFloat, resource: String) {
+        self.id = id
+        self.name = name
+        self.type = type
+        self.Size = Size
+        self.resource = resource
+    }
 }
