@@ -47,9 +47,7 @@ class PinViewController: UIViewController {
         let thisPinStackView = UIStackView()
         thisPinStackView.axis = NSLayoutConstraint.Axis.horizontal
         thisPinStackView.distribution = .fillEqually
-        //thisPinStackView.alignment = .fill
         thisPinStackView.spacing = .init(w:12)
-        //thisPinStackView.backgroundColor = .green
         return thisPinStackView
         
     }()
@@ -60,9 +58,7 @@ class PinViewController: UIViewController {
         let thisPinStackView = UIStackView()
         thisPinStackView.axis = NSLayoutConstraint.Axis.horizontal
         thisPinStackView.distribution = .fillEqually
-        //thisPinStackView.alignment = .fill
         thisPinStackView.spacing = .init(w:32)
-        //thisPinStackView.backgroundColor = .green
         return thisPinStackView
         
     }()
@@ -72,9 +68,7 @@ class PinViewController: UIViewController {
         let thisPinStackView = UIStackView()
         thisPinStackView.axis = NSLayoutConstraint.Axis.horizontal
         thisPinStackView.distribution = .fillEqually
-        //thisPinStackView.alignment = .fill
         thisPinStackView.spacing = .init(w:32)
-        //thisPinStackView.backgroundColor = .green
         return thisPinStackView
     }()
     
@@ -83,9 +77,7 @@ class PinViewController: UIViewController {
         let thisPinStackView = UIStackView()
         thisPinStackView.axis = NSLayoutConstraint.Axis.horizontal
         thisPinStackView.distribution = .fillEqually
-        //thisPinStackView.alignment = .fill
         thisPinStackView.spacing = .init(w:32)
-        //thisPinStackView.backgroundColor = .green
         return thisPinStackView
     }()
     
@@ -95,9 +87,7 @@ class PinViewController: UIViewController {
         let thisPinStackView = UIStackView()
         thisPinStackView.axis = NSLayoutConstraint.Axis.horizontal
         thisPinStackView.distribution = .fillEqually
-        //thisPinStackView.alignment = .fill
         thisPinStackView.spacing = .init(w:32)
-        //thisPinStackView.backgroundColor = .green
         return thisPinStackView
     }()
     
@@ -185,7 +175,6 @@ class PinViewController: UIViewController {
                     thisButton.alpha = 0
                 }
                 
-                
                 if i == 12 {thisButton.tintColor = .gray}
                 thisButton.tag = i
                 ButtonStackView4.addArrangedSubview(thisButton)
@@ -198,7 +187,6 @@ class PinViewController: UIViewController {
     }
     
     //MARK: - Action Button Fuction
-    
     @objc private func  clickButtonAction(_ sender: UIButton){
         switch sender.tag  {
         case 1,2,3,4,5,6,7,8,9,11:

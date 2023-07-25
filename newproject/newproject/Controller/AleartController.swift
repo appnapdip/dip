@@ -107,9 +107,7 @@ class AleartViewController: ViewController  {
         dismiss(animated:true) {
             self.buttonAction?()
         }
-        
     }
-    
     
     @objc func secondary() {
         delegate?.pressAction(firstButton: false)
@@ -117,7 +115,6 @@ class AleartViewController: ViewController  {
             self.buttonAction?()
         }
     }
-    
 }
 
 

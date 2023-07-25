@@ -7,21 +7,22 @@
 
 import UIKit
 
-class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView, UIScrollViewDelegate {
+class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView {
+    
     //MARK: - viewDidLoad
+    
     var firstButton: Bool = false
     
     // MARK: - Properties
     
     let headerView:UIView = {
         let thisView = UIView()
+        thisView.backgroundColor = UIColor(hex:"#FFFFFF")
         return thisView
         
     }()
     
-    
     lazy var firstStackView:UIStackView = {
-        
         let thisStackView = UIStackView()
         thisStackView.axis = .horizontal
         thisStackView.distribution = .fill
@@ -39,7 +40,6 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView, U
         return thisStackView
     }()
     
-    
     lazy var secondStackView:UIStackView = {
         let thisStackView = UIStackView()
         thisStackView.axis = .horizontal
@@ -48,13 +48,11 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView, U
         return thisStackView
     }()
     
-    
     lazy var headerTitleView:UILabel = {
         let thislabel = UILabel().label(title:"Photo Vault",textColor:UIColor(hex:"#323336"),fontStyle:UIFont(name:"Poppins-SemiBold", size:.init(h:28)), allignment: .left)
         //thislabel.anchorView(width: .init(w: 165), height: .init(h: 42))
         return thislabel
     }()
-    
     
     lazy var homeButton:UIButton = {
         let image = UIImage(named:"cloud")
@@ -64,7 +62,6 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView, U
         thisButton.layer.borderWidth = .init(h:1.0)
         return thisButton
     }()
-    
     
     lazy var settingButton:UIButton = {
         let image = UIImage(named:"setting")
@@ -76,15 +73,12 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView, U
         return thisButton
     }()
     
-    
-    
     lazy var albumsButton:UIButton = {
         let image = UIImage(named:"albums")
         var thisButton = UIButton().button(title:"Albums",titleColor:UIColor(hex:"#2EA7FF"),backgroundImage:image,titleEdgeInsetsLeft:.init(w:8),font:UIFont(name:"Poppins-Semibold", size:16)!)
         thisButton.tintColor =  UIColor(hex:"#2EA7FF")
         return thisButton
     }()
-    
     
     lazy var itemsButton:UIButton = {
         let image = UIImage(named:"items-grid")
@@ -94,17 +88,12 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView, U
         return thisButton
     }()
     
-    
-    
-    
-    
-    
     lazy var mainScrollView: UIScrollView = {
         let thisScrollView = UIScrollView()
+        thisScrollView.backgroundColor = UIColor(hex:"#D6D8E2")
         return thisScrollView
         
     }()
-    
     
     
     lazy var addAlbumButton:UIButton = {
@@ -114,33 +103,28 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView, U
         return thisButton
     }()
     
-    
-    
-    
     lazy var buttonsCollectioView: UICollectionView = {
         let thisLayout =  UICollectionViewFlowLayout()
         thisLayout.scrollDirection = .horizontal
         var thisCollection = UICollectionView(frame:.zero, collectionViewLayout:thisLayout)
         thisCollection.showsHorizontalScrollIndicator = false
+        thisCollection.backgroundColor = .clear
         thisLayout.minimumLineSpacing = .init(h:12)
         thisCollection.register(buttonsCustomCell.self, forCellWithReuseIdentifier: "VCCustomCell")
         return thisCollection
     }()
     
-    
-    
     lazy var albumsCollectioView: UICollectionView = {
         let thisLayout =  UICollectionViewFlowLayout()
         thisLayout.scrollDirection = .vertical
         var thisCollection = UICollectionView(frame:.zero, collectionViewLayout:thisLayout)
+        thisLayout.minimumLineSpacing = .init(h:16)
+        thisCollection.backgroundColor = .clear
         thisCollection.register(albumsCustomCell.self, forCellWithReuseIdentifier: "ACCustomCell")
         return thisCollection
     }()
     
-    
-    
-    
-    
+    // MARK: - viewDidLoad
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -149,10 +133,7 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView, U
         DispatchQueue.main.async {
             self.checkOnboardingAndPin()
         }
-        
-        
     }
-    
     
     // MARK: - viewWillAppear
     override func viewWillAppear(_ animated: Bool) {
@@ -176,6 +157,7 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView, U
         }
     }
     
+    // MARK:  PINDISMISS FUNCTION
     
     func pinDismissCall() {
         dismiss(animated:true) {
@@ -186,6 +168,8 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView, U
         }
         
     }
+    
+    // MARK: - ShowAleart Function
     
     func showAlert(){
         let sAVC = self.singleButtonAlert(subTitle: AlertMessage.welcome.messageSubTitle, firstButtonTitle: AlertMessage.welcome.firstButtonTitle) {
@@ -204,7 +188,6 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView, U
     func pressAction(firstButton: Bool) {
         self.firstButton = firstButton
     }
-    
     
     //MARK: - Function CheckOanboarding and EnterPin
     
@@ -228,6 +211,7 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView, U
         }
     }
     
+    // MARK: - UI Loading
     private func loadUI() {
         view.addSubview(headerView)
         view.addSubview(mainScrollView)
@@ -240,8 +224,10 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView, U
         
         buttonsCollectioView.delegate = self
         buttonsCollectioView.dataSource = self
+        
         albumsCollectioView.delegate = self
         albumsCollectioView.dataSource = self
+        
         headerView.anchorView(top: view.topAnchor, left:view.leftAnchor ,right:view.rightAnchor,height:.init(h:160))
         firstStackView.anchorView(top: headerView.topAnchor,left: headerView.leftAnchor, right: headerView.rightAnchor,paddingTop: .init(h:58), paddingLeft: .init(w: 16), paddingRight: .init(w: 16), height:.init(h:42))
         firstStackView.addArrangedSubview(headerTitleView)
@@ -254,15 +240,18 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView, U
         mainScrollView.anchorView(top:headerView.bottomAnchor,left:view.leftAnchor,bottom:view.bottomAnchor, right:view.rightAnchor)
         addAlbumButton.anchorView(top:mainScrollView.topAnchor,right:view.rightAnchor, paddingTop:.init(h:9),width: .init(h:44), height:.init(h:44))
         buttonsCollectioView.anchorView(top:mainScrollView.topAnchor,left:view.leftAnchor,right:addAlbumButton.leftAnchor, paddingTop:.init(h:12),height:.init(h:38))
+        albumsCollectioView.anchorView(top:buttonsCollectioView.bottomAnchor,left:view.leftAnchor,bottom:view.bottomAnchor, right:view.rightAnchor,paddingTop:.init(h:28),paddingLeft: .init(w:16),paddingRight:.init(w:16))
+        
     }
-    
 }
 
 
 // MARK: - Button Catagories Extension
 
 extension ViewController :  UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
-
+    
+    //MARK: - numbers of items
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         if collectionView == buttonsCollectioView {
@@ -271,25 +260,39 @@ extension ViewController :  UICollectionViewDataSource, UICollectionViewDelegate
         }
         
         else {
-            return userMainDevice.allAlbumCategories.
+            return  userMainDevice.allAlbumCategories[0].albums.count
         }
-
+        
     }
-
+    
+    //MARK: - Cell For Item
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier:"VCCustomCell", for: indexPath) as! buttonsCustomCell
-        let userModel = userMainDevice.allAlbumCategories[indexPath.item]
-        cell.allcatagoriesTiltle.text = userModel.name
-        return cell
+        if collectionView == buttonsCollectioView {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier:"VCCustomCell", for: indexPath) as! buttonsCustomCell
+            let userModel = userMainDevice.allAlbumCategories[indexPath.item]
+            cell.allcatagoriesTiltle.text = userModel.name
+            return cell
+        }
+        
+        else {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier:"ACCustomCell", for: indexPath) as! albumsCustomCell
+            let userModel = userMainDevice.allAlbumCategories[0].albums[indexPath.item]
+            cell.albumsTitle.text = userModel.name
+            return cell
+        }
     }
+    
+    // MARK: - Size For Item
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width:.init(w:97), height: .init(h:36))
+        if collectionView == buttonsCollectioView {
+            return CGSize(width:.init(w:97), height: .init(h:36))
+        }
+        else {
+            return CGSize(width:.init(w:183), height: .init(h:140))
+        }
     }
-    
-    
-
-
 }
 
 
@@ -297,13 +300,12 @@ extension ViewController :  UICollectionViewDataSource, UICollectionViewDelegate
 // MARK: - BUTTONS CUSTOM CELL
 
 class buttonsCustomCell: UICollectionViewCell{
+    let allcatagoriesTiltle = UILabel().label(fontStyle:UIFont(name: "Poopins- Regular", size: .init(h:14)))
     
-    let allcatagoriesTiltle = UILabel().label(fontStyle:UIFont(name: "Poopins- Regular", size:14))
-  
     override init(frame: CGRect) {
         super.init(frame:frame)
         contentView.addSubview(allcatagoriesTiltle)
-        backgroundColor = .red
+        backgroundColor = UIColor(hex: "#FFFFFF")
         layer.cornerRadius = .init(h:12)
         layer.borderColor = UIColor(hex:"#D6D8E2").cgColor
         layer.borderWidth = .init(h:0.5)
@@ -314,28 +316,36 @@ class buttonsCustomCell: UICollectionViewCell{
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - ButtonscustomCell LoadUI
+    
     private func loadUI() {
         allcatagoriesTiltle.anchorView(top:topAnchor,left:leftAnchor,bottom:bottomAnchor,right:rightAnchor)
     }
-    
-   
 }
-
 
 // MARK: - ALBUMS CUSTOM CELL
 
-
 class albumsCustomCell: UICollectionViewCell{
     
-   
-  
+    let albumsTitle = UILabel().label(fontStyle:UIFont(name: "Poppins-Medium", size:.init(h:16)))
+    
+    
     override init(frame: CGRect) {
         super.init(frame:frame)
+        contentView.addSubview(albumsTitle)
+        backgroundColor = UIColor(hex:"#FFFFFF")
+        loadUI()
         
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: - AlbumCustomCell LoadUI
+    
+    private func loadUI() {
+        albumsTitle.anchorView(top:topAnchor,left:leftAnchor,bottom:bottomAnchor,right:rightAnchor)
     }
     
 }
