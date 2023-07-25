@@ -264,13 +264,21 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView, U
 extension ViewController :  UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-         return userMainDevice.allAbumCategories.count
+        
+        if collectionView == buttonsCollectioView {
+            return userMainDevice.allAlbumCategories.count
+            
+        }
+        
+        else {
+            return userMainDevice.allAlbumCategories.
+        }
 
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier:"VCCustomCell", for: indexPath) as! buttonsCustomCell
-        let userModel = userMainDevice.allAbumCategories[indexPath.item]
+        let userModel = userMainDevice.allAlbumCategories[indexPath.item]
         cell.allcatagoriesTiltle.text = userModel.name
         return cell
     }
@@ -329,12 +337,5 @@ class albumsCustomCell: UICollectionViewCell{
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-}
-
-
-extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
-    
-    
     
 }

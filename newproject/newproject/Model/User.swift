@@ -13,15 +13,15 @@ struct User {
     var id:String
     var pin:Int
     var settings:String
-    var allAbumCategories = [Catagorie]()
+    var allAlbumCategories = [Catagorie]()
     var itemCatagories = [Item]()
     
-    init(name: String = "Dip", id: String = "1234", pin: Int = 0, settings: String = "settings", allAbumCategories: [Catagorie] = [Catagorie](), itemCatagories: [Item] = [Item]()) {
+    init(name: String = "Dip", id: String = "1234", pin: Int = 0, settings: String = "settings", allAlbumCategories: [Catagorie] = [Catagorie](), itemCatagories: [Item] = [Item]()) {
         self.name = name
         self.id = id
         self.pin = pin
         self.settings = settings
-        self.allAbumCategories = allAbumCategories
+        self.allAlbumCategories = allAlbumCategories
         self.itemCatagories = itemCatagories
     }
     
@@ -71,7 +71,7 @@ struct Album {
     var size:CGFloat
     var isLocked:Bool
     
-    init(id: String = "4567", name: String = "Main", icon: String = "icon", items: [Item], size: CGFloat = 10, isLocked:Bool = false) {
+    init(id: String = "4567", name: String = "Main", icon: String = "icon", items: [Item] = [], size: CGFloat = 10, isLocked:Bool = false) {
         self.id = id
         self.name = name
         self.icon = icon
