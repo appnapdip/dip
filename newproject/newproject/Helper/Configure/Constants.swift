@@ -13,7 +13,7 @@ let ONBOARDING_SHOWN_KEY: String = "onboardingShown"
 
 let userMainDevice: User = {
     var thisUser = User()
-    thisUser.allAbumCategories = [Catagorie](repeating:Catagorie(), count:3)
+    thisUser.allAbumCategories = [Catagorie](repeating:Catagorie(), count:4)
     return thisUser
 
     
