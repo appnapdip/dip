@@ -16,7 +16,7 @@ struct User {
     var allAbumCategories = [Catagorie]()
     var itemCatagories = [Item]()
     
-    init(name: String = "", id: String = "", pin: Int = 0, settings: String = "", allAbumCategories: [Catagorie] = [Catagorie](), itemCatagories: [Item] = [Item]()) {
+    init(name: String = "Dip", id: String = "1234", pin: Int = 0, settings: String = "settings", allAbumCategories: [Catagorie] = [Catagorie](), itemCatagories: [Item] = [Item]()) {
         self.name = name
         self.id = id
         self.pin = pin
@@ -34,7 +34,7 @@ struct Catagorie {
     var name:String
     var albums = [Album]()
     
-    init(id: String, name: String, albums: [Album] = [Album]()) {
+    init(id: String = "2345", name: String = "All", albums: [Album] = [Album]()) {
         self.id = id
         self.name = name
         self.albums = albums
@@ -51,7 +51,7 @@ struct Item {
     var resource:String
     var catagories = [Catagorie]()
     
-    init(id: String, name: String, type: String, Size: CGFloat, resource: String, catagories: [Catagorie] = [Catagorie]()) {
+    init(id: String = "6789", name: String = "item", type: String = "type", Size: CGFloat = 0, resource: String = "resource", catagories: [Catagorie] = [Catagorie]()) {
         self.id = id
         self.name = name
         self.type = type
@@ -71,7 +71,7 @@ struct Album {
     var size:CGFloat
     var isLocked:Bool
     
-    init(id: String, name: String, icon: String, items: [Item], size: CGFloat, isLocked: Bool) {
+    init(id: String = "", name: String = "", icon: String = "icon", items: [Item], size: CGFloat = 10, isLocked:Bool = false) {
         self.id = id
         self.name = name
         self.icon = icon

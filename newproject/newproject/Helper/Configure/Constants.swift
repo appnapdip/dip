@@ -13,7 +13,7 @@ let ONBOARDING_SHOWN_KEY: String = "onboardingShown"
 
 let userMainDevice: User = {
     var thisUser = User()
-    thisUser.allAbumCategories = [Album(id: "", name: "dip", icon:"", items: [], size:10, isLocked: false)]
+    thisUser.allAbumCategories = [Catagorie](repeating:Catagorie(), count:4)
     return thisUser
 
     
