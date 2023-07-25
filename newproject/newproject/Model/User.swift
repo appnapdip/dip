@@ -13,15 +13,15 @@ struct User {
     var id:String
     var pin:Int
     var settings:String
-    var albumCategories = [Catagorie]()
+    var allAbumCategories = [Catagorie]()
     var itemCatagories = [Item]()
     
-    init(name: String = "", id: String = "", pin: Int = 0, settings: String = "", albumCategories: [Catagorie] = [Catagorie](), itemCatagories: [Item] = [Item]()) {
+    init(name: String = "", id: String = "", pin: Int = 0, settings: String = "", allAbumCategories: [Catagorie] = [Catagorie](), itemCatagories: [Item] = [Item]()) {
         self.name = name
         self.id = id
         self.pin = pin
         self.settings = settings
-        self.albumCategories = albumCategories
+        self.allAbumCategories = allAbumCategories
         self.itemCatagories = itemCatagories
     }
     
