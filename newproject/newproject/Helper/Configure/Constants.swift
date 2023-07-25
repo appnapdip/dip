@@ -8,3 +8,12 @@
 import Foundation
 
 let ONBOARDING_SHOWN_KEY: String = "onboardingShown"
+
+
+
+let userMainDevice: User = {
+    let thisUser = User()
+    return thisUser
+
+    
+}()
