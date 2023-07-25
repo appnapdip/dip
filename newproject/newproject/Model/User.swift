@@ -34,7 +34,7 @@ struct Catagorie {
     var name:String
     var albums = [Album]()
     
-    init(id: String = "2345", name: String = "All", albums: [Album] = [Album]()) {
+    init(id: String = "2345", name: String = "all", albums: [Album] = [Album]()) {
         self.id = id
         self.name = name
         self.albums = albums
@@ -71,7 +71,7 @@ struct Album {
     var size:CGFloat
     var isLocked:Bool
     
-    init(id: String = "", name: String = "", icon: String = "icon", items: [Item], size: CGFloat = 10, isLocked:Bool = false) {
+    init(id: String = "4567", name: String = "Main", icon: String = "icon", items: [Item], size: CGFloat = 10, isLocked:Bool = false) {
         self.id = id
         self.name = name
         self.icon = icon

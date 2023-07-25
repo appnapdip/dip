@@ -226,10 +226,10 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView, U
         headerView.addSubview(firstStackView)
         headerView.addSubview(secondStackView)
         view.addSubview(buttonsCollectioView)
-        //
-        //                buttonsCollectioView.delegate = self
-        //                buttonsCollectioView.dataSource = self
-        //
+        
+                        buttonsCollectioView.delegate = self
+                        buttonsCollectioView.dataSource = self
+        
         
         headerView.anchorView(top: view.topAnchor, left:view.leftAnchor ,right:view.rightAnchor,height:.init(h:160))
         firstStackView.anchorView(top: headerView.topAnchor,left: headerView.leftAnchor, right: headerView.rightAnchor,paddingTop: .init(h:58), paddingLeft: .init(w: 16), paddingRight: .init(w: 16), height:.init(h:42))
@@ -251,16 +251,38 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView, U
 }
 
 
-//
-//extension ViewController :  UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
-//
-//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//
-//    }
-//
-//
-//}
+
+extension ViewController :  UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+         return userMainDevice.allAbumCategories.count
+
+    }
+
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier:"VCCustomCell", for: indexPath) as! VCCustomCell
+        let userModel = userMainDevice.allAbumCategories[indexPath.item]
+        
+        
+
+    }
+
+
+}
+
+
+
+
+class VCCustomCell: UICollectionViewCell{
+  
+    override init(frame: CGRect) {
+        super.init(frame:frame)
+       
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+   
+}
