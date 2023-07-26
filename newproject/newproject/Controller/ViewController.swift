@@ -264,7 +264,7 @@ extension ViewController :  UICollectionViewDataSource, UICollectionViewDelegate
         }
         
         else {
-            return buttonsCatagory[0].folde
+            return folders.count
         }
         
     }
