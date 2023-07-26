@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 
 
@@ -72,7 +73,7 @@ struct Album {
     var isLocked:Bool
     var items:[Item]
     
-    init(id: String, icon: String , name:String, size:String, isLocked: Bool, items: [Item]) {
+    init(id: String, icon:String, name:String, size:String, isLocked: Bool, items: [Item]) {
         self.id = id
         self.icon = icon
         self.name = name

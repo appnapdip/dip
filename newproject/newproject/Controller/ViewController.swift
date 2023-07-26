@@ -284,6 +284,7 @@ extension ViewController :  UICollectionViewDataSource, UICollectionViewDelegate
             let folderTypes = folders[indexPath.item]
             cell.albumsTitle.text = folderTypes.name
             cell.albumsizeTitle.text = folderTypes.size
+            cell.albumIcon .text = folderTypes.icon
             return cell
             
         }
@@ -349,11 +350,13 @@ class albumsCustomCell: UICollectionViewCell{
     let albumsTitle = UILabel().label(textColor: UIColor(hex:"#323336"),fontStyle:UIFont(name: "Poppins-Medium", size:.init(h:16)))
     let albumsImage = UIImageView().Image(contantMode:.scaleAspectFit)
     let albumsizeTitle = UILabel().label(textColor: UIColor(hex:"#838BA7"),fontStyle:UIFont(name: "Poppins-Regular", size:.init(h:14)))
+    let albumIcon = UILabel()
 
     override init(frame: CGRect) {
         super.init(frame:frame)
         albumsImage.addSubview(albumsTitle)
         albumsImage.addSubview(albumsizeTitle)
+        albumsImage.addSubview(albumIcon)
         contentView.addSubview(albumsImage)
         albumsImage.image = UIImage(named:"Vector")
         loadUI()
@@ -369,7 +372,8 @@ class albumsCustomCell: UICollectionViewCell{
     private func loadUI() {
         albumsImage.anchorView(top:topAnchor,left:leftAnchor,bottom:bottomAnchor,right:rightAnchor)
         albumsTitle.anchorView(top:albumsImage.topAnchor,left:albumsImage.leftAnchor,bottom:albumsImage.bottomAnchor,right:albumsImage.rightAnchor,paddingTop:.init(h:76),paddingLeft:.init(w:22),paddingBottom: .init(h:48),paddingRight: .init(w:22))
-        albumsizeTitle.anchorView(top:albumsTitle.topAnchor,left:albumsImage.leftAnchor,bottom:albumsImage.bottomAnchor,right:albumsImage.rightAnchor,paddingTop:.init(h:10),paddingLeft:.init(w:22),paddingBottom: .init(h:24),paddingRight: .init(w:22))
+        albumsizeTitle.anchorView(top:albumsTitle.bottomAnchor,left:albumsImage.leftAnchor,bottom:albumsImage.bottomAnchor,right:albumsImage.rightAnchor,paddingTop:.init(h:10),paddingLeft:.init(w:22),paddingBottom: .init(h:24),paddingRight: .init(w:22))
+        albumIcon.anchorView(top:albumsImage.topAnchor,left:albumsImage.leftAnchor,bottom:albumsImage.bottomAnchor,right:albumsImage.rightAnchor,paddingTop:.init(h:24),paddingLeft:.init(w:22),paddingBottom: .init(h:88),paddingRight: .init(w:36))
     }
 
 }
@@ -388,11 +392,11 @@ extension UIViewController {
     }
     
     func albums() ->[Album] {
-        let album1 = Album(id: "", icon: "", name: "Main Album", size:"\(200)itmes.\(200)mb", isLocked:true, items: [])
-        let album2 = Album(id: "", icon: "", name: "Locked Album", size:"Locked", isLocked:true, items: [])
-        let album3 = Album(id: "", icon: "", name: "Texts Limit 1,2,3", size:"\(7.7)itmes.\(3.5)mb", isLocked:true, items: [])
-        let album4 = Album(id: "", icon: "", name: "Empty Album", size:"Empty", isLocked:true, items: [])
-        let album5 = Album(id: "", icon: "", name: "Travel", size:"\(2.4)itmes.\(200)mb", isLocked:true, items: [])
+        let album1 = Album(id: "", icon: "📁", name: "Main Album", size:"\(200) items・\(200) mb", isLocked:true, items: [])
+        let album2 = Album(id: "", icon: "🔒", name: "Locked Album", size:"Locked", isLocked:true, items: [])
+        let album3 = Album(id: "", icon: "🗃", name: "Texts Limit 1 2 3 ...", size: "\(7.7)k items・(3.5) gb", isLocked:true, items: [])
+        let album4 = Album(id: "", icon: "📁",name: "Empty Album", size:"Empty", isLocked:true, items: [])
+        let album5 = Album(id: "", icon: "🗄", name: "Travel", size:"\(200) items・\(200) mb", isLocked:true, items: [])
         return [album1,album2,album3,album4,album5]
     }
     
