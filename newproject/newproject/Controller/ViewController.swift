@@ -118,6 +118,7 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView {
         let thisLayout =  UICollectionViewFlowLayout()
         thisLayout.scrollDirection = .vertical
         var thisCollection = UICollectionView(frame:.zero, collectionViewLayout:thisLayout)
+        thisCollection.showsVerticalScrollIndicator = false
         thisLayout.minimumLineSpacing = .init(h:16)
         thisCollection.backgroundColor = .clear
         thisCollection.register(albumsCustomCell.self, forCellWithReuseIdentifier: "ACCustomCell")
@@ -293,6 +294,17 @@ extension ViewController :  UICollectionViewDataSource, UICollectionViewDelegate
             return CGSize(width:.init(w:183), height: .init(h:140))
         }
     }
+    
+    // MARK: - Edgeinsects Layout
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        if collectionView == buttonsCollectioView {
+            return UIEdgeInsets(top:.init(h:0),left:.init(w:16),bottom:.init(h:0),right: .init(w:0))
+        }
+        else {
+            return UIEdgeInsets(top:.init(h:0),left:.init(w:0),bottom:.init(h:0),right: .init(w:0))
+        }
+    }
 }
 
 
@@ -328,12 +340,13 @@ class buttonsCustomCell: UICollectionViewCell{
 class albumsCustomCell: UICollectionViewCell{
     
     let albumsTitle = UILabel().label(fontStyle:UIFont(name: "Poppins-Medium", size:.init(h:16)))
-    
+    let albumsImage = UIImageView().Image(contantMode:.scaleAspectFit)
     
     override init(frame: CGRect) {
         super.init(frame:frame)
-        contentView.addSubview(albumsTitle)
-        backgroundColor = UIColor(hex:"#FFFFFF")
+        albumsImage.addSubview(albumsTitle)
+        contentView.addSubview(albumsImage)
+        albumsImage.image = UIImage(named:"Group")
         loadUI()
         
     }
@@ -345,7 +358,8 @@ class albumsCustomCell: UICollectionViewCell{
     // MARK: - AlbumCustomCell LoadUI
     
     private func loadUI() {
-        albumsTitle.anchorView(top:topAnchor,left:leftAnchor,bottom:bottomAnchor,right:rightAnchor)
+        albumsImage.anchorView(top:topAnchor,left:leftAnchor,bottom:bottomAnchor,right:rightAnchor)
+        albumsTitle.anchorView(top:albumsImage.topAnchor,left:albumsImage.leftAnchor,bottom:albumsImage.bottomAnchor,right:albumsImage.rightAnchor,paddingTop:.init(h:76),paddingLeft:.init(w:22),paddingBottom: .init(h:48),paddingRight: .init(w:22))
     }
     
 }

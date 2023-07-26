@@ -8,6 +8,7 @@
 import Foundation
 
 
+
 struct User {
     var name:String
     var id:String
@@ -71,7 +72,8 @@ struct Album {
     var size:CGFloat
     var isLocked:Bool
     
-    init(id: String = "4567", name: String = "Main", icon: String = "icon", items: [Item] = [], size: CGFloat = 10, isLocked:Bool = false) {
+    
+    init(id: String = "4567", name: String = "Main Album", icon: String = "icon", items: [Item] = [], size: CGFloat = 10, isLocked:Bool = false) {
         self.id = id
         self.name = name
         self.icon = icon
