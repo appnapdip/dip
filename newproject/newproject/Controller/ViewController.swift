@@ -272,23 +272,45 @@ extension ViewController :  UICollectionViewDataSource, UICollectionViewDelegate
     //MARK: - Cell For Item
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier:"VCCustomCell", for: indexPath) as! buttonsCustomCell
-        let totalCatagories = buttonsCatagory[indexPath.item]
-        cell.allcatagoriesTiltle.text = totalCatagories.name
-        return cell
+        if collectionView == buttonsCollectioView {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier:"VCCustomCell", for: indexPath) as! buttonsCustomCell
+            let totalCatagories = buttonsCatagory[indexPath.item]
+            cell.allcatagoriesTiltle.text = totalCatagories.name
+            return cell
+        }
+        
+        else {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier:"ACCustomCell", for: indexPath) as! albumsCustomCell
+            let folderTypes = folders[indexPath.item]
+            cell.albumsTitle.text = folderTypes.name
+            cell.albumsizeTitle.text = folderTypes.size
+            return cell
+            
+        }
         
     }
     
     // MARK: - Size For Item
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: .init(w:97), height: .init(h:38))
+        if collectionView == buttonsCollectioView {
+            return CGSize(width: .init(w:97), height: .init(h:38))
+        }
+        else {
+            return CGSize(width: .init(w:183), height: .init(h:140))
+        }
     }
     
     // MARK: - Edgeinsects Layout
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top:.init(h:0), left:.init(w:16), bottom: .init(h:0), right: .init(w:0))
+        if collectionView == buttonsCollectioView {
+            return UIEdgeInsets(top:.init(h:0), left:.init(w:16), bottom: .init(h:0), right: .init(w:0))
+        }
+        
+        else {
+            return UIEdgeInsets(top:.init(h:0), left:.init(w:0), bottom: .init(h:0), right: .init(w:0))
+        }
     }
 }
 
@@ -324,12 +346,14 @@ class buttonsCustomCell: UICollectionViewCell{
 
 class albumsCustomCell: UICollectionViewCell{
 
-    let albumsTitle = UILabel().label(fontStyle:UIFont(name: "Poppins-Medium", size:.init(h:16)))
+    let albumsTitle = UILabel().label(textColor: UIColor(hex:"#323336"),fontStyle:UIFont(name: "Poppins-Medium", size:.init(h:16)))
     let albumsImage = UIImageView().Image(contantMode:.scaleAspectFit)
+    let albumsizeTitle = UILabel().label(textColor: UIColor(hex:"#838BA7"),fontStyle:UIFont(name: "Poppins-Regular", size:.init(h:14)))
 
     override init(frame: CGRect) {
         super.init(frame:frame)
         albumsImage.addSubview(albumsTitle)
+        albumsImage.addSubview(albumsizeTitle)
         contentView.addSubview(albumsImage)
         albumsImage.image = UIImage(named:"Vector")
         loadUI()
@@ -345,12 +369,13 @@ class albumsCustomCell: UICollectionViewCell{
     private func loadUI() {
         albumsImage.anchorView(top:topAnchor,left:leftAnchor,bottom:bottomAnchor,right:rightAnchor)
         albumsTitle.anchorView(top:albumsImage.topAnchor,left:albumsImage.leftAnchor,bottom:albumsImage.bottomAnchor,right:albumsImage.rightAnchor,paddingTop:.init(h:76),paddingLeft:.init(w:22),paddingBottom: .init(h:48),paddingRight: .init(w:22))
+        albumsizeTitle.anchorView(top:albumsTitle.topAnchor,left:albumsImage.leftAnchor,bottom:albumsImage.bottomAnchor,right:albumsImage.rightAnchor,paddingTop:.init(h:10),paddingLeft:.init(w:22),paddingBottom: .init(h:24),paddingRight: .init(w:22))
     }
 
 }
 
 
-extension ViewController {
+extension UIViewController {
     func catagorie() -> [Catagorie] {
         
         let buttonCatagorie1 = Catagorie(id:"", name: "All")
@@ -363,11 +388,11 @@ extension ViewController {
     }
     
     func albums() ->[Album] {
-        let album1 = Album(id: "", icon: "", name: "Main", size:"\(200)itmes.\(200)", isLocked:true, items: [])
-        let album2 = Album(id: "", icon: "", name: "Main", size:"\(200)itmes.\(200)", isLocked:true, items: [])
-        let album3 = Album(id: "", icon: "", name: "Main", size:"\(200)itmes.\(200)", isLocked:true, items: [])
-        let album4 = Album(id: "", icon: "", name: "Main", size:"\(200)itmes.\(200)", isLocked:true, items: [])
-        let album5 = Album(id: "", icon: "", name: "Main", size:"\(200)itmes.\(200)", isLocked:true, items: [])
+        let album1 = Album(id: "", icon: "", name: "Main Album", size:"\(200)itmes.\(200)mb", isLocked:true, items: [])
+        let album2 = Album(id: "", icon: "", name: "Locked Album", size:"Locked", isLocked:true, items: [])
+        let album3 = Album(id: "", icon: "", name: "Texts Limit 1,2,3", size:"\(7.7)itmes.\(3.5)mb", isLocked:true, items: [])
+        let album4 = Album(id: "", icon: "", name: "Empty Album", size:"Empty", isLocked:true, items: [])
+        let album5 = Album(id: "", icon: "", name: "Travel", size:"\(2.4)itmes.\(200)mb", isLocked:true, items: [])
         return [album1,album2,album3,album4,album5]
     }
     

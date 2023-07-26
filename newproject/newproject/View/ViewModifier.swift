@@ -41,7 +41,7 @@ struct customModifier: ViewModifier{
             .fixedSize(horizontal: false, vertical: true)
             .overlay(RoundedRectangle(cornerRadius: cornerRadius)
                 .stroke(strokeColor, lineWidth: strokeWidth))
-           
+        
     }
 }
 
@@ -73,9 +73,8 @@ extension View {
                 bottom: 0,
                 trailing: 0))-> some View {
                     
-                    modifier(newproject.customModifier(backgroundColor: backgroundColor, foregroundColor: foregroundColor, strokeColor: strokeColor, strokeWidth: strokeWidth, cornerRadius: cornerRadius,font:font, frame:frame, Maxframe:maxframe, alignment:alignment,lineLimit:lineLimit, opacity:opacity, offset:offset, padding:padding
-                                                      ))
+                    modifier(newproject.customModifier(backgroundColor: backgroundColor, foregroundColor: foregroundColor, strokeColor: strokeColor, strokeWidth: strokeWidth, cornerRadius: cornerRadius,font:font, frame:frame, Maxframe:maxframe, alignment:alignment,lineLimit:lineLimit, opacity:opacity, offset:offset, padding:padding))
                     
                 }
-}
+    }
 
