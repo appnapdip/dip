@@ -63,23 +63,25 @@ struct Item {
 
 struct Album {
     var id:String
-    var name:String
     var icon:String
-    var items:[Item]
-    var size:CGFloat
+    var name:String
+    var size:String
     var isLocked:Bool
+    var items:[Item]
     
-    
-    init(id: String, name: String, icon: String , items: [Item], size:CGFloat, isLocked:Bool) {
+    init(id: String, icon: String, name: String, size: String, isLocked: Bool, items: [Item]) {
         self.id = id
-        self.name = name
         self.icon = icon
-        self.items = items
+        self.name = name
         self.size = size
         self.isLocked = isLocked
+        self.items = items
     }
     
-}
+    
+  }
+    
+
 
 
 

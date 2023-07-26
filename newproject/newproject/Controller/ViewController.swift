@@ -13,6 +13,7 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView {
     
     var firstButton: Bool = false
     var buttonsCatagory:[Catagorie] = []
+    var folders:[Album] = []
     
     // MARK: - Properties
     
@@ -115,16 +116,16 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView {
         return thisCollection
     }()
     
-//    lazy var albumsCollectioView: UICollectionView = {
-//        let thisLayout =  UICollectionViewFlowLayout()
-//        thisLayout.scrollDirection = .vertical
-//        var thisCollection = UICollectionView(frame:.zero, collectionViewLayout:thisLayout)
-//        thisCollection.showsVerticalScrollIndicator = false
-//        thisLayout.minimumLineSpacing = .init(h:16)
-//        thisCollection.backgroundColor = .clear
-//        thisCollection.register(albumsCustomCell.self, forCellWithReuseIdentifier: "ACCustomCell")
-//        return thisCollection
-//    }()
+    lazy var albumsCollectioView: UICollectionView = {
+        let thisLayout =  UICollectionViewFlowLayout()
+        thisLayout.scrollDirection = .vertical
+        var thisCollection = UICollectionView(frame:.zero, collectionViewLayout:thisLayout)
+        thisCollection.showsVerticalScrollIndicator = false
+        thisLayout.minimumLineSpacing = .init(h:16)
+        thisCollection.backgroundColor = .clear
+        thisCollection.register(albumsCustomCell.self, forCellWithReuseIdentifier: "ACCustomCell")
+        return thisCollection
+    }()
     
     // MARK: - viewDidLoad
     
@@ -167,6 +168,7 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView {
             //self.showAlert()
             self.loadUI()
             self.buttonsCatagory = self.catagorie()
+            self.folders = self.albums()
             
         }
         
@@ -223,13 +225,13 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView {
         headerView.addSubview(firstStackView)
         headerView.addSubview(secondStackView)
         mainScrollView.addSubview(buttonsCollectioView)
-        //mainScrollView.addSubview(albumsCollectioView)
+        mainScrollView.addSubview(albumsCollectioView)
         
         buttonsCollectioView.delegate = self
         buttonsCollectioView.dataSource = self
-//
-//        albumsCollectioView.delegate = self
-//        albumsCollectioView.dataSource = self
+
+       albumsCollectioView.delegate = self
+       albumsCollectioView.dataSource = self
         
         headerView.anchorView(top: view.topAnchor, left:view.leftAnchor ,right:view.rightAnchor,height:.init(h:160))
         firstStackView.anchorView(top: headerView.topAnchor,left: headerView.leftAnchor, right: headerView.rightAnchor,paddingTop: .init(h:58), paddingLeft: .init(w: 16), paddingRight: .init(w: 16), height:.init(h:42))
@@ -243,8 +245,8 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView {
         mainScrollView.anchorView(top:headerView.bottomAnchor,left:view.leftAnchor,bottom:view.bottomAnchor, right:view.rightAnchor)
         addAlbumButton.anchorView(top:mainScrollView.topAnchor,right:view.rightAnchor, paddingTop:.init(h:9),width: .init(h:44), height:.init(h:44))
         buttonsCollectioView.anchorView(top:mainScrollView.topAnchor,left:view.leftAnchor,right:addAlbumButton.leftAnchor, paddingTop:.init(h:12),height:.init(h:38))
-//        albumsCollectioView.anchorView(top:buttonsCollectioView.bottomAnchor,left:view.leftAnchor,bottom:view.bottomAnchor, right:view.rightAnchor,paddingTop:.init(h:28),paddingLeft: .init(w:16),paddingRight:.init(w:16))
-//
+        albumsCollectioView.anchorView(top:buttonsCollectioView.bottomAnchor,left:view.leftAnchor,bottom:view.bottomAnchor, right:view.rightAnchor,paddingTop:.init(h:28),paddingLeft: .init(w:16),paddingRight:.init(w:16))
+
     }
 }
 
@@ -257,7 +259,13 @@ extension ViewController :  UICollectionViewDataSource, UICollectionViewDelegate
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        return buttonsCatagory.count
+        if collectionView == buttonsCollectioView {
+            return buttonsCatagory.count
+        }
+        
+        else {
+            return buttonsCatagory[0].folde
+        }
         
     }
     
@@ -274,7 +282,7 @@ extension ViewController :  UICollectionViewDataSource, UICollectionViewDelegate
     // MARK: - Size For Item
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: .init(w:49), height: .init(h:38))
+        return CGSize(width: .init(w:97), height: .init(h:38))
     }
     
     // MARK: - Edgeinsects Layout
@@ -314,32 +322,32 @@ class buttonsCustomCell: UICollectionViewCell{
 
 // MARK: - ALBUMS CUSTOM CELL
 
-//class albumsCustomCell: UICollectionViewCell{
-//
-//    let albumsTitle = UILabel().label(fontStyle:UIFont(name: "Poppins-Medium", size:.init(h:16)))
-//    let albumsImage = UIImageView().Image(contantMode:.scaleAspectFit)
-//
-//    override init(frame: CGRect) {
-//        super.init(frame:frame)
-//        albumsImage.addSubview(albumsTitle)
-//        contentView.addSubview(albumsImage)
-//        albumsImage.image = UIImage(named:"Vector")
-//        loadUI()
-//
-//    }
-//
-//    required init?(coder: NSCoder) {
-//        fatalError("init(coder:) has not been implemented")
-//    }
-//
-//    // MARK: - AlbumCustomCell LoadUI
-//
-//    private func loadUI() {
-//        albumsImage.anchorView(top:topAnchor,left:leftAnchor,bottom:bottomAnchor,right:rightAnchor)
-//        albumsTitle.anchorView(top:albumsImage.topAnchor,left:albumsImage.leftAnchor,bottom:albumsImage.bottomAnchor,right:albumsImage.rightAnchor,paddingTop:.init(h:76),paddingLeft:.init(w:22),paddingBottom: .init(h:48),paddingRight: .init(w:22))
-//    }
-//
-//}
+class albumsCustomCell: UICollectionViewCell{
+
+    let albumsTitle = UILabel().label(fontStyle:UIFont(name: "Poppins-Medium", size:.init(h:16)))
+    let albumsImage = UIImageView().Image(contantMode:.scaleAspectFit)
+
+    override init(frame: CGRect) {
+        super.init(frame:frame)
+        albumsImage.addSubview(albumsTitle)
+        contentView.addSubview(albumsImage)
+        albumsImage.image = UIImage(named:"Vector")
+        loadUI()
+
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    // MARK: - AlbumCustomCell LoadUI
+
+    private func loadUI() {
+        albumsImage.anchorView(top:topAnchor,left:leftAnchor,bottom:bottomAnchor,right:rightAnchor)
+        albumsTitle.anchorView(top:albumsImage.topAnchor,left:albumsImage.leftAnchor,bottom:albumsImage.bottomAnchor,right:albumsImage.rightAnchor,paddingTop:.init(h:76),paddingLeft:.init(w:22),paddingBottom: .init(h:48),paddingRight: .init(w:22))
+    }
+
+}
 
 
 extension ViewController {
@@ -351,6 +359,19 @@ extension ViewController {
         let buttonCatagorie4 = Catagorie(id:"", name: "Others")
         let buttonCatagorie5 = Catagorie(id:"", name: "Photos")
         
-        return[buttonCatagorie1,buttonCatagorie2,buttonCatagorie3,buttonCatagorie4]
+        return[buttonCatagorie1,buttonCatagorie2,buttonCatagorie3,buttonCatagorie4,buttonCatagorie5]
     }
+    
+    func albums() ->[Album] {
+        let album1 = Album(id: "", icon: "", name: "Main", size:"\(200)itmes.\(200)", isLocked:true, items: [])
+        let album2 = Album(id: "", icon: "", name: "Main", size:"\(200)itmes.\(200)", isLocked:true, items: [])
+        let album3 = Album(id: "", icon: "", name: "Main", size:"\(200)itmes.\(200)", isLocked:true, items: [])
+        let album4 = Album(id: "", icon: "", name: "Main", size:"\(200)itmes.\(200)", isLocked:true, items: [])
+        let album5 = Album(id: "", icon: "", name: "Main", size:"\(200)itmes.\(200)", isLocked:true, items: [])
+        return [album1,album2,album3,album4,album5]
+    }
+    
 }
+
+
+
