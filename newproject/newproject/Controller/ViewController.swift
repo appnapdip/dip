@@ -12,8 +12,10 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView {
     //MARK: - viewDidLoad
     
     var firstButton: Bool = false
-    var buttonsCatagory:[Catagorie] = []
+    //var buttonsCatagory:[Catagorie] = []
     var folders:[Album] = []
+    
+    var currentIndex = 0
     
     // MARK: - Properties
     
@@ -167,7 +169,7 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView {
             self.showToast(message: ToastMessage.welcome.description, font:UIFont(name:"Poppins-Medium", size:14)!)
             //self.showAlert()
             self.loadUI()
-            self.buttonsCatagory = self.catagorie()
+            //self.buttonsCatagory = self.catagorie()
             self.folders = self.albums()
             
         }
@@ -260,11 +262,11 @@ extension ViewController :  UICollectionViewDataSource, UICollectionViewDelegate
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         if collectionView == buttonsCollectioView {
-            return buttonsCatagory.count
+            return usermainDevice.allAlbumCategories.count
         }
         
         else {
-            return folders.count
+            return usermainDevice.allAlbumCategories[currentIndex].albums.count
         }
         
     }
@@ -274,14 +276,14 @@ extension ViewController :  UICollectionViewDataSource, UICollectionViewDelegate
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == buttonsCollectioView {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier:"VCCustomCell", for: indexPath) as! buttonsCustomCell
-            let totalCatagories = buttonsCatagory[indexPath.item]
+            let totalCatagories = usermainDevice.allAlbumCategories[indexPath.item]
             cell.allcatagoriesTiltle.text = totalCatagories.name
             return cell
         }
         
         else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier:"ACCustomCell", for: indexPath) as! albumsCustomCell
-            let folderTypes = folders[indexPath.item]
+            let folderTypes = usermainDevice.allAlbumCategories[currentIndex].albums[indexPath.item]
             cell.albumsTitle.text = folderTypes.name
             cell.albumsizeTitle.text = folderTypes.size
             cell.albumIcon .text = folderTypes.icon
@@ -312,7 +314,28 @@ extension ViewController :  UICollectionViewDataSource, UICollectionViewDelegate
         else {
             return UIEdgeInsets(top:.init(h:0), left:.init(w:0), bottom: .init(h:0), right: .init(w:0))
         }
+        
     }
+    
+    // MARK: - SELECTION OF CELL
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        if collectionView == buttonsCollectioView {
+            let buttonsCatagory = usermainDevice.allAlbumCategories[indexPath.item]
+            let cell = collectionView.cellForItem(at: indexPath)!
+            cell.backgroundColor = UIColor(hex:"#323336")
+            
+        }
+        
+        else {
+            let cell = collectionView.cellForItem(at:indexPath)
+            cell?.backgroundColor = .clear
+        }
+        
+      
+    }
+    
 }
 
 
@@ -320,7 +343,7 @@ extension ViewController :  UICollectionViewDataSource, UICollectionViewDelegate
 // MARK: - BUTTONS CUSTOM CELL
 
 class buttonsCustomCell: UICollectionViewCell{
-    let allcatagoriesTiltle = UILabel().label(fontStyle:UIFont(name: "Poopins- Regular", size: .init(h:14)))
+    let allcatagoriesTiltle = UILabel().label(textColor:UIColor(hex:"#D6D8E2"),fontStyle:UIFont(name: "Poopins- Regular", size: .init(h:14)))
     
     override init(frame: CGRect) {
         super.init(frame:frame)
@@ -347,18 +370,19 @@ class buttonsCustomCell: UICollectionViewCell{
 
 class albumsCustomCell: UICollectionViewCell{
 
-    let albumsTitle = UILabel().label(textColor: UIColor(hex:"#323336"),fontStyle:UIFont(name: "Poppins-Medium", size:.init(h:16)))
+    let albumsTitle = UILabel().label(textColor: UIColor(hex:"#323336"),fontStyle:UIFont(name: "Poppins-Medium", size:.init(h:16)),allignment:.left)
     let albumsImage = UIImageView().Image(contantMode:.scaleAspectFit)
-    let albumsizeTitle = UILabel().label(textColor: UIColor(hex:"#838BA7"),fontStyle:UIFont(name: "Poppins-Regular", size:.init(h:14)))
-    let albumIcon = UILabel()
+    let albumsizeTitle = UILabel().label(textColor: UIColor(hex:"#838BA7"),fontStyle:UIFont(name: "Poppins-Regular", size:.init(h:14)),allignment:.left)
+    let albumIcon = UILabel().label(fontStyle:UIFont(name: "Poppins-Medium", size:.init(h:28)),allignment:.left)
 
-    override init(frame: CGRect) {
-        super.init(frame:frame)
-        albumsImage.addSubview(albumsTitle)
-        albumsImage.addSubview(albumsizeTitle)
-        albumsImage.addSubview(albumIcon)
-        contentView.addSubview(albumsImage)
-        albumsImage.image = UIImage(named:"Vector")
+   override init(frame: CGRect) {
+     super.init(frame:frame)
+       contentView.addSubview(albumsImage)
+       albumsImage.addSubview(albumIcon)
+       albumsImage.addSubview(albumsTitle)
+       albumsImage.addSubview(albumsizeTitle)
+       
+      albumsImage.image = UIImage(named:"Vector")
         loadUI()
 
     }
@@ -371,9 +395,10 @@ class albumsCustomCell: UICollectionViewCell{
 
     private func loadUI() {
         albumsImage.anchorView(top:topAnchor,left:leftAnchor,bottom:bottomAnchor,right:rightAnchor)
-        albumsTitle.anchorView(top:albumsImage.topAnchor,left:albumsImage.leftAnchor,bottom:albumsImage.bottomAnchor,right:albumsImage.rightAnchor,paddingTop:.init(h:76),paddingLeft:.init(w:22),paddingBottom: .init(h:48),paddingRight: .init(w:22))
-        albumsizeTitle.anchorView(top:albumsTitle.bottomAnchor,left:albumsImage.leftAnchor,bottom:albumsImage.bottomAnchor,right:albumsImage.rightAnchor,paddingTop:.init(h:10),paddingLeft:.init(w:22),paddingBottom: .init(h:24),paddingRight: .init(w:22))
-        albumIcon.anchorView(top:albumsImage.topAnchor,left:albumsImage.leftAnchor,bottom:albumsImage.bottomAnchor,right:albumsImage.rightAnchor,paddingTop:.init(h:24),paddingLeft:.init(w:22),paddingBottom: .init(h:88),paddingRight: .init(w:36))
+        albumIcon.anchorView(top:albumsImage.topAnchor,left:albumsImage.leftAnchor,paddingTop:.init(h:20),paddingLeft:.init(w:22))
+        albumsTitle.anchorView(top:albumIcon.bottomAnchor,left:albumsImage.leftAnchor,paddingTop:.init(h:20),paddingLeft:.init(w:22))
+        albumsizeTitle.anchorView(left:albumsImage.leftAnchor,bottom:albumsImage.bottomAnchor,paddingLeft:.init(w:22),paddingBottom:.init(h:16))
+        
     }
 
 }
@@ -382,7 +407,7 @@ class albumsCustomCell: UICollectionViewCell{
 extension UIViewController {
     func catagorie() -> [Catagorie] {
         
-        let buttonCatagorie1 = Catagorie(id:"", name: "All")
+        let buttonCatagorie1 = Catagorie(id:"", name: "All",albums: albums())
         let buttonCatagorie2 = Catagorie(id:"", name: "Unlocked")
         let buttonCatagorie3 = Catagorie(id:"", name: "Locked")
         let buttonCatagorie4 = Catagorie(id:"", name: "Others")
