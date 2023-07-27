@@ -114,6 +114,8 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView {
         thisCollection.showsHorizontalScrollIndicator = false
         thisCollection.backgroundColor = .clear
         thisLayout.minimumLineSpacing = .init(h:12)
+        thisLayout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
+        thisLayout.minimumInteritemSpacing = 0
         thisCollection.register(buttonsCustomCell.self, forCellWithReuseIdentifier: "VCCustomCell")
         return thisCollection
     }()
@@ -124,6 +126,7 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView {
         var thisCollection = UICollectionView(frame:.zero, collectionViewLayout:thisLayout)
         thisCollection.showsVerticalScrollIndicator = false
         thisLayout.minimumLineSpacing = .init(h:16)
+        thisLayout.minimumInteritemSpacing = 0
         thisCollection.backgroundColor = .clear
         thisCollection.register(albumsCustomCell.self, forCellWithReuseIdentifier: "ACCustomCell")
         return thisCollection
@@ -306,23 +309,23 @@ extension ViewController :  UICollectionViewDataSource, UICollectionViewDelegate
     
     // MARK: - Edgeinsects Layout
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        if collectionView == buttonsCollectioView {
-            return UIEdgeInsets(top:.init(h:0), left:.init(w:16), bottom: .init(h:0), right: .init(w:0))
-        }
-        
-        else {
-            return UIEdgeInsets(top:.init(h:0), left:.init(w:0), bottom: .init(h:0), right: .init(w:0))
-        }
-        
-    }
-    
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+//        if collectionView == buttonsCollectioView {
+//            return UIEdgeInsets(top:.init(h:0), left:.init(w:16), bottom: .init(h:0), right: .init(w:0))
+//        }
+//
+//        else {
+//            return UIEdgeInsets(top:.init(h:0), left:.init(w:0), bottom: .init(h:0), right: .init(w:0))
+//        }
+//
+//    }
+//
     // MARK: - SELECTION OF CELL
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         if collectionView == buttonsCollectioView {
-            let buttonsCatagory = usermainDevice.allAlbumCategories[indexPath.item]
+          
             let cell = collectionView.cellForItem(at: indexPath)!
             cell.backgroundColor = UIColor(hex:"#323336")
             
@@ -344,6 +347,8 @@ extension ViewController :  UICollectionViewDataSource, UICollectionViewDelegate
 
 class buttonsCustomCell: UICollectionViewCell{
     let allcatagoriesTiltle = UILabel().label(textColor:UIColor(hex:"#D6D8E2"),fontStyle:UIFont(name: "Poopins- Regular", size: .init(h:14)))
+    self.allcatagoriesTiltle.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
+    self.allcatagoriesTiltle.setContentHuggingPriority(.defaultHigh, for: .horizontal)
     
     override init(frame: CGRect) {
         super.init(frame:frame)
@@ -407,7 +412,7 @@ class albumsCustomCell: UICollectionViewCell{
 extension UIViewController {
     func catagorie() -> [Catagorie] {
         
-        let buttonCatagorie1 = Catagorie(id:"", name: "All",albums: albums())
+        let buttonCatagorie1 = Catagorie(id:"", name: "All",albums:albums())
         let buttonCatagorie2 = Catagorie(id:"", name: "Unlocked")
         let buttonCatagorie3 = Catagorie(id:"", name: "Locked")
         let buttonCatagorie4 = Catagorie(id:"", name: "Others")
@@ -415,6 +420,8 @@ extension UIViewController {
         
         return[buttonCatagorie1,buttonCatagorie2,buttonCatagorie3,buttonCatagorie4,buttonCatagorie5]
     }
+    
+    
     
     func albums() ->[Album] {
         let album1 = Album(id: "", icon: "📁", name: "Main Album", size:"\(200) items・\(200) mb", isLocked:true, items: [])
@@ -425,7 +432,12 @@ extension UIViewController {
         return [album1,album2,album3,album4,album5]
     }
     
+    
+    
+
+    
 }
+
 
 
 
