@@ -126,7 +126,6 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView {
         var thisCollection = UICollectionView(frame:.zero, collectionViewLayout:thisLayout)
         thisCollection.showsVerticalScrollIndicator = false
         thisLayout.minimumLineSpacing = .init(h:16)
-        thisLayout.minimumInteritemSpacing = 0
         thisCollection.backgroundColor = .clear
         thisCollection.register(albumsCustomCell.self, forCellWithReuseIdentifier: "ACCustomCell")
         return thisCollection
@@ -234,9 +233,9 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView {
         
         buttonsCollectioView.delegate = self
         buttonsCollectioView.dataSource = self
-
-       albumsCollectioView.delegate = self
-       albumsCollectioView.dataSource = self
+        
+        albumsCollectioView.delegate = self
+        albumsCollectioView.dataSource = self
         
         headerView.anchorView(top: view.topAnchor, left:view.leftAnchor ,right:view.rightAnchor,height:.init(h:160))
         firstStackView.anchorView(top: headerView.topAnchor,left: headerView.leftAnchor, right: headerView.rightAnchor,paddingTop: .init(h:58), paddingLeft: .init(w: 16), paddingRight: .init(w: 16), height:.init(h:42))
@@ -251,7 +250,7 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView {
         addAlbumButton.anchorView(top:mainScrollView.topAnchor,right:view.rightAnchor, paddingTop:.init(h:9),width: .init(h:44), height:.init(h:44))
         buttonsCollectioView.anchorView(top:mainScrollView.topAnchor,left:view.leftAnchor,right:addAlbumButton.leftAnchor, paddingTop:.init(h:12),height:.init(h:38))
         albumsCollectioView.anchorView(top:buttonsCollectioView.bottomAnchor,left:view.leftAnchor,bottom:view.bottomAnchor, right:view.rightAnchor,paddingTop:.init(h:28),paddingLeft: .init(w:16),paddingRight:.init(w:16))
-
+        
     }
 }
 
@@ -309,35 +308,48 @@ extension ViewController :  UICollectionViewDataSource, UICollectionViewDelegate
     
     // MARK: - Edgeinsects Layout
     
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-//        if collectionView == buttonsCollectioView {
-//            return UIEdgeInsets(top:.init(h:0), left:.init(w:16), bottom: .init(h:0), right: .init(w:0))
-//        }
-//
-//        else {
-//            return UIEdgeInsets(top:.init(h:0), left:.init(w:0), bottom: .init(h:0), right: .init(w:0))
-//        }
-//
-//    }
-//
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        if collectionView == buttonsCollectioView {
+            return UIEdgeInsets(top:.init(h:0), left:.init(w:16), bottom: .init(h:0), right: .init(w:0))
+        }
+        
+        else {
+            return UIEdgeInsets(top:.init(h:0), left:.init(w:0), bottom: .init(h:0), right: .init(w:0))
+        }
+        
+    }
+    
     // MARK: - SELECTION OF CELL
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         if collectionView == buttonsCollectioView {
-          
-            let cell = collectionView.cellForItem(at: indexPath)!
-            cell.backgroundColor = UIColor(hex:"#323336")
+            
+            let Selectedcell:UICollectionViewCell = collectionView.cellForItem(at: indexPath)
+            Selectedcell.backgroundColor = UIColor(hex:"#323336")
             
         }
         
         else {
-            let cell = collectionView.cellForItem(at:indexPath)
-            cell?.backgroundColor = .clear
+            let Selectedcell = collectionView.cellForItem(at:indexPath)
+            Selectedcell?.backgroundColor = .clear
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        if collectionView == buttonsCollectioView {
+            
+            let DeSelectedcell:UICollectionViewCell = collectionView.cellForItem(at: indexPath)
+            DeSelectedcell.backgroundColor = UIColor(hex:"#323336")
+            
         }
         
-      
+        else {
+            DeSelectedcell?.backgroundColor = .clear
+        }
     }
+    
     
 }
 
@@ -346,9 +358,7 @@ extension ViewController :  UICollectionViewDataSource, UICollectionViewDelegate
 // MARK: - BUTTONS CUSTOM CELL
 
 class buttonsCustomCell: UICollectionViewCell{
-    let allcatagoriesTiltle = UILabel().label(textColor:UIColor(hex:"#D6D8E2"),fontStyle:UIFont(name: "Poopins- Regular", size: .init(h:14)))
-    self.allcatagoriesTiltle.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
-    self.allcatagoriesTiltle.setContentHuggingPriority(.defaultHigh, for: .horizontal)
+    let allcatagoriesTiltle = UILabel().label(textColor:UIColor(hex:"#838BA7"),fontStyle:UIFont(name: "Poopins- Regular", size: .init(h:14)))
     
     override init(frame: CGRect) {
         super.init(frame:frame)
@@ -367,37 +377,37 @@ class buttonsCustomCell: UICollectionViewCell{
     // MARK: - ButtonscustomCell LoadUI
     
     private func loadUI() {
-        allcatagoriesTiltle.anchorView(top:topAnchor,left:leftAnchor,bottom:bottomAnchor,right:rightAnchor)
+        allcatagoriesTiltle.anchorView(top:topAnchor,left:leftAnchor,bottom:bottomAnchor,right:rightAnchor,paddingTop:.init(h:8),paddingLeft: .init(h:16),paddingBottom:.init(h:8),paddingRight:.init(w:16))
     }
 }
 
 // MARK: - ALBUMS CUSTOM CELL
 
 class albumsCustomCell: UICollectionViewCell{
-
+    
     let albumsTitle = UILabel().label(textColor: UIColor(hex:"#323336"),fontStyle:UIFont(name: "Poppins-Medium", size:.init(h:16)),allignment:.left)
     let albumsImage = UIImageView().Image(contantMode:.scaleAspectFit)
     let albumsizeTitle = UILabel().label(textColor: UIColor(hex:"#838BA7"),fontStyle:UIFont(name: "Poppins-Regular", size:.init(h:14)),allignment:.left)
     let albumIcon = UILabel().label(fontStyle:UIFont(name: "Poppins-Medium", size:.init(h:28)),allignment:.left)
-
-   override init(frame: CGRect) {
-     super.init(frame:frame)
-       contentView.addSubview(albumsImage)
-       albumsImage.addSubview(albumIcon)
-       albumsImage.addSubview(albumsTitle)
-       albumsImage.addSubview(albumsizeTitle)
-       
-      albumsImage.image = UIImage(named:"Vector")
+    
+    override init(frame: CGRect) {
+        super.init(frame:frame)
+        contentView.addSubview(albumsImage)
+        albumsImage.addSubview(albumIcon)
+        albumsImage.addSubview(albumsTitle)
+        albumsImage.addSubview(albumsizeTitle)
+        
+        albumsImage.image = UIImage(named:"Vector")
         loadUI()
-
+        
     }
-
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
     // MARK: - AlbumCustomCell LoadUI
-
+    
     private func loadUI() {
         albumsImage.anchorView(top:topAnchor,left:leftAnchor,bottom:bottomAnchor,right:rightAnchor)
         albumIcon.anchorView(top:albumsImage.topAnchor,left:albumsImage.leftAnchor,paddingTop:.init(h:20),paddingLeft:.init(w:22))
@@ -405,7 +415,7 @@ class albumsCustomCell: UICollectionViewCell{
         albumsizeTitle.anchorView(left:albumsImage.leftAnchor,bottom:albumsImage.bottomAnchor,paddingLeft:.init(w:22),paddingBottom:.init(h:16))
         
     }
-
+    
 }
 
 
@@ -433,10 +443,10 @@ extension UIViewController {
     }
     
     
-    
-
-    
 }
+
+
+
 
 
 
