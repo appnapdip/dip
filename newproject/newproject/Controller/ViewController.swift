@@ -14,7 +14,7 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView {
     var firstButton: Bool = false
     //var buttonsCatagory:[Catagorie] = []
     var folders:[Album] = []
-    
+    var currentIndexItem = 0
     var currentIndex = 0
     
     // MARK: - Properties
@@ -112,7 +112,7 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView {
         thisLayout.scrollDirection = .horizontal
         var thisCollection = UICollectionView(frame:.zero, collectionViewLayout:thisLayout)
         thisCollection.showsHorizontalScrollIndicator = false
-        thisCollection.backgroundColor = .clear
+        thisCollection.backgroundColor = .red
         thisLayout.minimumLineSpacing = .init(h:12)
         thisLayout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
         thisLayout.minimumInteritemSpacing = 0
@@ -126,6 +126,7 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView {
         var thisCollection = UICollectionView(frame:.zero, collectionViewLayout:thisLayout)
         thisCollection.showsVerticalScrollIndicator = false
         thisLayout.minimumLineSpacing = .init(h:16)
+        thisLayout.minimumInteritemSpacing = 0
         thisCollection.backgroundColor = .clear
         thisCollection.register(albumsCustomCell.self, forCellWithReuseIdentifier: "ACCustomCell")
         return thisCollection
@@ -280,12 +281,21 @@ extension ViewController :  UICollectionViewDataSource, UICollectionViewDelegate
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier:"VCCustomCell", for: indexPath) as! buttonsCustomCell
             let totalCatagories = usermainDevice.allAlbumCategories[indexPath.item]
             cell.allcatagoriesTiltle.text = totalCatagories.name
+            if indexPath.item == currentIndexItem  {
+                cell.backgroundColor = UIColor(hex:"#323336")
+                
+            }
+            else {
+                cell.backgroundColor = UIColor(hex:"#FFFFFF")
+            
+                
+            }
             return cell
         }
         
         else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier:"ACCustomCell", for: indexPath) as! albumsCustomCell
-            let folderTypes = usermainDevice.allAlbumCategories[currentIndex].albums[indexPath.item]
+            let folderTypes = usermainDevice.allAlbumCategories[currentIndexItem].albums[indexPath.item]
             cell.albumsTitle.text = folderTypes.name
             cell.albumsizeTitle.text = folderTypes.size
             cell.albumIcon .text = folderTypes.icon
@@ -324,34 +334,21 @@ extension ViewController :  UICollectionViewDataSource, UICollectionViewDelegate
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         if collectionView == buttonsCollectioView {
+            currentIndexItem = indexPath.item
+            print("select \(currentIndexItem)")
+            collectionView.reloadData()
             
-            let Selectedcell:UICollectionViewCell = collectionView.cellForItem(at: indexPath)
-            Selectedcell.backgroundColor = UIColor(hex:"#323336")
             
         }
         
-        else {
-            let Selectedcell = collectionView.cellForItem(at:indexPath)
-            Selectedcell?.backgroundColor = .clear
-        }
+     
     }
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
-        if collectionView == buttonsCollectioView {
-            
-            let DeSelectedcell:UICollectionViewCell = collectionView.cellForItem(at: indexPath)
-            DeSelectedcell.backgroundColor = UIColor(hex:"#323336")
-            
-        }
-        
-        else {
-            DeSelectedcell?.backgroundColor = .clear
-        }
-    }
-    
-    
+   
 }
+    
+    
+
 
 
 
@@ -377,7 +374,7 @@ class buttonsCustomCell: UICollectionViewCell{
     // MARK: - ButtonscustomCell LoadUI
     
     private func loadUI() {
-        allcatagoriesTiltle.anchorView(top:topAnchor,left:leftAnchor,bottom:bottomAnchor,right:rightAnchor,paddingTop:.init(h:8),paddingLeft: .init(h:16),paddingBottom:.init(h:8),paddingRight:.init(w:16))
+        allcatagoriesTiltle.anchorView(top:topAnchor,left:leftAnchor,bottom:bottomAnchor,right:rightAnchor,paddingTop:.init(h:8),paddingLeft: .init(h:8),paddingBottom:.init(h:8),paddingRight:.init(w:8))
     }
 }
 
@@ -422,11 +419,16 @@ class albumsCustomCell: UICollectionViewCell{
 extension UIViewController {
     func catagorie() -> [Catagorie] {
         
-        let buttonCatagorie1 = Catagorie(id:"", name: "All",albums:albums())
-        let buttonCatagorie2 = Catagorie(id:"", name: "Unlocked")
-        let buttonCatagorie3 = Catagorie(id:"", name: "Locked")
-        let buttonCatagorie4 = Catagorie(id:"", name: "Others")
-        let buttonCatagorie5 = Catagorie(id:"", name: "Photos")
+        
+        let albums1:[Album] = albums()
+        let albums2:[Album] = albums()
+        let total: [Album] = albums1+albums2
+        
+        let buttonCatagorie1 = Catagorie(id:"", name: "All", albums: total)
+        let buttonCatagorie2 = Catagorie(id:"", name: "Unlocked",albums:albums())
+        let buttonCatagorie3 = Catagorie(id:"", name: "Locked",albums:albums() + albums() + albums())
+        let buttonCatagorie4 = Catagorie(id:"", name: "Others",albums:total + total)
+        let buttonCatagorie5 = Catagorie(id:"", name: "Photos",albums: total)
         
         return[buttonCatagorie1,buttonCatagorie2,buttonCatagorie3,buttonCatagorie4,buttonCatagorie5]
     }
