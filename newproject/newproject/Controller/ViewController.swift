@@ -79,6 +79,7 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView {
         let image = UIImage(named:"albums")
         var thisButton = UIButton().button(title:"Albums",titleColor:UIColor(hex:"#2EA7FF"),backgroundImage:image,titleEdgeInsetsLeft:.init(w:8),font:UIFont(name:"Poppins-Semibold", size:16)!)
         thisButton.tintColor =  UIColor(hex:"#2EA7FF")
+        thisButton.addTarget(self, action:#selector(pressAlbums), for: .touchUpInside)
         return thisButton
     }()
     
@@ -86,7 +87,7 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView {
         let image = UIImage(named:"items-grid")
         var thisButton = UIButton().button(title:"Items",titleColor:UIColor(hex:"#838BA7"),backgroundImage:image,titleEdgeInsetsLeft:.init(w:8),font: UIFont(name:"Poppins-Semibold", size:16)!)
         thisButton.tintColor = UIColor(hex:"#838BA7")
-        //thisButton.anchorView(width: .init(h: 42), height: .init(h: 42))
+        thisButton.addTarget(self, action:#selector(pressItems), for: .touchUpInside)
         return thisButton
     }()
     
@@ -268,6 +269,15 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView {
         addButton.centerX(inView:view)
         
     }
+    
+    @objc func pressAlbums() {
+        
+    }
+    
+    @objc func pressItems() {
+        
+    }
+    
 }
 
 

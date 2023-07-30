@@ -51,15 +51,14 @@ struct Item {
     var type:String
     var Size:CGFloat
     var resource:String
-    var catagories = [Catagorie]()
     
-    init(id: String = "6789", name: String = "item", type: String = "type", Size: CGFloat = 0, resource: String = "resource", catagories: [Catagorie] = [Catagorie]()) {
+    init(id: String = "6789", name: String = "item", type: String = "type", Size: CGFloat = 0, resource: String = "resource") {
         self.id = id
         self.name = name
         self.type = type
         self.Size = Size
         self.resource = resource
-        self.catagories = catagories
+        
     }
 }
 
