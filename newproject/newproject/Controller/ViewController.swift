@@ -274,18 +274,29 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView {
         isAlbumSeleted = true
         currentIndexItem = 0
         buttonsCollectioView.reloadData()
-       
-      
+        
+        albumsButton.setTitleColor(UIColor(hex:"#2EA7FF"), for:.normal)
+        albumsButton.tintColor = UIColor(hex:"#2EA7FF")
+        
+   
+        itemsButton.setTitleColor(UIColor(hex:"#838BA7"), for:.normal)
+        itemsButton.tintColor = UIColor(hex:"#838BA7")
+        
+        
     }
     
     @objc func pressItems() {
         isAlbumSeleted = false
         currentIndexItem = 0
         buttonsCollectioView.reloadData()
-       
+        
+        itemsButton.setTitleColor(UIColor(hex:"#2EA7FF"), for:.normal)
+        itemsButton.tintColor = UIColor(hex:"#2EA7FF")
+        
+        albumsButton.setTitleColor(UIColor(hex:"#838BA7"), for:.normal)
+        albumsButton.tintColor = UIColor(hex:"#838BA7")
+        
     }
-    
-    
 }
 
 
@@ -296,26 +307,29 @@ extension ViewController :  UICollectionViewDataSource, UICollectionViewDelegate
     //MARK: - numbers of items
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if isAlbumSeleted {
+     
             if collectionView == buttonsCollectioView {
-                return usermainDevice.allAlbumCategories.count
+                if isAlbumSeleted {
+                   return usermainDevice.allAlbumCategories.count
+                }
+                return usermainDevice.itemCatagories.count
             }
             
             else {
                 return usermainDevice.allAlbumCategories[currentIndexItem].albums.count
             }
             
-        }// is selected check
-        
-        return usermainDevice.itemCatagories.count
-    }
+        }
+    
+       
+    
     
     //MARK: - Cell For Item
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == buttonsCollectioView {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier:"VCCustomCell", for: indexPath) as! buttonsCustomCell
-            cell.allcatagoriesTiltle.text = usermainDevice.allAlbumCategories[indexPath.item].name
+            cell.allcatagoriesTiltle.text = isAlbumSeleted ? usermainDevice.allAlbumCategories[indexPath.item].name : usermainDevice.itemCatagories[indexPath.item].name
             if indexPath.item == currentIndexItem  {
                 cell.backgroundColor = UIColor(hex:"#323336")
                 cell.allcatagoriesTiltle.textColor = UIColor(hex:"#FFFFFF")
@@ -337,6 +351,7 @@ extension ViewController :  UICollectionViewDataSource, UICollectionViewDelegate
             cell.albumIcon.text = folderTypes.icon
             return cell
         }
+        
     }
     
     // MARK: - Size For Item
