@@ -185,7 +185,7 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView {
             //self.showAlert()
             self.loadUI()
             //self.buttonsCatagory = self.catagorie()
-            self.folders = self.albums()
+            //self.folders = self.albums()
             
         }
         
@@ -286,7 +286,6 @@ extension ViewController :  UICollectionViewDataSource, UICollectionViewDelegate
         else {
             return usermainDevice.allAlbumCategories[currentIndexItem].albums.count
         }
-        
     }
     
     //MARK: - Cell For Item
@@ -315,9 +314,7 @@ extension ViewController :  UICollectionViewDataSource, UICollectionViewDelegate
             cell.albumsizeTitle.text = folderTypes.size
             cell.albumIcon.text = folderTypes.icon
             return cell
-            
         }
-        
     }
     
     // MARK: - Size For Item
@@ -341,7 +338,6 @@ extension ViewController :  UICollectionViewDataSource, UICollectionViewDelegate
         else {
             return UIEdgeInsets(top:.init(h:0), left:.init(w:0), bottom: .init(h:0), right: .init(w:0))
         }
-        
     }
     
     // MARK: - SELECTION OF CELL
@@ -351,16 +347,12 @@ extension ViewController :  UICollectionViewDataSource, UICollectionViewDelegate
         if collectionView == buttonsCollectioView {
             currentIndexItem = indexPath.item
             print("select \(currentIndexItem)")
+            collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
             collectionView.reloadData()
-            albumsCollectioView.deleteItems(at: [IndexPath])
             albumsCollectioView.reloadData()
             
         }
-        
-        
     }
-    
-    
 }
 
 // MARK: - BUTTONS CUSTOM CELL
@@ -428,23 +420,7 @@ class albumsCustomCell: UICollectionViewCell{
 }
 
 // MARK: - Create Extension
-extension UIViewController {
-    func catagorie() -> [Catagorie] {
-        
-        
-        let albums1:[Album] = albums()
-        let albums2:[Album] = albums()
-        let total: [Album] = albums1+albums2
-        
-        let buttonCatagorie1 = Catagorie(id:"", name: "All", albums: total)
-        let buttonCatagorie2 = Catagorie(id:"", name: "Unlocked",albums:albums())
-        let buttonCatagorie3 = Catagorie(id:"", name: "Locked",albums:albums() + albums() + albums())
-        let buttonCatagorie4 = Catagorie(id:"", name: "Others",albums:total + total)
-        let buttonCatagorie5 = Catagorie(id:"", name: "Photos",albums: total)
-        
-        return[buttonCatagorie1,buttonCatagorie2,buttonCatagorie3,buttonCatagorie4,buttonCatagorie5]
-    }
-    
+
     
     // MARK: - Create Array Of Function
     
@@ -458,7 +434,7 @@ extension UIViewController {
     }
     
     
-}
+
 
 
 

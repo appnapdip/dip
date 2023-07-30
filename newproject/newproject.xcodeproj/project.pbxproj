@@ -22,6 +22,7 @@
 		B227FCD12A5BF4AB00D8EAF4 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B227FCD02A5BF4AB00D8EAF4 /* UIViewExtension.swift */; };
 		B227FCD52A5BFEFA00D8EAF4 /* CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B227FCD42A5BFEFA00D8EAF4 /* CollectionView.swift */; };
 		B227FCDB2A5C182B00D8EAF4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B227FCDA2A5C182B00D8EAF4 /* ViewController.swift */; };
+		B236ED432A763F3900988B7F /* CatagoriesExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B236ED422A763F3900988B7F /* CatagoriesExtension.swift */; };
 		B2392A692A5A624200401305 /* LabelExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2392A682A5A624200401305 /* LabelExtension.swift */; };
 		B2392A6B2A5A625900401305 /* ButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2392A6A2A5A625900401305 /* ButtonExtension.swift */; };
 		B2392A8C2A5AACE800401305 /* ViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2392A8B2A5AACE800401305 /* ViewModifier.swift */; };
@@ -57,6 +58,7 @@
 		B227FCD02A5BF4AB00D8EAF4 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		B227FCD42A5BFEFA00D8EAF4 /* CollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionView.swift; sourceTree = "<group>"; };
 		B227FCDA2A5C182B00D8EAF4 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		B236ED422A763F3900988B7F /* CatagoriesExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatagoriesExtension.swift; sourceTree = "<group>"; };
 		B2392A682A5A624200401305 /* LabelExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelExtension.swift; sourceTree = "<group>"; };
 		B2392A6A2A5A625900401305 /* ButtonExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonExtension.swift; sourceTree = "<group>"; };
 		B2392A8B2A5AACE800401305 /* ViewModifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModifier.swift; sourceTree = "<group>"; };
@@ -168,6 +170,7 @@
 				B227FCC62A5BDCC200D8EAF4 /* ColorExtension.swift */,
 				B227FCD02A5BF4AB00D8EAF4 /* UIViewExtension.swift */,
 				B2674D602A68F6FB000F8150 /* ExtensionController.swift */,
+				B236ED422A763F3900988B7F /* CatagoriesExtension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -297,6 +300,7 @@
 				B2674D6B2A692540000F8150 /* AleartController.swift in Sources */,
 				B227FCC52A5BC68300D8EAF4 /* ImageExtension.swift in Sources */,
 				B2674D612A68F6FB000F8150 /* ExtensionController.swift in Sources */,
+				B236ED432A763F3900988B7F /* CatagoriesExtension.swift in Sources */,
 				B2392A6B2A5A625900401305 /* ButtonExtension.swift in Sources */,
 				B2674D5F2A67BDD3000F8150 /* PinViewController.swift in Sources */,
 				B227FCD12A5BF4AB00D8EAF4 /* UIViewExtension.swift in Sources */,
