@@ -263,7 +263,7 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView {
         secondStackView.anchorView(left:headerView.leftAnchor,bottom: headerView.bottomAnchor, right:headerView.rightAnchor, height:.init(h:48))
         mainScrollView.anchorView(top:headerView.bottomAnchor,left:view.leftAnchor,bottom:view.bottomAnchor, right:view.rightAnchor)
         addAlbumButton.anchorView(top:mainScrollView.topAnchor,right:view.rightAnchor, paddingTop:.init(h:9),width: .init(h:44), height:.init(h:44))
-        buttonsCollectioView.anchorView(top:mainScrollView.topAnchor,left:view.leftAnchor,right:addAlbumButton.leftAnchor, paddingTop:.init(h:12),height:.init(h:48))
+        buttonsCollectioView.anchorView(top:mainScrollView.topAnchor,left:view.leftAnchor,right:addAlbumButton.leftAnchor, paddingTop:.init(h:12),height:.init(h:50))
         albumsCollectioView.anchorView(top:buttonsCollectioView.bottomAnchor,left:view.leftAnchor,bottom:view.bottomAnchor,right:view.rightAnchor,paddingTop:.init(h:28),paddingLeft: .init(w:16),paddingRight:.init(w:16))
         addButton.anchorView(bottom:view.bottomAnchor,paddingBottom:.init(h:46),width: .init(w:158), height: .init(h:56))
         addButton.centerX(inView:view)
@@ -274,13 +274,16 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView {
         isAlbumSeleted = true
         currentIndexItem = 0
         buttonsCollectioView.reloadData()
-        
+        let albumsButtonImage =  UIImage(named:"album")
+        let itemsButtonImage = UIImage(named:"images")
         albumsButton.setTitleColor(UIColor(hex:"#2EA7FF"), for:.normal)
         albumsButton.tintColor = UIColor(hex:"#2EA7FF")
+        addAlbumButton.setBackgroundImage(albumsButtonImage, for:UIControl.State())
         
-   
+
         itemsButton.setTitleColor(UIColor(hex:"#838BA7"), for:.normal)
         itemsButton.tintColor = UIColor(hex:"#838BA7")
+        addAlbumButton.setBackgroundImage(itemsButtonImage, for: UIControl.State())
         
         
     }
@@ -289,12 +292,16 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView {
         isAlbumSeleted = false
         currentIndexItem = 0
         buttonsCollectioView.reloadData()
+        let albumsButtonImage =  UIImage(named:"album")
+        let itemsButtonImage = UIImage(named:"images")
         
         itemsButton.setTitleColor(UIColor(hex:"#2EA7FF"), for:.normal)
         itemsButton.tintColor = UIColor(hex:"#2EA7FF")
+        addAlbumButton.setBackgroundImage(itemsButtonImage, for: UIControl.State())
         
         albumsButton.setTitleColor(UIColor(hex:"#838BA7"), for:.normal)
         albumsButton.tintColor = UIColor(hex:"#838BA7")
+        addAlbumButton.setBackgroundImage(albumsButtonImage, for: UIControl.State())
         
     }
 }
