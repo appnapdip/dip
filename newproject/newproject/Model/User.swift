@@ -16,9 +16,9 @@ struct User {
     var pin:Int
     var settings:String
     var allAlbumCategories = [Catagorie]()
-    var itemCatagories = [Item]()
+    var itemCatagories = [Catagorie]()
     
-    init(name: String = "123", id: String = "2345", pin: Int = 0, settings: String = "", allAlbumCategories: [Catagorie] = [Catagorie](), itemCatagories: [Item] = [Item]()) {
+    init(name: String = "123", id: String = "2345", pin: Int = 0, settings: String = "", allAlbumCategories: [Catagorie] = [Catagorie](), itemCatagories: [Catagorie] = [Catagorie]()) {
         self.name = name
         self.id = id
         self.pin = pin

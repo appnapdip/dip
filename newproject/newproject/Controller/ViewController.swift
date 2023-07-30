@@ -13,7 +13,7 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView {
     //var buttonsCatagory:[Catagorie] = []
     var folders:[Album] = []
     var currentIndexItem = 0
-    var currentIndex = 0
+    var isAlbumSeleted:Bool = true
     
     // MARK: - Properties
     
@@ -78,7 +78,7 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView {
     lazy var albumsButton:UIButton = {
         let image = UIImage(named:"albums")
         var thisButton = UIButton().button(title:"Albums",titleColor:UIColor(hex:"#2EA7FF"),backgroundImage:image,titleEdgeInsetsLeft:.init(w:8),font:UIFont(name:"Poppins-Semibold", size:16)!)
-        thisButton.tintColor =  UIColor(hex:"#2EA7FF")
+        thisButton.tintColor = UIColor(hex:"#2EA7FF")
         thisButton.addTarget(self, action:#selector(pressAlbums), for: .touchUpInside)
         return thisButton
     }()
@@ -86,7 +86,7 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView {
     lazy var itemsButton:UIButton = {
         let image = UIImage(named:"items-grid")
         var thisButton = UIButton().button(title:"Items",titleColor:UIColor(hex:"#838BA7"),backgroundImage:image,titleEdgeInsetsLeft:.init(w:8),font: UIFont(name:"Poppins-Semibold", size:16)!)
-        thisButton.tintColor = UIColor(hex:"#838BA7")
+        thisButton.tintColor =  UIColor(hex:"#838BA7")
         thisButton.addTarget(self, action:#selector(pressItems), for: .touchUpInside)
         return thisButton
     }()
@@ -271,12 +271,20 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView {
     }
     
     @objc func pressAlbums() {
-        
+        isAlbumSeleted = true
+        currentIndexItem = 0
+        buttonsCollectioView.reloadData()
+       
+      
     }
     
     @objc func pressItems() {
-        
+        isAlbumSeleted = false
+        currentIndexItem = 0
+        buttonsCollectioView.reloadData()
+       
     }
+    
     
 }
 
@@ -288,14 +296,18 @@ extension ViewController :  UICollectionViewDataSource, UICollectionViewDelegate
     //MARK: - numbers of items
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if isAlbumSeleted {
+            if collectionView == buttonsCollectioView {
+                return usermainDevice.allAlbumCategories.count
+            }
+            
+            else {
+                return usermainDevice.allAlbumCategories[currentIndexItem].albums.count
+            }
+            
+        }// is selected check
         
-        if collectionView == buttonsCollectioView {
-            return usermainDevice.allAlbumCategories.count
-        }
-        
-        else {
-            return usermainDevice.allAlbumCategories[currentIndexItem].albums.count
-        }
+        return usermainDevice.itemCatagories.count
     }
     
     //MARK: - Cell For Item
