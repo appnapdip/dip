@@ -145,6 +145,25 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView {
         return thisButton
     }()
     
+    lazy var AlbumUnderline:UIView = {
+       let  thisView = UIView()
+        thisView.backgroundColor = .blue
+        thisView.isHidden = false
+        return thisView
+        
+    }()
+    
+    
+    lazy var itemsUnderline:UIView = {
+       let  thisView = UIView()
+        thisView.backgroundColor = .blue
+        thisView.isHidden = true
+        return thisView
+        
+    }()
+    
+    
+    
     // MARK: - viewDidLoad
     
     override func viewDidLoad() {
@@ -238,6 +257,8 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView {
     private func loadUI() {
         view.addSubview(headerView)
         view.addSubview(mainScrollView)
+        view.addSubview(AlbumUnderline)
+        view.addSubview(itemsUnderline)
         mainScrollView.delegate = self
         mainScrollView.addSubview(addAlbumButton)
         headerView.addSubview(firstStackView)
@@ -267,6 +288,8 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView {
         albumsCollectioView.anchorView(top:buttonsCollectioView.bottomAnchor,left:view.leftAnchor,bottom:view.bottomAnchor,right:view.rightAnchor,paddingTop:.init(h:28),paddingLeft: .init(w:16),paddingRight:.init(w:16))
         addButton.anchorView(bottom:view.bottomAnchor,paddingBottom:.init(h:46),width: .init(w:158), height: .init(h:56))
         addButton.centerX(inView:view)
+        AlbumUnderline.anchorView(top:secondStackView.bottomAnchor,left:view.leftAnchor,paddingTop:.init(h:0), width:UIdeviceSize.width * 0.5, height:.init(h:1.5))
+        itemsUnderline.anchorView(top:secondStackView.bottomAnchor,right:view.rightAnchor,paddingTop: .init(h:0),width:UIdeviceSize.width * 0.5, height:.init(h:1.5) )
         
     }
     
@@ -280,7 +303,8 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView {
         addAlbumButton.setImage(albumsButtonImage, for:.normal)
         itemsButton.setTitleColor(UIColor(hex:"#838BA7"), for:.normal)
         itemsButton.tintColor = UIColor(hex:"#838BA7")
-        
+        AlbumUnderline.isHidden = false
+        itemsUnderline.isHidden = true
         
         
     }
@@ -297,6 +321,8 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView {
         addAlbumButton.tintColor = UIColor(hex:"#838BA7")
         albumsButton.setTitleColor(UIColor(hex:"#838BA7"), for:.normal)
         albumsButton.tintColor = UIColor(hex:"#838BA7")
+        itemsUnderline.isHidden = false
+        AlbumUnderline .isHidden = true
         
         
     }
