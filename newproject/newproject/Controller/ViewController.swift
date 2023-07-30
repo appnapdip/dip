@@ -275,15 +275,12 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView {
         currentIndexItem = 0
         buttonsCollectioView.reloadData()
         let albumsButtonImage =  UIImage(named:"album")
-        let itemsButtonImage = UIImage(named:"images")
         albumsButton.setTitleColor(UIColor(hex:"#2EA7FF"), for:.normal)
         albumsButton.tintColor = UIColor(hex:"#2EA7FF")
-        addAlbumButton.setBackgroundImage(albumsButtonImage, for:UIControl.State())
-        
-
+        addAlbumButton.setImage(albumsButtonImage, for:.normal)
         itemsButton.setTitleColor(UIColor(hex:"#838BA7"), for:.normal)
         itemsButton.tintColor = UIColor(hex:"#838BA7")
-        addAlbumButton.setBackgroundImage(itemsButtonImage, for: UIControl.State())
+        
         
         
     }
@@ -292,16 +289,15 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView {
         isAlbumSeleted = false
         currentIndexItem = 0
         buttonsCollectioView.reloadData()
-        let albumsButtonImage =  UIImage(named:"album")
         let itemsButtonImage = UIImage(named:"images")
         
         itemsButton.setTitleColor(UIColor(hex:"#2EA7FF"), for:.normal)
         itemsButton.tintColor = UIColor(hex:"#2EA7FF")
-        addAlbumButton.setBackgroundImage(itemsButtonImage, for: UIControl.State())
-        
+        addAlbumButton.setImage(itemsButtonImage, for:.normal)
+        addAlbumButton.tintColor = UIColor(hex:"#838BA7")
         albumsButton.setTitleColor(UIColor(hex:"#838BA7"), for:.normal)
         albumsButton.tintColor = UIColor(hex:"#838BA7")
-        addAlbumButton.setBackgroundImage(albumsButtonImage, for: UIControl.State())
+        
         
     }
 }
@@ -314,21 +310,21 @@ extension ViewController :  UICollectionViewDataSource, UICollectionViewDelegate
     //MARK: - numbers of items
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-     
-            if collectionView == buttonsCollectioView {
-                if isAlbumSeleted {
-                   return usermainDevice.allAlbumCategories.count
-                }
-                return usermainDevice.itemCatagories.count
+        
+        if collectionView == buttonsCollectioView {
+            if isAlbumSeleted {
+                return usermainDevice.allAlbumCategories.count
             }
-            
-            else {
-                return usermainDevice.allAlbumCategories[currentIndexItem].albums.count
-            }
-            
+            return usermainDevice.itemCatagories.count
         }
+        
+        else {
+            return usermainDevice.allAlbumCategories[currentIndexItem].albums.count
+        }
+        
+    }
     
-       
+    
     
     
     //MARK: - Cell For Item
@@ -465,19 +461,19 @@ class albumsCustomCell: UICollectionViewCell{
 
 // MARK: - Create Extension
 
-    
-    // MARK: - Create Array Of Function
-    
-    func albums() ->[Album] {
-        let album1 = Album(id: "", icon: "📁", name: "Main Album", size:"\(200) items・\(200) mb", isLocked:false, items: [])
-        let album2 = Album(id: "", icon: "🔒", name: "Locked Album", size:"Locked", isLocked:true, items: [])
-        let album3 = Album(id: "", icon: "🗃", name: "Texts Limit 1 2 3 ...", size: "\(7.7)k items・(3.5) gb", isLocked:false, items: [])
-        let album4 = Album(id: "", icon: "📁",name: "Empty Album", size:"Empty", isLocked:true, items: [])
-        let album5 = Album(id: "", icon: "🗄", name: "Travel", size:"\(200) items・\(200) mb", isLocked:true, items: [])
-        return [album1,album2,album3,album4,album5]
-    }
-    
-    
+
+// MARK: - Create Array Of Function
+
+func albums() ->[Album] {
+    let album1 = Album(id: "", icon: "📁", name: "Main Album", size:"\(200) items・\(200) mb", isLocked:false, items: [])
+    let album2 = Album(id: "", icon: "🔒", name: "Locked Album", size:"Locked", isLocked:true, items: [])
+    let album3 = Album(id: "", icon: "🗃", name: "Texts Limit 1 2 3 ...", size: "\(7.7)k items・(3.5) gb", isLocked:false, items: [])
+    let album4 = Album(id: "", icon: "📁",name: "Empty Album", size:"Empty", isLocked:true, items: [])
+    let album5 = Album(id: "", icon: "🗄", name: "Travel", size:"\(200) items・\(200) mb", isLocked:true, items: [])
+    return [album1,album2,album3,album4,album5]
+}
+
+
 
 
 
