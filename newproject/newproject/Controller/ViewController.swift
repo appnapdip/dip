@@ -262,7 +262,7 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView {
         secondStackView.anchorView(left:headerView.leftAnchor,bottom: headerView.bottomAnchor, right:headerView.rightAnchor, height:.init(h:48))
         mainScrollView.anchorView(top:headerView.bottomAnchor,left:view.leftAnchor,bottom:view.bottomAnchor, right:view.rightAnchor)
         addAlbumButton.anchorView(top:mainScrollView.topAnchor,right:view.rightAnchor, paddingTop:.init(h:9),width: .init(h:44), height:.init(h:44))
-        buttonsCollectioView.anchorView(top:mainScrollView.topAnchor,left:view.leftAnchor,right:addAlbumButton.leftAnchor, paddingTop:.init(h:12),height:.init(h:38))
+        buttonsCollectioView.anchorView(top:mainScrollView.topAnchor,left:view.leftAnchor,right:addAlbumButton.leftAnchor, paddingTop:.init(h:12),height:.init(h:48))
         albumsCollectioView.anchorView(top:buttonsCollectioView.bottomAnchor,left:view.leftAnchor,bottom:view.bottomAnchor,right:view.rightAnchor,paddingTop:.init(h:28),paddingLeft: .init(w:16),paddingRight:.init(w:16))
         addButton.anchorView(bottom:view.bottomAnchor,paddingBottom:.init(h:46),width: .init(w:158), height: .init(h:56))
         addButton.centerX(inView:view)
@@ -294,8 +294,7 @@ extension ViewController :  UICollectionViewDataSource, UICollectionViewDelegate
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == buttonsCollectioView {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier:"VCCustomCell", for: indexPath) as! buttonsCustomCell
-            let totalCatagories = usermainDevice.allAlbumCategories[indexPath.item]
-            cell.allcatagoriesTiltle.text = totalCatagories.name
+            cell.allcatagoriesTiltle.text = usermainDevice.allAlbumCategories[indexPath.item].name
             if indexPath.item == currentIndexItem  {
                 cell.backgroundColor = UIColor(hex:"#323336")
                 cell.allcatagoriesTiltle.textColor = UIColor(hex:"#FFFFFF")
@@ -303,7 +302,7 @@ extension ViewController :  UICollectionViewDataSource, UICollectionViewDelegate
             }
             else {
                 cell.backgroundColor = UIColor(hex:"#FFFFFF")
-                
+                cell.allcatagoriesTiltle.textColor = UIColor(hex:"#838BA7")
                 
             }
             return cell
@@ -353,6 +352,7 @@ extension ViewController :  UICollectionViewDataSource, UICollectionViewDelegate
             currentIndexItem = indexPath.item
             print("select \(currentIndexItem)")
             collectionView.reloadData()
+            albumsCollectioView.deleteItems(at: [IndexPath])
             albumsCollectioView.reloadData()
             
         }
@@ -366,7 +366,7 @@ extension ViewController :  UICollectionViewDataSource, UICollectionViewDelegate
 // MARK: - BUTTONS CUSTOM CELL
 
 class buttonsCustomCell: UICollectionViewCell{
-    let allcatagoriesTiltle = UILabel().label(textColor:UIColor(hex:"#838BA7"),fontStyle:UIFont(name: "Poopins- Regular", size: .init(h:14)))
+    let allcatagoriesTiltle = UILabel().label(textColor:UIColor(hex:"#838BA7"),lines: 1 ,fontStyle:UIFont(name: "Poopins- Regular", size: .init(h:14)))
     
     override init(frame: CGRect) {
         super.init(frame:frame)
@@ -385,7 +385,7 @@ class buttonsCustomCell: UICollectionViewCell{
     // MARK: - ButtonscustomCell LoadUI
     
     private func loadUI() {
-        allcatagoriesTiltle.anchorView(top:topAnchor,left:leftAnchor,bottom:bottomAnchor,right:rightAnchor,paddingTop:.init(h:8),paddingLeft: .init(h:8),paddingBottom:.init(h:8),paddingRight:.init(w:8))
+        allcatagoriesTiltle.anchorView(top:topAnchor,left:leftAnchor,bottom:bottomAnchor,right:rightAnchor,paddingTop:.init(h:12),paddingLeft: .init(h:16),paddingBottom:.init(h:16),paddingRight:.init(w:16))
         contentView.anchorView(width:UIdeviceSize.width)
     }
 }
