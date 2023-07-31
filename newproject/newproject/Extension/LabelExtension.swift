@@ -8,8 +8,8 @@
 import UIKit
 
 extension UILabel{
-    func label(title: String = "", textColor: UIColor = UIColor.black, lines: Int = 0, fontStyle: UIFont? = nil, allignment: NSTextAlignment = .center, backgroundColor: UIColor = .clear) -> UILabel{
-        let finalFont = fontStyle?.withSize(UIDevice.current.userInterfaceIdiom == .pad ? fontStyle!.pointSize*1.5 : fontStyle!.pointSize)
+    func label(title: String = "", textColor: UIColor = UIColor.black, lines: Int = 0, fontStyle: UIFont? = nil, allignment: NSTextAlignment = .center, backgroundColor: UIColor = .clear, resizeFont: Bool = false) -> UILabel{
+        let finalFont = fontStyle?.withSize(UIDevice.current.userInterfaceIdiom == .pad ? fontStyle!.pointSize * (resizeFont ? 1.5 : 1) : fontStyle!.pointSize)
         let label = UILabel()
         label.text = title
         label.textColor = textColor == .black ? UIColor.black : textColor

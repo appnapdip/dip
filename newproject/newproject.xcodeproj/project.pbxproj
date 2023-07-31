@@ -107,7 +107,6 @@
 			isa = PBXGroup;
 			children = (
 				B217A4C92A56B2330012A133 /* Model */,
-				B217A4CF2A56B2E90012A133 /* View */,
 				B217A4CE2A56B2BE0012A133 /* Controller */,
 				B217A4D12A56B32D0012A133 /* Helper */,
 				B217A4D22A56B34F0012A133 /* Extension */,
@@ -123,6 +122,7 @@
 			isa = PBXGroup;
 			children = (
 				B2401B9B2A5D0D3F00AF1F93 /* OnboradingModel.swift */,
+				B217A4CF2A56B2E90012A133 /* View */,
 				B2CE5D3C2A5EBC2B0022720D /* onboardingModel.swift */,
 				B2D39B8E2A6E81C0006D8D8E /* User.swift */,
 			);
