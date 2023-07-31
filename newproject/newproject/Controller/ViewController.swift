@@ -162,6 +162,17 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView {
         
     }()
     
+    lazy var itemCollectionView: UICollectionView = {
+        let thisLayout =  UICollectionViewFlowLayout()
+        thisLayout.scrollDirection = .vertical
+        var thisCollection = UICollectionView(frame:.zero, collectionViewLayout:thisLayout)
+        thisCollection.showsVerticalScrollIndicator = false
+        thisCollection.backgroundColor = .clear
+        thisCollection.register(itemImageCell.self, forCellWithReuseIdentifier: "ITCustomCell")
+        return thisCollection
+        
+    }()
+    
     
     
     // MARK: - viewDidLoad
@@ -339,13 +350,17 @@ extension ViewController :  UICollectionViewDataSource, UICollectionViewDelegate
         
         if collectionView == buttonsCollectioView {
             if isAlbumSeleted {
-                return usermainDevice.allAlbumCategories.count
+                return usermainDevice.allAlbumCategories.count // album catagorie count
             }
-            return usermainDevice.itemCatagories.count
+            return usermainDevice.itemCatagories.count // items catagorie count
+        }
+        
+        else if collectionView == itemCollectionView {
+            return 0
         }
         
         else {
-            return usermainDevice.allAlbumCategories[currentIndexItem].albums.count
+            return usermainDevice.allAlbumCategories[currentIndexItem].albums.count // folders count
         }
         
     }
@@ -366,7 +381,7 @@ extension ViewController :  UICollectionViewDataSource, UICollectionViewDelegate
             }
             else {
                 cell.backgroundColor = UIColor(hex:"#FFFFFF")
-                cell.allcatagoriesTiltle.textColor = UIColor(hex:"#838BA7")
+                cell.allcatagoriesTiltle.textColor = UIColor(hex:"#838BA7") // album catagorie and item catagorie data
                 
             }
             return cell
@@ -377,7 +392,7 @@ extension ViewController :  UICollectionViewDataSource, UICollectionViewDelegate
             let folderTypes = usermainDevice.allAlbumCategories[currentIndexItem].albums[indexPath.item]
             cell.albumsTitle.text = folderTypes.name
             cell.albumsizeTitle.text = folderTypes.size
-            cell.albumIcon.text = folderTypes.icon
+            cell.albumIcon.text = folderTypes.icon // folders data
             return cell
         }
         
@@ -387,10 +402,10 @@ extension ViewController :  UICollectionViewDataSource, UICollectionViewDelegate
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if collectionView == buttonsCollectioView {
-            return CGSize(width: .init(w:97), height: .init(h:36))
+            return CGSize(width: .init(w:97), height: .init(h:36))   // album and item cell size
         }
         else {
-            return CGSize(width: .init(w:183), height: .init(h:140))
+            return CGSize(width: .init(w:183), height: .init(h:140)) // folder cell size
         }
     }
     
@@ -398,18 +413,18 @@ extension ViewController :  UICollectionViewDataSource, UICollectionViewDelegate
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         if collectionView == buttonsCollectioView {
-            return UIEdgeInsets(top:.init(h:0), left:.init(w:16), bottom: .init(h:0), right: .init(w:0))
+            return UIEdgeInsets(top:.init(h:0), left:.init(w:16), bottom: .init(h:0), right: .init(w:0))  // album and item cell edege insects
         }
         
         else {
-            return UIEdgeInsets(top:.init(h:0), left:.init(w:0), bottom: .init(h:0), right: .init(w:0))
+            return UIEdgeInsets(top:.init(h:0), left:.init(w:0), bottom: .init(h:0), right: .init(w:0))  // folders cell edege insects
         }
     }
     
     // MARK: - SELECTION OF CELL
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
+        // update the index of  button cell
         if collectionView == buttonsCollectioView {
             currentIndexItem = indexPath.item
             print("select \(currentIndexItem)")
@@ -463,7 +478,6 @@ class albumsCustomCell: UICollectionViewCell{
         albumsImage.addSubview(albumIcon)
         albumsImage.addSubview(albumsTitle)
         albumsImage.addSubview(albumsizeTitle)
-        
         albumsImage.image = UIImage(named:"Vector")
         loadUI()
         
@@ -485,6 +499,34 @@ class albumsCustomCell: UICollectionViewCell{
     
 }
 
+//MARK: - ITEMS IMAGE CELL
+
+
+class itemImageCell:UICollectionViewCell {
+    
+   let itemimages = UIImageView()
+    
+    override init(frame: CGRect) {
+        super.init(frame:frame)
+        contentView.addSubview(itemimages)
+        loadUI()
+        
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+     func loadUI() {
+         itemimages.anchorView(top:topAnchor,left:leftAnchor,bottom:bottomAnchor,right:rightAnchor)
+        
+    }
+    
+    
+}
+
+
+
 // MARK: - Create Extension
 
 
@@ -501,7 +543,13 @@ func albums() ->[Album] {
 
 
 
-
+func items() -> [Item] {
+    let item1 = Item(id: "", name: "", type: "", Size: 0, resource: "Rectangle 10")
+    let item2 = Item(id: "", name: "", type: "", Size: 0, resource: "Rectangle 10")
+    let item3 = Item(id: "", name: "", type: "", Size: 0, resource: "Rectangle 10")
+    let item4 = Item(id: "", name: "", type: "", Size: 0, resource: "Rectangle 10")
+    return[item1,item2,item3,item4]
+}
 
 
 

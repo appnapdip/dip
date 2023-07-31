@@ -35,15 +35,15 @@ struct Catagorie {
     var id:String
     var name:String
     var albums = [Album]()
+    var items = [Item]()
     
-    init(id: String = "1223", name: String = "All", albums: [Album] = [Album]()) {
+    init(id: String, name: String, albums: [Album] = [Album](), items: [Item] = [Item]()) {
         self.id = id
         self.name = name
         self.albums = albums
+        self.items = items
     }
-    
 }
-
 
 struct Item {
     var id:String
