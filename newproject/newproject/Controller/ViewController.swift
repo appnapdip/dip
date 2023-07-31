@@ -13,6 +13,7 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView {
     //var buttonsCatagory:[Catagorie] = []
     var folders:[Album] = []
     var currentIndexItem = 0
+    var currentIndexAlbum = 0
     var isAlbumSeleted:Bool = true
     
     // MARK: - Properties
@@ -167,7 +168,10 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView {
         thisLayout.scrollDirection = .vertical
         var thisCollection = UICollectionView(frame:.zero, collectionViewLayout:thisLayout)
         thisCollection.showsVerticalScrollIndicator = false
+        thisLayout.minimumLineSpacing = .init(h:0)
+        thisLayout.minimumInteritemSpacing = 0
         thisCollection.backgroundColor = .clear
+        thisCollection.isHidden = true
         thisCollection.register(itemImageCell.self, forCellWithReuseIdentifier: "ITCustomCell")
         return thisCollection
         
@@ -276,6 +280,7 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView {
         headerView.addSubview(secondStackView)
         mainScrollView.addSubview(buttonsCollectioView)
         mainScrollView.addSubview(albumsCollectioView)
+        mainScrollView.addSubview(itemCollectionView)
         view.addSubview(addButton)
         
         buttonsCollectioView.delegate = self
@@ -283,6 +288,11 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView {
         
         albumsCollectioView.delegate = self
         albumsCollectioView.dataSource = self
+        
+        itemCollectionView.delegate = self
+        itemCollectionView.dataSource = self
+        
+        
         
         headerView.anchorView(top: view.topAnchor, left:view.leftAnchor ,right:view.rightAnchor,height:.init(h:160))
         firstStackView.anchorView(top: headerView.topAnchor,left: headerView.leftAnchor, right: headerView.rightAnchor,paddingTop: .init(h:58), paddingLeft: .init(w: 16), paddingRight: .init(w: 16), height:.init(h:42))
@@ -300,12 +310,14 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView {
         addButton.anchorView(bottom:view.bottomAnchor,paddingBottom:.init(h:46),width: .init(w:158), height: .init(h:56))
         addButton.centerX(inView:view)
         AlbumUnderline.anchorView(top:secondStackView.bottomAnchor,left:view.leftAnchor,paddingTop:.init(h:0), width:UIdeviceSize.width * 0.5, height:.init(h:1.5))
-        itemsUnderline.anchorView(top:secondStackView.bottomAnchor,right:view.rightAnchor,paddingTop: .init(h:0),width:UIdeviceSize.width * 0.5, height:.init(h:1.5) )
+        itemsUnderline.anchorView(top:secondStackView.bottomAnchor,right:view.rightAnchor,paddingTop: .init(h:0),width:UIdeviceSize.width * 0.5, height:.init(h:1.5))
+        itemCollectionView.anchorView(top:buttonsCollectioView.bottomAnchor,left:view.leftAnchor,bottom:view.bottomAnchor,right:view.rightAnchor,paddingTop:.init(h:28),paddingLeft: .init(w:16),paddingRight:.init(w:16))
         
     }
     
     @objc func pressAlbums() {
         isAlbumSeleted = true
+        currentIndexAlbum = 0
         currentIndexItem = 0
         buttonsCollectioView.reloadData()
         let albumsButtonImage =  UIImage(named:"album")
@@ -316,6 +328,8 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView {
         itemsButton.tintColor = UIColor(hex:"#838BA7")
         AlbumUnderline.isHidden = false
         itemsUnderline.isHidden = true
+        itemCollectionView.isHidden = true
+        albumsCollectioView.isHidden = false
         
         
     }
@@ -323,6 +337,7 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView {
     @objc func pressItems() {
         isAlbumSeleted = false
         currentIndexItem = 0
+        currentIndexAlbum = 0
         buttonsCollectioView.reloadData()
         let itemsButtonImage = UIImage(named:"images")
         
@@ -334,6 +349,9 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView {
         albumsButton.tintColor = UIColor(hex:"#838BA7")
         itemsUnderline.isHidden = false
         AlbumUnderline .isHidden = true
+        
+        itemCollectionView.isHidden = false
+        albumsCollectioView.isHidden = true
         
         
     }
@@ -356,11 +374,11 @@ extension ViewController :  UICollectionViewDataSource, UICollectionViewDelegate
         }
         
         else if collectionView == itemCollectionView {
-            return 0
+            return  usermainDevice.itemCatagories[currentIndexItem].items.count
         }
         
         else {
-            return usermainDevice.allAlbumCategories[currentIndexItem].albums.count // folders count
+            return usermainDevice.allAlbumCategories[currentIndexAlbum].albums.count // folders count
         }
         
     }
@@ -374,7 +392,7 @@ extension ViewController :  UICollectionViewDataSource, UICollectionViewDelegate
         if collectionView == buttonsCollectioView {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier:"VCCustomCell", for: indexPath) as! buttonsCustomCell
             cell.allcatagoriesTiltle.text = isAlbumSeleted ? usermainDevice.allAlbumCategories[indexPath.item].name : usermainDevice.itemCatagories[indexPath.item].name
-            if indexPath.item == currentIndexItem  {
+            if indexPath.item == (isAlbumSeleted ? currentIndexAlbum : currentIndexItem)  {
                 cell.backgroundColor = UIColor(hex:"#323336")
                 cell.allcatagoriesTiltle.textColor = UIColor(hex:"#FFFFFF")
                 
@@ -387,9 +405,15 @@ extension ViewController :  UICollectionViewDataSource, UICollectionViewDelegate
             return cell
         }
         
+        else if collectionView == itemCollectionView {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier:"ITCustomCell", for:indexPath) as! itemImageCell
+            cell.itemImageView.image = UIImage(named:usermainDevice.itemCatagories[currentIndexItem].items[indexPath.item].resource)
+            return cell
+        }
+        
         else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier:"ACCustomCell", for: indexPath) as! albumsCustomCell
-            let folderTypes = usermainDevice.allAlbumCategories[currentIndexItem].albums[indexPath.item]
+            let folderTypes = usermainDevice.allAlbumCategories[currentIndexAlbum].albums[indexPath.item]
             cell.albumsTitle.text = folderTypes.name
             cell.albumsizeTitle.text = folderTypes.size
             cell.albumIcon.text = folderTypes.icon // folders data
@@ -404,6 +428,9 @@ extension ViewController :  UICollectionViewDataSource, UICollectionViewDelegate
         if collectionView == buttonsCollectioView {
             return CGSize(width: .init(w:97), height: .init(h:36))   // album and item cell size
         }
+        else if collectionView == itemCollectionView {
+            return CGSize(width: .init(w:136), height: .init(h:136))
+        }
         else {
             return CGSize(width: .init(w:183), height: .init(h:140)) // folder cell size
         }
@@ -416,6 +443,10 @@ extension ViewController :  UICollectionViewDataSource, UICollectionViewDelegate
             return UIEdgeInsets(top:.init(h:0), left:.init(w:16), bottom: .init(h:0), right: .init(w:0))  // album and item cell edege insects
         }
         
+        else if collectionView == itemCollectionView {
+            return UIEdgeInsets(top:.init(h:0), left:.init(w:0), bottom: .init(h:0), right: .init(w:0))
+        }
+        
         else {
             return UIEdgeInsets(top:.init(h:0), left:.init(w:0), bottom: .init(h:0), right: .init(w:0))  // folders cell edege insects
         }
@@ -426,11 +457,21 @@ extension ViewController :  UICollectionViewDataSource, UICollectionViewDelegate
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         // update the index of  button cell
         if collectionView == buttonsCollectioView {
-            currentIndexItem = indexPath.item
-            print("select \(currentIndexItem)")
-            collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
-            collectionView.reloadData()
-            albumsCollectioView.reloadData()
+            if isAlbumSeleted{
+                currentIndexAlbum = indexPath.item
+                print("select \(currentIndexAlbum)")
+                collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+                collectionView.reloadData()
+                albumsCollectioView.reloadData()
+                
+            }else{
+                currentIndexItem = indexPath.item
+                print("select \(currentIndexItem)")
+                collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+                collectionView.reloadData()
+                itemCollectionView.reloadData()
+            }
+            
             
         }
     }
@@ -504,11 +545,11 @@ class albumsCustomCell: UICollectionViewCell{
 
 class itemImageCell:UICollectionViewCell {
     
-   let itemimages = UIImageView()
+   let itemImageView = UIImageView()
     
     override init(frame: CGRect) {
         super.init(frame:frame)
-        contentView.addSubview(itemimages)
+        contentView.addSubview(itemImageView)
         loadUI()
         
     }
@@ -518,7 +559,7 @@ class itemImageCell:UICollectionViewCell {
     }
     
      func loadUI() {
-         itemimages.anchorView(top:topAnchor,left:leftAnchor,bottom:bottomAnchor,right:rightAnchor)
+         itemImageView.anchorView(top:topAnchor,left:leftAnchor,bottom:bottomAnchor,right:rightAnchor)
         
     }
     
@@ -543,7 +584,7 @@ func albums() ->[Album] {
 
 
 
-func items() -> [Item] {
+func Items() -> [Item] {
     let item1 = Item(id: "", name: "", type: "", Size: 0, resource: "Rectangle 10")
     let item2 = Item(id: "", name: "", type: "", Size: 0, resource: "Rectangle 10")
     let item3 = Item(id: "", name: "", type: "", Size: 0, resource: "Rectangle 10")

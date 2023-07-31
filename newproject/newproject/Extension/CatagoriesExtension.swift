@@ -24,10 +24,15 @@ extension UIViewController {
     }
     
     func itemsCatagorie() ->[Catagorie] {
-        let buttonCatagorie1 = Catagorie(id:"", name: "All", albums:[],items:[])
-        let buttonCatagorie2 = Catagorie(id:"", name: "Photos",albums:[],items:[])
-        let buttonCatagorie3 = Catagorie(id:"", name: "Videos",albums: [],items:[])
-        let buttonCatagorie4 = Catagorie(id:"", name: "Others",albums:[],items:[])
+        
+        let items1:[Item] = Items()
+        let items2:[Item] = Items()
+        let items: [Item] = Items() + Items()
+        
+        let buttonCatagorie1 = Catagorie(id:"", name: "All", albums:[],items:items1)
+        let buttonCatagorie2 = Catagorie(id:"", name: "Photos",albums:[],items:items1 + items2)
+        let buttonCatagorie3 = Catagorie(id:"", name: "Videos",albums: [],items:items)
+        let buttonCatagorie4 = Catagorie(id:"", name: "Others",albums:[],items:items2)
         return[buttonCatagorie1,buttonCatagorie2,buttonCatagorie3,buttonCatagorie4]
         
     }
