@@ -304,8 +304,8 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView {
         secondStackView.addArrangedSubview(itemsButton)
         secondStackView.anchorView(left:headerView.leftAnchor,bottom: headerView.bottomAnchor, right:headerView.rightAnchor, height:.init(h:48))
         mainScrollView.anchorView(top:headerView.bottomAnchor,left:view.leftAnchor,bottom:view.bottomAnchor, right:view.rightAnchor)
-        addAlbumButton.anchorView(top:mainScrollView.topAnchor,right:view.rightAnchor, paddingTop:.init(h:28),width: .init(h:44), height:.init(h:44))
-        buttonsCollectioView.anchorView(top:mainScrollView.topAnchor,left:view.leftAnchor,right:addAlbumButton.leftAnchor, paddingTop:.init(h:12),height:.init(h:78))
+        addAlbumButton.anchorView(top:mainScrollView.topAnchor,right:view.rightAnchor, paddingTop:.init(h:12),width: .init(h:44), height:.init(h:44))
+        buttonsCollectioView.anchorView(top:mainScrollView.topAnchor,left:view.leftAnchor,right:addAlbumButton.leftAnchor, paddingTop:.init(h:12),height:.init(h:48))
         albumsCollectioView.anchorView(top:buttonsCollectioView.bottomAnchor,left:view.leftAnchor,bottom:view.bottomAnchor,right:view.rightAnchor,paddingTop:.init(h:28),paddingLeft: .init(w:16),paddingRight:.init(w:16))
         addButton.anchorView(bottom:view.bottomAnchor,paddingBottom:.init(h:46),width: .init(w:158), height: .init(h:56))
         addButton.centerX(inView:view)
@@ -426,7 +426,7 @@ extension ViewController :  UICollectionViewDataSource, UICollectionViewDelegate
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if collectionView == buttonsCollectioView {
-            return CGSize(width: .init(w:97), height: .init(h:36))   // album and item cell size
+            return CGSize(width: .init(w:96), height: .init(h:46))   // album and item cell size
         }
         else if collectionView == itemCollectionView {
             return CGSize(width: .init(w:136), height: .init(h:136,for:136))
@@ -499,7 +499,7 @@ class buttonsCustomCell: UICollectionViewCell{
     // MARK: - ButtonscustomCell LoadUI
     
     private func loadUI() {
-        allcatagoriesTiltle.anchorView(top:topAnchor,left:leftAnchor,bottom:bottomAnchor,right:rightAnchor,paddingTop:.init(h:12),paddingLeft: .init(h:16),paddingBottom:.init(h:16),paddingRight:.init(w:16))
+        allcatagoriesTiltle.anchorView(top:topAnchor,left:leftAnchor,bottom:bottomAnchor,right:rightAnchor,paddingTop:.init(h:8),paddingLeft: .init(h:16),paddingBottom:.init(h:8),paddingRight:.init(w:16))
         contentView.anchorView(width:UIdeviceSize.width)
     }
 }
@@ -509,7 +509,7 @@ class buttonsCustomCell: UICollectionViewCell{
 class albumsCustomCell: UICollectionViewCell{
     
     let albumsTitle = UILabel().label(textColor: UIColor(hex:"#323336"),fontStyle:UIFont(name: "Poppins-Medium", size:.init(h:16)),allignment:.left)
-    let albumsImage = UIImageView().Image(contantMode:.scaleAspectFill)
+    let albumsImage = UIImageView().Image(contantMode:.scaleAspectFit)
     let albumsizeTitle = UILabel().label(textColor: UIColor(hex:"#838BA7"),fontStyle:UIFont(name: "Poppins-Regular", size:.init(h:14)),allignment:.left)
     let albumIcon = UILabel().label(fontStyle:UIFont(name: "Poppins-Medium", size:.init(h:28)),allignment:.left)
     
@@ -520,8 +520,7 @@ class albumsCustomCell: UICollectionViewCell{
         albumsImage.addSubview(albumsTitle)
         albumsImage.addSubview(albumsizeTitle)
         albumsImage.image = UIImage(named:"Vector")
-        albumsTitle.backgroundColor = .red
-        albumsizeTitle.backgroundColor = .blue
+       
         
         loadUI()
         
@@ -536,8 +535,8 @@ class albumsCustomCell: UICollectionViewCell{
     private func loadUI() {
         albumsImage.anchorView(top:topAnchor,left:leftAnchor,bottom:bottomAnchor,right:rightAnchor)
         albumIcon.anchorView(top:albumsImage.topAnchor,left:albumsImage.leftAnchor,paddingTop:.init(h:20),paddingLeft:.init(w:22))
-        albumsTitle.anchorView(top:albumIcon.bottomAnchor,left:albumsImage.leftAnchor,paddingTop:.init(h:20),paddingLeft:.init(w:22))
-        albumsizeTitle.anchorView(left:albumsImage.leftAnchor,bottom:albumsImage.bottomAnchor,paddingLeft:.init(w:22),paddingBottom:.init(h:16))
+        albumsizeTitle.anchorView(left:albumsImage.leftAnchor,bottom:albumsImage.bottomAnchor,paddingLeft:.init(w:22),paddingBottom:.init(h:20))
+        albumsTitle.anchorView(left:albumsImage.leftAnchor, bottom:albumsizeTitle.topAnchor,paddingLeft:.init(w:22), paddingBottom:.init(h:6))
         
     }
     
@@ -548,7 +547,7 @@ class albumsCustomCell: UICollectionViewCell{
 
 class itemImageCell:UICollectionViewCell {
     
-    let itemImageView = UIImageView().Image(contantMode:.scaleAspectFill)
+    let itemImageView = UIImageView().Image(contantMode:.scaleAspectFit)
     
     override init(frame: CGRect) {
         super.init(frame:frame)
