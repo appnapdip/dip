@@ -49,6 +49,11 @@ class SettingsViewController:UIViewController , RemoveAleartView{
       
     }
     
+    
+    override func viewWillAppear(_ animated: Bool) {
+        showToast(message:"Please wait for data loading")
+    }
+    
     @objc func pressBack() {
         navigationController?.popToRootViewController(animated:true)
         
