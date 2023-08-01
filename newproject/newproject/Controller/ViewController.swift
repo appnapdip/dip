@@ -234,7 +234,7 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView {
     
     func showAlert(showSingleButton: Bool = true){
         if showSingleButton{
-            let sAVC = self.singleButtonAlert(tittle: AlertMessage.addablums.messageTitle,subTitle: AlertMessage.addablums.messageSubTitle, firstButtonTitle: AlertMessage.addablums.firstButtonTitle,firstButtonBackGrounColor:.clear) {
+            let sAVC = self.singleButtonAlert(tittle: AlertMessage.inProgress.messageTitle,subTitle: AlertMessage.inProgress.messageSubTitle, firstButtonTitle: AlertMessage.inProgress.firstButtonTitle,firstButtonBackGrounColor:.clear) {
                 
                 if self.firstButton {
                     
@@ -245,7 +245,7 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView {
             sAVC.delegate = self
             self.present(sAVC, animated: true)
         }else{
-            let sAVC = self.doubleButtonAleart( tittle: AlertMessage.addablums.messageTitle,subTitle: AlertMessage.welcome.messageSubTitle, firstButtonTitle: AlertMessage.welcome.firstButtonTitle,secondButtonTitle:AlertMessage.additems.messageTitle,secondButtonBackGroundColor:.red) {
+            let sAVC = self.doubleButtonAleart( tittle: AlertMessage.inProgress.messageTitle,subTitle: AlertMessage.inProgress.messageSubTitle, firstButtonTitle: AlertMessage.inProgress.firstButtonTitle,secondButtonTitle:AlertMessage.inProgress.secondButtonTitle,secondButtonBackGroundColor:.red) {
                 if self.firstButton {
                     
                 }else{

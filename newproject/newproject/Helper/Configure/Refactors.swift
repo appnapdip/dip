@@ -50,8 +50,8 @@ enum AlertMessage {
     case succes
     case failed
     case somethingWrong
-    case addablums
-    case additems
+    case inProgress
+   
  
     var messageTitle:String {
         switch self {
@@ -65,10 +65,9 @@ enum AlertMessage {
             return "Failed to Show!"
         case .somethingWrong:
             return "Something Wrong Happend"
-        case .addablums:
-            return "AddAlbums"
-        case .additems:
-            return "AddItems"
+        case .inProgress:
+            return "In Progress"
+        
         }
     }
     
@@ -84,10 +83,9 @@ enum AlertMessage {
             return "Failing To Show Data"
         case .somethingWrong:
             return "Something Wrong Happend"
-        case .addablums:
-           return  "Hello you can add your albums here."
-        case .additems:
-           return "Hello you can add your items here."
+        case .inProgress:
+            return "We Are Woking On It, Please try again Later"
+        
         }
     }
     
@@ -103,10 +101,9 @@ enum AlertMessage {
             return "Failed"
         case .somethingWrong:
             return "Wrong"
-        case .addablums:
-           return  "Add here album"
-        case .additems:
-           return  "Add here album"
+        case .inProgress:
+            return "Cancel"
+       
         }
     }
     
@@ -122,10 +119,9 @@ enum AlertMessage {
             return "Failed"
         case .somethingWrong:
             return "Wrong"
-        case .addablums:
-            return  "Add here album"
-        case .additems:
-            return  "Add here album"
+        case .inProgress:
+            return "Ok"
+     
         }
     }
     
