@@ -11,6 +11,7 @@
 		B2025C642A77D0BD007A8792 /* SettingsViewApiModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2025C632A77D0BD007A8792 /* SettingsViewApiModel.swift */; };
 		B2025C672A77E41C007A8792 /* ServiceLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2025C662A77E41C007A8792 /* ServiceLoader.swift */; };
 		B20369BC2A78C29A00331E0F /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20369BB2A78C29A00331E0F /* SettingsViewController.swift */; };
+		B20369C02A78D18000331E0F /* Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20369BF2A78D18000331E0F /* Cell.swift */; };
 		B217A4A62A5678C00012A133 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B217A4A52A5678C00012A133 /* AppDelegate.swift */; };
 		B217A4A82A5678C00012A133 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B217A4A72A5678C00012A133 /* SceneDelegate.swift */; };
 		B217A4AD2A5678C00012A133 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B217A4AB2A5678C00012A133 /* Main.storyboard */; };
@@ -49,6 +50,7 @@
 		B2025C632A77D0BD007A8792 /* SettingsViewApiModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewApiModel.swift; sourceTree = "<group>"; };
 		B2025C662A77E41C007A8792 /* ServiceLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceLoader.swift; sourceTree = "<group>"; };
 		B20369BB2A78C29A00331E0F /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		B20369BF2A78D18000331E0F /* Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cell.swift; sourceTree = "<group>"; };
 		B217A4A22A5678C00012A133 /* newproject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = newproject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B217A4A52A5678C00012A133 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B217A4A72A5678C00012A133 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -103,6 +105,39 @@
 			path = ImageLoaderService;
 			sourceTree = "<group>";
 		};
+		B20369BD2A78CF4700331E0F /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				B217A4AE2A5678C10012A133 /* Assets.xcassets */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		B20369BE2A78D15D00331E0F /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				B20369BF2A78D18000331E0F /* Cell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		B20369C42A78D38900331E0F /* StoryBoard */ = {
+			isa = PBXGroup;
+			children = (
+				B217A4AB2A5678C00012A133 /* Main.storyboard */,
+				B217A4B02A5678C10012A133 /* LaunchScreen.storyboard */,
+			);
+			path = StoryBoard;
+			sourceTree = "<group>";
+		};
+		B20369C52A78D3B700331E0F /* SwiftUIModifier */ = {
+			isa = PBXGroup;
+			children = (
+				B2392A8B2A5AACE800401305 /* ViewModifier.swift */,
+			);
+			path = SwiftUIModifier;
+			sourceTree = "<group>";
+		};
 		B217A4992A5678BF0012A133 = {
 			isa = PBXGroup;
 			children = (
@@ -123,12 +158,10 @@
 			isa = PBXGroup;
 			children = (
 				B217A4C92A56B2330012A133 /* Model */,
+				B217A4CF2A56B2E90012A133 /* View */,
 				B217A4CE2A56B2BE0012A133 /* Controller */,
 				B217A4D12A56B32D0012A133 /* Helper */,
 				B217A4D22A56B34F0012A133 /* Extension */,
-				B217A4AB2A5678C00012A133 /* Main.storyboard */,
-				B217A4AE2A5678C10012A133 /* Assets.xcassets */,
-				B217A4B02A5678C10012A133 /* LaunchScreen.storyboard */,
 				B217A4B32A5678C10012A133 /* Info.plist */,
 			);
 			path = newproject;
@@ -139,7 +172,6 @@
 			children = (
 				B2401B9B2A5D0D3F00AF1F93 /* OnboradingModel.swift */,
 				B2025C632A77D0BD007A8792 /* SettingsViewApiModel.swift */,
-				B217A4CF2A56B2E90012A133 /* View */,
 				B2CE5D3C2A5EBC2B0022720D /* onboardingModel.swift */,
 				B2D39B8E2A6E81C0006D8D8E /* User.swift */,
 			);
@@ -161,8 +193,10 @@
 		B217A4CF2A56B2E90012A133 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				B20369C52A78D3B700331E0F /* SwiftUIModifier */,
+				B20369C42A78D38900331E0F /* StoryBoard */,
+				B20369BE2A78D15D00331E0F /* Cells */,
 				B2025C652A77E3D5007A8792 /* ImageLoaderService */,
-				B2392A8B2A5AACE800401305 /* ViewModifier.swift */,
 				B29DBA6F2A5FE53A00A49225 /* SwiftUIViews */,
 			);
 			path = View;
@@ -197,6 +231,7 @@
 		B227FCCA2A5BE55000D8EAF4 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				B20369BD2A78CF4700331E0F /* Assets */,
 				B227FCCB2A5BE55F00D8EAF4 /* Fonts */,
 			);
 			path = Resources;
@@ -324,6 +359,7 @@
 				B2392A6B2A5A625900401305 /* ButtonExtension.swift in Sources */,
 				B2674D5F2A67BDD3000F8150 /* PinViewController.swift in Sources */,
 				B227FCD12A5BF4AB00D8EAF4 /* UIViewExtension.swift in Sources */,
+				B20369C02A78D18000331E0F /* Cell.swift in Sources */,
 				B2392A692A5A624200401305 /* LabelExtension.swift in Sources */,
 				B217A4D62A56B3D10012A133 /* CGFloatExtension.swift in Sources */,
 				B227FCD52A5BFEFA00D8EAF4 /* CollectionView.swift in Sources */,
