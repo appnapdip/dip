@@ -14,7 +14,7 @@ struct UIdeviceSize {
     static let width = UIScreen.main.bounds.size.width
 }
 
-
+// MARK: - Create CGFloat Extension For AutolayOut Responsive
 extension CGFloat {
     init(w: CGFloat, for h: CGFloat = 0){
         if UIDevice.current.userInterfaceIdiom == .pad {

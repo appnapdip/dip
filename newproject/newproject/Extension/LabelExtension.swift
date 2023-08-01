@@ -7,6 +7,7 @@
 
 import UIKit
 
+// MARK: - Create UILabel Extension
 extension UILabel{
     func label(title: String = "", textColor: UIColor = UIColor.black, lines: Int = 0, fontStyle: UIFont? = nil, allignment: NSTextAlignment = .center, backgroundColor: UIColor = .clear, resizeFont: Bool = false) -> UILabel{
         let finalFont = fontStyle?.withSize(UIDevice.current.userInterfaceIdiom == .pad ? fontStyle!.pointSize * (resizeFont ? 1.5 : 1) : fontStyle!.pointSize)

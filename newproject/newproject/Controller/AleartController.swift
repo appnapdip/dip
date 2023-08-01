@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 
+// MARK: - Protocol Function
 protocol RemoveAleartView {
     func pressAction(firstButton: Bool)
 }
@@ -16,6 +17,7 @@ class AleartViewController: ViewController  {
     // MARK: - PROPERTIES
     var buttonAction: (()->Void)? = nil
     
+    // MARK: - AleartTitle
     var AleartTitle:UILabel = {
         let hexColor = UIColor(hex:"#323336")
         let thisLabel = UILabel().label(title:"Remove Album Password", textColor:hexColor,fontStyle:UIFont(name: "Poppins-SemiBold", size: .init(w:16)),allignment:.center)
@@ -23,13 +25,14 @@ class AleartViewController: ViewController  {
         
     }()
     
+    // MARK: - AleartSubTitle
     var  AleartSubTitle:UILabel = {
         let hexColor = UIColor(hex:"#5A5F73")
         let thisLabel = UILabel().label(title:"This album will no longer required any password to be viewed", textColor:hexColor,fontStyle:UIFont(name: "Poppins-Regular", size: .init(w:14)),allignment:.center)
         return thisLabel
     }()
     
-    
+    // MARK: - AleartView
     var AleartView: UIView = {
         let thisView = UIView()
         thisView.backgroundColor = .white
@@ -37,8 +40,8 @@ class AleartViewController: ViewController  {
         return thisView
     }()
     
-    // MARK: - create Cancel Button
     
+   // MARK: - create Cancel Button
     lazy var primrayButton:UIButton = {
         let hexColor = UIColor(hex:"#5A5F73")
         var thisButton = UIButton().button(title:"Cancel",titleColor:hexColor,font:UIFont(name:"Poppins-Medium", size: .init(h:16))!,cornerRadius:.init(w:12))
@@ -49,7 +52,6 @@ class AleartViewController: ViewController  {
     }()
     
     // MARK: - create Remove Button
-    
     lazy var secondaryButton:UIButton = {
         let hexColor = UIColor(hex:"#FFFFFF")
         var thisButton = UIButton().button(title:"Remove",titleColor:hexColor,backgroundColor: UIColor(hex: "#FF4D4D"),font:UIFont(name:"Poppins-Medium", size:.init(h:16))!,cornerRadius:.init(w:12))
@@ -58,7 +60,7 @@ class AleartViewController: ViewController  {
         
     }()
     
-    
+    // MARK: - ButtonSStackView
     let ButtonSStackView:UIStackView = {
         let ButtonSStackView = UIStackView()
         ButtonSStackView.axis = NSLayoutConstraint.Axis.horizontal
@@ -74,11 +76,9 @@ class AleartViewController: ViewController  {
     // MARK: - ViewDidLoad Fuction
     override func viewDidLoad() {
         loadUI()
-        
     }
     
     // MARK: - LoadUI Fuction
-    
     private func loadUI() {
         view.backgroundColor = .black.withAlphaComponent(0.3)
         view.addSubview(AleartView)
@@ -101,7 +101,6 @@ class AleartViewController: ViewController  {
     }
     
     //MARK: -  BUTTON ACTIONS
-    
     @objc func primary() {
         delegate?.pressAction(firstButton: true)
         dismiss(animated:true) {

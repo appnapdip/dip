@@ -8,6 +8,8 @@
 import SystemConfiguration
 import Foundation
 
+// MARK: Reachability File For NetWork checking
+
 public enum ReachabilityError: Error {
     case failedToCreateWithAddress(sockaddr, Int32)
     case failedToCreateWithHostname(String, Int32)

@@ -45,7 +45,7 @@ struct customModifier: ViewModifier{
     }
 }
 
-//MARK:- create viewExtension
+// MARK: - Create viewExtension
 
 extension View {
     func customModifier (
@@ -76,5 +76,5 @@ extension View {
                     modifier(newproject.customModifier(backgroundColor: backgroundColor, foregroundColor: foregroundColor, strokeColor: strokeColor, strokeWidth: strokeWidth, cornerRadius: cornerRadius,font:font, frame:frame, Maxframe:maxframe, alignment:alignment,lineLimit:lineLimit, opacity:opacity, offset:offset, padding:padding))
                     
                 }
-    }
+}
 

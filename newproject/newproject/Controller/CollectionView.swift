@@ -9,14 +9,12 @@ import UIKit
 
 
 protocol Onboarding {
-    
     func OnboradingdismissCall()
 }
 
 class collectionViewController:UIViewController {
     
     // MARK: - creating properties
-    
     var onboardingmodels:[onBoardingModel] = []
     var currentcell = 0
     var delegate:Onboarding?

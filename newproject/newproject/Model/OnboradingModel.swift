@@ -7,7 +7,7 @@
 
 import UIKit
 
-
+// MARK: - OnboardingModel For UIKIT VIEW
 struct onBoardingModel {
      var onboardingImage:UIImage
      var onboardingText: String

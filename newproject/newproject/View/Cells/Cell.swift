@@ -30,7 +30,6 @@ class buttonsCustomCell: UICollectionViewCell{
     }
     
     // MARK: - ButtonscustomCell LoadUI
-    
     private func loadUI() {
         allcatagoriesTiltle.anchorView(top:topAnchor,left:leftAnchor,bottom:bottomAnchor,right:rightAnchor,paddingTop:.init(h:8),paddingLeft: .init(h:16),paddingBottom:.init(h:8),paddingRight:.init(w:16))
         contentView.anchorView(width:UIdeviceSize.width)
@@ -40,7 +39,6 @@ class buttonsCustomCell: UICollectionViewCell{
 // MARK: - ALBUMS CUSTOM CELL
 
 class albumsCustomCell: UICollectionViewCell{
-    
     let albumsTitle = UILabel().label(textColor: UIColor(hex:"#323336"),fontStyle:UIFont(name: "Poppins-Medium", size:.init(h:16)),allignment:.left)
     let albumsImage = UIImageView().Image(contantMode:.scaleAspectFit)
     let albumsizeTitle = UILabel().label(textColor: UIColor(hex:"#838BA7"),fontStyle:UIFont(name: "Poppins-Regular", size:.init(h:14)),allignment:.left)
@@ -53,8 +51,6 @@ class albumsCustomCell: UICollectionViewCell{
         albumsImage.addSubview(albumsTitle)
         albumsImage.addSubview(albumsizeTitle)
         albumsImage.image = UIImage(named:"Vector")
-        
-        
         loadUI()
         
     }
@@ -64,7 +60,6 @@ class albumsCustomCell: UICollectionViewCell{
     }
     
     // MARK: - AlbumCustomCell LoadUI
-    
     private func loadUI() {
         albumsImage.anchorView(top:topAnchor,left:leftAnchor,bottom:bottomAnchor,right:rightAnchor)
         albumIcon.anchorView(top:albumsImage.topAnchor,left:albumsImage.leftAnchor,paddingTop:.init(h:20),paddingLeft:.init(w:22))
@@ -72,13 +67,10 @@ class albumsCustomCell: UICollectionViewCell{
         albumsTitle.anchorView(left:albumsImage.leftAnchor, bottom:albumsizeTitle.topAnchor,paddingLeft:.init(w:22), paddingBottom:.init(h:6))
         
     }
-    
 }
 
 //MARK: - ITEMS IMAGE CELL
-
 class itemImageCell:UICollectionViewCell {
-    
     let itemImageView = UIImageView().Image(contantMode:.scaleAspectFit)
     
     override init(frame: CGRect) {
@@ -92,6 +84,7 @@ class itemImageCell:UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    //MARK: - ItemsImageCell LoadUI
     func loadUI() {
         itemImageView.anchorView(top:topAnchor,left:leftAnchor,bottom:bottomAnchor,right:rightAnchor)
     }

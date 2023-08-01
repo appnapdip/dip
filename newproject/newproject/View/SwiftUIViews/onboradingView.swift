@@ -14,8 +14,6 @@ struct OnboradingView: View {
             Image(data.imageName)
                 .resizable()
                 .scaledToFit()
-               
-            
             VStack(spacing: 0){
                 Spacer()
                 

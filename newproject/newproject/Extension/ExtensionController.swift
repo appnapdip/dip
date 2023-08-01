@@ -9,11 +9,10 @@ import Foundation
 import UIKit
 
 
-// MARK: - showToast,singleButtonAlert,doubleButtonAleart
+// MARK: - showToast,singleButtonAlert,doubleButtonAleart UIController Extension Functions
 extension UIViewController {
     
     func showToast(message : String, font: UIFont = UIFont(name:"Poppins-Medium", size:14)!, textColor:UIColor = .clear) {
-        
         let toastLabel = UILabel()
         toastLabel.backgroundColor = UIColor.white
         toastLabel.textColor = UIColor(hex: "#FF4D4D")
@@ -35,9 +34,7 @@ extension UIViewController {
         })
     }
     
-    
     func singleButtonAlert(tittle:String = AlertMessage.welcome.messageTitle ,subTitle:String = AlertMessage.welcome.messageSubTitle, firstButtonTitle:String = AlertMessage.welcome.firstButtonTitle, firstButtonBackGrounColor:UIColor = UIColor.clear, completion: @escaping()->Void) -> AleartViewController{
-        
         let thisVC = AleartViewController()
         thisVC.buttonAction = completion
         thisVC.showSingleButton = true
@@ -50,7 +47,6 @@ extension UIViewController {
     }
     
     func doubleButtonAleart(tittle:String = AlertMessage.succes.messageTitle , subTitle:String = AlertMessage.succes.messageSubTitle , firstButtonTitle:String = AlertMessage.welcome.firstButtonTitle ,firstButtonBackGrounColor:UIColor = UIColor.clear,secondButtonTitle:String = AlertMessage.succes.secondButtonTitle,secondButtonBackGroundColor:UIColor = UIColor.clear,completion: @escaping() -> Void)-> AleartViewController {
-        
         let thisVC = AleartViewController()
         thisVC.buttonAction = completion
         thisVC.showSingleButton = false

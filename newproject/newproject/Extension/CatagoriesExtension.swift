@@ -8,11 +8,9 @@
 import Foundation
 import UIKit
 
-
+// // MARK: - Create UIViewController Functions For Store Data
 extension UIViewController {
     func catagorie() -> [Catagorie] {
-        
-        
         let albums1:[Album] = albums()
         let albums2:[Album] = albums()
         let total: [Album] = albums1+albums2
@@ -24,7 +22,6 @@ extension UIViewController {
     }
     
     func itemsCatagorie() ->[Catagorie] {
-        
         let items1:[Item] = Items()
         let items2:[Item] = Items()
         let items: [Item] = Items() + Items()

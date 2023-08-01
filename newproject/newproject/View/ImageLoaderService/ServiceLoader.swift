@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 
+// MARK: -  ImageLoaderService
 
 class ImageLoaderService: ObservableObject {
     @Published var image: UIImage = UIImage()

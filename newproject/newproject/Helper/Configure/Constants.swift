@@ -10,8 +10,8 @@ import UIKit
 
 let ONBOARDING_SHOWN_KEY: String = "onboardingShown"
 
-
-let usermainDevice:User = {
+// MARK: - Create usermainDevice propertie
+let usermainDevice: User = {
     var thisUser = User()
     thisUser.allAlbumCategories = UIViewController().catagorie()
     thisUser.itemCatagories = UIViewController().itemsCatagorie()

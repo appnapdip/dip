@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-
+// MARK: - ToastMessage Types
 enum ToastMessage {
     case welcome
     case networkError
@@ -42,17 +42,17 @@ enum ProjectFont{
 }
 
 
+// MARK: - AleartMessage Types
 
 enum AlertMessage {
-    
     case welcome
     case networkError
     case succes
     case failed
     case somethingWrong
     case inProgress
-   
- 
+    
+    
     var messageTitle:String {
         switch self {
         case .welcome:
@@ -67,7 +67,7 @@ enum AlertMessage {
             return "Something Wrong Happend"
         case .inProgress:
             return "In Progress"
-        
+            
         }
     }
     
@@ -85,7 +85,7 @@ enum AlertMessage {
             return "Something Wrong Happend"
         case .inProgress:
             return "We Are Woking On It, Please try again Later"
-        
+            
         }
     }
     
@@ -103,7 +103,7 @@ enum AlertMessage {
             return "Wrong"
         case .inProgress:
             return "Ok"
-       
+            
         }
     }
     
@@ -121,9 +121,7 @@ enum AlertMessage {
             return "Wrong"
         case .inProgress:
             return "Done"
-     
+            
         }
     }
-    
-    
 }
