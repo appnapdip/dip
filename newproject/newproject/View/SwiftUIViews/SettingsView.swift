@@ -12,7 +12,7 @@ struct SettingsView: View {
     @ObservedObject var imageLoader = ImageLoaderService()
     @State var image:UIImage = UIImage()
     
-    let userApi = "https://api.github.com/users/skb96"
+    let userApi = "https://api.github.com/users/dip"
     
     var body: some View {
         VStack(spacing:.init(h:20)) {

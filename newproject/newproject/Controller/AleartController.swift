@@ -80,7 +80,7 @@ class AleartViewController: ViewController  {
     // MARK: - LoadUI Fuction
     
     private func loadUI() {
-        
+        view.backgroundColor = .black.withAlphaComponent(0.3)
         view.addSubview(AleartView)
         AleartView.addSubview(AleartTitle)
         AleartView.addSubview(AleartSubTitle)

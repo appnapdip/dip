@@ -12,11 +12,11 @@ import UIKit
 // MARK: - showToast,singleButtonAlert,doubleButtonAleart
 extension UIViewController {
     
-    func showToast(message : String, font: UIFont = UIFont(name:"Poppins-Medium", size:14)!) {
+    func showToast(message : String, font: UIFont = UIFont(name:"Poppins-Medium", size:14)!, textColor:UIColor = .clear) {
         
         let toastLabel = UILabel()
         toastLabel.backgroundColor = UIColor.white
-        toastLabel.textColor = UIColor(hex: "#1AB662")
+        toastLabel.textColor = UIColor(hex: "#FF4D4D")
         toastLabel.font = font
         toastLabel.textAlignment = .center;
         toastLabel.text = message
@@ -40,11 +40,11 @@ extension UIViewController {
         
         let thisVC = AleartViewController()
         thisVC.buttonAction = completion
-        //thisVC.showSingleButton = true
+        thisVC.showSingleButton = true
         thisVC.AleartTitle.text = tittle
         thisVC.AleartSubTitle.text = subTitle
         thisVC.primrayButton.setTitle(firstButtonTitle, for:.normal)
-        thisVC.modalPresentationStyle = .fullScreen
+        thisVC.modalPresentationStyle = .overFullScreen
         thisVC.modalTransitionStyle = .crossDissolve
         return thisVC
     }
@@ -53,12 +53,12 @@ extension UIViewController {
         
         let thisVC = AleartViewController()
         thisVC.buttonAction = completion
-        //thisVC.showSingleButton = false
+        thisVC.showSingleButton = false
         thisVC.AleartTitle.text = tittle
         thisVC.AleartSubTitle.text = subTitle
         thisVC.primrayButton.setTitle(firstButtonTitle, for:.normal)
         thisVC.secondaryButton.setTitle(secondButtonTitle, for: .normal)
-        thisVC.modalPresentationStyle = .fullScreen
+        thisVC.modalPresentationStyle = .overFullScreen
         thisVC.modalTransitionStyle = .crossDissolve
         return thisVC
         

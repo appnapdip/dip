@@ -105,6 +105,7 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView {
         let image = UIImage(named:"album")
         var thisButton = UIButton().button(backgroundImage:image)
         thisButton.tintColor = UIColor(hex:"#2EA7FF")
+        thisButton.addTarget(self, action: #selector(addAlbumPress), for:.touchUpInside)
         return thisButton
     }()
     
@@ -144,6 +145,7 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView {
         thisButton.layer.shadowRadius = .init(h:16)
         thisButton.layer.shadowOpacity = 0.5
         thisButton.layer.shadowRadius = CGFloat(h:.init(h:6))
+        thisButton.addTarget(self, action: #selector(addItemPress), for: .touchUpInside)
         return thisButton
     }()
     
@@ -230,17 +232,29 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView {
     
     // MARK: - ShowAleart Function
     
-    func showAlert(){
-        let sAVC = self.singleButtonAlert(subTitle: AlertMessage.welcome.messageSubTitle, firstButtonTitle: AlertMessage.welcome.firstButtonTitle) {
-            
-            if self.firstButton {
+    func showAlert(showSingleButton: Bool = true){
+        if showSingleButton{
+            let sAVC = self.singleButtonAlert(tittle: AlertMessage.addablums.messageTitle,subTitle: AlertMessage.addablums.messageSubTitle, firstButtonTitle: AlertMessage.addablums.firstButtonTitle,firstButtonBackGrounColor:.clear) {
                 
-            }else{
-                
+                if self.firstButton {
+                    
+                }else{
+                    
+                }
             }
+            sAVC.delegate = self
+            self.present(sAVC, animated: true)
+        }else{
+            let sAVC = self.doubleButtonAleart( tittle: AlertMessage.addablums.messageTitle,subTitle: AlertMessage.welcome.messageSubTitle, firstButtonTitle: AlertMessage.welcome.firstButtonTitle,secondButtonTitle:AlertMessage.additems.messageTitle,secondButtonBackGroundColor:.red) {
+                if self.firstButton {
+                    
+                }else{
+                    
+                }
+            }
+            sAVC.delegate = self
+            self.present(sAVC, animated: true)
         }
-        sAVC.delegate = self
-        self.present(sAVC, animated: true)
     }
     
     // MARK: - PRESS CANCEL FUNCTION
@@ -376,7 +390,7 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView {
         reachability.whenUnreachable = { _ in
             print("\(Self.self): Not reachable")
             DispatchQueue.main.asyncAfter(deadline: .now()+0.5, execute: {
-                self.showToast(message: "No Internet Connection!")
+                self.showToast(message: "No Internet Connection!",textColor:UIColor(hex:"#FF4D4D"))
                 self.homeButton.setImage(UIImage(named:"Group 138"), for:.normal)
             })
         }
@@ -399,12 +413,19 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView {
         if reachability.connection != .unavailable{
             //icon change
             DispatchQueue.main.asyncAfter(deadline: .now()+0.5, execute: {
-                self.showToast(message: "Internet Restored!")
+                self.showToast(message: "Internet Restored!",textColor:UIColor(hex:"#FF4D4D"))
+                self.homeButton.setImage(UIImage(named:"cloud"), for:.normal)
             })
         }
     }
     
+    @objc func  addItemPress() {
+        showAlert(showSingleButton: false)
+    }
     
+    @objc  func addAlbumPress() {
+        showAlert(showSingleButton: true)
+    }
 }
 
 
