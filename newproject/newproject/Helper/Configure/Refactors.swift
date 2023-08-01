@@ -102,7 +102,7 @@ enum AlertMessage {
         case .somethingWrong:
             return "Wrong"
         case .inProgress:
-            return "Cancel"
+            return "Ok"
        
         }
     }
@@ -120,7 +120,7 @@ enum AlertMessage {
         case .somethingWrong:
             return "Wrong"
         case .inProgress:
-            return "Ok"
+            return "Done"
      
         }
     }

@@ -257,7 +257,7 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView {
         }
     }
     
-    // MARK: - PRESS CANCEL FUNCTION
+    // MARK: - PRESS CANCEL/OK FUNCTION
     func pressAction(firstButton: Bool) {
         self.firstButton = firstButton
     }
