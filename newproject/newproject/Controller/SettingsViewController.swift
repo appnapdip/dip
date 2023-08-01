@@ -39,7 +39,7 @@ class SettingsViewController:UIViewController , RemoveAleartView{
         view.addSubview(backButton)
         logOutButton.anchorView(bottom:view.bottomAnchor,paddingBottom:.init(h:46),width: .init(w:158), height: .init(h:56))
         logOutButton.centerX(inView:view)
-        backButton.anchorView(top:view.topAnchor,left:view.leftAnchor, paddingTop: .init(h:50),paddingLeft:.init(w:20),width:.init(h:100),height: .init(h: 50))
+        backButton.anchorView(top:view.topAnchor,left:view.leftAnchor, paddingTop: .init(h:50),width:.init(h:38),height: .init(h:38))
         
         let SettingsView = UIHostingController(rootView: SettingsView())
         addChild(SettingsView)
