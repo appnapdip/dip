@@ -15,6 +15,7 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView {
     var currentIndexItem = 0
     var currentIndexAlbum = 0
     var isAlbumSeleted:Bool = true
+    let reachability = try! Reachability()
     
     // MARK: - Properties
     
@@ -185,6 +186,7 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView {
         super.viewDidLoad()
         let backgroundColor = UIColor(hex:"#F2F3FA")
         view.backgroundColor = backgroundColor
+        checkReachability()
         DispatchQueue.main.async {
             self.checkOnboardingAndPin()
         }
@@ -359,6 +361,47 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView {
     @objc func pressOnSettings() {
         let svc = SettingsViewController()
         navigationController?.pushViewController(svc, animated:true)
+    }
+    
+    //MARK:- checkReachability()
+    private func checkReachability(){
+        reachability.whenReachable = { reachability in
+            if reachability.connection == .wifi {
+                print("Reachable via WiFi")
+            } else {
+                print("Reachable via Cellular")
+            }
+        }
+        
+        reachability.whenUnreachable = { _ in
+            print("\(Self.self): Not reachable")
+            DispatchQueue.main.asyncAfter(deadline: .now()+0.5, execute: {
+                self.showToast(message: "No Internet Connection!")
+                self.homeButton.setImage(UIImage(named:"Group 138"), for:.normal)
+            })
+        }
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(reachabilityChanged(note:)), name: .reachabilityChanged, object: reachability)
+        
+        do{
+            try reachability.startNotifier()
+            
+        }catch{
+            print("could not start reachability notifier")
+        }
+    }
+    
+    //MARK: - reachabilityChanged
+    @objc func reachabilityChanged(note: Notification) {
+        
+        let reachability = note.object as! Reachability
+        
+        if reachability.connection != .unavailable{
+            //icon change
+            DispatchQueue.main.asyncAfter(deadline: .now()+0.5, execute: {
+                self.showToast(message: "Internet Restored!")
+            })
+        }
     }
     
     

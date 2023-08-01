@@ -12,6 +12,7 @@
 		B2025C672A77E41C007A8792 /* ServiceLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2025C662A77E41C007A8792 /* ServiceLoader.swift */; };
 		B20369BC2A78C29A00331E0F /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20369BB2A78C29A00331E0F /* SettingsViewController.swift */; };
 		B20369C02A78D18000331E0F /* Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20369BF2A78D18000331E0F /* Cell.swift */; };
+		B20369CA2A78D64F00331E0F /* AWM_Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = B20369C92A78D64F00331E0F /* AWM_Reachability.swift */; };
 		B217A4A62A5678C00012A133 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B217A4A52A5678C00012A133 /* AppDelegate.swift */; };
 		B217A4A82A5678C00012A133 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B217A4A72A5678C00012A133 /* SceneDelegate.swift */; };
 		B217A4AD2A5678C00012A133 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B217A4AB2A5678C00012A133 /* Main.storyboard */; };
@@ -51,6 +52,7 @@
 		B2025C662A77E41C007A8792 /* ServiceLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceLoader.swift; sourceTree = "<group>"; };
 		B20369BB2A78C29A00331E0F /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		B20369BF2A78D18000331E0F /* Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cell.swift; sourceTree = "<group>"; };
+		B20369C92A78D64F00331E0F /* AWM_Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AWM_Reachability.swift; sourceTree = "<group>"; };
 		B217A4A22A5678C00012A133 /* newproject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = newproject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B217A4A52A5678C00012A133 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B217A4A72A5678C00012A133 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -138,6 +140,14 @@
 			path = SwiftUIModifier;
 			sourceTree = "<group>";
 		};
+		B20369C62A78D5D900331E0F /* Network  */ = {
+			isa = PBXGroup;
+			children = (
+				B20369C92A78D64F00331E0F /* AWM_Reachability.swift */,
+			);
+			path = "Network ";
+			sourceTree = "<group>";
+		};
 		B217A4992A5678BF0012A133 = {
 			isa = PBXGroup;
 			children = (
@@ -205,6 +215,7 @@
 		B217A4D12A56B32D0012A133 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				B20369C62A78D5D900331E0F /* Network  */,
 				B2674D632A690BD3000F8150 /* Configure */,
 				B2674D622A690BB2000F8150 /* Delegates */,
 				B227FCCA2A5BE55000D8EAF4 /* Resources */,
@@ -375,6 +386,7 @@
 				B29DBA752A5FEA6F00A49225 /* MainView.swift in Sources */,
 				B217A4A82A5678C00012A133 /* SceneDelegate.swift in Sources */,
 				B2CE5D3D2A5EBC2B0022720D /* onboardingModel.swift in Sources */,
+				B20369CA2A78D64F00331E0F /* AWM_Reachability.swift in Sources */,
 				B2392A8C2A5AACE800401305 /* ViewModifier.swift in Sources */,
 				B20369BC2A78C29A00331E0F /* SettingsViewController.swift in Sources */,
 				B2401B9C2A5D0D3F00AF1F93 /* OnboradingModel.swift in Sources */,
@@ -527,6 +539,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 4T25NV2J53;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = newproject/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -540,7 +553,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.appnap.rt.newproject;
+				PRODUCT_BUNDLE_IDENTIFIER = com.appnap.newproject;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -555,6 +568,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 4T25NV2J53;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = newproject/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -568,7 +582,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.appnap.rt.newproject;
+				PRODUCT_BUNDLE_IDENTIFIER = com.appnap.newproject;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

@@ -12,7 +12,7 @@ import UIKit
 // MARK: - showToast,singleButtonAlert,doubleButtonAleart
 extension UIViewController {
     
-    func showToast(message : String, font: UIFont) {
+    func showToast(message : String, font: UIFont = UIFont(name:"Poppins-Medium", size:14)!) {
         
         let toastLabel = UILabel()
         toastLabel.backgroundColor = UIColor.white
