@@ -72,7 +72,7 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView {
         thisButton.tintColor = .black
         thisButton.layer.borderColor = UIColor(hex:"#D6D8E2").cgColor
         thisButton.layer.borderWidth = .init(h:1.0)
-        //thisButton.anchorView(width: .init(h: 42), height: .init(h: 42))
+        thisButton.addTarget(self, action:#selector(pressOnSettings), for: .touchUpInside)
         return thisButton
     }()
     
@@ -355,6 +355,15 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView {
         
         
     }
+    
+    @objc func pressOnSettings() {
+       let rootVC = ViewController()
+        let navVC = UINavigationController(rootViewController:rootVC)
+        let Svc = SettingsViewController()
+       navVC.pushViewController(Svc, animated:true)
+    }
+    
+    
 }
 
 
