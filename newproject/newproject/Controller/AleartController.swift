@@ -41,7 +41,7 @@ class AleartViewController: ViewController  {
     }()
     
     
-   // MARK: - create Cancel Button
+    // MARK: - create Cancel Button
     lazy var primrayButton:UIButton = {
         let hexColor = UIColor(hex:"#5A5F73")
         var thisButton = UIButton().button(title:"Cancel",titleColor:hexColor,font:UIFont(name:"Poppins-Medium", size: .init(h:16))!,cornerRadius:.init(w:12))

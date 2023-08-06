@@ -9,7 +9,6 @@ import Foundation
 import UIKit
 
 
-//  
 struct User {
     var name:String
     var id:String
@@ -28,8 +27,6 @@ struct User {
     }
     
 }
-
-
 
 struct Catagorie {
     var id:String
@@ -62,8 +59,6 @@ struct Item {
     }
 }
 
-
-
 struct Album {
     var id:String
     var icon:String
@@ -80,10 +75,8 @@ struct Album {
         self.isLocked = isLocked
         self.items = items
     }
-    
-    
-  }
-    
+}
+
 
 
 

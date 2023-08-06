@@ -43,7 +43,6 @@ enum ProjectFont{
 
 
 // MARK: - AleartMessage Types
-
 enum AlertMessage {
     case welcome
     case networkError

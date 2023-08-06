@@ -16,7 +16,7 @@ struct MainView: View {
             Text("\(onboardingShown.description)")
             if !onboardingShown{
                 ContentView(onboardingShown: $onboardingShown)
-              
+                
             }
         }
         .ignoresSafeArea()

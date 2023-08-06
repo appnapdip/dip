@@ -15,7 +15,7 @@ struct ContentView: View {
     
     var body: some View {
         VStack(alignment:.center, spacing: 0) {
-           ZStack(alignment: .topTrailing){
+            ZStack(alignment: .topTrailing){
                 TabView(selection:$currentPosition) {
                     ForEach(AppOnboardingModel.list) { viewdata in
                         OnboradingView(data:viewdata)

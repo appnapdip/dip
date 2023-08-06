@@ -9,7 +9,6 @@ import Foundation
 
 // MARK: GitHubUsers
 struct GitHubUsers: Codable {
-    
     let login:String
     let avatarUrl:String
     let bio:String

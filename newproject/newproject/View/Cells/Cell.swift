@@ -52,7 +52,6 @@ class albumsCustomCell: UICollectionViewCell{
         albumsImage.addSubview(albumsizeTitle)
         albumsImage.image = UIImage(named:"Vector")
         loadUI()
-        
     }
     
     required init?(coder: NSCoder) {

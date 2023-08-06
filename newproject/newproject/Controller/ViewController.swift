@@ -454,9 +454,6 @@ extension ViewController :  UICollectionViewDataSource, UICollectionViewDelegate
         
     }
     
-    
-    
-    
     //MARK: - Cell For Item
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

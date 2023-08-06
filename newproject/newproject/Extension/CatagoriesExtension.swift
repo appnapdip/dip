@@ -33,5 +33,4 @@ extension UIViewController {
         return[buttonCatagorie1,buttonCatagorie2,buttonCatagorie3,buttonCatagorie4]
         
     }
-    
 }

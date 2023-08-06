@@ -35,15 +35,29 @@ class SettingsViewController:UIViewController , RemoveAleartView {
         return thisButton
     }()
     
+    
+    lazy var permissionButton: UIButton = {
+        let thisButton = UIButton().button(backgroundImage:UIImage(named:"images"))
+        thisButton.tintColor = UIColor(hex:"#838BA7")
+        //thisButton.backgroundColor = .red
+        thisButton.addTarget(self, action: #selector(pressOnPermission), for: .touchUpInside)
+        return thisButton
+    }()
+    
+    
+    
+    
     // MARK: - viewDidLoad()
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         view.addSubview(logOutButton)
         view.addSubview(backButton)
+        view.addSubview(permissionButton)
         logOutButton.anchorView(bottom:view.bottomAnchor,paddingBottom:.init(h:46),width: .init(w:158), height: .init(h:56))
         logOutButton.centerX(inView:view)
         backButton.anchorView(top:view.topAnchor,left:view.leftAnchor, paddingTop: .init(h:50),width:.init(h:38),height: .init(h:38))
+        permissionButton.anchorView(top:view.topAnchor,right:view.rightAnchor, paddingTop: .init(h:50),width:.init(h:38),height: .init(h:38))
         
         // MARK: - Added SwiftUIView In SettingsViewController
         let SettingsView = UIHostingController(rootView: SettingsView())
@@ -71,6 +85,13 @@ class SettingsViewController:UIViewController , RemoveAleartView {
         }
         sAVC.delegate = self
         self.present(sAVC, animated: true)
+        
+    }
+    
+    
+    @objc func pressOnPermission() {
+        let svc = PerMissionViewController()
+        navigationController?.pushViewController(svc, animated:true)
         
     }
 }
