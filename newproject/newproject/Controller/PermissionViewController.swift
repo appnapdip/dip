@@ -13,6 +13,13 @@ class PerMissionViewController:UIViewController {
     
     // MARK: - Properties
     
+    let permissions:[PermissionModel] = [PermissionModel(title:"photo Usage", subtitle:"permission to access the photo usage", image: "photos"), PermissionModel(title:"Storage Usage", subtitle:"permission to access the storage usage", image:"server"),
+                                         PermissionModel(title:"Location", subtitle:"permission to access the device location", image:"signs")]
+    
+    
+    
+    
+    
     
     lazy var permissionscrollView: UIScrollView = {
         let thisScrollView = UIScrollView()
@@ -57,51 +64,20 @@ class PerMissionViewController:UIViewController {
     
     lazy var AccessView:UIView = {
         let thisView = UIView()
-        thisView.backgroundColor = .clear
         return thisView
     }()
     
-    lazy var photoStack:UIStackView = {
+    lazy var mainStackView:UIStackView = {
         let thisStackView = UIStackView()
-        thisStackView.axis = .horizontal
-        thisStackView.distribution = .fillProportionally
+        thisStackView.axis = .vertical
+        thisStackView.distribution = .fill
+      
         return thisStackView
      
     }()
     
     
    
-    var photoTitle:UILabel = {
-        let hexColor = UIColor(hex:"#000000")
-        let thisLabel = UILabel().label(title:"Photo Usage", textColor:hexColor,lines:1,fontStyle:UIFont(name: "Poppins-Regular", size:16))
-        return thisLabel
-        
-    }()
-    
-    
-    
-    
-    var photoSubTitle:UILabel = {
-        let hexColor = UIColor(hex:"#5A5F73")
-        let thisLabel = UILabel().label(title:"permission to access the photo storage", textColor:hexColor,lines: 1 ,fontStyle:UIFont(name: "Poppins-Regular", size:8))
-        return thisLabel
-    }()
-    
-
-    lazy var photoButton:UIButton = {
-        let thisButton = UIButton().button(title:"Allow", titleColor:.orange, cornerRadius: .init(w:4), borderColor:UIColor(hex:"#838BA7").cgColor, borderWidth:  .init(w:1))
-        thisButton.backgroundColor = .clear
-        thisButton.addTarget(self, action: #selector(pressFinish), for: .touchUpInside)
-        return thisButton
-    }()
-    
-    
-    var photoImage:UIImageView = {
-        let thisImage = UIImageView()
-        thisImage.image = UIImage(named:"photos")
-        return thisImage
-        
-    }()
     
    
     
@@ -120,8 +96,8 @@ class PerMissionViewController:UIViewController {
         view.addSubview(permissionscrollView)
         view.addSubview(finishButton)
         view.addSubview(AccessView)
-        AccessView.addSubview(photoStack)
-     
+        AccessView.addSubview(mainStackView)
+    
        
         
         
@@ -133,10 +109,7 @@ class PerMissionViewController:UIViewController {
         permissionscrollView.addSubview(permissionSubTitle)
         permissionscrollView.addSubview(permissionGroupImage)
         
-        photoStack.addArrangedSubview(photoImage)
-        photoStack.addArrangedSubview(photoTitle)
-        photoStack.addArrangedSubview(photoSubTitle)
-        photoStack.addArrangedSubview(photoButton)
+  
         
         permissionscrollView.anchorView(top:view.topAnchor,left:view.leftAnchor,bottom: view.bottomAnchor,right:view.rightAnchor)
         permissionTitle.anchorView(top: permissionscrollView.topAnchor,paddingTop:.init(h:66),width:.init(w:173))
@@ -148,7 +121,72 @@ class PerMissionViewController:UIViewController {
         finishButton.anchorView(bottom:view.bottomAnchor,paddingBottom:.init(h:46),width: .init(w:200), height: .init(h:56))
         finishButton.centerX(inView:view)
         AccessView.anchorView(top:permissionGroupImage.bottomAnchor,left:permissionscrollView.leftAnchor,bottom:finishButton.topAnchor,    right:permissionscrollView.rightAnchor)
-        photoStack.anchorView(top: permissionGroupImage.bottomAnchor, left:view.leftAnchor, right:view.rightAnchor, paddingTop: .init(h:10), paddingLeft: .init(w:10), paddingRight:  .init(w:10), height: .init(h:50))
+        mainStackView.anchorView(top:AccessView.topAnchor, left:AccessView.leftAnchor,  bottom:AccessView.bottomAnchor, right: AccessView.rightAnchor)
+        
+        
+        
+        for permission in permissions {
+            lazy var permissionsStackView:UIStackView = {
+                let thisstackView = UIStackView()
+                thisstackView.axis = .horizontal
+                thisstackView.distribution = .fill
+                return thisstackView
+                
+            }()
+            
+            
+            lazy var childStackView:UIStackView = {
+                let thisstackView = UIStackView()
+                thisstackView.axis = .vertical
+                thisstackView.distribution = .fill
+                return thisstackView
+                
+            }()
+            
+            
+            
+            lazy var permissionTitles:UILabel = {
+                let hexColor = UIColor(hex:"#000000")
+                let thisLabel = UILabel().label(title:permission.title, textColor:hexColor,lines:1,fontStyle:UIFont(name: "Poppins-Regular", size:28),allignment:.left)
+                return thisLabel
+                
+            }()
+            
+            
+            
+           lazy var permissionSubTitles:UILabel = {
+                let hexColor = UIColor(hex:"#5A5F73")
+                let thisLabel = UILabel().label(title:permission.subtitle, textColor:hexColor,lines: 2 ,fontStyle:UIFont(name: "Poppins-Regular", size:16),allignment:.left)
+                return thisLabel
+            }()
+            
+            
+            lazy var permissionImages:UIImageView = {
+                let thisImage = UIImageView().Image(contantMode:.scaleAspectFit)
+                thisImage.image = UIImage(named:permission.image)
+                return thisImage
+            }()
+            
+            
+            
+            lazy var AllowButtons:UIButton = {
+                let thisButton = UIButton().button(title:"Allow", titleColor:.orange, cornerRadius: .init(w:16))
+                thisButton.backgroundColor = .white
+                thisButton.addTarget(self, action: #selector(pressFinish), for: .touchUpInside)
+                return thisButton
+            }()
+            
+            
+         
+            permissionsStackView.addArrangedSubview(permissionImages)
+           permissionsStackView.addArrangedSubview(childStackView)
+            childStackView.addArrangedSubview(permissionTitles)
+            childStackView.addArrangedSubview(permissionSubTitles)
+            permissionsStackView.addArrangedSubview(AllowButtons)
+            mainStackView.addArrangedSubview(permissionsStackView)
+            
+        }// end of the foor loop
+      
         
     }
     

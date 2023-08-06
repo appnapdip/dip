@@ -11,7 +11,6 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView {
     
     var firstButton: Bool = false
     //var buttonsCatagory:[Catagorie] = []
-    var folders:[Album] = []
     var currentIndexItem = 0
     var currentIndexAlbum = 0
     var isAlbumSeleted:Bool = true
