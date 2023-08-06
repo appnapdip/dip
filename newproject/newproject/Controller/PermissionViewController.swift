@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class PerMissionViewController:UIViewController {
+class PerMissionViewController:UIViewController, UIScrollViewDelegate {
     
     
     // MARK: - Properties
@@ -61,24 +61,6 @@ class PerMissionViewController:UIViewController {
     }()
     
     
-    
-    lazy var AccessView:UIView = {
-        let thisView = UIView()
-        return thisView
-    }()
-    
-    lazy var mainStackView:UIStackView = {
-        let thisStackView = UIStackView()
-        thisStackView.axis = .vertical
-        thisStackView.spacing = 42
-        thisStackView.distribution = .fillProportionally
-        
-        return thisStackView
-        
-    }()
-    
-    
-    
     lazy var crossButton:UIButton = {
         let thisButton = UIButton().button(backgroundImage:UIImage(systemName:"multiply"))
         thisButton.tintColor = .black
@@ -86,7 +68,23 @@ class PerMissionViewController:UIViewController {
         
     }()
     
-override func viewDidLoad() {
+    
+    
+    
+    lazy var mainStackView:UIStackView = {
+        let thisStackView = UIStackView()
+        thisStackView.axis = .vertical
+        thisStackView.spacing = 42
+        thisStackView.distribution = .fillEqually
+        
+        return thisStackView
+        
+    }()
+    
+    
+    
+    
+    override func viewDidLoad() {
         super.viewDidLoad()
         loadUI()
         
@@ -98,8 +96,8 @@ override func viewDidLoad() {
         view.addSubview(permissionscrollView)
         view.addSubview(finishButton)
         view.addSubview(crossButton)
-        view.addSubview(mainStackView)
-        //AccessView.addSubview(mainStackView)
+        permissionscrollView.addSubview(mainStackView)
+        permissionscrollView.delegate = self
         permissionscrollView.addSubview(permissionTitle)
         permissionscrollView.addSubview(permissionSubTitle)
         permissionscrollView.addSubview(permissionGroupImage)
@@ -113,16 +111,16 @@ override func viewDidLoad() {
         finishButton.anchorView(bottom:view.bottomAnchor,paddingBottom:.init(h:68),width: .init(w:226), height: .init(h:48))
         finishButton.centerX(inView:view)
         crossButton.anchorView(right:view.rightAnchor, width: .init(w:64), height: .init(h:64))
-        crossButton.centerX(inView:view)
-//        AccessView.anchorView(top:permissionGroupImage.bottomAnchor,left:permissionscrollView.leftAnchor,bottom:finishButton.topAnchor,    right:permissionscrollView.rightAnchor)
-        mainStackView.anchorView(top:permissionGroupImage.bottomAnchor, left:view.leftAnchor, right: permissionscrollView.rightAnchor,paddingTop:.init(h:60),paddingLeft: .init(w:30), paddingRight: .init(w:30))
-      
+        crossButton.centerY(inView:permissionTitle)
+        //        AccessView.anchorView(top:permissionGroupImage.bottomAnchor,left:permissionscrollView.leftAnchor,bottom:finishButton.topAnchor,    right:permissionscrollView.rightAnchor)
+        mainStackView.anchorView(top:permissionGroupImage.bottomAnchor, left:permissionscrollView.leftAnchor, right: permissionscrollView.rightAnchor,paddingTop:.init(h:60),paddingLeft: .init(w:30), paddingRight: .init(w:30))
         
-    for permission in permissions {
+        
+        for permission in permissions {
             lazy var permissionsStackView:UIStackView = {
                 let thisstackView = UIStackView()
                 thisstackView.axis = .horizontal
-                thisstackView.distribution = .fillProportionally
+                thisstackView.distribution = .fill
                 thisstackView.spacing = 28
                 return thisstackView
                 
@@ -132,7 +130,7 @@ override func viewDidLoad() {
             lazy var childStackView:UIStackView = {
                 let thisstackView = UIStackView()
                 thisstackView.axis = .vertical
-                thisstackView.distribution = .fillProportionally
+                thisstackView.distribution = .fill
                 return thisstackView
                 
             }()
@@ -164,9 +162,7 @@ override func viewDidLoad() {
             
             
             lazy var AllowButtons:UIButton = {
-                let thisButton = UIButton().button(title:"Allow", titleColor:.orange, cornerRadius: .init(w:16))
-                thisButton.backgroundColor = .white
-                thisButton.addTarget(self, action: #selector(pressFinish), for: .touchUpInside)
+                let thisButton = UIButton().button(title:"Allow", titleColor: .orange,backgroundColor:.clear,font:UIFont(name:"Poppins-Light", size:10)!, cornerRadius:.init(h:7), borderColor:UIColor(hex:"#838BA7").cgColor, borderWidth: .init(w:1))
                 return thisButton
             }()
             
