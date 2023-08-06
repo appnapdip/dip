@@ -71,9 +71,18 @@ class PerMissionViewController:UIViewController {
         let thisStackView = UIStackView()
         thisStackView.axis = .vertical
         thisStackView.spacing = 42
-        thisStackView.distribution = .fill
+        thisStackView.distribution = .fillProportionally
         
         return thisStackView
+        
+    }()
+    
+    
+    
+    lazy var crossButton:UIButton = {
+        let thisButton = UIButton().button(backgroundImage:UIImage(systemName:"multiply"))
+        thisButton.tintColor = .black
+        return thisButton
         
     }()
     
@@ -88,6 +97,7 @@ override func viewDidLoad() {
     private func loadUI() {
         view.addSubview(permissionscrollView)
         view.addSubview(finishButton)
+        view.addSubview(crossButton)
         view.addSubview(mainStackView)
         //AccessView.addSubview(mainStackView)
         permissionscrollView.addSubview(permissionTitle)
@@ -102,14 +112,17 @@ override func viewDidLoad() {
         permissionGroupImage.centerX(inView:permissionscrollView)
         finishButton.anchorView(bottom:view.bottomAnchor,paddingBottom:.init(h:68),width: .init(w:226), height: .init(h:48))
         finishButton.centerX(inView:view)
+        crossButton.anchorView(right:view.rightAnchor, width: .init(w:64), height: .init(h:64))
+        crossButton.centerX(inView:view)
 //        AccessView.anchorView(top:permissionGroupImage.bottomAnchor,left:permissionscrollView.leftAnchor,bottom:finishButton.topAnchor,    right:permissionscrollView.rightAnchor)
-        mainStackView.anchorView(top:permissionGroupImage.bottomAnchor, left:view.leftAnchor, right: permissionscrollView.rightAnchor,paddingTop:.init(h:60))
+        mainStackView.anchorView(top:permissionGroupImage.bottomAnchor, left:view.leftAnchor, right: permissionscrollView.rightAnchor,paddingTop:.init(h:60),paddingLeft: .init(w:30), paddingRight: .init(w:30))
+      
         
     for permission in permissions {
             lazy var permissionsStackView:UIStackView = {
                 let thisstackView = UIStackView()
                 thisstackView.axis = .horizontal
-                thisstackView.distribution = .fill
+                thisstackView.distribution = .fillProportionally
                 thisstackView.spacing = 28
                 return thisstackView
                 
@@ -119,7 +132,7 @@ override func viewDidLoad() {
             lazy var childStackView:UIStackView = {
                 let thisstackView = UIStackView()
                 thisstackView.axis = .vertical
-                thisstackView.distribution = .fill
+                thisstackView.distribution = .fillProportionally
                 return thisstackView
                 
             }()
