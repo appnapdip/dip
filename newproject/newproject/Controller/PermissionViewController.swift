@@ -13,8 +13,8 @@ class PerMissionViewController:UIViewController {
     
     // MARK: - Properties
     
-    let permissions:[PermissionModel] = [PermissionModel(title:"photo Usage", subtitle:"permission to access the photo usage", image: "photos"), PermissionModel(title:"Storage Usage", subtitle:"permission to access the storage usage", image:"server"),
-                                         PermissionModel(title:"Location", subtitle:"permission to access the device location", image:"signs")]
+    let permissions:[PermissionModel] = [PermissionModel(title:"Photo Usage", subtitle:"Permission to access the photo usage", image: "photos"), PermissionModel(title:"Storage Usage", subtitle:"Permission to access the storage usage", image:"server"),
+                                         PermissionModel(title:"Location", subtitle:"Permission to access the device location", image:"signs")]
     
     
     
@@ -71,20 +71,12 @@ class PerMissionViewController:UIViewController {
         let thisStackView = UIStackView()
         thisStackView.axis = .vertical
         thisStackView.distribution = .fill
-      
+        
         return thisStackView
-     
+        
     }()
     
-    
-   
-    
-   
-    
-    
-    
-    
-    override func viewDidLoad() {
+override func viewDidLoad() {
         super.viewDidLoad()
         loadUI()
         
@@ -97,20 +89,9 @@ class PerMissionViewController:UIViewController {
         view.addSubview(finishButton)
         view.addSubview(AccessView)
         AccessView.addSubview(mainStackView)
-    
-       
-        
-        
-        
-        
-        
-        
         permissionscrollView.addSubview(permissionTitle)
         permissionscrollView.addSubview(permissionSubTitle)
         permissionscrollView.addSubview(permissionGroupImage)
-        
-  
-        
         permissionscrollView.anchorView(top:view.topAnchor,left:view.leftAnchor,bottom: view.bottomAnchor,right:view.rightAnchor)
         permissionTitle.anchorView(top: permissionscrollView.topAnchor,paddingTop:.init(h:66),width:.init(w:173))
         permissionTitle.centerX(inView:permissionscrollView)
@@ -123,9 +104,7 @@ class PerMissionViewController:UIViewController {
         AccessView.anchorView(top:permissionGroupImage.bottomAnchor,left:permissionscrollView.leftAnchor,bottom:finishButton.topAnchor,    right:permissionscrollView.rightAnchor)
         mainStackView.anchorView(top:AccessView.topAnchor, left:AccessView.leftAnchor,  bottom:AccessView.bottomAnchor, right: AccessView.rightAnchor)
         
-        
-        
-        for permission in permissions {
+    for permission in permissions {
             lazy var permissionsStackView:UIStackView = {
                 let thisstackView = UIStackView()
                 thisstackView.axis = .horizontal
@@ -147,16 +126,16 @@ class PerMissionViewController:UIViewController {
             
             lazy var permissionTitles:UILabel = {
                 let hexColor = UIColor(hex:"#000000")
-                let thisLabel = UILabel().label(title:permission.title, textColor:hexColor,lines:1,fontStyle:UIFont(name: "Poppins-Regular", size:28),allignment:.left)
+                let thisLabel = UILabel().label(title:permission.title, textColor:hexColor,lines:1,fontStyle:UIFont(name: "Poppins-Regular", size:14),allignment:.left)
                 return thisLabel
                 
             }()
             
             
             
-           lazy var permissionSubTitles:UILabel = {
+            lazy var permissionSubTitles:UILabel = {
                 let hexColor = UIColor(hex:"#5A5F73")
-                let thisLabel = UILabel().label(title:permission.subtitle, textColor:hexColor,lines: 2 ,fontStyle:UIFont(name: "Poppins-Regular", size:16),allignment:.left)
+                let thisLabel = UILabel().label(title:permission.subtitle, textColor:hexColor,lines: 1 ,fontStyle:UIFont(name: "Poppins-Regular", size:8),allignment:.left)
                 return thisLabel
             }()
             
@@ -177,16 +156,17 @@ class PerMissionViewController:UIViewController {
             }()
             
             
-         
+            
             permissionsStackView.addArrangedSubview(permissionImages)
-           permissionsStackView.addArrangedSubview(childStackView)
+            permissionsStackView.addArrangedSubview(childStackView)
             childStackView.addArrangedSubview(permissionTitles)
             childStackView.addArrangedSubview(permissionSubTitles)
             permissionsStackView.addArrangedSubview(AllowButtons)
             mainStackView.addArrangedSubview(permissionsStackView)
             
+            
         }// end of the foor loop
-      
+        
         
     }
     
