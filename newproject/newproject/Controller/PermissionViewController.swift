@@ -74,7 +74,7 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate {
     lazy var mainStackView:UIStackView = {
         let thisStackView = UIStackView()
         thisStackView.axis = .vertical
-        thisStackView.spacing = 40
+        thisStackView.spacing = .init(h:40)
         thisStackView.distribution = .fillEqually
         return thisStackView
         
@@ -129,7 +129,7 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate {
             let permissionsStackView = UIStackView()
             permissionsStackView.axis = .horizontal
             permissionsStackView.distribution = .fillProportionally
-            permissionsStackView.spacing = 20
+            permissionsStackView.spacing = .init(w:20)
             
             
             
@@ -147,7 +147,6 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate {
             let childStackView = UIStackView()
             childStackView.axis = .vertical
             childStackView.distribution = .fillProportionally
-            childStackView.spacing = .init(h:4)
             
             
 //
