@@ -61,120 +61,49 @@ class PerMissionViewController:UIViewController {
         return thisView
     }()
     
-    
-    lazy var PermissionForAccessStack:UIStackView = {
+    lazy var photoStack:UIStackView = {
         let thisStackView = UIStackView()
-        thisStackView.axis = .vertical
-        thisStackView.distribution = .fill
+        thisStackView.axis = .horizontal
+        thisStackView.distribution = .fillProportionally
         return thisStackView
+     
+    }()
+    
+    
+   
+    var photoTitle:UILabel = {
+        let hexColor = UIColor(hex:"#000000")
+        let thisLabel = UILabel().label(title:"Photo Usage", textColor:hexColor,lines:1,fontStyle:UIFont(name: "Poppins-Regular", size:16))
+        return thisLabel
         
     }()
     
     
-    lazy var PhotoAccessImage:UIImageView = {
-    let thisImage = UIImageView()
+    
+    
+    var photoSubTitle:UILabel = {
+        let hexColor = UIColor(hex:"#5A5F73")
+        let thisLabel = UILabel().label(title:"permission to access the photo storage", textColor:hexColor,lines: 1 ,fontStyle:UIFont(name: "Poppins-Regular", size:8))
+        return thisLabel
+    }()
+    
+
+    lazy var photoButton:UIButton = {
+        let thisButton = UIButton().button(title:"Allow", titleColor:.orange, cornerRadius: .init(w:4), borderColor:UIColor(hex:"#838BA7").cgColor, borderWidth:  .init(w:1))
+        thisButton.backgroundColor = .clear
+        thisButton.addTarget(self, action: #selector(pressFinish), for: .touchUpInside)
+        return thisButton
+    }()
+    
+    
+    var photoImage:UIImageView = {
+        let thisImage = UIImageView()
         thisImage.image = UIImage(named:"photos")
         return thisImage
         
     }()
     
-    
-    lazy var serverAccessImage:UIImageView = {
-    let thisImage = UIImageView()
-        thisImage.image = UIImage(named:"server")
-        return thisImage
-        
-    }()
-    
-    
-    
-    lazy var signsAccessImage:UIImageView = {
-    let thisImage = UIImageView()
-        thisImage.image = UIImage(named:"signs")
-        return thisImage
-        
-    }()
-    
-    
-    
-    var photousageTitle:UILabel = {
-        let hexColor = UIColor(hex:"#000000")
-        let thisLabel = UILabel().label(title:"Photo Usage", textColor:hexColor,lines:1,fontStyle:UIFont(name: "Poppins-Regular", size:28),allignment:.center)
-        return thisLabel
-        
-    }()
-    
-    
-    
-    var storageusageTitle:UILabel = {
-        let hexColor = UIColor(hex:"#000000")
-        let thisLabel = UILabel().label(title:"Storage Usage", textColor:hexColor,lines:1,fontStyle:UIFont(name: "Poppins-Regular", size:28),allignment:.center)
-        return thisLabel
-        
-    }()
-    
-    
-    
-    
-    var locationTitle:UILabel = {
-        let hexColor = UIColor(hex:"#000000")
-        let thisLabel = UILabel().label(title:"Location", textColor:hexColor,lines:1,fontStyle:UIFont(name: "Poppins-Regular", size:28),allignment:.center)
-        return thisLabel
-        
-    }()
-    
-    
-    var photousageSubTitle:UILabel = {
-        let hexColor = UIColor(hex:"#5A5F73")
-        let thisLabel = UILabel().label(title:"Permission to access the photo usage", textColor:hexColor,lines: 2 ,fontStyle:UIFont(name: "Poppins-Regular", size:16),allignment:.center)
-        return thisLabel
-    }()
-    
-    
-    var storageusageSubTitle:UILabel = {
-        let hexColor = UIColor(hex:"#5A5F73")
-        let thisLabel = UILabel().label(title:"permission to access the storage usage ", textColor:hexColor,lines: 2 ,fontStyle:UIFont(name: "Poppins-Regular", size:16),allignment:.center)
-        return thisLabel
-    }()
-    
-    
-    
-    var locationSubTitle:UILabel = {
-        let hexColor = UIColor(hex:"#5A5F73")
-        let thisLabel = UILabel().label(title:"permission to acces the device location", textColor:hexColor,lines: 2 ,fontStyle:UIFont(name: "Poppins-Regular", size:16),allignment:.center)
-        return thisLabel
-    }()
-    
-    
-    
-    
-    
-    lazy var photousageButton:UIButton = {
-        let thisButton = UIButton().button(title:"Allow", titleColor:.orange, cornerRadius: .init(w:16))
-        thisButton.backgroundColor = .clear
-        thisButton.addTarget(self, action: #selector(pressFinish), for: .touchUpInside)
-        return thisButton
-    }()
-    
-    
-    
-    
-    lazy var storageusageButton:UIButton = {
-        let thisButton = UIButton().button(title:"Allow", titleColor:UIColor(hex:"#FFFFFF"), cornerRadius: .init(w:16))
-        thisButton.backgroundColor = .clear
-        thisButton.addTarget(self, action: #selector(pressFinish), for: .touchUpInside)
-        return thisButton
-    }()
-    
-    
-    
-    
-    lazy var locationButton:UIButton = {
-        let thisButton = UIButton().button(title:"Allow", titleColor:.orange, cornerRadius: .init(w:16))
-        thisButton.backgroundColor = .clear
-        thisButton.addTarget(self, action: #selector(pressFinish), for: .touchUpInside)
-        return thisButton
-    }()
+   
     
     
     
@@ -191,20 +120,9 @@ class PerMissionViewController:UIViewController {
         view.addSubview(permissionscrollView)
         view.addSubview(finishButton)
         view.addSubview(AccessView)
-        AccessView.addSubview(PermissionForAccessStack)
-        PermissionForAccessStack.addArrangedSubview(PhotoAccessImage)
-        PermissionForAccessStack.addArrangedSubview(serverAccessImage)
-        PermissionForAccessStack.addArrangedSubview(signsAccessImage)
-        PermissionForAccessStack.addArrangedSubview(photousageTitle)
-        PermissionForAccessStack.addArrangedSubview(storageusageTitle)
-        PermissionForAccessStack.addArrangedSubview(locationTitle)
-        PermissionForAccessStack.addArrangedSubview(photousageSubTitle)
-        PermissionForAccessStack.addArrangedSubview(storageusageSubTitle)
-        PermissionForAccessStack.addArrangedSubview(locationSubTitle)
-        PermissionForAccessStack.addArrangedSubview(photousageButton)
-        PermissionForAccessStack.addArrangedSubview(storageusageButton)
-        PermissionForAccessStack.addArrangedSubview(locationButton)
-        
+        AccessView.addSubview(photoStack)
+     
+       
         
         
         
@@ -214,6 +132,12 @@ class PerMissionViewController:UIViewController {
         permissionscrollView.addSubview(permissionTitle)
         permissionscrollView.addSubview(permissionSubTitle)
         permissionscrollView.addSubview(permissionGroupImage)
+        
+        photoStack.addArrangedSubview(photoImage)
+        photoStack.addArrangedSubview(photoTitle)
+        photoStack.addArrangedSubview(photoSubTitle)
+        photoStack.addArrangedSubview(photoButton)
+        
         permissionscrollView.anchorView(top:view.topAnchor,left:view.leftAnchor,bottom: view.bottomAnchor,right:view.rightAnchor)
         permissionTitle.anchorView(top: permissionscrollView.topAnchor,paddingTop:.init(h:66),width:.init(w:173))
         permissionTitle.centerX(inView:permissionscrollView)
@@ -224,10 +148,7 @@ class PerMissionViewController:UIViewController {
         finishButton.anchorView(bottom:view.bottomAnchor,paddingBottom:.init(h:46),width: .init(w:200), height: .init(h:56))
         finishButton.centerX(inView:view)
         AccessView.anchorView(top:permissionGroupImage.bottomAnchor,left:permissionscrollView.leftAnchor,bottom:finishButton.topAnchor,    right:permissionscrollView.rightAnchor)
-        PermissionForAccessStack.anchorView(top:permissionGroupImage.bottomAnchor, left:permissionscrollView.leftAnchor,bottom:finishButton.topAnchor, right:AccessView.rightAnchor, paddingTop:.init(h:10),paddingLeft: .init(w:10), paddingBottom: .init(h:10), paddingRight: .init(w:10))
-        
-        
-        
+        photoStack.anchorView(top: permissionGroupImage.bottomAnchor, left:view.leftAnchor, right:view.rightAnchor, paddingTop: .init(h:10), paddingLeft: .init(w:10), paddingRight:  .init(w:10), height: .init(h:50))
         
     }
     
