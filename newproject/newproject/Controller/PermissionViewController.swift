@@ -46,7 +46,7 @@ class PerMissionViewController:UIViewController {
     
     
     var permissionGroupImage:UIImageView = {
-        let thisImage = UIImageView()
+        let thisImage = UIImageView().Image(contantMode:.scaleAspectFit)
         thisImage.image = UIImage(named:"permissionGroupImage")
         return thisImage
         
@@ -70,6 +70,7 @@ class PerMissionViewController:UIViewController {
     lazy var mainStackView:UIStackView = {
         let thisStackView = UIStackView()
         thisStackView.axis = .vertical
+        thisStackView.spacing = 42
         thisStackView.distribution = .fill
         
         return thisStackView
@@ -87,28 +88,29 @@ override func viewDidLoad() {
     private func loadUI() {
         view.addSubview(permissionscrollView)
         view.addSubview(finishButton)
-        view.addSubview(AccessView)
-        AccessView.addSubview(mainStackView)
+        view.addSubview(mainStackView)
+        //AccessView.addSubview(mainStackView)
         permissionscrollView.addSubview(permissionTitle)
         permissionscrollView.addSubview(permissionSubTitle)
         permissionscrollView.addSubview(permissionGroupImage)
         permissionscrollView.anchorView(top:view.topAnchor,left:view.leftAnchor,bottom: view.bottomAnchor,right:view.rightAnchor)
-        permissionTitle.anchorView(top: permissionscrollView.topAnchor,paddingTop:.init(h:66),width:.init(w:173))
+        permissionTitle.anchorView(top: view.topAnchor,paddingTop:.init(h:66),width:.init(w:152),height: .init(h:46))
         permissionTitle.centerX(inView:permissionscrollView)
-        permissionSubTitle.anchorView(top:permissionTitle.bottomAnchor,paddingTop:.init(h:12),width: .init(w:350))
+        permissionSubTitle.anchorView(top:permissionTitle.bottomAnchor,paddingTop:.init(h:8),width: .init(w:332),height: .init(h:40))
         permissionSubTitle.centerX(inView:permissionscrollView)
-        permissionGroupImage.anchorView(top:permissionSubTitle.bottomAnchor,paddingTop: .init(h:12),width: .init(w:350))
+        permissionGroupImage.anchorView(top:permissionSubTitle.bottomAnchor,paddingTop: .init(h:33),width: .init(w:330), height: .init(h:240))
         permissionGroupImage.centerX(inView:permissionscrollView)
-        finishButton.anchorView(bottom:view.bottomAnchor,paddingBottom:.init(h:46),width: .init(w:200), height: .init(h:56))
+        finishButton.anchorView(bottom:view.bottomAnchor,paddingBottom:.init(h:68),width: .init(w:226), height: .init(h:48))
         finishButton.centerX(inView:view)
-        AccessView.anchorView(top:permissionGroupImage.bottomAnchor,left:permissionscrollView.leftAnchor,bottom:finishButton.topAnchor,    right:permissionscrollView.rightAnchor)
-        mainStackView.anchorView(top:AccessView.topAnchor, left:AccessView.leftAnchor,  bottom:AccessView.bottomAnchor, right: AccessView.rightAnchor)
+//        AccessView.anchorView(top:permissionGroupImage.bottomAnchor,left:permissionscrollView.leftAnchor,bottom:finishButton.topAnchor,    right:permissionscrollView.rightAnchor)
+        mainStackView.anchorView(top:permissionGroupImage.bottomAnchor, left:view.leftAnchor, right: permissionscrollView.rightAnchor,paddingTop:.init(h:60))
         
     for permission in permissions {
             lazy var permissionsStackView:UIStackView = {
                 let thisstackView = UIStackView()
                 thisstackView.axis = .horizontal
                 thisstackView.distribution = .fill
+                thisstackView.spacing = 28
                 return thisstackView
                 
             }()
