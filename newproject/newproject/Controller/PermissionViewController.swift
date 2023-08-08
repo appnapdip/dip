@@ -155,7 +155,7 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate {
             permissionImages.anchorView(width:.init(w:28), height:.init(h:28))
             
             
-            let AllowButtons = UIButton().button(title:"Allow", titleColor: .orange,backgroundColor:.clear,font:UIFont(name:"Poppins-Light", size:13)!, cornerRadius:.init(h:7), borderColor:UIColor(hex:"#838BA7").cgColor, borderWidth: .init(w:1))
+            let AllowButtons = UIButton().button(title:"Allow", titleColor:UIColor(hex:"#FFFFFF"),backgroundColor:.orange,font:UIFont(name:"Poppins-Light", size:13)!, cornerRadius:.init(h:7), borderColor:UIColor(hex:"#838BA7").cgColor, borderWidth: .init(w:1))
             AllowButtons.anchorView(width: .init(w:60), height: .init(h:32))
             AllowButtons.tag = i
             AllowButtons.addTarget(self, action: #selector(pressForPermission(_:)), for:.touchUpInside)
@@ -186,21 +186,34 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate {
         
         switch sender.tag {
         case 0:
-            if let photoPermissionButton = mainStackView.subviews.first(where:{$0.tag == 0}) {
-                photoPermissionButton.backgroundColor = .orange
-            }
-            
-            
+            let config = UIImage.SymbolConfiguration(
+                pointSize:2, weight:.medium, scale:.small)
+            let image = UIImage(systemName: "checkmark", withConfiguration: config)
+            sender.setBackgroundImage(image, for:.normal)
+            sender.tintColor = UIColor(hex:"#FFFFFF")
+            sender.setTitleColor(.clear, for:.normal)
             
         case 1:
-            return print("Location request")
+            sender.setBackgroundImage(UIImage(systemName:"checkmark"), for:.normal)
+            sender.tintColor = UIColor(hex:"#FFFFFF")
+            sender.setTitleColor(.clear, for:.normal)
+            
         case 2:
-            return print("Calender request")
+            sender.setBackgroundImage(UIImage(systemName:"checkmark"), for:.normal)
+            sender.tintColor = UIColor(hex:"#FFFFFF")
+            sender.setTitleColor(.clear, for:.normal)
+            
         case 3:
-            return print("Notification request")
+            sender.setBackgroundImage(UIImage(systemName:"checkmark"), for:.normal)
+            sender.tintColor = UIColor(hex:"#FFFFFF")
+            sender.setTitleColor(.clear, for:.normal)
+            
             
         default:
-            return print("Motion")
+            sender.setBackgroundImage(UIImage(systemName:"checkmark"), for:.normal)
+            sender.tintColor = UIColor(hex:"#FFFFFF")
+            sender.setTitleColor(.clear, for:.normal)
+            
         }
         
         
