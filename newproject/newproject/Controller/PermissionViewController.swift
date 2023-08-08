@@ -16,14 +16,16 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate {
     let permissions:[PermissionModel] = [PermissionModel(title:"Photo Usage", subtitle:"Permission to access the photo usage", image: "photos"),
                                          PermissionModel(title:"Location", subtitle:"Permission to access the device location", image:"signs"),
                                          PermissionModel(title:"Calender", subtitle:"Permission to access the caldender events", image:"calendar"),    PermissionModel(title:"Notification", subtitle:"Permission to access the user notification", image:"notification"),
-                                         PermissionModel(title:"Motion & Fitness", subtitle:"Permission to access the motion data and fitness", image:"signs")]
+                                         PermissionModel(title:"Motion & Fitness", subtitle:"Permission to access the motion data and fitness", image:"signs"),
+    ]
     
     lazy var permissionscrollView: UIScrollView = {
         let thisScrollView = UIScrollView()
         thisScrollView.showsVerticalScrollIndicator = false
-        thisScrollView.isDirectionalLockEnabled = true
+        //        thisScrollView.isDirectionalLockEnabled = true
         thisScrollView.showsHorizontalScrollIndicator = false
-        thisScrollView.contentSize.height = .init(h:1000)
+        thisScrollView.contentSize.height = .init(h:950)
+        thisScrollView.isScrollEnabled = true
         view.backgroundColor = .white
         return thisScrollView
     }()
@@ -68,6 +70,13 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate {
         
     }()
     
+    
+    let shadowView:UIView = {
+        let thisShadowView = UIView()
+        thisShadowView.backgroundColor = UIColor(hex:"#FFFFFF")
+        return thisShadowView
+    }()
+    
     let mainStackView:UIStackView = {
         let thisStackView = UIStackView()
         thisStackView.axis = .vertical
@@ -83,33 +92,47 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate {
         
     }
     
-    
-    
     private func loadUI() {
-        view.addSubview(permissionscrollView)
-        view.addSubview(finishButton)
-        view.addSubview(crossButton)
-        permissionscrollView.delegate = self
         
-        permissionscrollView.addSubview(mainStackView)
-        permissionscrollView.addSubview(permissionTitle)
-        permissionscrollView.addSubview(permissionSubTitle)
-        permissionscrollView.addSubview(permissionGroupImage)
+        ///scrollview
+        view.addSubview(permissionscrollView)
+        permissionscrollView.delegate = self
         permissionscrollView.anchorView(top:view.topAnchor,left:view.leftAnchor,bottom: view.bottomAnchor,right:view.rightAnchor)
-        permissionTitle.anchorView(top: view.topAnchor,paddingTop:.init(h:66),width:.init(w:152),height: .init(h:46))
-        permissionTitle.centerX(inView:permissionscrollView)
+        
+        ///permissionTitle
+        permissionscrollView.addSubview(permissionTitle)
+        permissionTitle.anchorView(top: permissionscrollView.topAnchor, paddingTop:.init(h:0),width:.init(w:152),height: .init(h:46))
+        permissionTitle.centerX(inView:view)
+        
+        ///permissionSubTitle
+        permissionscrollView.addSubview(permissionSubTitle)
         permissionSubTitle.anchorView(top:permissionTitle.bottomAnchor,paddingTop:.init(h:8),width: .init(w:332),height: .init(h:40))
-        permissionSubTitle.centerX(inView:permissionscrollView)
+        permissionSubTitle.centerX(inView:view)
+        
+        ///permissionGroupImage
+        permissionscrollView.addSubview(permissionGroupImage)
         permissionGroupImage.anchorView(top:permissionSubTitle.bottomAnchor,paddingTop: .init(h:33),width: .init(w:330), height: .init(h:240))
-        permissionGroupImage.centerX(inView:permissionscrollView)
-        finishButton.anchorView(bottom:view.bottomAnchor,paddingBottom:.init(h:68),width: .init(w:226), height: .init(h:48))
-        finishButton.centerX(inView:view)
-        crossButton.anchorView(right:view.rightAnchor, width: .init(w:64), height: .init(h:64))
-        crossButton.centerY(inView:permissionTitle)
+        permissionGroupImage.centerX(inView:view)
+        
+        ///mainStackView
+        permissionscrollView.addSubview(mainStackView)
         mainStackView.anchorView(top:permissionGroupImage.bottomAnchor, left:view.leftAnchor, right: view.rightAnchor,paddingTop:.init(h:60),paddingLeft: .init(w:30), paddingRight: .init(w:30))
         
+        ///shadowview
+        view.addSubview(shadowView)
+        shadowView.anchorView(left:view.leftAnchor, bottom:view.bottomAnchor, right:view.rightAnchor,height: .init(h:140))
+        shadowView.centerX(inView:view)
         
-        for permission in permissions {
+        ///finishButton
+        view.addSubview(finishButton)
+        finishButton.anchorView(bottom:view.bottomAnchor,paddingBottom:.init(h:68),width: .init(w:226), height: .init(h:48))
+        finishButton.centerX(inView:view)
+        
+        ///crossButton
+        view.addSubview(crossButton)
+        crossButton.anchorView(top: view.topAnchor, right:view.rightAnchor, paddingTop: .init(h: 50), width: .init(w:64), height: .init(h:64))
+        
+        for i in 0..<permissions.count {
             
             let permissionsStackView = UIStackView()
             permissionsStackView.axis = .horizontal
@@ -123,16 +146,20 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate {
             childStackView.spacing = .init(h:4)
             
             let hexColor = UIColor(hex:"#000000")
-            let permissionTitles = UILabel().label(title:permission.title, textColor:hexColor,lines:1,fontStyle:UIFont(name: "Poppins-Regular", size:20),allignment:.left)
+            let permissionTitles = UILabel().label(title:permissions[i].title, textColor:hexColor,lines:1,fontStyle:UIFont(name: "Poppins-Regular", size:20),allignment:.left)
             
-            let permissionSubTitles = UILabel().label(title:permission.subtitle, textColor:UIColor(hex:"#5A5F73"),lines: 1 ,fontStyle:UIFont(name: "Poppins-Medium", size:13),allignment:.left)
+            let permissionSubTitles = UILabel().label(title:permissions[i].subtitle, textColor:UIColor(hex:"#5A5F73"),lines: 1 ,fontStyle:UIFont(name: "Poppins-Medium", size:13),allignment:.left)
             
             let permissionImages = UIImageView().Image(contantMode:.scaleAspectFit)
-            permissionImages.image = UIImage(named:permission.image)
+            permissionImages.image = UIImage(named:permissions[i].image)
             permissionImages.anchorView(width:.init(w:28), height:.init(h:28))
+            
             
             let AllowButtons = UIButton().button(title:"Allow", titleColor: .orange,backgroundColor:.clear,font:UIFont(name:"Poppins-Light", size:13)!, cornerRadius:.init(h:7), borderColor:UIColor(hex:"#838BA7").cgColor, borderWidth: .init(w:1))
             AllowButtons.anchorView(width: .init(w:60), height: .init(h:32))
+            AllowButtons.tag = i
+            AllowButtons.addTarget(self, action: #selector(pressForPermission(_:)), for:.touchUpInside)
+            
             
             
             permissionsStackView.addArrangedSubview(permissionImages)
@@ -150,6 +177,32 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate {
     
     @objc func pressFinish() {
         navigationController?.popViewController(animated:true)
+        
+    }
+    
+    
+    
+    @objc func pressForPermission(_ sender: UIButton) {
+        
+        switch sender.tag {
+        case 0:
+            if let photoPermissionButton = mainStackView.subviews.first(where:{$0.tag == 0}) {
+                photoPermissionButton.backgroundColor = .orange
+            }
+            
+            
+            
+        case 1:
+            return print("Location request")
+        case 2:
+            return print("Calender request")
+        case 3:
+            return print("Notification request")
+            
+        default:
+            return print("Motion")
+        }
+        
         
     }
     
