@@ -13,13 +13,10 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate {
     
     // MARK: - Properties
     
-    let permissions:[PermissionModel] = [PermissionModel(title:"Photo Usage", subtitle:"Permission to access the photo usage", image: "photos"), PermissionModel(title:"Storage Usage", subtitle:"Permission to access the storage usage", image:"server"),
-                                         PermissionModel(title:"Location", subtitle:"Permission to access the device location", image:"signs")]
-    
-    
-    
-    
-    
+    let permissions:[PermissionModel] = [PermissionModel(title:"Photo Usage", subtitle:"Permission to access the photo usage", image: "photos"),
+                                         PermissionModel(title:"Location", subtitle:"Permission to access the device location", image:"signs"),
+                                         PermissionModel(title:"Calender", subtitle:"Permission to access the caldender events", image:"calendar"),    PermissionModel(title:"Notification", subtitle:"Permission to access the user notification", image:"notification"),
+                                         PermissionModel(title:"Motion & Fitness", subtitle:"Permission to access the motion data and fitness", image:"signs")]
     
     lazy var permissionscrollView: UIScrollView = {
         let thisScrollView = UIScrollView()
@@ -68,10 +65,7 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate {
         
     }()
     
-    
-    
-    
-    lazy var mainStackView:UIStackView = {
+    let mainStackView:UIStackView = {
         let thisStackView = UIStackView()
         thisStackView.axis = .vertical
         thisStackView.spacing = .init(h:40)
@@ -79,9 +73,6 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate {
         return thisStackView
         
     }()
-    
-    
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -95,8 +86,9 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate {
         view.addSubview(permissionscrollView)
         view.addSubview(finishButton)
         view.addSubview(crossButton)
-        permissionscrollView.addSubview(mainStackView)
         permissionscrollView.delegate = self
+        
+        permissionscrollView.addSubview(mainStackView)
         permissionscrollView.addSubview(permissionTitle)
         permissionscrollView.addSubview(permissionSubTitle)
         permissionscrollView.addSubview(permissionGroupImage)
@@ -111,92 +103,33 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate {
         finishButton.centerX(inView:view)
         crossButton.anchorView(right:view.rightAnchor, width: .init(w:64), height: .init(h:64))
         crossButton.centerY(inView:permissionTitle)
-        //        AccessView.anchorView(top:permissionGroupImage.bottomAnchor,left:permissionscrollView.leftAnchor,bottom:finishButton.topAnchor,    right:permissionscrollView.rightAnchor)
-        mainStackView.anchorView(top:permissionGroupImage.bottomAnchor, left:permissionscrollView.leftAnchor, right: permissionscrollView.rightAnchor,paddingTop:.init(h:60),paddingLeft: .init(w:30), paddingRight: .init(w:30))
+        mainStackView.anchorView(top:permissionGroupImage.bottomAnchor, left:view.leftAnchor, right: view.rightAnchor,paddingTop:.init(h:60),paddingLeft: .init(w:30), paddingRight: .init(w:30))
         
         
         for permission in permissions {
-//            lazy var permissionsStackView:UIStackView = {
-//                let thisstackView = UIStackView()
-//                thisstackView.axis = .horizontal
-//                thisstackView.distribution = .fill
-//                thisstackView.spacing = 28
-//                return thisstackView
-//
-//            }()
-            
             
             let permissionsStackView = UIStackView()
             permissionsStackView.axis = .horizontal
             permissionsStackView.distribution = .fillProportionally
             permissionsStackView.spacing = .init(w:20)
-            
-            
-            
-            
-            
-//            lazy var childStackView:UIStackView = {
-//                let childStackView = UIStackView()
-//                childStackView.axis = .vertical
-//                childStackView.distribution = .fill
-//                return thisstackView
-//
-//            }()
-            
+            permissionsStackView.anchorView(height: .init(h:40))
             
             let childStackView = UIStackView()
             childStackView.axis = .vertical
             childStackView.distribution = .fillProportionally
+            childStackView.spacing = .init(h:4)
             
-            
-//
-//            lazy var permissionTitles:UILabel = {
-//                let hexColor = UIColor(hex:"#000000")
-//                let permissionTitles = UILabel().label(title:permission.title, textColor:hexColor,lines:1,fontStyle:UIFont(name: "Poppins-Regular", size:14),allignment:.left)
-//                return thisLabel
-//
-//            }()
-//
             let hexColor = UIColor(hex:"#000000")
             let permissionTitles = UILabel().label(title:permission.title, textColor:hexColor,lines:1,fontStyle:UIFont(name: "Poppins-Regular", size:20),allignment:.left)
             
-            
-            
-            
-//            lazy var permissionSubTitles:UILabel = {
-//                let hexColor = UIColor(hex:"#5A5F73")
-//                let thisLabel = UILabel().label(title:permission.subtitle, textColor:hexColor,lines: 1 ,fontStyle:UIFont(name: "Poppins-Regular", size:8),allignment:.left)
-//                return thisLabel
-//            }()
-            
-            
-            
-            let permissionSubTitles = UILabel().label(title:permission.subtitle, textColor:UIColor(hex:"#5A5F73"),lines: 1 ,fontStyle:UIFont(name: "Poppins-Regular", size:13),allignment:.left)
-            
-            
-//
-//            lazy var permissionImages:UIImageView = {
-//                let thisImage = UIImageView().Image(contantMode:.scaleAspectFit)
-//                thisImage.image = UIImage(named:permission.image)
-//                return thisImage
-//            }()
-            
+            let permissionSubTitles = UILabel().label(title:permission.subtitle, textColor:UIColor(hex:"#5A5F73"),lines: 1 ,fontStyle:UIFont(name: "Poppins-Medium", size:13),allignment:.left)
             
             let permissionImages = UIImageView().Image(contantMode:.scaleAspectFit)
             permissionImages.image = UIImage(named:permission.image)
             permissionImages.anchorView(width:.init(w:28), height:.init(h:28))
             
-            
-            
-//
-//            lazy var AllowButtons:UIButton = {
-//                let thisButton = UIButton().button(title:"Allow", titleColor: .orange,backgroundColor:.clear,font:UIFont(name:"Poppins-Light", size:10)!, cornerRadius:.init(h:7), borderColor:UIColor(hex:"#838BA7").cgColor, borderWidth: .init(w:1))
-//                return thisButton
-//            }()
-            
-            let AllowButtons = UIButton().button(title:"Allow", titleColor: .orange,backgroundColor:.clear,font:UIFont(name:"Poppins-Light", size:10)!, cornerRadius:.init(h:7), borderColor:UIColor(hex:"#838BA7").cgColor, borderWidth: .init(w:1))
-            AllowButtons.anchorView(width: .init(w:60) , height: .init(w:32))
-            
+            let AllowButtons = UIButton().button(title:"Allow", titleColor: .orange,backgroundColor:.clear,font:UIFont(name:"Poppins-Light", size:13)!, cornerRadius:.init(h:7), borderColor:UIColor(hex:"#838BA7").cgColor, borderWidth: .init(w:1))
+            AllowButtons.anchorView(width: .init(w:60), height: .init(h:32))
             
             
             permissionsStackView.addArrangedSubview(permissionImages)
