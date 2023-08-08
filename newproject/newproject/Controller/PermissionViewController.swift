@@ -20,7 +20,10 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate {
     
     lazy var permissionscrollView: UIScrollView = {
         let thisScrollView = UIScrollView()
-        thisScrollView.isScrollEnabled = true
+        thisScrollView.showsVerticalScrollIndicator = false
+        thisScrollView.isDirectionalLockEnabled = true
+        thisScrollView.showsHorizontalScrollIndicator = false
+        thisScrollView.contentSize.height = .init(h:1000)
         view.backgroundColor = .white
         return thisScrollView
     }()
