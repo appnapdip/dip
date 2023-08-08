@@ -73,7 +73,10 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate {
     
     let shadowView:UIView = {
         let thisShadowView = UIView()
-        thisShadowView.backgroundColor = UIColor(hex:"#FFFFFF")
+        let gradient = CAGradientLayer()
+        gradient.frame = thisShadowView.bounds
+        gradient.colors = [UIColor.white.cgColor, UIColor.black.withAlphaComponent(1).cgColor]
+        thisShadowView.layer.addSublayer(gradient)
         return thisShadowView
     }()
     
@@ -155,7 +158,7 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate {
             permissionImages.anchorView(width:.init(w:28), height:.init(h:28))
             
             
-            let AllowButtons = UIButton().button(title:"Allow", titleColor:UIColor(hex:"#FFFFFF"),backgroundColor:.orange,font:UIFont(name:"Poppins-Light", size:13)!, cornerRadius:.init(h:7), borderColor:UIColor(hex:"#838BA7").cgColor, borderWidth: .init(w:1))
+            let AllowButtons = UIButton().button(title:"Allow", titleColor:.orange,backgroundColor:.clear,font:UIFont(name:"Poppins-Light", size:13)!, cornerRadius:.init(h:7), borderColor:UIColor(hex:"#838BA7").cgColor, borderWidth: .init(w:1))
             AllowButtons.anchorView(width: .init(w:60), height: .init(h:32))
             AllowButtons.tag = i
             AllowButtons.addTarget(self, action: #selector(pressForPermission(_:)), for:.touchUpInside)
@@ -186,33 +189,49 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate {
         
         switch sender.tag {
         case 0:
-            let config = UIImage.SymbolConfiguration(
-                pointSize:2, weight:.medium, scale:.small)
-            let image = UIImage(systemName: "checkmark", withConfiguration: config)
-            sender.setBackgroundImage(image, for:.normal)
+            
+            let image = UIImage(systemName: "checkmark")
+            sender.setImage(image, for:.normal)
             sender.tintColor = UIColor(hex:"#FFFFFF")
             sender.setTitleColor(.clear, for:.normal)
+            sender.imageEdgeInsets = .init(top:0, left:16, bottom: 0, right: 0)
+            sender.backgroundColor = .orange
+            sender.layer.borderWidth = 0
+            
             
         case 1:
-            sender.setBackgroundImage(UIImage(systemName:"checkmark"), for:.normal)
+            sender.setImage(UIImage(systemName:"checkmark"), for:.normal)
             sender.tintColor = UIColor(hex:"#FFFFFF")
             sender.setTitleColor(.clear, for:.normal)
+            sender.imageEdgeInsets = .init(top:0, left:16, bottom: 0, right: 0)
+            sender.backgroundColor = .orange
+            sender.layer.borderWidth = 0
+           
             
         case 2:
-            sender.setBackgroundImage(UIImage(systemName:"checkmark"), for:.normal)
+            sender.setImage(UIImage(systemName:"checkmark"), for:.normal)
             sender.tintColor = UIColor(hex:"#FFFFFF")
             sender.setTitleColor(.clear, for:.normal)
+            sender.imageEdgeInsets = .init(top:0, left:16, bottom: 0, right: 0)
+            sender.backgroundColor = .orange
+            sender.layer.borderWidth = 0
             
         case 3:
-            sender.setBackgroundImage(UIImage(systemName:"checkmark"), for:.normal)
+            sender.setImage(UIImage(systemName:"checkmark"), for:.normal)
             sender.tintColor = UIColor(hex:"#FFFFFF")
             sender.setTitleColor(.clear, for:.normal)
+            sender.imageEdgeInsets = .init(top:0, left:16, bottom: 0, right: 0)
+            sender.backgroundColor = .orange
+            sender.layer.borderWidth = 0
             
             
         default:
-            sender.setBackgroundImage(UIImage(systemName:"checkmark"), for:.normal)
+            sender.setImage(UIImage(systemName:"checkmark"), for:.normal)
             sender.tintColor = UIColor(hex:"#FFFFFF")
             sender.setTitleColor(.clear, for:.normal)
+            sender.imageEdgeInsets = .init(top:0, left:16, bottom: 0, right: 0)
+            sender.backgroundColor = .orange
+            sender.layer.borderWidth = 0
             
         }
         
