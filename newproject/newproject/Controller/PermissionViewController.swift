@@ -13,11 +13,14 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate {
     
     // MARK: - Properties
     
+    // PermissionModel Array
     let permissions:[PermissionModel] = [PermissionModel(title:"Photo Usage", subtitle:"Permission to access the photo usage", image: "photos"),
                                          PermissionModel(title:"Location", subtitle:"Permission to access the device location", image:"signs"),
                                          PermissionModel(title:"Calender", subtitle:"Permission to access the caldender events", image:"calendar"),    PermissionModel(title:"Notification", subtitle:"Permission to access the user notification", image:"notification"),
                                          PermissionModel(title:"Motion & Fitness", subtitle:"Permission to access the motion data and fitness", image:"signs"),
     ]
+    
+    // permissionscrollView
     
     lazy var permissionscrollView: UIScrollView = {
         let thisScrollView = UIScrollView()
@@ -30,7 +33,7 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate {
         return thisScrollView
     }()
     
-    
+    //  permissionTitle
     
     var permissionTitle:UILabel = {
         let hexColor = UIColor(hex:"#000000")
@@ -39,6 +42,7 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate {
         
     }()
     
+    // permissionSubTitle
     
     var permissionSubTitle:UILabel = {
         let hexColor = UIColor(hex:"#5A5F73")
@@ -46,6 +50,7 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate {
         return thisLabel
     }()
     
+    // permissionGroupImage
     
     var permissionGroupImage:UIImageView = {
         let thisImage = UIImageView().Image(contantMode:.scaleAspectFit)
@@ -54,7 +59,7 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate {
         
     }()
     
-    
+    // finishButton
     lazy var finishButton:UIButton = {
         let thisButton = UIButton().button(title:"Finish", titleColor:UIColor(hex:"#FFFFFF"), cornerRadius: .init(w:16))
         thisButton.backgroundColor = .orange.withAlphaComponent(.init(h:1))
@@ -62,6 +67,7 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate {
         return thisButton
     }()
     
+    // crossButton
     
     lazy var crossButton:UIButton = {
         let thisButton = UIButton().button(backgroundImage:UIImage(systemName:"multiply"))
@@ -70,15 +76,13 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate {
         
     }()
     
-    
+    // shadowView
     let shadowView:UIView = {
         let thisShadowView = UIView()
-        let gradient = CAGradientLayer()
-        gradient.frame = thisShadowView.bounds
-        gradient.colors = [UIColor.white.cgColor, UIColor.black.withAlphaComponent(1).cgColor]
-        thisShadowView.layer.addSublayer(gradient)
         return thisShadowView
     }()
+    
+    // mainStackView
     
     let mainStackView:UIStackView = {
         let thisStackView = UIStackView()
@@ -89,11 +93,21 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate {
         
     }()
     
+    // viewDidLoad()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         loadUI()
         
     }
+    
+    // viewDidLayoutSubviews()
+    
+    override func viewDidLayoutSubviews() {
+        showGradient()
+    }
+    
+    // loadUI()
     
     private func loadUI() {
         
@@ -124,7 +138,8 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate {
         ///shadowview
         view.addSubview(shadowView)
         shadowView.anchorView(left:view.leftAnchor, bottom:view.bottomAnchor, right:view.rightAnchor,height: .init(h:140))
-        shadowView.centerX(inView:view)
+        
+        
         
         ///finishButton
         view.addSubview(finishButton)
@@ -135,13 +150,18 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate {
         view.addSubview(crossButton)
         crossButton.anchorView(top: view.topAnchor, right:view.rightAnchor, paddingTop: .init(h: 50), width: .init(w:64), height: .init(h:64))
         
+        // Loops
+        
         for i in 0..<permissions.count {
             
+            // permissionsStackView
             let permissionsStackView = UIStackView()
             permissionsStackView.axis = .horizontal
             permissionsStackView.distribution = .fillProportionally
             permissionsStackView.spacing = .init(w:20)
             permissionsStackView.anchorView(height: .init(h:40))
+            
+            // childStackView
             
             let childStackView = UIStackView()
             childStackView.axis = .vertical
@@ -174,22 +194,20 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate {
             
             
         }// end of the foor loop
-        
-        
     }
+    
+    // pressFinish()
     
     @objc func pressFinish() {
         navigationController?.popViewController(animated:true)
         
     }
     
-    
+    // pressForPermission
     
     @objc func pressForPermission(_ sender: UIButton) {
-        
         switch sender.tag {
         case 0:
-            
             let image = UIImage(systemName: "checkmark")
             sender.setImage(image, for:.normal)
             sender.tintColor = UIColor(hex:"#FFFFFF")
@@ -198,7 +216,6 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate {
             sender.backgroundColor = .orange
             sender.layer.borderWidth = 0
             
-            
         case 1:
             sender.setImage(UIImage(systemName:"checkmark"), for:.normal)
             sender.tintColor = UIColor(hex:"#FFFFFF")
@@ -206,7 +223,7 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate {
             sender.imageEdgeInsets = .init(top:0, left:16, bottom: 0, right: 0)
             sender.backgroundColor = .orange
             sender.layer.borderWidth = 0
-           
+            
             
         case 2:
             sender.setImage(UIImage(systemName:"checkmark"), for:.normal)
@@ -234,10 +251,6 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate {
             sender.layer.borderWidth = 0
             
         }
-        
-        
     }
-    
 }
-
 

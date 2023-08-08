@@ -7,6 +7,7 @@
 
 import Foundation
 
+// create PermissionModel
 
 struct PermissionModel {
     let title:String

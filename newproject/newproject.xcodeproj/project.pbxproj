@@ -33,6 +33,7 @@
 		B2392A6B2A5A625900401305 /* ButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2392A6A2A5A625900401305 /* ButtonExtension.swift */; };
 		B2392A8C2A5AACE800401305 /* ViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2392A8B2A5AACE800401305 /* ViewModifier.swift */; };
 		B2401B9C2A5D0D3F00AF1F93 /* OnboradingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2401B9B2A5D0D3F00AF1F93 /* OnboradingModel.swift */; };
+		B247D3192A8251F200603D6A /* PermissionShadowExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B247D3182A8251F200603D6A /* PermissionShadowExtension.swift */; };
 		B2674D5F2A67BDD3000F8150 /* PinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2674D5E2A67BDD3000F8150 /* PinViewController.swift */; };
 		B2674D612A68F6FB000F8150 /* ExtensionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2674D602A68F6FB000F8150 /* ExtensionController.swift */; };
 		B2674D652A690C51000F8150 /* Refactors.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2674D642A690C51000F8150 /* Refactors.swift */; };
@@ -77,6 +78,7 @@
 		B2392A6A2A5A625900401305 /* ButtonExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonExtension.swift; sourceTree = "<group>"; };
 		B2392A8B2A5AACE800401305 /* ViewModifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModifier.swift; sourceTree = "<group>"; };
 		B2401B9B2A5D0D3F00AF1F93 /* OnboradingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboradingModel.swift; sourceTree = "<group>"; };
+		B247D3182A8251F200603D6A /* PermissionShadowExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionShadowExtension.swift; sourceTree = "<group>"; };
 		B2674D5E2A67BDD3000F8150 /* PinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinViewController.swift; sourceTree = "<group>"; };
 		B2674D602A68F6FB000F8150 /* ExtensionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionController.swift; sourceTree = "<group>"; };
 		B2674D642A690C51000F8150 /* Refactors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Refactors.swift; sourceTree = "<group>"; };
@@ -241,6 +243,7 @@
 				B227FCD02A5BF4AB00D8EAF4 /* UIViewExtension.swift */,
 				B2674D602A68F6FB000F8150 /* ExtensionController.swift */,
 				B236ED422A763F3900988B7F /* CatagoriesExtension.swift */,
+				B247D3182A8251F200603D6A /* PermissionShadowExtension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -391,6 +394,7 @@
 				B2025C622A77D071007A8792 /* SettingsView.swift in Sources */,
 				B2025C642A77D0BD007A8792 /* SettingsViewApiModel.swift in Sources */,
 				B227FCDB2A5C182B00D8EAF4 /* ViewController.swift in Sources */,
+				B247D3192A8251F200603D6A /* PermissionShadowExtension.swift in Sources */,
 				B29DBA752A5FEA6F00A49225 /* MainView.swift in Sources */,
 				B217A4A82A5678C00012A133 /* SceneDelegate.swift in Sources */,
 				B2CE5D3D2A5EBC2B0022720D /* onboardingModel.swift in Sources */,
