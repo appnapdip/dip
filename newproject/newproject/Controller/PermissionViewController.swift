@@ -309,7 +309,7 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate,RemoveAlea
             self.present(limited, animated:true)
         
         @unknown default:
-            <#fatalError()#>
+            print("default")
         }
         
        
