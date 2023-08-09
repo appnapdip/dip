@@ -50,6 +50,9 @@ enum AlertMessage {
     case failed
     case somethingWrong
     case inProgress
+    case restricted
+    case limited
+    case denied
     
     
     var messageTitle:String {
@@ -66,6 +69,12 @@ enum AlertMessage {
             return "Something Wrong Happend"
         case .inProgress:
             return "In Progress"
+        case .restricted:
+            return "Restricted"
+        case .denied:
+            return "Denied"
+        case .limited:
+            return "Limited"
             
         }
     }
@@ -84,7 +93,12 @@ enum AlertMessage {
             return "Something Wrong Happend"
         case .inProgress:
             return "We Are Woking On It, Please try again Later"
-            
+        case .restricted:
+           return  "You can change photo access permission from seetings"
+        case .limited:
+           return "You can change photo access permission from seetings"
+        case .denied:
+            return "You can change photo access permission from seetings"
         }
     }
     
@@ -103,6 +117,12 @@ enum AlertMessage {
         case .inProgress:
             return "Ok"
             
+        case .restricted:
+           return "Ok"
+        case .limited:
+            return "Ok"
+        case .denied:
+            return "Ok"
         }
     }
     
@@ -121,6 +141,12 @@ enum AlertMessage {
         case .inProgress:
             return "Done"
             
+        case .restricted:
+           return  "Settings"
+        case .limited:
+            return  "Settings"
+        case .denied:
+            return  "Settings"
         }
     }
 }

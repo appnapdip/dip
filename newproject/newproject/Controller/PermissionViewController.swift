@@ -9,8 +9,12 @@ import Foundation
 import UIKit
 import Photos
 
-class PerMissionViewController:UIViewController, UIScrollViewDelegate {
+class PerMissionViewController:UIViewController, UIScrollViewDelegate,RemoveAleartView {
+    func pressAction(firstButton: Bool) {
+        self.firstButton = firstButton
+    }
     
+    var firstButton:Bool = false
     
     // MARK: - Properties
     
@@ -99,7 +103,7 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         loadUI()
-        getPermissionOfPhoto()
+      
         
     }
     
@@ -210,6 +214,7 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate {
     @objc func pressForPermission(_ sender: UIButton) {
         switch sender.tag {
         case 0:
+            getPermissionOfPhoto()
             let image = UIImage(systemName: "checkmark")
             sender.setImage(image, for:.normal)
             sender.tintColor = UIColor(hex:"#FFFFFF")
@@ -262,16 +267,52 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate {
 
     func getPermissionOfPhoto() {
         
-        PHPhotoLibrary.requestAuthorization { status in
-            if status == .authorized {
-                let assets = PHAsset.fetchAssets(with:PHAssetMediaType.image, options:nil)
-                assets.enumerateObjects {(object,_,_) in 
-                    print(object)
-                    
+        switch PHPhotoLibrary.authorizationStatus(for: .readWrite) {
+            
+        case .notDetermined:
+            PHPhotoLibrary.requestAuthorization { status in
+                if status == .authorized {
+                   let  assets = PHAsset.fetchAssets(with:PHAssetMediaType.image, options:nil)
+                    assets.enumerateObjects { (object,_,_)  in
+                        print(object)
+                        
+                    }
                 }
             }
+            
+            
+        case .restricted:
+            let restricted = doubleButtonAleart(tittle:AlertMessage.restricted.messageTitle, subTitle: AlertMessage.restricted.messageSubTitle, firstButtonTitle: AlertMessage.restricted.firstButtonTitle, firstButtonBackGrounColor:.clear, secondButtonTitle: AlertMessage.restricted.secondButtonTitle, secondButtonBackGroundColor:.red) {
+                
+            }
+            
+            restricted.delegate = self
+            self.present(restricted, animated: true)
+                
+        case .denied:
+            let denied = doubleButtonAleart(tittle:AlertMessage.denied.messageTitle, subTitle: AlertMessage.denied.messageSubTitle, firstButtonTitle: AlertMessage.denied.firstButtonTitle, firstButtonBackGrounColor:.clear, secondButtonTitle: AlertMessage.denied.secondButtonTitle, secondButtonBackGroundColor:.red) {
+                
+            }
+            
+            denied.delegate = self
+            self.present(denied, animated: true)
+            
+        case .authorized:break
+            
+         
+        case .limited:
+            let limited = doubleButtonAleart(tittle:AlertMessage.limited.messageTitle, subTitle:AlertMessage.limited.messageSubTitle, firstButtonTitle:AlertMessage.limited.firstButtonTitle, firstButtonBackGrounColor:.clear, secondButtonTitle:AlertMessage.limited.secondButtonTitle, secondButtonBackGroundColor:.red) {
+                
+            }
+            
+            limited.delegate = self
+            self.present(limited, animated:true)
+        
+        @unknown default:
+            <#fatalError()#>
         }
         
+       
     }
 
     
