@@ -103,7 +103,7 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate,RemoveAlea
     override func viewDidLoad() {
         super.viewDidLoad()
         loadUI()
-      
+        
         
     }
     
@@ -155,6 +155,8 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate,RemoveAlea
         ///crossButton
         view.addSubview(crossButton)
         crossButton.anchorView(top: view.topAnchor, right:view.rightAnchor, paddingTop: .init(h: 50), width: .init(w:64), height: .init(h:64))
+        
+        
         
         // Loops
         
@@ -214,15 +216,7 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate,RemoveAlea
     @objc func pressForPermission(_ sender: UIButton) {
         switch sender.tag {
         case 0:
-            getPermissionOfPhoto()
-            let image = UIImage(systemName: "checkmark")
-            sender.setImage(image, for:.normal)
-            sender.tintColor = UIColor(hex:"#FFFFFF")
-            sender.setTitleColor(.clear, for:.normal)
-            sender.imageEdgeInsets = .init(top:0, left:16, bottom: 0, right: 0)
-            sender.backgroundColor = .orange
-            sender.layer.borderWidth = 0
-            
+            getPermissionOfPhoto(sender:sender)
             
         case 1:
             sender.setImage(UIImage(systemName:"checkmark"), for:.normal)
@@ -254,69 +248,85 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate,RemoveAlea
             sender.setImage(UIImage(systemName:"checkmark"), for:.normal)
             sender.tintColor = UIColor(hex:"#FFFFFF")
             sender.setTitleColor(.clear, for:.normal)
-            sender.imageEdgeInsets = .init(top:0, left:16, bottom: 0, right: 0)
-            sender.backgroundColor = .orange
-            sender.layer.borderWidth = 0
             
         }
-    }
-    
-    
-    
-    // create func to getPermissionOfPhoto() of photo from photoLibrary
-
-    func getPermissionOfPhoto() {
         
-        switch PHPhotoLibrary.authorizationStatus(for: .readWrite) {
+        // create func to getPermissionOfPhoto() of photo from photoLibrary
+        
+        func getPermissionOfPhoto(sender:UIButton) {
             
-        case .notDetermined:
-            PHPhotoLibrary.requestAuthorization { status in
-                if status == .authorized {
-                   let  assets = PHAsset.fetchAssets(with:PHAssetMediaType.image, options:nil)
-                    assets.enumerateObjects { (object,_,_)  in
-                        print(object)
-                        
+            switch PHPhotoLibrary.authorizationStatus(for: .readWrite) {
+                
+            case .notDetermined:
+                PHPhotoLibrary.requestAuthorization { status in
+                    DispatchQueue.main.async {
+                        if status == .authorized {
+                            sender.setImage(UIImage(systemName:"checkmark"), for:.normal)
+                            sender.tintColor = UIColor(hex:"#FFFFFF")
+                            sender.setTitleColor(.clear, for:.normal)
+                            sender.imageEdgeInsets = .init(top:0, left:16, bottom: 0, right: 0)
+                            sender.backgroundColor = .orange
+                            sender.layer.borderWidth = 0
+                        }
                     }
                 }
+                
+                
+            case .restricted:
+                let restricted = doubleButtonAleart(tittle:AlertMessage.restricted.messageTitle, subTitle: AlertMessage.restricted.messageSubTitle, firstButtonTitle: AlertMessage.restricted.firstButtonTitle, firstButtonBackGrounColor:.clear, secondButtonTitle: AlertMessage.restricted.secondButtonTitle, secondButtonBackGroundColor:.red) {
+                    gotoSettings()
+                    
+                }
+                
+                restricted.delegate = self
+                self.present(restricted, animated: true)
+                
+            case .denied:
+                let denied = doubleButtonAleart(tittle:AlertMessage.denied.messageTitle, subTitle: AlertMessage.denied.messageSubTitle, firstButtonTitle: AlertMessage.denied.firstButtonTitle, firstButtonBackGrounColor:.clear, secondButtonTitle: AlertMessage.denied.secondButtonTitle, secondButtonBackGroundColor:.red) {
+                    gotoSettings()
+                    
+                }
+                
+                denied.delegate = self
+                self.present(denied, animated: true)
+                
+            case .authorized:
+                
+                let authrized = doubleButtonAleart(tittle:AlertMessage.authorized.messageTitle, subTitle:AlertMessage.authorized.messageSubTitle, firstButtonTitle:AlertMessage.authorized.firstButtonTitle, firstButtonBackGrounColor:.clear, secondButtonTitle:AlertMessage.authorized.secondButtonTitle, secondButtonBackGroundColor: .red) {
+                    gotoSettings()
+                }
+                authrized.delegate = self
+                self.present(authrized, animated:true)
+                
+                
+            case .limited:
+                let limited = doubleButtonAleart(tittle:AlertMessage.limited.messageTitle, subTitle:AlertMessage.limited.messageSubTitle, firstButtonTitle:AlertMessage.limited.firstButtonTitle, firstButtonBackGrounColor:.clear, secondButtonTitle:AlertMessage.limited.secondButtonTitle, secondButtonBackGroundColor:.red) {
+                    gotoSettings()
+                }
+                
+                limited.delegate = self
+                self.present(limited, animated:true)
+                
+            @unknown default:
+                print("default")
             }
             
             
-        case .restricted:
-            let restricted = doubleButtonAleart(tittle:AlertMessage.restricted.messageTitle, subTitle: AlertMessage.restricted.messageSubTitle, firstButtonTitle: AlertMessage.restricted.firstButtonTitle, firstButtonBackGrounColor:.clear, secondButtonTitle: AlertMessage.restricted.secondButtonTitle, secondButtonBackGroundColor:.red) {
-                
-            }
-            
-            restricted.delegate = self
-            self.present(restricted, animated: true)
-                
-        case .denied:
-            let denied = doubleButtonAleart(tittle:AlertMessage.denied.messageTitle, subTitle: AlertMessage.denied.messageSubTitle, firstButtonTitle: AlertMessage.denied.firstButtonTitle, firstButtonBackGrounColor:.clear, secondButtonTitle: AlertMessage.denied.secondButtonTitle, secondButtonBackGroundColor:.red) {
-                
-            }
-            
-            denied.delegate = self
-            self.present(denied, animated: true)
-            
-        case .authorized:break
-            
-         
-        case .limited:
-            let limited = doubleButtonAleart(tittle:AlertMessage.limited.messageTitle, subTitle:AlertMessage.limited.messageSubTitle, firstButtonTitle:AlertMessage.limited.firstButtonTitle, firstButtonBackGrounColor:.clear, secondButtonTitle:AlertMessage.limited.secondButtonTitle, secondButtonBackGroundColor:.red) {
-                
-            }
-            
-            limited.delegate = self
-            self.present(limited, animated:true)
-        
-        @unknown default:
-            print("default")
         }
         
-       
+        
+        // create function for gotoSettings()
+        func gotoSettings() {
+            if let url = URL(string:UIApplication.openSettingsURLString) {
+                if UIApplication.shared.canOpenURL(url) {
+                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                }
+            }
+        }
     }
-
-    
-    
-    
 }
+
+
+// create func for gotoSettings
+
 

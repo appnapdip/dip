@@ -53,6 +53,7 @@ enum AlertMessage {
     case restricted
     case limited
     case denied
+    case authorized
     
     
     var messageTitle:String {
@@ -75,6 +76,8 @@ enum AlertMessage {
             return "Denied"
         case .limited:
             return "Limited"
+        case .authorized:
+           return  "Authorized"
             
         }
     }
@@ -94,11 +97,13 @@ enum AlertMessage {
         case .inProgress:
             return "We Are Woking On It, Please try again Later"
         case .restricted:
-           return  "You can change photo access permission from seetings"
+           return  "You can change photo access permission from settings"
         case .limited:
-           return "You can change photo access permission from seetings"
+           return "You can change photo access permission from settings"
         case .denied:
-            return "You can change photo access permission from seetings"
+            return "You can change photo access permission from settings"
+        case .authorized:
+            return "You can change photo access permission from settings"
         }
     }
     
@@ -123,6 +128,8 @@ enum AlertMessage {
             return "Ok"
         case .denied:
             return "Ok"
+        case .authorized:
+            return "Ok"
         }
     }
     
@@ -146,6 +153,8 @@ enum AlertMessage {
         case .limited:
             return  "Settings"
         case .denied:
+            return  "Settings"
+        case .authorized:
             return  "Settings"
         }
     }
