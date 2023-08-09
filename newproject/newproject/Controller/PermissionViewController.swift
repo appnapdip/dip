@@ -8,13 +8,14 @@
 import Foundation
 import UIKit
 import Photos
+import CoreLocation
 
 class PerMissionViewController:UIViewController, UIScrollViewDelegate,RemoveAleartView {
     func pressAction(firstButton: Bool) {
         self.firstButton = firstButton
     }
     
-    var firstButton:Bool = false
+    var firstButton:Bool = true
     
     // MARK: - Properties
     
@@ -103,7 +104,7 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate,RemoveAlea
     override func viewDidLoad() {
         super.viewDidLoad()
         loadUI()
-        
+        let locationManager =  CLLocationManager()
         
     }
     
@@ -219,12 +220,7 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate,RemoveAlea
             getPermissionOfPhoto(sender:sender)
             
         case 1:
-            sender.setImage(UIImage(systemName:"checkmark"), for:.normal)
-            sender.tintColor = UIColor(hex:"#FFFFFF")
-            sender.setTitleColor(.clear, for:.normal)
-            sender.imageEdgeInsets = .init(top:0, left:16, bottom: 0, right: 0)
-            sender.backgroundColor = .orange
-            sender.layer.borderWidth = 0
+           getaccessDeviceLocation(sender:sender)
             
             
         case 2:
@@ -273,39 +269,17 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate,RemoveAlea
                 
                 
             case .restricted:
-                let restricted = doubleButtonAleart(tittle:AlertMessage.restricted.messageTitle, subTitle: AlertMessage.restricted.messageSubTitle, firstButtonTitle: AlertMessage.restricted.firstButtonTitle, firstButtonBackGrounColor:.clear, secondButtonTitle: AlertMessage.restricted.secondButtonTitle, secondButtonBackGroundColor:.red) {
-                    gotoSettings()
-                    
-                }
-                
-                restricted.delegate = self
-                self.present(restricted, animated: true)
+                showDoubleButton(messageTitle:AlertMessage.restricted.messageTitle)
                 
             case .denied:
-                let denied = doubleButtonAleart(tittle:AlertMessage.denied.messageTitle, subTitle: AlertMessage.denied.messageSubTitle, firstButtonTitle: AlertMessage.denied.firstButtonTitle, firstButtonBackGrounColor:.clear, secondButtonTitle: AlertMessage.denied.secondButtonTitle, secondButtonBackGroundColor:.red) {
-                    gotoSettings()
-                    
-                }
-                
-                denied.delegate = self
-                self.present(denied, animated: true)
-                
-            case .authorized:
-                
-                let authrized = doubleButtonAleart(tittle:AlertMessage.authorized.messageTitle, subTitle:AlertMessage.authorized.messageSubTitle, firstButtonTitle:AlertMessage.authorized.firstButtonTitle, firstButtonBackGrounColor:.clear, secondButtonTitle:AlertMessage.authorized.secondButtonTitle, secondButtonBackGroundColor: .red) {
-                    gotoSettings()
-                }
-                authrized.delegate = self
-                self.present(authrized, animated:true)
+                showDoubleButton(messageTitle:AlertMessage.denied.messageTitle)
+
+          case .authorized:
+                showDoubleButton(messageTitle:AlertMessage.authorized.messageTitle)
                 
                 
             case .limited:
-                let limited = doubleButtonAleart(tittle:AlertMessage.limited.messageTitle, subTitle:AlertMessage.limited.messageSubTitle, firstButtonTitle:AlertMessage.limited.firstButtonTitle, firstButtonBackGrounColor:.clear, secondButtonTitle:AlertMessage.limited.secondButtonTitle, secondButtonBackGroundColor:.red) {
-                    gotoSettings()
-                }
-                
-                limited.delegate = self
-                self.present(limited, animated:true)
+                showDoubleButton(messageTitle:AlertMessage.limited.messageTitle)
                 
             @unknown default:
                 print("default")
@@ -322,6 +296,50 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate,RemoveAlea
                     UIApplication.shared.open(url, options: [:], completionHandler: nil)
                 }
             }
+        }
+        
+        func getaccessDeviceLocation(sender:UIButton) {
+            let manager = CLLocationManager()
+            let locationManager =  CLLocationManager()
+            switch manager.authorizationStatus {
+            case .notDetermined:
+                locationManager.requestAlwaysAuthorization()
+                locationManager.requestWhenInUseAuthorization()
+            case .restricted:showDoubleButton(messageTitle:AlertMessage.restricted.messageTitle)
+            case .denied:showDoubleButton(messageTitle:AlertMessage.denied.messageTitle)
+            case .authorizedAlways:
+                sender.setImage(UIImage(systemName:"checkmark"), for:.normal)
+                sender.tintColor = UIColor(hex:"#FFFFFF")
+                sender.setTitleColor(.clear, for:.normal)
+                sender.imageEdgeInsets = .init(top:0, left:16, bottom: 0, right: 0)
+                sender.backgroundColor = .orange
+                sender.layer.borderWidth = 0
+                
+            case .authorizedWhenInUse:
+                sender.setImage(UIImage(systemName:"checkmark"), for:.normal)
+                sender.tintColor = UIColor(hex:"#FFFFFF")
+                sender.setTitleColor(.clear, for:.normal)
+                sender.imageEdgeInsets = .init(top:0, left:16, bottom: 0, right: 0)
+                sender.backgroundColor = .orange
+                sender.layer.borderWidth = 0
+                
+                
+            default:
+                print("default")
+            }
+        }
+        
+        func showDoubleButton(messageTitle:String) {
+            
+            let limited = doubleButtonAleart(subTitle:AlertMessage.limited.messageSubTitle, firstButtonTitle:AlertMessage.limited.firstButtonTitle, firstButtonBackGrounColor:.clear, secondButtonTitle:AlertMessage.limited.secondButtonTitle, secondButtonBackGroundColor:.red) {
+                if self.firstButton == false {
+                    gotoSettings()
+                }
+            }
+            
+            limited.delegate = self
+            self.present(limited, animated:true)
+            
         }
     }
 }
