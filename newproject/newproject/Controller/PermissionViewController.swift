@@ -15,7 +15,6 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate,RemoveAlea
         self.firstButton = firstButton
     }
     
-    let locationManager: CLLocationManager? = CLLocationManager()
     var firstButton:Bool = true
     
     // MARK: - Properties
@@ -105,9 +104,6 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate,RemoveAlea
     override func viewDidLoad() {
         super.viewDidLoad()
         loadUI()
-        locationManager?.delegate = self
-        locationManager?.requestWhenInUseAuthorization()
-        locationManager?.requestAlwaysAuthorization()
     }
     
     // viewDidLayoutSubviews()
@@ -222,7 +218,7 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate,RemoveAlea
             getPermissionOfPhoto(sender:sender)
             
         case 1:
-            getLoacationAccess(sender:sender)
+            getLoacationAccess(sender:sender, manager: CLLocationManager())
             
             
         case 2:
@@ -300,9 +296,22 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate,RemoveAlea
             }
         }
         
-        
-        func getLoacationAccess(sender:UIButton) {
-            
+        func getLoacationAccess(sender:UIButton, manager: CLLocationManager) {
+            DispatchQueue.global().async {
+                if CLLocationManager.locationServicesEnabled(){
+                    DispatchQueue.main.async {
+                        if CLLocationManager().authorizationStatus == .notDetermined {
+                            manager.delegate = self
+                            manager.requestWhenInUseAuthorization()
+                            manager.requestAlwaysAuthorization()
+                        }else{
+                            showDoubleButton(messageTitle: AlertMessage.denied.messageTitle)
+                        }
+                    }
+                }else{
+                    showDoubleButton(messageTitle: AlertMessage.denied.messageTitle)
+                }
+            }
         }
         
         func showDoubleButton(messageTitle:String) {
@@ -319,47 +328,24 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate,RemoveAlea
         }
         
         func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-            if status == .authorizedAlways {
-                if CLLocationManager.isMonitoringAvailable(for: CLBeaconRegion.self) {
-                    if CLLocationManager.isRangingAvailable() {
-                        // do stuff
-                    }
+            DispatchQueue.main.async {
+                switch status {
+                case .notDetermined:
+                    print("notDetermined")
+                case .restricted:
+                    print("restricted")
+                case .denied:
+                    print("denied")
+                case .authorizedAlways:
+                    print("authorizedAlways")
+                case .authorizedWhenInUse:
+                    print("authorizedWhenInUse")
+                case .authorized:
+                    print("authorized")
+                @unknown default:
+                    fatalError()
                 }
             }
-            //            switch status {
-            //            case .notDetermined:
-            //                manager.requestAlwaysAuthorization()
-            //                manager.requestAlwaysAuthorization()
-            //
-            //            case .authorizedWhenInUse:
-            //                break
-            //                //                sender.setImage(UIImage(systemName:"checkmark"), for:.normal)
-            //                //                sender.tintColor = UIColor(hex:"#FFFFFF")
-            //                //                sender.setTitleColor(.clear, for:.normal)
-            //                //                sender.imageEdgeInsets = .init(top:0, left:16, bottom: 0, right: 0)
-            //                //                sender.backgroundColor = .orange
-            //                //                sender.layer.borderWidth = 0
-            //
-            //
-            //            case .authorizedAlways:
-            //                break
-            //                //                sender.setImage(UIImage(systemName:"checkmark"), for:.normal)
-            //                //                sender.tintColor = UIColor(hex:"#FFFFFF")
-            //                //                sender.setTitleColor(.clear, for:.normal)
-            //                //                sender.imageEdgeInsets = .init(top:0, left:16, bottom: 0, right: 0)
-            //                //                sender.backgroundColor = .orange
-            //                //                sender.layer.borderWidth = 0
-            //
-            //
-            //            case .restricted:
-            //                showDoubleButton(messageTitle:AlertMessage.restricted.messageTitle)
-            //
-            //            case .denied:
-            //                showDoubleButton(messageTitle:AlertMessage.restricted.messageTitle)
-            //
-            //            @unknown default:
-            //                print("Default")
-            //            }
         }
     }
 }
