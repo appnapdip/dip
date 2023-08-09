@@ -28,5 +28,7 @@
 			</array>
 		</dict>
 	</dict>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>This app needs permissions to access photo library</string>
 </dict>
 </plist>

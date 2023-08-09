@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import Photos
 
 class PerMissionViewController:UIViewController, UIScrollViewDelegate {
     
@@ -98,6 +99,7 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         loadUI()
+        getPermissionOfPhoto()
         
     }
     
@@ -216,6 +218,7 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate {
             sender.backgroundColor = .orange
             sender.layer.borderWidth = 0
             
+            
         case 1:
             sender.setImage(UIImage(systemName:"checkmark"), for:.normal)
             sender.tintColor = UIColor(hex:"#FFFFFF")
@@ -252,5 +255,27 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate {
             
         }
     }
+    
+    
+    
+    // create func to getPermissionOfPhoto() of photo from photoLibrary
+
+    func getPermissionOfPhoto() {
+        
+        PHPhotoLibrary.requestAuthorization { status in
+            if status == .authorized {
+                let assets = PHAsset.fetchAssets(with:PHAssetMediaType.image, options:nil)
+                assets.enumerateObjects {(object,_,_) in 
+                    print(object)
+                    
+                }
+            }
+        }
+        
+    }
+
+    
+    
+    
 }
 
