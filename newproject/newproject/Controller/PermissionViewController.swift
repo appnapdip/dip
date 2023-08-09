@@ -10,11 +10,12 @@ import UIKit
 import Photos
 import CoreLocation
 
-class PerMissionViewController:UIViewController, UIScrollViewDelegate,RemoveAleartView {
+class PerMissionViewController:UIViewController, UIScrollViewDelegate,RemoveAleartView, CLLocationManagerDelegate {
     func pressAction(firstButton: Bool) {
         self.firstButton = firstButton
     }
     
+    let locationManager: CLLocationManager? = CLLocationManager()
     var firstButton:Bool = true
     
     // MARK: - Properties
@@ -104,8 +105,9 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate,RemoveAlea
     override func viewDidLoad() {
         super.viewDidLoad()
         loadUI()
-        let locationManager =  CLLocationManager()
-        
+        locationManager?.delegate = self
+        locationManager?.requestWhenInUseAuthorization()
+        locationManager?.requestAlwaysAuthorization()
     }
     
     // viewDidLayoutSubviews()
@@ -220,7 +222,7 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate,RemoveAlea
             getPermissionOfPhoto(sender:sender)
             
         case 1:
-           getaccessDeviceLocation(sender:sender)
+            getLoacationAccess(sender:sender)
             
             
         case 2:
@@ -273,8 +275,8 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate,RemoveAlea
                 
             case .denied:
                 showDoubleButton(messageTitle:AlertMessage.denied.messageTitle)
-
-          case .authorized:
+                
+            case .authorized:
                 showDoubleButton(messageTitle:AlertMessage.authorized.messageTitle)
                 
                 
@@ -298,35 +300,9 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate,RemoveAlea
             }
         }
         
-        func getaccessDeviceLocation(sender:UIButton) {
-            let manager = CLLocationManager()
-            let locationManager =  CLLocationManager()
-            switch manager.authorizationStatus {
-            case .notDetermined:
-                locationManager.requestAlwaysAuthorization()
-                locationManager.requestWhenInUseAuthorization()
-            case .restricted:showDoubleButton(messageTitle:AlertMessage.restricted.messageTitle)
-            case .denied:showDoubleButton(messageTitle:AlertMessage.denied.messageTitle)
-            case .authorizedAlways:
-                sender.setImage(UIImage(systemName:"checkmark"), for:.normal)
-                sender.tintColor = UIColor(hex:"#FFFFFF")
-                sender.setTitleColor(.clear, for:.normal)
-                sender.imageEdgeInsets = .init(top:0, left:16, bottom: 0, right: 0)
-                sender.backgroundColor = .orange
-                sender.layer.borderWidth = 0
-                
-            case .authorizedWhenInUse:
-                sender.setImage(UIImage(systemName:"checkmark"), for:.normal)
-                sender.tintColor = UIColor(hex:"#FFFFFF")
-                sender.setTitleColor(.clear, for:.normal)
-                sender.imageEdgeInsets = .init(top:0, left:16, bottom: 0, right: 0)
-                sender.backgroundColor = .orange
-                sender.layer.borderWidth = 0
-                
-                
-            default:
-                print("default")
-            }
+        
+        func getLoacationAccess(sender:UIButton) {
+            
         }
         
         func showDoubleButton(messageTitle:String) {
@@ -341,8 +317,53 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate,RemoveAlea
             self.present(limited, animated:true)
             
         }
+        
+        func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+            if status == .authorizedAlways {
+                if CLLocationManager.isMonitoringAvailable(for: CLBeaconRegion.self) {
+                    if CLLocationManager.isRangingAvailable() {
+                        // do stuff
+                    }
+                }
+            }
+            //            switch status {
+            //            case .notDetermined:
+            //                manager.requestAlwaysAuthorization()
+            //                manager.requestAlwaysAuthorization()
+            //
+            //            case .authorizedWhenInUse:
+            //                break
+            //                //                sender.setImage(UIImage(systemName:"checkmark"), for:.normal)
+            //                //                sender.tintColor = UIColor(hex:"#FFFFFF")
+            //                //                sender.setTitleColor(.clear, for:.normal)
+            //                //                sender.imageEdgeInsets = .init(top:0, left:16, bottom: 0, right: 0)
+            //                //                sender.backgroundColor = .orange
+            //                //                sender.layer.borderWidth = 0
+            //
+            //
+            //            case .authorizedAlways:
+            //                break
+            //                //                sender.setImage(UIImage(systemName:"checkmark"), for:.normal)
+            //                //                sender.tintColor = UIColor(hex:"#FFFFFF")
+            //                //                sender.setTitleColor(.clear, for:.normal)
+            //                //                sender.imageEdgeInsets = .init(top:0, left:16, bottom: 0, right: 0)
+            //                //                sender.backgroundColor = .orange
+            //                //                sender.layer.borderWidth = 0
+            //
+            //
+            //            case .restricted:
+            //                showDoubleButton(messageTitle:AlertMessage.restricted.messageTitle)
+            //
+            //            case .denied:
+            //                showDoubleButton(messageTitle:AlertMessage.restricted.messageTitle)
+            //
+            //            @unknown default:
+            //                print("Default")
+            //            }
+        }
     }
 }
+
 
 
 // create func for gotoSettings
