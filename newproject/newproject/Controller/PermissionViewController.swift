@@ -104,6 +104,7 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate,RemoveAlea
     lazy var crossButton:UIButton = {
         let thisButton = UIButton().button(backgroundImage:UIImage(systemName:"multiply"))
         thisButton.tintColor = .black
+        thisButton.addTarget(self, action:#selector(presscross), for:.touchUpInside)
         return thisButton
         
     }()
@@ -233,6 +234,14 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate,RemoveAlea
         navigationController?.popViewController(animated:true)
         
     }
+    
+    @objc func presscross() {
+        navigationController?.popViewController(animated:true)
+        
+    }
+    
+    
+    
     
     // pressForPermission
     
