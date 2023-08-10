@@ -414,21 +414,20 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate,RemoveAlea
             switch CMMotionActivityManager.authorizationStatus() {
             case .notDetermined:
                 self.manager.queryActivityStarting(from:today, to:today, to:OperationQueue.main, withHandler: {(activities: [CMMotionActivity]?, error: Error?) -> () in
-                    if let error = error {
-                        let errorCode = (error as NSError).code
+                    if error != nil {
+                        let errorCode = (error! as NSError).code
                         if errorCode == Int(CMErrorMotionActivityNotAuthorized.rawValue) {
                             print("NotAuthorized")
                         }
-                        else {
-                            DispatchQueue.main.async {
-                                sender.setImage(UIImage(systemName:"checkmark"), for:.normal)
-                                sender.tintColor = UIColor(hex:"#FFFFFF")
-                                sender.setTitleColor(.clear, for:.normal)
-                                sender.imageEdgeInsets = .init(top:0, left:16, bottom: 0, right: 0)
-                                sender.backgroundColor = .orange
-                                sender.layer.borderWidth = 0
-                            }
-                            
+                    }
+                    else {
+                        DispatchQueue.main.async {
+                            sender.setImage(UIImage(systemName:"checkmark"), for:.normal)
+                            sender.tintColor = UIColor(hex:"#FFFFFF")
+                            sender.setTitleColor(.clear, for:.normal)
+                            sender.imageEdgeInsets = .init(top:0, left:16, bottom: 0, right: 0)
+                            sender.backgroundColor = .orange
+                            sender.layer.borderWidth = 0
                         }
                     }
                     self.manager.stopActivityUpdates()
