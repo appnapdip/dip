@@ -10,6 +10,7 @@ import UIKit
 import Photos
 import CoreLocation
 import EventKit
+import UserNotifications
 
 class PerMissionViewController:UIViewController, UIScrollViewDelegate,RemoveAleartView, CLLocationManagerDelegate {
     func pressAction(firstButton: Bool) {
@@ -19,7 +20,9 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate,RemoveAlea
     var firstButton:Bool = true
     
     let eventStore = EKEventStore()
-  
+    
+    let center = UNUserNotificationCenter.current()
+    
     
     
     // MARK: - Properties
@@ -231,12 +234,13 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate,RemoveAlea
             
             
         case 3:
-            sender.setImage(UIImage(systemName:"checkmark"), for:.normal)
-            sender.tintColor = UIColor(hex:"#FFFFFF")
-            sender.setTitleColor(.clear, for:.normal)
-            sender.imageEdgeInsets = .init(top:0, left:16, bottom: 0, right: 0)
-            sender.backgroundColor = .orange
-            sender.layer.borderWidth = 0
+            //            sender.setImage(UIImage(systemName:"checkmark"), for:.normal)
+            //            sender.tintColor = UIColor(hex:"#FFFFFF")
+            //            sender.setTitleColor(.clear, for:.normal)
+            //            sender.imageEdgeInsets = .init(top:0, left:16, bottom: 0, right: 0)
+            //            sender.backgroundColor = .orange
+            //            sender.layer.borderWidth = 0
+            getNotification(sender:sender)
             
             
         default:
@@ -339,11 +343,12 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate,RemoveAlea
     
     func getaccesfromCalender(sender:UIButton) {
         
-            DispatchQueue.main.async {
-                switch EKEventStore.authorizationStatus(for:.event) {
-                case .notDetermined:
-                    self.eventStore.requestAccess(to:.event) { succes, error in
-                        if succes,error == nil {
+        DispatchQueue.main.async {
+            switch EKEventStore.authorizationStatus(for:.event) {
+            case .notDetermined:
+                self.eventStore.requestAccess(to:.event) { succes, error in
+                    if succes,error == nil {
+                        DispatchQueue.main.async {
                             sender.setImage(UIImage(systemName:"checkmark"), for:.normal)
                             sender.tintColor = UIColor(hex:"#FFFFFF")
                             sender.setTitleColor(.clear, for:.normal)
@@ -352,18 +357,61 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate,RemoveAlea
                             sender.layer.borderWidth = 0
                         }
                     }
+                }
+                
+            case .restricted:
+                self.showDoubleButton(messageTitle:AlertMessage.restricted.messageTitle)
+            case .denied:
+                self.showDoubleButton(messageTitle:AlertMessage.denied.messageTitle)
+            case .authorized:
+                self.showDoubleButton(messageTitle:AlertMessage.authorized.messageTitle)
+            @unknown default:
+                print("Default")
+            }
+        }
+    }
+    
+    
+    func getNotification(sender:UIButton) {
+        center.getNotificationSettings { settings in
+            DispatchQueue.main.async { [self] in
+                switch settings.authorizationStatus {
+                case .notDetermined:
+                    self.center.requestAuthorization { success, error in
+                        if success == true && error == nil {
+                            DispatchQueue.main.async {
+                                sender.setImage(UIImage(systemName:"checkmark"), for:.normal)
+                                sender.tintColor = UIColor(hex:"#FFFFFF")
+                                sender.setTitleColor(.clear, for:.normal)
+                                sender.imageEdgeInsets = .init(top:0, left:16, bottom: 0, right: 0)
+                                sender.backgroundColor = .orange
+                                sender.layer.borderWidth = 0
+                            }
+                        }
+                    }
                     
-                case .restricted:
-                    self.showDoubleButton(messageTitle:AlertMessage.restricted.messageTitle)
                 case .denied:
                     self.showDoubleButton(messageTitle:AlertMessage.denied.messageTitle)
+                    
                 case .authorized:
                     self.showDoubleButton(messageTitle:AlertMessage.authorized.messageTitle)
+                case .provisional:
+                    self.showDoubleButton(messageTitle:AlertMessage.restricted.messageTitle)
+                case .ephemeral:
+                    self.showDoubleButton(messageTitle:AlertMessage.denied.messageTitle)
+                    
                 @unknown default:
                     print("Default")
                 }
+                
+                
             }
+            
+            
         }
+        
+    }
+    
     
     
     //        func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
