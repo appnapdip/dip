@@ -17,7 +17,10 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate,RemoveAlea
     }
     
     var firstButton:Bool = true
+    
     let eventStore = EKEventStore()
+  
+    
     
     // MARK: - Properties
     
@@ -224,13 +227,7 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate,RemoveAlea
             
             
         case 2:
-            //            sender.setImage(UIImage(systemName:"checkmark"), for:.normal)
-            //            sender.tintColor = UIColor(hex:"#FFFFFF")
-            //            sender.setTitleColor(.clear, for:.normal)
-            //            sender.imageEdgeInsets = .init(top:0, left:16, bottom: 0, right: 0)
-            //            sender.backgroundColor = .orange
-            //            sender.layer.borderWidth = 0
-            getaccesfromCalender()
+            getaccesfromCalender(sender:sender)
             
             
         case 3:
@@ -340,26 +337,34 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate,RemoveAlea
         
     }
     
-    func getaccesfromCalender() {
-        switch EKEventStore.authorizationStatus(for:.event) {
-        case .notDetermined:
-            eventStore.requestAccess(to:.event) { succes, error in
-                
-                if succes,error == nil {
+    func getaccesfromCalender(sender:UIButton) {
+        
+            DispatchQueue.main.async {
+                switch EKEventStore.authorizationStatus(for:.event) {
+                case .notDetermined:
+                    self.eventStore.requestAccess(to:.event) { succes, error in
+                        if succes,error == nil {
+                            sender.setImage(UIImage(systemName:"checkmark"), for:.normal)
+                            sender.tintColor = UIColor(hex:"#FFFFFF")
+                            sender.setTitleColor(.clear, for:.normal)
+                            sender.imageEdgeInsets = .init(top:0, left:16, bottom: 0, right: 0)
+                            sender.backgroundColor = .orange
+                            sender.layer.borderWidth = 0
+                        }
+                    }
                     
+                case .restricted:
+                    self.showDoubleButton(messageTitle:AlertMessage.restricted.messageTitle)
+                case .denied:
+                    self.showDoubleButton(messageTitle:AlertMessage.denied.messageTitle)
+                case .authorized:
+                    self.showDoubleButton(messageTitle:AlertMessage.authorized.messageTitle)
+                @unknown default:
+                    print("Default")
                 }
             }
-        case .restricted:
-            break
-        case .denied:
-            break
-        case .authorized:
-            break
-        @unknown default:
-            break
         }
-        
-    }
+    
     
     //        func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
     //            DispatchQueue.main.async {
