@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 import Photos
 import CoreLocation
+import EventKit
 
 class PerMissionViewController:UIViewController, UIScrollViewDelegate,RemoveAleartView, CLLocationManagerDelegate {
     func pressAction(firstButton: Bool) {
@@ -286,16 +287,16 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate,RemoveAlea
             
         }
     }
-        
-        // create function for gotoSettings()
-        func gotoSettings() {
-            if let url = URL(string:UIApplication.openSettingsURLString) {
-                if UIApplication.shared.canOpenURL(url) {
-                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
-                }
+    
+    // create function for gotoSettings()
+    func gotoSettings() {
+        if let url = URL(string:UIApplication.openSettingsURLString) {
+            if UIApplication.shared.canOpenURL(url) {
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
             }
         }
-        
+    }
+    
     func getLoacationAccess(sender:UIButton, manager: CLLocationManager) {
         DispatchQueue.global().async {
             if CLLocationManager.locationServicesEnabled(){
@@ -322,41 +323,65 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate,RemoveAlea
         }
         
     }
+    
+    func showDoubleButton(messageTitle:String) {
         
-        func showDoubleButton(messageTitle:String) {
-            
-            let limited = doubleButtonAleart(subTitle:AlertMessage.limited.messageSubTitle, firstButtonTitle:AlertMessage.limited.firstButtonTitle, firstButtonBackGrounColor:.clear, secondButtonTitle:AlertMessage.limited.secondButtonTitle, secondButtonBackGroundColor:.red) { [self] in
-                if self.firstButton == false {
-                    gotoSettings()
-                }
+        let limited = doubleButtonAleart(tittle:messageTitle,subTitle:AlertMessage.limited.messageSubTitle, firstButtonTitle:AlertMessage.limited.firstButtonTitle, firstButtonBackGrounColor:.clear, secondButtonTitle:AlertMessage.limited.secondButtonTitle, secondButtonBackGroundColor:.red) { [self] in
+            if self.firstButton == false {
+                gotoSettings()
             }
-            
-            limited.delegate = self
-            self.present(limited, animated:true)
-            
         }
         
-//        func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-//            DispatchQueue.main.async {
-//                switch status {
-//                case .notDetermined:
-//                    print("notDetermined")
-//                case .restricted:
-//                    print("restricted")
-//                case .denied:
-//                    print("denied")
-//                case .authorizedAlways:
-//                    print("authorizedAlways")
-//                case .authorizedWhenInUse:
-//                    print("authorizedWhenInUse")
-//                case .authorized:
-//                    print("authorized")
-//                @unknown default:
-//                    fatalError()
-//                }
-//            }
-//        }
+        limited.delegate = self
+        self.present(limited, animated:true)
+        
     }
+    
+    func getaccesfromCalender() {
+        let eventStore = EKEventStore()
+        
+        switch EKEventStore.authorizationStatus(for:.event) {
+            
+        case .notDetermined:
+            eventStore.requestAccess(to:.event) { succes, error in
+                
+                if succes,error == nil {
+                    
+                }
+            }
+        case .restricted:
+            break
+        case .denied:
+            break
+        case .authorized:
+            break
+        @unknown default:
+            break
+        }
+        
+    }
+    
+    //        func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+    //            DispatchQueue.main.async {
+    //                switch status {
+    //                case .notDetermined:
+    //                    print("notDetermined")
+    //                case .restricted:
+    //                    print("restricted")
+    //                case .denied:
+    //                    print("denied")
+    //                case .authorizedAlways:
+    //                    print("authorizedAlways")
+    //                case .authorizedWhenInUse:
+    //                    print("authorizedWhenInUse")
+    //                case .authorized:
+    //                    print("authorized")
+    //                @unknown default:
+    //                    fatalError()
+    //                }
+    //            }
+    //        }
+}
 
 
 
