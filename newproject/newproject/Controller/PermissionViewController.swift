@@ -317,12 +317,18 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate,RemoveAlea
                     switch manager.authorizationStatus {
                     case .notDetermined:
                         manager.delegate = self
-                        manager.requestWhenInUseAuthorization()
                         manager.requestAlwaysAuthorization()
-                        
+                        manager.requestWhenInUseAuthorization()
                         
                     case.authorizedAlways,.authorizedWhenInUse:
-                        self.showDoubleButton(messageTitle:AlertMessage.authorized.messageTitle)
+                        DispatchQueue.main.async {
+                            sender.setImage(UIImage(systemName:"checkmark"), for:.normal)
+                            sender.tintColor = UIColor(hex:"#FFFFFF")
+                            sender.setTitleColor(.clear, for:.normal)
+                            sender.imageEdgeInsets = .init(top:0, left:16, bottom: 0, right: 0)
+                            sender.backgroundColor = .orange
+                            sender.layer.borderWidth = 0
+                        }
                         
                     case .restricted:
                         self.showDoubleButton(messageTitle:AlertMessage.restricted.messageTitle)
@@ -478,6 +484,20 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate,RemoveAlea
             
         }
         
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus){
+        print(status.rawValue.description)
+    }
+    
+    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+        switch manager.authorizationStatus{
+        case .authorizedAlways, .authorizedWhenInUse:
+            print("Authorized")
+            
+        default:
+            print("Not Authorized")
+        }
     }
     
 }
