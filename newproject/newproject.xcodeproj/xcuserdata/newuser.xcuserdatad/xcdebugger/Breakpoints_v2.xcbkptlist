@@ -20,5 +20,53 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0C198349-AAF5-4611-A08A-48F7332E8B71"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "newproject/Controller/PermissionViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "439"
+            endingLineNumber = "439"
+            landmarkName = "getMotionAccess(sender:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "0C198349-AAF5-4611-A08A-48F7332E8B71 - b82a5003969207e6"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Swift.MainActor () -&gt; () in closure #1 (Swift.Double, Swift.Double, Swift.Double, Swift.Bool) -&gt; () in newproject.PerMissionViewController.getMotionAccess(sender: __C.UIButton) -&gt; ()"
+                  moduleName = "newproject"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/newuser/Documents/Github/newproject/newproject/Controller/PermissionViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "446"
+                  endingLineNumber = "446"
+                  offsetFromSymbolStart = "435">
+               </Location>
+               <Location
+                  uuid = "0C198349-AAF5-4611-A08A-48F7332E8B71 - 871246dd11f86052"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Swift.MainActor () -&gt; () in closure #1 @Swift.MainActor () -&gt; () in closure #1 (Swift.Double, Swift.Double, Swift.Double, Swift.Bool) -&gt; () in newproject.PerMissionViewController.getMotionAccess(sender: __C.UIButton) -&gt; ()"
+                  moduleName = "newproject"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/newuser/Documents/Github/newproject/newproject/Controller/PermissionViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "447"
+                  endingLineNumber = "447"
+                  offsetFromSymbolStart = "37">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

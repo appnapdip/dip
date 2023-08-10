@@ -28,6 +28,17 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate,RemoveAlea
     let manager = CMMotionActivityManager()
     let today = Date()
     
+    
+    let pedometer = CMPedometer()
+    
+    //MARK: - isPedometerAvailable
+    
+    private var isPedometerAvailable: Bool {
+        return CMPedometer.isPedometerEventTrackingAvailable() && CMPedometer.isDistanceAvailable() && CMPedometer.isStepCountingAvailable()
+    }
+    
+    
+    
     //let center = UNUserNotificationCenter.current()
     
     
@@ -125,6 +136,7 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate,RemoveAlea
     
     override func viewDidLayoutSubviews() {
         showGradient()
+        
     }
     
     // loadUI()
@@ -308,6 +320,7 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate,RemoveAlea
                         manager.requestWhenInUseAuthorization()
                         manager.requestAlwaysAuthorization()
                         
+                        
                     case.authorizedAlways,.authorizedWhenInUse:
                         self.showDoubleButton(messageTitle:AlertMessage.authorized.messageTitle)
                         
@@ -410,42 +423,63 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate,RemoveAlea
     }
     
     func getMotionAccess(sender:UIButton) {
-        DispatchQueue.main.async { [self] in
-            switch CMMotionActivityManager.authorizationStatus() {
-            case .notDetermined:
-                self.manager.queryActivityStarting(from:today, to:today, to:OperationQueue.main, withHandler: {(activities: [CMMotionActivity]?, error: Error?) -> () in
-                    if error != nil {
-                        let errorCode = (error! as NSError).code
-                        if errorCode == Int(CMErrorMotionActivityNotAuthorized.rawValue) {
-                            print("NotAuthorized")
-                        }
+        initializePedometer { (steps, distance, floorClimb ,success) in
+            DispatchQueue.main.async {
+                switch CMPedometer.authorizationStatus() {
+                case .notDetermined:
+                    self.showDoubleButton(messageTitle:"Not Determined")
+                    
+                case .restricted:
+                    self.showDoubleButton(messageTitle:AlertMessage.restricted.messageTitle)
+                    
+                case .denied:
+                    self.showDoubleButton(messageTitle:AlertMessage.denied.messageTitle)
+                    
+                case .authorized:
+                    DispatchQueue.main.async {
+                        sender.setImage(UIImage(systemName:"checkmark"), for:.normal)
+                        sender.tintColor = UIColor(hex:"#FFFFFF")
+                        sender.setTitleColor(.clear, for:.normal)
+                        sender.imageEdgeInsets = .init(top:0, left:16, bottom: 0, right: 0)
+                        sender.backgroundColor = .orange
+                        sender.layer.borderWidth = 0
                     }
-                    else {
-                        DispatchQueue.main.async {
-                            sender.setImage(UIImage(systemName:"checkmark"), for:.normal)
-                            sender.tintColor = UIColor(hex:"#FFFFFF")
-                            sender.setTitleColor(.clear, for:.normal)
-                            sender.imageEdgeInsets = .init(top:0, left:16, bottom: 0, right: 0)
-                            sender.backgroundColor = .orange
-                            sender.layer.borderWidth = 0
-                        }
-                    }
-                    self.manager.stopActivityUpdates()
-                })
+                @unknown default:
+                    fatalError()
+                }
                 
-            case .restricted:
-                self.showDoubleButton(messageTitle:AlertMessage.restricted.messageTitle)
-            case .denied:
-                self.showDoubleButton(messageTitle:AlertMessage.denied.messageTitle)
-                
-            case .authorized:
-                self.showDoubleButton(messageTitle:AlertMessage.authorized.messageTitle)
-                
-            default:
-                print("default")
             }
         }
     }
+    
+    
+    
+    //MARK: - initializePedometer
+    public func initializePedometer(_ completionHandler: @escaping (Double, Double, Double, Bool) -> Void ){
+        
+        var stepCount: Double = 0
+        var distance: Double = 0
+        var floorClimb: Double = 0
+        
+        if isPedometerAvailable {
+            let startDate = Calendar.current.startOfDay(for: Date())
+            let endData = Date()
+            
+            pedometer.queryPedometerData(from: startDate, to: endData, withHandler: {data,error in
+                guard let _ = data , error == nil else {return}
+                stepCount = Double((data?.numberOfSteps.intValue)!)
+                
+                guard let pedometerDistance = data?.distance else { return }
+                let distanceInMeters = Measurement(value: pedometerDistance.doubleValue, unit: UnitLength.meters)
+                distance =  distanceInMeters.converted(to: .kilometers).value
+                floorClimb = Double((data?.floorsAscended!.intValue)!)
+                completionHandler(stepCount, distance, floorClimb, true)
+            })
+            
+        }
+        
+    }
+    
 }
 
 
