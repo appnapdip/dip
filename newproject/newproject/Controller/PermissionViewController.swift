@@ -285,7 +285,7 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate,RemoveAlea
             
             
         }
-        
+    }
         
         // create function for gotoSettings()
         func gotoSettings() {
@@ -296,27 +296,36 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate,RemoveAlea
             }
         }
         
-        func getLoacationAccess(sender:UIButton, manager: CLLocationManager) {
-            DispatchQueue.global().async {
-                if CLLocationManager.locationServicesEnabled(){
-                    DispatchQueue.main.async {
-                        if CLLocationManager().authorizationStatus == .notDetermined {
-                            manager.delegate = self
-                            manager.requestWhenInUseAuthorization()
-                            manager.requestAlwaysAuthorization()
-                        }else{
-                            showDoubleButton(messageTitle: AlertMessage.denied.messageTitle)
-                        }
+    func getLoacationAccess(sender:UIButton, manager: CLLocationManager) {
+        DispatchQueue.global().async {
+            if CLLocationManager.locationServicesEnabled(){
+                DispatchQueue.main.async {
+                    switch manager.authorizationStatus {
+                    case .notDetermined:
+                        manager.delegate = self
+                        manager.requestWhenInUseAuthorization()
+                        manager.requestAlwaysAuthorization()
+                        
+                    case.authorizedAlways,.authorizedWhenInUse:
+                        self.showDoubleButton(messageTitle:AlertMessage.authorized.messageTitle)
+                        
+                    case .restricted:
+                        self.showDoubleButton(messageTitle:AlertMessage.restricted.messageTitle)
+                    case .denied:
+                        self.showDoubleButton(messageTitle:AlertMessage.denied.messageTitle)
+                    @unknown default:
+                        print("default")
                     }
-                }else{
-                    showDoubleButton(messageTitle: AlertMessage.denied.messageTitle)
+                    
                 }
             }
         }
         
+    }
+        
         func showDoubleButton(messageTitle:String) {
             
-            let limited = doubleButtonAleart(subTitle:AlertMessage.limited.messageSubTitle, firstButtonTitle:AlertMessage.limited.firstButtonTitle, firstButtonBackGrounColor:.clear, secondButtonTitle:AlertMessage.limited.secondButtonTitle, secondButtonBackGroundColor:.red) {
+            let limited = doubleButtonAleart(subTitle:AlertMessage.limited.messageSubTitle, firstButtonTitle:AlertMessage.limited.firstButtonTitle, firstButtonBackGrounColor:.clear, secondButtonTitle:AlertMessage.limited.secondButtonTitle, secondButtonBackGroundColor:.red) { [self] in
                 if self.firstButton == false {
                     gotoSettings()
                 }
@@ -327,28 +336,28 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate,RemoveAlea
             
         }
         
-        func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-            DispatchQueue.main.async {
-                switch status {
-                case .notDetermined:
-                    print("notDetermined")
-                case .restricted:
-                    print("restricted")
-                case .denied:
-                    print("denied")
-                case .authorizedAlways:
-                    print("authorizedAlways")
-                case .authorizedWhenInUse:
-                    print("authorizedWhenInUse")
-                case .authorized:
-                    print("authorized")
-                @unknown default:
-                    fatalError()
-                }
-            }
-        }
+//        func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+//            DispatchQueue.main.async {
+//                switch status {
+//                case .notDetermined:
+//                    print("notDetermined")
+//                case .restricted:
+//                    print("restricted")
+//                case .denied:
+//                    print("denied")
+//                case .authorizedAlways:
+//                    print("authorizedAlways")
+//                case .authorizedWhenInUse:
+//                    print("authorizedWhenInUse")
+//                case .authorized:
+//                    print("authorized")
+//                @unknown default:
+//                    fatalError()
+//                }
+//            }
+//        }
     }
-}
+
 
 
 
