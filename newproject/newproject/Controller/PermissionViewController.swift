@@ -17,6 +17,7 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate,RemoveAlea
     }
     
     var firstButton:Bool = true
+    let eventStore = EKEventStore()
     
     // MARK: - Properties
     
@@ -223,12 +224,14 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate,RemoveAlea
             
             
         case 2:
-            sender.setImage(UIImage(systemName:"checkmark"), for:.normal)
-            sender.tintColor = UIColor(hex:"#FFFFFF")
-            sender.setTitleColor(.clear, for:.normal)
-            sender.imageEdgeInsets = .init(top:0, left:16, bottom: 0, right: 0)
-            sender.backgroundColor = .orange
-            sender.layer.borderWidth = 0
+            //            sender.setImage(UIImage(systemName:"checkmark"), for:.normal)
+            //            sender.tintColor = UIColor(hex:"#FFFFFF")
+            //            sender.setTitleColor(.clear, for:.normal)
+            //            sender.imageEdgeInsets = .init(top:0, left:16, bottom: 0, right: 0)
+            //            sender.backgroundColor = .orange
+            //            sender.layer.borderWidth = 0
+            getaccesfromCalender()
+            
             
         case 3:
             sender.setImage(UIImage(systemName:"checkmark"), for:.normal)
@@ -338,10 +341,7 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate,RemoveAlea
     }
     
     func getaccesfromCalender() {
-        let eventStore = EKEventStore()
-        
         switch EKEventStore.authorizationStatus(for:.event) {
-            
         case .notDetermined:
             eventStore.requestAccess(to:.event) { succes, error in
                 
