@@ -11,6 +11,7 @@ import Photos
 import CoreLocation
 import EventKit
 import UserNotifications
+import CoreMotion
 
 class PerMissionViewController:UIViewController, UIScrollViewDelegate,RemoveAleartView, CLLocationManagerDelegate {
     func pressAction(firstButton: Bool) {
@@ -21,7 +22,10 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate,RemoveAlea
     
     let eventStore = EKEventStore()
     
-    let center = UNUserNotificationCenter.current()
+    let manager = CMMotionActivityManager()
+    let today = Date()
+    
+    //let center = UNUserNotificationCenter.current()
     
     
     
@@ -234,19 +238,12 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate,RemoveAlea
             
             
         case 3:
-            //            sender.setImage(UIImage(systemName:"checkmark"), for:.normal)
-            //            sender.tintColor = UIColor(hex:"#FFFFFF")
-            //            sender.setTitleColor(.clear, for:.normal)
-            //            sender.imageEdgeInsets = .init(top:0, left:16, bottom: 0, right: 0)
-            //            sender.backgroundColor = .orange
-            //            sender.layer.borderWidth = 0
+            
             getNotification(sender:sender)
             
             
         default:
-            sender.setImage(UIImage(systemName:"checkmark"), for:.normal)
-            sender.tintColor = UIColor(hex:"#FFFFFF")
-            sender.setTitleColor(.clear, for:.normal)
+            getMotionAccess(sender:sender)
             
         }
         
@@ -373,12 +370,12 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate,RemoveAlea
     
     
     func getNotification(sender:UIButton) {
-        center.getNotificationSettings { settings in
+        UNUserNotificationCenter.current().getNotificationSettings { settings in
             DispatchQueue.main.async { [self] in
                 switch settings.authorizationStatus {
                 case .notDetermined:
-                    self.center.requestAuthorization { success, error in
-                        if success == true && error == nil {
+                    UNUserNotificationCenter.current().requestAuthorization(options:[.alert, .sound]) { grand, error in
+                        if grand == true && error == nil {
                             DispatchQueue.main.async {
                                 sender.setImage(UIImage(systemName:"checkmark"), for:.normal)
                                 sender.tintColor = UIColor(hex:"#FFFFFF")
@@ -387,9 +384,9 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate,RemoveAlea
                                 sender.backgroundColor = .orange
                                 sender.layer.borderWidth = 0
                             }
+                            
                         }
                     }
-                    
                 case .denied:
                     self.showDoubleButton(messageTitle:AlertMessage.denied.messageTitle)
                     
@@ -407,6 +404,50 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate,RemoveAlea
                 
             }
             
+            
+        }
+        
+    }
+    
+    
+    func getMotionAccess(sender:UIButton) {
+        DispatchQueue.main.async { [self] in
+            switch CMMotionActivityManager.authorizationStatus() {
+            case .notDetermined:
+                self.manager.queryActivityStarting(from:today, to:today, to:OperationQueue.main, withHandler: {(activities: [CMMotionActivity]?, error: Error?) -> () in
+                    
+                    if error != nil {
+                        let errorCode = (error! as NSError).code
+                        if errorCode == Int(CMErrorMotionActivityNotAuthorized.rawValue) {
+                            print("NotAuthorized")
+                        }
+                    }
+                    else {
+                        DispatchQueue.main.async {
+                            sender.setImage(UIImage(systemName:"checkmark"), for:.normal)
+                            sender.tintColor = UIColor(hex:"#FFFFFF")
+                            sender.setTitleColor(.clear, for:.normal)
+                            sender.imageEdgeInsets = .init(top:0, left:16, bottom: 0, right: 0)
+                            sender.backgroundColor = .orange
+                            sender.layer.borderWidth = 0
+                        }
+                    }
+                    self.manager.stopActivityUpdates()
+                })
+                
+                
+            case .restricted:
+                self.showDoubleButton(messageTitle:AlertMessage.restricted.messageTitle)
+            case .denied:
+                self.showDoubleButton(messageTitle:AlertMessage.denied.messageTitle)
+                
+            case .authorized:
+                
+                self.showDoubleButton(messageTitle:AlertMessage.authorized.messageTitle)
+                
+            default:
+                print("default")
+            }
             
         }
         
