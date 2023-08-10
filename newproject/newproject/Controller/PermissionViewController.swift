@@ -414,26 +414,25 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate,RemoveAlea
             switch CMMotionActivityManager.authorizationStatus() {
             case .notDetermined:
                 self.manager.queryActivityStarting(from:today, to:today, to:OperationQueue.main, withHandler: {(activities: [CMMotionActivity]?, error: Error?) -> () in
-                    
-                    if error == nil {
-                        let errorCode = (error! as NSError).code
+                    if let error = error {
+                        let errorCode = (error as NSError).code
                         if errorCode == Int(CMErrorMotionActivityNotAuthorized.rawValue) {
                             print("NotAuthorized")
                         }
-                    }
-                    else {
-                        DispatchQueue.main.async {
-                            sender.setImage(UIImage(systemName:"checkmark"), for:.normal)
-                            sender.tintColor = UIColor(hex:"#FFFFFF")
-                            sender.setTitleColor(.clear, for:.normal)
-                            sender.imageEdgeInsets = .init(top:0, left:16, bottom: 0, right: 0)
-                            sender.backgroundColor = .orange
-                            sender.layer.borderWidth = 0
+                        else {
+                            DispatchQueue.main.async {
+                                sender.setImage(UIImage(systemName:"checkmark"), for:.normal)
+                                sender.tintColor = UIColor(hex:"#FFFFFF")
+                                sender.setTitleColor(.clear, for:.normal)
+                                sender.imageEdgeInsets = .init(top:0, left:16, bottom: 0, right: 0)
+                                sender.backgroundColor = .orange
+                                sender.layer.borderWidth = 0
+                            }
+                            
                         }
                     }
-                    // self.manager.stopActivityUpdates()
+                    self.manager.stopActivityUpdates()
                 })
-                
                 
             case .restricted:
                 self.showDoubleButton(messageTitle:AlertMessage.restricted.messageTitle)
@@ -441,44 +440,15 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate,RemoveAlea
                 self.showDoubleButton(messageTitle:AlertMessage.denied.messageTitle)
                 
             case .authorized:
-                
                 self.showDoubleButton(messageTitle:AlertMessage.authorized.messageTitle)
                 
             default:
                 print("default")
             }
-            
         }
-        
     }
-    
-    
-    
-    //        func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-    //            DispatchQueue.main.async {
-    //                switch status {
-    //                case .notDetermined:
-    //                    print("notDetermined")
-    //                case .restricted:
-    //                    print("restricted")
-    //                case .denied:
-    //                    print("denied")
-    //                case .authorizedAlways:
-    //                    print("authorizedAlways")
-    //                case .authorizedWhenInUse:
-    //                    print("authorizedWhenInUse")
-    //                case .authorized:
-    //                    print("authorized")
-    //                @unknown default:
-    //                    fatalError()
-    //                }
-    //            }
-    //        }
 }
 
 
-
-
-// create func for gotoSettings
 
 
