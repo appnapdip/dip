@@ -20,7 +20,10 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate,RemoveAlea
     
     var firstButton:Bool = true
     
+    // eventStore
     let eventStore = EKEventStore()
+    
+    // manager and today
     
     let manager = CMMotionActivityManager()
     let today = Date()
@@ -196,13 +199,10 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate,RemoveAlea
             permissionImages.image = UIImage(named:permissions[i].image)
             permissionImages.anchorView(width:.init(w:28), height:.init(h:28))
             
-            
             let AllowButtons = UIButton().button(title:"Allow", titleColor:.orange,backgroundColor:.clear,font:UIFont(name:"Poppins-Light", size:13)!, cornerRadius:.init(h:7), borderColor:UIColor(hex:"#838BA7").cgColor, borderWidth: .init(w:1))
             AllowButtons.anchorView(width: .init(w:60), height: .init(h:32))
             AllowButtons.tag = i
             AllowButtons.addTarget(self, action: #selector(pressForPermission(_:)), for:.touchUpInside)
-            
-            
             
             permissionsStackView.addArrangedSubview(permissionImages)
             permissionsStackView.addArrangedSubview(childStackView)
@@ -409,14 +409,13 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate,RemoveAlea
         
     }
     
-    
     func getMotionAccess(sender:UIButton) {
         DispatchQueue.main.async { [self] in
             switch CMMotionActivityManager.authorizationStatus() {
             case .notDetermined:
                 self.manager.queryActivityStarting(from:today, to:today, to:OperationQueue.main, withHandler: {(activities: [CMMotionActivity]?, error: Error?) -> () in
                     
-                    if error != nil {
+                    if error == nil {
                         let errorCode = (error! as NSError).code
                         if errorCode == Int(CMErrorMotionActivityNotAuthorized.rawValue) {
                             print("NotAuthorized")
@@ -432,7 +431,7 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate,RemoveAlea
                             sender.layer.borderWidth = 0
                         }
                     }
-                    self.manager.stopActivityUpdates()
+                    // self.manager.stopActivityUpdates()
                 })
                 
                 
