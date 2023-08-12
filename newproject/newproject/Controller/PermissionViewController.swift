@@ -23,15 +23,15 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate,RemoveAlea
     // eventStore
     let eventStore = EKEventStore()
     
-    // manager and today
+    // manager and today proerty
     
     let manager = CMMotionActivityManager()
     let today = Date()
     
-    
+    // perdometer property
     let pedometer = CMPedometer()
     
-    //MARK: - isPedometerAvailable
+    //MARK: - isPedometerAvailable proerty
     
     private var isPedometerAvailable: Bool {
         return CMPedometer.isPedometerEventTrackingAvailable() && CMPedometer.isDistanceAvailable() && CMPedometer.isStepCountingAvailable()
@@ -46,6 +46,7 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate,RemoveAlea
     // MARK: - Properties
     
     // PermissionModel Array
+    
     let permissions:[PermissionModel] = [PermissionModel(title:"Photo Usage", subtitle:"Permission to access the photo usage", image: "photos"),
                                          PermissionModel(title:"Location", subtitle:"Permission to access the device location", image:"signs"),
                                          PermissionModel(title:"Calender", subtitle:"Permission to access the caldender events", image:"calendar"),    PermissionModel(title:"Notification", subtitle:"Permission to access the user notification", image:"notification"),
@@ -185,7 +186,7 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate,RemoveAlea
         
         
         
-        // Loops
+        // MARK: Loops for Permission Porperties
         
         for i in 0..<permissions.count {
             
@@ -203,20 +204,25 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate,RemoveAlea
             childStackView.distribution = .fillProportionally
             childStackView.spacing = .init(h:4)
             
+            // permissionTitles
             let hexColor = UIColor(hex:"#000000")
             let permissionTitles = UILabel().label(title:permissions[i].title, textColor:hexColor,lines:1,fontStyle:UIFont(name: "Poppins-Regular", size:20),allignment:.left)
             
+            // permissionSubTitles
             let permissionSubTitles = UILabel().label(title:permissions[i].subtitle, textColor:UIColor(hex:"#5A5F73"),lines: 1 ,fontStyle:UIFont(name: "Poppins-Medium", size:13),allignment:.left)
             
+            // permissionImages
             let permissionImages = UIImageView().Image(contantMode:.scaleAspectFit)
             permissionImages.image = UIImage(named:permissions[i].image)
             permissionImages.anchorView(width:.init(w:28), height:.init(h:28))
             
+            // AllowButtons
             let AllowButtons = UIButton().button(title:"Allow", titleColor:.orange,backgroundColor:.clear,font:UIFont(name:"Poppins-Light", size:13)!, cornerRadius:.init(h:7), borderColor:UIColor(hex:"#838BA7").cgColor, borderWidth: .init(w:1))
             AllowButtons.anchorView(width: .init(w:60), height: .init(h:32))
             AllowButtons.tag = i
             AllowButtons.addTarget(self, action: #selector(pressForPermission(_:)), for:.touchUpInside)
             
+            // MARK: - Arrange all properties in a StackView
             permissionsStackView.addArrangedSubview(permissionImages)
             permissionsStackView.addArrangedSubview(childStackView)
             childStackView.addArrangedSubview(permissionTitles)
@@ -225,25 +231,25 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate,RemoveAlea
             mainStackView.addArrangedSubview(permissionsStackView)
             
             
-        }// end of the foor loop
+        }
+        // end of the foor loop
     }
     
-    // pressFinish()
+    // MARK: - pressFinish function
     
     @objc func pressFinish() {
         navigationController?.popViewController(animated:true)
         
     }
     
+    // MARK: - pressForPermission function
+    
     @objc func presscross() {
         navigationController?.popViewController(animated:true)
         
     }
     
-    
-    
-    
-    // pressForPermission
+    // MARK: - pressForPermission function
     
     @objc func pressForPermission(_ sender: UIButton) {
         switch sender.tag {
@@ -268,12 +274,11 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate,RemoveAlea
             
         }
         
-        // create func to getPermissionOfPhoto() of photo from photoLibrary
+        
+        // MARK: - getPermissionOfPhoto fuction
         
         func getPermissionOfPhoto(sender:UIButton) {
-            
             switch PHPhotoLibrary.authorizationStatus(for: .readWrite) {
-                
             case .notDetermined:
                 PHPhotoLibrary.requestAuthorization { status in
                     DispatchQueue.main.async {
@@ -287,7 +292,6 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate,RemoveAlea
                         }
                     }
                 }
-                
                 
             case .restricted:
                 showDoubleButton(messageTitle:AlertMessage.restricted.messageTitle)
@@ -305,12 +309,11 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate,RemoveAlea
             @unknown default:
                 print("default")
             }
-            
-            
         }
     }
     
-    // create function for gotoSettings()
+    // MARK: - gotoSettings fuction
+    
     func gotoSettings() {
         if let url = URL(string:UIApplication.openSettingsURLString) {
             if UIApplication.shared.canOpenURL(url) {
@@ -318,6 +321,7 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate,RemoveAlea
             }
         }
     }
+    // MARK: -  getLoacationAccess fuction
     
     func getLoacationAccess(sender:UIButton, manager: CLLocationManager) {
         DispatchQueue.global().async {
@@ -350,24 +354,23 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate,RemoveAlea
                 }
             }
         }
-        
     }
     
+    // MARK: -  getaccesfromCalender fuction
+    
     func showDoubleButton(messageTitle:String) {
-        
         let limited = doubleButtonAleart(tittle:messageTitle,subTitle:AlertMessage.limited.messageSubTitle, firstButtonTitle:AlertMessage.limited.firstButtonTitle, firstButtonBackGrounColor:.clear, secondButtonTitle:AlertMessage.limited.secondButtonTitle, secondButtonBackGroundColor:.red) { [self] in
             if self.firstButton == false {
                 gotoSettings()
             }
         }
-        
         limited.delegate = self
         self.present(limited, animated:true)
-        
     }
     
+    // MARK: -  getaccesfromCalender fuction
+    
     func getaccesfromCalender(sender:UIButton) {
-        
         DispatchQueue.main.async {
             switch EKEventStore.authorizationStatus(for:.event) {
             case .notDetermined:
@@ -396,6 +399,8 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate,RemoveAlea
         }
     }
     
+    
+    // MARK: -  getNotification fuction
     
     func getNotification(sender:UIButton) {
         UNUserNotificationCenter.current().getNotificationSettings { settings in
@@ -428,14 +433,11 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate,RemoveAlea
                 @unknown default:
                     print("Default")
                 }
-                
-                
             }
-            
-            
         }
-        
     }
+    
+    // MARK: -  getMotionAccess fuction
     
     func getMotionAccess(sender:UIButton) {
         initializePedometer { (steps, distance, floorClimb ,success) in
@@ -462,7 +464,6 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate,RemoveAlea
                 @unknown default:
                     fatalError()
                 }
-                
             }
         }
     }
@@ -470,6 +471,7 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate,RemoveAlea
     
     
     //MARK: - initializePedometer
+    
     public func initializePedometer(_ completionHandler: @escaping (Double, Double, Double, Bool) -> Void ){
         
         var stepCount: Double = 0
@@ -490,10 +492,10 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate,RemoveAlea
                 floorClimb = Double((data?.floorsAscended!.intValue)!)
                 completionHandler(stepCount, distance, floorClimb, true)
             })
-            
         }
-        
     }
+    
+    // MARK: - locationmanager delegate function
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus){
         print(status.rawValue.description)
@@ -508,7 +510,6 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate,RemoveAlea
             print("Not Authorized")
         }
     }
-    
 }
 
 
