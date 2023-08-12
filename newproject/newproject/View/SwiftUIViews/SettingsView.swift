@@ -36,6 +36,7 @@ struct SettingsView: View {
         .padding()
         .onAppear {
             Task{
+                
                 do {
                     user = try await getUsers()
                     
@@ -91,4 +92,20 @@ enum Erros: Error {
     case invalidURL
     case inValidResponse
     case inValidData
+}
+
+
+struct loaderViewController: UIViewControllerRepresentable {
+    func makeUIViewController(context: Context) -> some UIViewController {
+        let loaderVc = customLoaderController()
+        loaderVc.modalPresentationStyle = .overFullScreen
+        loaderVc.modalTransitionStyle = .crossDissolve
+        return loaderVc
+    }
+    
+    func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {
+        <#code#>
+    }
+    
+    
 }

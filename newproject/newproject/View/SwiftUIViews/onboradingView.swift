@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-
+// MARK: - OnboradingView UI
 struct OnboradingView: View {
     var data: AppOnboardingModel
     var body: some View {

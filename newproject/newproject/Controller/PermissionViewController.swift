@@ -127,21 +127,21 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate,RemoveAlea
         
     }()
     
-    // viewDidLoad()
+    // MARK: - viewDidLoad()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         loadUI()
     }
     
-    // viewDidLayoutSubviews()
+    // MARK: - viewDidLayoutSubviews()
     
     override func viewDidLayoutSubviews() {
         showGradient()
         
     }
     
-    // loadUI()
+    // MARK: - loadUI()
     
     private func loadUI() {
         

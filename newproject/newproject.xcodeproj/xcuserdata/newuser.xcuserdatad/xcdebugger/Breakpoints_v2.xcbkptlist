@@ -14,8 +14,8 @@
             filePath = "newproject/Controller/PinViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "241"
-            endingLineNumber = "241"
+            startingLineNumber = "244"
+            endingLineNumber = "244"
             landmarkName = "clickButtonAction(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -71,22 +71,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "A4576575-D998-49B7-BE36-F0117B1CC61D"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "newproject/Controller/SettingsViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "67"
-            endingLineNumber = "67"
-            landmarkName = "viewWillAppear(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "CB1D0FAF-464E-454A-B0FD-FDFDABED536B"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -94,26 +78,10 @@
             filePath = "newproject/Controller/SettingsViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "56"
-            endingLineNumber = "56"
+            startingLineNumber = "47"
+            endingLineNumber = "47"
             landmarkName = "viewDidLoad()"
             landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "570A3E8B-CD50-4883-9D09-13F7720BAF4E"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "newproject/Controller/SettingsViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "74"
-            endingLineNumber = "74"
-            landmarkName = "SettingsViewController"
-            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

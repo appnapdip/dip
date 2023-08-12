@@ -43,9 +43,6 @@ struct ContentView: View {
 }
 
 extension ContentView{
-    
-    
-    
     var nextButton: some View {
         Button {
             currentPosition += 1

@@ -100,6 +100,8 @@ class PinViewController: UIViewController {
         loadUI()
     }
     
+    // //MARK: - viewWillAppear
+    
     override func viewWillAppear(_ animated: Bool) {
         
     }
@@ -153,6 +155,7 @@ class PinViewController: UIViewController {
         
         ButtonStackView4.anchorView(top:ButtonStackView3.bottomAnchor,paddingTop: .init(h:.init(h:20)) )
         ButtonStackView4.centerX(inView:view)
+        
         
         // MARK: - LOOP FOR Buttons
         for i in 1...12{

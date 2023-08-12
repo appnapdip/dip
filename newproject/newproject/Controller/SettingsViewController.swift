@@ -18,7 +18,6 @@ class SettingsViewController:UIViewController , RemoveAleartView {
     var firstButton: Bool = true
     
     // MARK: - logOutButton
-    
     lazy var logOutButton:UIButton = {
         let thisButton = UIButton().button(title:"Log Out" , titleColor:UIColor(hex:"#FFFFFF"),backgroundColor:UIColor(hex:"#FF4D4D"),font: UIFont(name:"Poppins-SemiBold", size:.init(h:16))!,cornerRadius:
                 .init(h:16))
@@ -35,7 +34,7 @@ class SettingsViewController:UIViewController , RemoveAleartView {
         return thisButton
     }()
     
-    
+    // MARK: - permissionButton
     lazy var permissionButton: UIButton = {
         let thisButton = UIButton().button(backgroundImage:UIImage(named:"images"))
         thisButton.tintColor = UIColor(hex:"#838BA7")
@@ -44,40 +43,16 @@ class SettingsViewController:UIViewController , RemoveAleartView {
         return thisButton
     }()
     
-    
-    
-    
-    
-    
-    
-    
-    
     // MARK: - viewDidLoad()
     override func viewDidLoad() {
         super.viewDidLoad()
         settingsLoadUI()
-        
-        
     }
     
-    
-    
-    
-    // MARK: - viewWillAppear
-    override func viewWillAppear(_ animated: Bool) {
-        let loaderVc = customLoaderController()
-        loaderVc.modalPresentationStyle = .overFullScreen
-        loaderVc.modalTransitionStyle = .crossDissolve
-        present(loaderVc, animated:true)
-    }
-    
-    
-    
-    
+    // MARK: - settingsLoadUI()
     
     private func settingsLoadUI() {
         view.backgroundColor = .white
-        
         /// logOutButton
         view.addSubview(logOutButton)
         logOutButton.anchorView(bottom:view.bottomAnchor,paddingBottom:.init(h:46),width: .init(w:158), height: .init(h:56))
@@ -89,8 +64,6 @@ class SettingsViewController:UIViewController , RemoveAleartView {
         view.addSubview(permissionButton)
         permissionButton.anchorView(top:view.topAnchor,right:view.rightAnchor, paddingTop: .init(h:50),width:.init(h:38),height: .init(h:38))
         
-        
-        
         // MARK: - Added SwiftUIView In SettingsViewController
         let SettingsView = UIHostingController(rootView: SettingsView())
         addChild(SettingsView)
@@ -100,26 +73,14 @@ class SettingsViewController:UIViewController , RemoveAleartView {
         
     }
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     // MARK: - pressBackAction()
     @objc func pressBackAction() {
         navigationController?.popToRootViewController(animated:true)
         
     }
     
-    
-    
-    
     // MARK: - pressLogOutAction()
+    
     @objc func pressLogOutAction() {
         let sAVC = singleButtonAlert(tittle:AlertMessage.inProgress.messageTitle, subTitle: AlertMessage.inProgress.messageSubTitle, firstButtonTitle:AlertMessage.inProgress.firstButtonTitle, firstButtonBackGrounColor:.clear) {
         }
@@ -128,6 +89,7 @@ class SettingsViewController:UIViewController , RemoveAleartView {
         
     }
     
+    // MARK: - pressOnPermission()
     
     @objc func pressOnPermission() {
         let svc = PerMissionViewController()

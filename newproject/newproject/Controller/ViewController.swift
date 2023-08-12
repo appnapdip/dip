@@ -424,9 +424,12 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView {
         }
     }
     
+    // MARK: - addItemPress()
+    
     @objc func  addItemPress() {
         showAlert(showSingleButton: false)
     }
+    // MARK: - addAlbumPress()
     
     @objc  func addAlbumPress() {
         showAlert(showSingleButton: true)
