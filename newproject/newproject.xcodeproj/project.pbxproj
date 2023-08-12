@@ -36,6 +36,7 @@
 		B247D3192A8251F200603D6A /* PermissionShadowExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B247D3182A8251F200603D6A /* PermissionShadowExtension.swift */; };
 		B258B8A32A874A2F0081D470 /* Loader.gif in Resources */ = {isa = PBXBuildFile; fileRef = B258B8A22A874A2F0081D470 /* Loader.gif */; };
 		B258B8A52A874A6F0081D470 /* LoaderImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B258B8A42A874A6F0081D470 /* LoaderImageExtension.swift */; };
+		B258B8CB2A8770640081D470 /* customLoaderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B258B8CA2A8770640081D470 /* customLoaderController.swift */; };
 		B2674D5F2A67BDD3000F8150 /* PinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2674D5E2A67BDD3000F8150 /* PinViewController.swift */; };
 		B2674D612A68F6FB000F8150 /* ExtensionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2674D602A68F6FB000F8150 /* ExtensionController.swift */; };
 		B2674D652A690C51000F8150 /* Refactors.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2674D642A690C51000F8150 /* Refactors.swift */; };
@@ -83,6 +84,7 @@
 		B247D3182A8251F200603D6A /* PermissionShadowExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionShadowExtension.swift; sourceTree = "<group>"; };
 		B258B8A22A874A2F0081D470 /* Loader.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Loader.gif; sourceTree = "<group>"; };
 		B258B8A42A874A6F0081D470 /* LoaderImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoaderImageExtension.swift; sourceTree = "<group>"; };
+		B258B8CA2A8770640081D470 /* customLoaderController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = customLoaderController.swift; sourceTree = "<group>"; };
 		B2674D5E2A67BDD3000F8150 /* PinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinViewController.swift; sourceTree = "<group>"; };
 		B2674D602A68F6FB000F8150 /* ExtensionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionController.swift; sourceTree = "<group>"; };
 		B2674D642A690C51000F8150 /* Refactors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Refactors.swift; sourceTree = "<group>"; };
@@ -209,6 +211,7 @@
 				B2674D6A2A692540000F8150 /* AleartController.swift */,
 				B20369BB2A78C29A00331E0F /* SettingsViewController.swift */,
 				B2FD76FB2A7E585800A3CBB5 /* PermissionViewController.swift */,
+				B258B8CA2A8770640081D470 /* customLoaderController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -403,6 +406,7 @@
 				B227FCDB2A5C182B00D8EAF4 /* ViewController.swift in Sources */,
 				B247D3192A8251F200603D6A /* PermissionShadowExtension.swift in Sources */,
 				B29DBA752A5FEA6F00A49225 /* MainView.swift in Sources */,
+				B258B8CB2A8770640081D470 /* customLoaderController.swift in Sources */,
 				B217A4A82A5678C00012A133 /* SceneDelegate.swift in Sources */,
 				B2CE5D3D2A5EBC2B0022720D /* onboardingModel.swift in Sources */,
 				B20369CA2A78D64F00331E0F /* AWM_Reachability.swift in Sources */,

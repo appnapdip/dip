@@ -45,10 +45,6 @@ class SettingsViewController:UIViewController , RemoveAleartView {
     }()
     
     
-    let loaderImage:UIImageView = {
-        let thisView = UIImageView()
-        return thisView
-    }()
     
     
     
@@ -69,11 +65,13 @@ class SettingsViewController:UIViewController , RemoveAleartView {
     
     // MARK: - viewWillAppear
     override func viewWillAppear(_ animated: Bool) {
-        loaderImage.loadGif(name:"Loader")
+        let loaderVc = customLoaderController()
+        loaderVc.modalPresentationStyle = .overFullScreen
+        loaderVc.modalTransitionStyle = .crossDissolve
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        
         
     }
     
@@ -93,9 +91,7 @@ class SettingsViewController:UIViewController , RemoveAleartView {
         view.addSubview(permissionButton)
         permissionButton.anchorView(top:view.topAnchor,right:view.rightAnchor, paddingTop: .init(h:50),width:.init(h:38),height: .init(h:38))
         
-        view.addSubview(loaderImage)
-        loaderImage.anchorView(top:view.topAnchor,paddingTop:UIdeviceSize.height * 0.45 , width: .init(w:245),height: .init(h:245))
-        loaderImage.centerX(inView:view)
+        
         
         // MARK: - Added SwiftUIView In SettingsViewController
         let SettingsView = UIHostingController(rootView: SettingsView())
