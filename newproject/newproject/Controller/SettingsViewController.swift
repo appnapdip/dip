@@ -68,12 +68,10 @@ class SettingsViewController:UIViewController , RemoveAleartView {
         let loaderVc = customLoaderController()
         loaderVc.modalPresentationStyle = .overFullScreen
         loaderVc.modalTransitionStyle = .crossDissolve
-        
+        present(loaderVc, animated:true)
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        
-    }
+    
     
     
     
