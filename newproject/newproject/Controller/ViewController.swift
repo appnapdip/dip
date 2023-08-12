@@ -181,6 +181,9 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView {
     
     
     
+    
+    
+    
     // MARK: - viewDidLoad
     
     override func viewDidLoad() {
@@ -199,6 +202,7 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView {
     
     //MARK: - viewDidAppear
     override func viewDidAppear(_ animated: Bool) {
+        
         
     }
     
@@ -307,8 +311,6 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView {
         itemCollectionView.delegate = self
         itemCollectionView.dataSource = self
         
-        
-        
         headerView.anchorView(top: view.topAnchor, left:view.leftAnchor ,right:view.rightAnchor,height:.init(h:160))
         firstStackView.anchorView(top: headerView.topAnchor,left: headerView.leftAnchor, right: headerView.rightAnchor,paddingTop: .init(h:58), paddingLeft: .init(w: 16), paddingRight: .init(w: 16), height:.init(h:42))
         firstStackView.addArrangedSubview(headerTitleView)
@@ -327,8 +329,9 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView {
         AlbumUnderline.anchorView(top:secondStackView.bottomAnchor,left:view.leftAnchor,paddingTop:.init(h:0), width:UIdeviceSize.width * 0.5, height:.init(h:1.5))
         itemsUnderline.anchorView(top:secondStackView.bottomAnchor,right:view.rightAnchor,paddingTop: .init(h:0),width:UIdeviceSize.width * 0.5, height:.init(h:1.5))
         itemCollectionView.anchorView(top:buttonsCollectioView.bottomAnchor,left:view.leftAnchor,bottom:view.bottomAnchor,right:view.rightAnchor,paddingTop:.init(h:28))
-        
     }
+    
+    // MARK: - pressAlbums()
     
     @objc func pressAlbums() {
         isAlbumSeleted = true
@@ -348,6 +351,7 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView {
         
         
     }
+    // MARK: -  pressItems()
     
     @objc func pressItems() {
         isAlbumSeleted = false
@@ -370,13 +374,15 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView {
         
         
     }
+    // MARK: -  pressOnSettings()
     
     @objc func pressOnSettings() {
         let svc = SettingsViewController()
         navigationController?.pushViewController(svc, animated:true)
     }
     
-    //MARK:- checkReachability()
+    // MARK: - checkReachability()
+    
     private func checkReachability(){
         reachability.whenReachable = { reachability in
             if reachability.connection == .wifi {

@@ -34,6 +34,8 @@
 		B2392A8C2A5AACE800401305 /* ViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2392A8B2A5AACE800401305 /* ViewModifier.swift */; };
 		B2401B9C2A5D0D3F00AF1F93 /* OnboradingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2401B9B2A5D0D3F00AF1F93 /* OnboradingModel.swift */; };
 		B247D3192A8251F200603D6A /* PermissionShadowExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B247D3182A8251F200603D6A /* PermissionShadowExtension.swift */; };
+		B258B8A32A874A2F0081D470 /* Loader.gif in Resources */ = {isa = PBXBuildFile; fileRef = B258B8A22A874A2F0081D470 /* Loader.gif */; };
+		B258B8A52A874A6F0081D470 /* LoaderImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B258B8A42A874A6F0081D470 /* LoaderImageExtension.swift */; };
 		B2674D5F2A67BDD3000F8150 /* PinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2674D5E2A67BDD3000F8150 /* PinViewController.swift */; };
 		B2674D612A68F6FB000F8150 /* ExtensionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2674D602A68F6FB000F8150 /* ExtensionController.swift */; };
 		B2674D652A690C51000F8150 /* Refactors.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2674D642A690C51000F8150 /* Refactors.swift */; };
@@ -79,6 +81,8 @@
 		B2392A8B2A5AACE800401305 /* ViewModifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModifier.swift; sourceTree = "<group>"; };
 		B2401B9B2A5D0D3F00AF1F93 /* OnboradingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboradingModel.swift; sourceTree = "<group>"; };
 		B247D3182A8251F200603D6A /* PermissionShadowExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionShadowExtension.swift; sourceTree = "<group>"; };
+		B258B8A22A874A2F0081D470 /* Loader.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Loader.gif; sourceTree = "<group>"; };
+		B258B8A42A874A6F0081D470 /* LoaderImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoaderImageExtension.swift; sourceTree = "<group>"; };
 		B2674D5E2A67BDD3000F8150 /* PinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinViewController.swift; sourceTree = "<group>"; };
 		B2674D602A68F6FB000F8150 /* ExtensionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionController.swift; sourceTree = "<group>"; };
 		B2674D642A690C51000F8150 /* Refactors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Refactors.swift; sourceTree = "<group>"; };
@@ -173,6 +177,7 @@
 		B217A4A42A5678C00012A133 /* newproject */ = {
 			isa = PBXGroup;
 			children = (
+				B258B8A22A874A2F0081D470 /* Loader.gif */,
 				B217A4C92A56B2330012A133 /* Model */,
 				B217A4CF2A56B2E90012A133 /* View */,
 				B217A4CE2A56B2BE0012A133 /* Controller */,
@@ -244,6 +249,7 @@
 				B2674D602A68F6FB000F8150 /* ExtensionController.swift */,
 				B236ED422A763F3900988B7F /* CatagoriesExtension.swift */,
 				B247D3182A8251F200603D6A /* PermissionShadowExtension.swift */,
+				B258B8A42A874A6F0081D470 /* LoaderImageExtension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -360,6 +366,7 @@
 				B226A0432A640615007646BE /* Poppins-Light.ttf in Resources */,
 				B217A4B22A5678C10012A133 /* LaunchScreen.storyboard in Resources */,
 				B217A4AF2A5678C10012A133 /* Assets.xcassets in Resources */,
+				B258B8A32A874A2F0081D470 /* Loader.gif in Resources */,
 				B217A4AD2A5678C00012A133 /* Main.storyboard in Resources */,
 				B227FCCD2A5BE58D00D8EAF4 /* Poppins-Regular.ttf in Resources */,
 			);
@@ -399,6 +406,7 @@
 				B217A4A82A5678C00012A133 /* SceneDelegate.swift in Sources */,
 				B2CE5D3D2A5EBC2B0022720D /* onboardingModel.swift in Sources */,
 				B20369CA2A78D64F00331E0F /* AWM_Reachability.swift in Sources */,
+				B258B8A52A874A6F0081D470 /* LoaderImageExtension.swift in Sources */,
 				B2392A8C2A5AACE800401305 /* ViewModifier.swift in Sources */,
 				B20369BC2A78C29A00331E0F /* SettingsViewController.swift in Sources */,
 				B2401B9C2A5D0D3F00AF1F93 /* OnboradingModel.swift in Sources */,

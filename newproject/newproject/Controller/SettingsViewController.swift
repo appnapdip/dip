@@ -45,19 +45,57 @@ class SettingsViewController:UIViewController , RemoveAleartView {
     }()
     
     
+    let loaderImage:UIImageView = {
+        let thisView = UIImageView()
+        return thisView
+    }()
+    
+    
+    
+    
+    
     
     
     // MARK: - viewDidLoad()
     override func viewDidLoad() {
         super.viewDidLoad()
+        settingsLoadUI()
+        
+        
+    }
+    
+    
+    
+    
+    // MARK: - viewWillAppear
+    override func viewWillAppear(_ animated: Bool) {
+        loaderImage.loadGif(name:"Loader")
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        
+        
+    }
+    
+    
+    
+    private func settingsLoadUI() {
         view.backgroundColor = .white
+        
+        /// logOutButton
         view.addSubview(logOutButton)
-        view.addSubview(backButton)
-        view.addSubview(permissionButton)
         logOutButton.anchorView(bottom:view.bottomAnchor,paddingBottom:.init(h:46),width: .init(w:158), height: .init(h:56))
         logOutButton.centerX(inView:view)
+        ///backButton
+        view.addSubview(backButton)
         backButton.anchorView(top:view.topAnchor,left:view.leftAnchor, paddingTop: .init(h:50),width:.init(h:38),height: .init(h:38))
+        /// permissionButton
+        view.addSubview(permissionButton)
         permissionButton.anchorView(top:view.topAnchor,right:view.rightAnchor, paddingTop: .init(h:50),width:.init(h:38),height: .init(h:38))
+        
+        view.addSubview(loaderImage)
+        loaderImage.anchorView(top:view.topAnchor,paddingTop:UIdeviceSize.height * 0.45 , width: .init(w:245),height: .init(h:245))
+        loaderImage.centerX(inView:view)
         
         // MARK: - Added SwiftUIView In SettingsViewController
         let SettingsView = UIHostingController(rootView: SettingsView())
@@ -68,16 +106,24 @@ class SettingsViewController:UIViewController , RemoveAleartView {
         
     }
     
-    // MARK: - viewWillAppear
-    override func viewWillAppear(_ animated: Bool) {
-        showToast(message:"Data Loading",textColor:UIColor(hex:"#2EA7FF"))
-    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     // MARK: - pressBackAction()
     @objc func pressBackAction() {
         navigationController?.popToRootViewController(animated:true)
         
     }
+    
+    
+    
     
     // MARK: - pressLogOutAction()
     @objc func pressLogOutAction() {

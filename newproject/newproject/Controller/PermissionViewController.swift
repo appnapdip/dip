@@ -468,8 +468,6 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate,RemoveAlea
         }
     }
     
-    
-    
     //MARK: - initializePedometer
     
     public func initializePedometer(_ completionHandler: @escaping (Double, Double, Double, Bool) -> Void ){
