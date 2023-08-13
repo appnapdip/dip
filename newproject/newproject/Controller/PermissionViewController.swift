@@ -565,7 +565,7 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate,RemoveAlea
         }
     }
     
-    // MARK: - locationmanager delegate function
+    // MARK: - locationManager delegate function
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus){
         print(status.rawValue.description)

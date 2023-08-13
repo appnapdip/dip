@@ -45,7 +45,7 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView {
         thisStackView.axis = .horizontal
         thisStackView.distribution = .fillEqually
         thisStackView.spacing = 10
-        thisStackView.anchorView(width: .init(w: 100))
+        thisStackView.anchorView(width: .init(w: 150))
         return thisStackView
     }()
     
@@ -317,6 +317,8 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView {
     // MARK: - UI Loading
     private func loadUI() {
         
+        ///  All Delegates
+        
         mainScrollView.delegate = self
         
         buttonsCollectioView.delegate = self
@@ -328,48 +330,50 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView {
         itemCollectionView.delegate = self
         itemCollectionView.dataSource = self
         
+        /// headerView
         view.addSubview(headerView)
         headerView.anchorView(top: view.topAnchor, left:view.leftAnchor ,right:view.rightAnchor,height:.init(h:160))
         
+        /// firstStackView
         headerView.addSubview(firstStackView)
         firstStackView.anchorView(top: headerView.topAnchor,left: headerView.leftAnchor, right: headerView.rightAnchor,paddingTop: .init(h:58), paddingLeft: .init(w: 16), paddingRight: .init(w: 16), height:.init(h:42))
         firstStackView.addArrangedSubview(headerTitleView)
         firstStackView.addArrangedSubview(headerButtonsStack)
         
-        
-        
         headerButtonsStack.addArrangedSubview(searchButton)
         headerButtonsStack.addArrangedSubview(homeButton)
         headerButtonsStack.addArrangedSubview(settingButton)
         
-        
+        /// secondStackView
         headerView.addSubview(secondStackView)
         secondStackView.addArrangedSubview(albumsButton)
         secondStackView.addArrangedSubview(itemsButton)
         secondStackView.anchorView(left:headerView.leftAnchor,bottom: headerView.bottomAnchor, right:headerView.rightAnchor, height:.init(h:48))
         
+        /// mainScrollView
         view.addSubview(mainScrollView)
         mainScrollView.anchorView(top:headerView.bottomAnchor,left:view.leftAnchor,bottom:view.bottomAnchor, right:view.rightAnchor)
-        
         mainScrollView.addSubview(addAlbumButton)
         addAlbumButton.anchorView(top:mainScrollView.topAnchor,right:view.rightAnchor, paddingTop:.init(h:12),width: .init(h:44), height:.init(h:44))
-        
         mainScrollView.addSubview(buttonsCollectioView)
         buttonsCollectioView.anchorView(top:mainScrollView.topAnchor,left:view.leftAnchor,right:addAlbumButton.leftAnchor, paddingTop:.init(h:12),height:.init(h:48))
-        
         mainScrollView.addSubview(albumsCollectioView)
         albumsCollectioView.anchorView(top:buttonsCollectioView.bottomAnchor,left:view.leftAnchor,bottom:view.bottomAnchor,right:view.rightAnchor,paddingTop:.init(h:28),paddingLeft: .init(w:16),paddingRight:.init(w:16))
         
+        /// addButton
         view.addSubview(addButton)
         addButton.anchorView(bottom:view.bottomAnchor,paddingBottom:.init(h:46),width: .init(w:158), height: .init(h:56))
         addButton.centerX(inView:view)
         
+        /// AlbumUnderline
         view.addSubview(AlbumUnderline)
         AlbumUnderline.anchorView(top:secondStackView.bottomAnchor,left:view.leftAnchor,paddingTop:.init(h:0), width:UIdeviceSize.width * 0.5, height:.init(h:1.5))
         
+        /// itemsUnderline
         view.addSubview(itemsUnderline)
         itemsUnderline.anchorView(top:secondStackView.bottomAnchor,right:view.rightAnchor,paddingTop: .init(h:0),width:UIdeviceSize.width * 0.5, height:.init(h:1.5))
         
+        /// itemCollectionView
         mainScrollView.addSubview(itemCollectionView)
         itemCollectionView.anchorView(top:buttonsCollectioView.bottomAnchor,left:view.leftAnchor,bottom:view.bottomAnchor,right:view.rightAnchor,paddingTop:.init(h:28))
     }
@@ -427,10 +431,8 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView {
     //
     
     @objc func pressOnSearch() {
-        let svc = searchController()
-        svc.modalPresentationStyle = .overFullScreen
-        svc.modalTransitionStyle = .crossDissolve
-        present(svc, animated:true)
+        let searchVC = searchController()
+        navigationController?.pushViewController(searchVC, animated:true)
     }
     
     
