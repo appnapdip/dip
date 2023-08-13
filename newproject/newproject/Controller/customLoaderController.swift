@@ -14,6 +14,9 @@ class customLoaderController:UIViewController {
     
     let loaderImage:UIImageView = {
         let thisView = UIImageView()
+        thisView.contentMode = .scaleAspectFill
+        thisView.layer.cornerRadius = .init(h: 25)
+        thisView.clipsToBounds = true
         return thisView
     }()
     
@@ -30,9 +33,17 @@ class customLoaderController:UIViewController {
         
         /// loaderImage
         view.addSubview(loaderImage)
-        loaderImage.anchorView(top:view.topAnchor,paddingTop:UIdeviceSize.height * 0.5 , width: .init(w:245),height: .init(h:245))
+        loaderImage.anchorView(width: .init(w:100),height: .init(w:100))
         loaderImage.centerX(inView:view)
+        loaderImage.centerY(inView: view)
         loaderImage.loadGif(name:"Loader")
+        
+    }
+    
+    func dismissLoader(){
+        DispatchQueue.main.asyncAfter(deadline: .now()+0.5, execute: {
+            self.dismiss(animated: true)
+        })
         
     }
 }

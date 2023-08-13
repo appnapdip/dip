@@ -11,6 +11,10 @@ import SwiftUI
 
 
 class SettingsViewController:UIViewController , RemoveAleartView {
+    
+    var user:GitHubUsers?
+    var loadervC = customLoaderController()
+    
     // MARK: - Protocol Function
     func pressAction(firstButton: Bool) {
         self.firstButton = firstButton
@@ -43,6 +47,10 @@ class SettingsViewController:UIViewController , RemoveAleartView {
         return thisButton
     }()
     
+    
+    let userApi = "https://api.github.com/users/dip"
+    
+    
     // MARK: - viewDidLoad()
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,14 +71,24 @@ class SettingsViewController:UIViewController , RemoveAleartView {
         /// permissionButton
         view.addSubview(permissionButton)
         permissionButton.anchorView(top:view.topAnchor,right:view.rightAnchor, paddingTop: .init(h:50),width:.init(h:38),height: .init(h:38))
-        
+        fetchApi()
+    }
+    
+    private func showLoader(){
+        DispatchQueue.main.async { [self] in
+            loadervC.modalPresentationStyle = .overFullScreen
+            loadervC.modalTransitionStyle = .crossDissolve
+            present(loadervC, animated: false)
+        }
+    }
+    
+    private func addUserView(){
         // MARK: - Added SwiftUIView In SettingsViewController
-        let SettingsView = UIHostingController(rootView: SettingsView())
+        let SettingsView = UIHostingController(rootView: SettingsView(user: user))
         addChild(SettingsView)
         view.addSubview(SettingsView.view)
         SettingsView.view.anchorView(top: backButton.bottomAnchor, left: view.leftAnchor, right: view.rightAnchor, height:.init(h:UIdeviceSize.height * 0.5))
         SettingsView.didMove(toParent: self)
-        
     }
     
     // MARK: - pressBackAction()
@@ -90,12 +108,69 @@ class SettingsViewController:UIViewController , RemoveAleartView {
     }
     
     // MARK: - pressOnPermission()
-    
     @objc func pressOnPermission() {
         let svc = PerMissionViewController()
         navigationController?.pushViewController(svc, animated:true)
         
     }
+    
+    // MARK: - fetchApi()
+    func fetchApi() {
+        Task{
+            showLoader()
+            
+            do {
+                user = try await getUsers()
+                
+                DispatchQueue.main.async {
+                    ImageLoaderService.shared.loadImage(for:self.user?.avatarUrl ?? "")
+                    self.addUserView()
+                    self.loadervC.dismissLoader()
+                }
+            }
+            catch Erros.inValidData{
+                print("inValidData")
+                self.loadervC.dismissLoader()
+                self.showToast(message: ToastMessage.networkError.description)
+            }
+            catch Erros.inValidResponse{
+                print("inValidResponse")
+                self.loadervC.dismissLoader()
+                self.showToast(message: ToastMessage.networkError.description)
+            }
+            catch Erros.invalidURL{
+                print("invalidURL")
+                self.loadervC.dismissLoader()
+                self.showToast(message: ToastMessage.networkError.description)
+            }
+            catch {
+                print("unexpected data")
+                self.loadervC.dismissLoader()
+                self.showToast(message: ToastMessage.networkError.description)
+            }
+        }
+        
+        func getUsers() async throws -> GitHubUsers {
+            guard let url = URL(string:userApi) else {throw Erros.invalidURL}
+            let(data,response) = try await URLSession.shared.data(from:url)
+            guard let response = response as? HTTPURLResponse,response.statusCode == 200 else {throw Erros.inValidResponse}
+            
+            do {
+                
+                let decoder = JSONDecoder()
+                decoder.keyDecodingStrategy = .convertFromSnakeCase
+                return try decoder.decode(GitHubUsers.self, from:data)
+                
+            } catch  {
+                throw Erros.inValidData
+            }
+            
+        }
+        
+        
+    }
+    
+    
 }
 
 

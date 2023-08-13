@@ -10,7 +10,9 @@ import SwiftUI
 // MARK: -  ImageLoaderService class
 
 class ImageLoaderService: ObservableObject {
-    @Published var image: UIImage = UIImage()
+    static let shared = ImageLoaderService()
+    
+    @Published var image: UIImage!
     
     func loadImage(for urlString:String) {
         guard let url = URL(string: urlString) else { return }

@@ -30,6 +30,7 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate,RemoveAlea
     
     // perdometer property
     let pedometer = CMPedometer()
+    var permissionButtons: [UIButton] = []
     
     //MARK: - isPedometerAvailable proerty
     
@@ -134,11 +135,41 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate,RemoveAlea
         loadUI()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        checkPermissions()
+    }
+    
     // MARK: - viewDidLayoutSubviews()
     
     override func viewDidLayoutSubviews() {
         showGradient()
         
+    }
+    
+    // MARK: - checkPermissions()
+    
+    private func checkPermissions(){
+        ///photo
+        if PHPhotoLibrary.authorizationStatus(for: .readWrite) == .authorized{
+            toggleUI(id: 0)
+        }
+    }
+    
+    // MARK: -  toggleUI
+    
+    func toggleUI(id: Int){
+        switch id{
+        case 0:
+            let sender = permissionButtons[0]
+            sender.setImage(UIImage(systemName:"checkmark"), for:.normal)
+            sender.tintColor = UIColor(hex:"#FFFFFF")
+            sender.setTitleColor(.clear, for:.normal)
+            sender.imageEdgeInsets = .init(top:0, left:16, bottom: 0, right: 0)
+            sender.backgroundColor = .orange
+            sender.layer.borderWidth = 0
+        default:
+            break
+        }
     }
     
     // MARK: - loadUI()
@@ -228,6 +259,7 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate,RemoveAlea
             childStackView.addArrangedSubview(permissionTitles)
             childStackView.addArrangedSubview(permissionSubTitles)
             permissionsStackView.addArrangedSubview(AllowButtons)
+            permissionButtons.append(AllowButtons)
             mainStackView.addArrangedSubview(permissionsStackView)
             
             
@@ -281,14 +313,9 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate,RemoveAlea
             switch PHPhotoLibrary.authorizationStatus(for: .readWrite) {
             case .notDetermined:
                 PHPhotoLibrary.requestAuthorization { status in
-                    DispatchQueue.main.async {
+                    DispatchQueue.main.async { [self] in
                         if status == .authorized {
-                            sender.setImage(UIImage(systemName:"checkmark"), for:.normal)
-                            sender.tintColor = UIColor(hex:"#FFFFFF")
-                            sender.setTitleColor(.clear, for:.normal)
-                            sender.imageEdgeInsets = .init(top:0, left:16, bottom: 0, right: 0)
-                            sender.backgroundColor = .orange
-                            sender.layer.borderWidth = 0
+                            toggleUI(id: 0)
                         }
                     }
                 }
