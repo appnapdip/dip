@@ -10,9 +10,11 @@ import UIKit
 
 
 class customLoaderController:UIViewController {
+    
     // MARK: - loaderImage Property
     
     let loaderImage:UIImageView = {
+        
         let thisView = UIImageView()
         thisView.contentMode = .scaleAspectFill
         thisView.layer.cornerRadius = .init(h: 25)
@@ -30,7 +32,6 @@ class customLoaderController:UIViewController {
     
     private func loaderUI() {
         view.backgroundColor = .black.withAlphaComponent(0.3)
-        
         /// loaderImage
         view.addSubview(loaderImage)
         loaderImage.anchorView(width: .init(w:100),height: .init(w:100))
@@ -39,6 +40,8 @@ class customLoaderController:UIViewController {
         loaderImage.loadGif(name:"Loader")
         
     }
+    
+    //   MARK: - dismissLoader() to Dimiss the custome LoaderView
     
     func dismissLoader(){
         DispatchQueue.main.asyncAfter(deadline: .now()+0.5, execute: {

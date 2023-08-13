@@ -14,21 +14,21 @@ import UserNotifications
 import CoreMotion
 
 class PerMissionViewController:UIViewController, UIScrollViewDelegate,RemoveAleartView, CLLocationManagerDelegate {
+    
     func pressAction(firstButton: Bool) {
         self.firstButton = firstButton
     }
     
+    
+    // MARK: - Properties
+    
     var firstButton:Bool = true
     
-    // eventStore
+    // MARK: -  eventStore property
     let eventStore = EKEventStore()
     
-    // manager and today proerty
     
-    let manager = CMMotionActivityManager()
-    let today = Date()
-    
-    // perdometer property
+    // MARK: -  perdometer property
     let pedometer = CMPedometer()
     var permissionButtons: [UIButton] = []
     
@@ -40,13 +40,12 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate,RemoveAlea
     
     
     
-    //let center = UNUserNotificationCenter.current()
     
     
     
-    // MARK: - Properties
     
-    // PermissionModel Array
+    
+    // MARK: - PermissionModel Array
     
     let permissions:[PermissionModel] = [PermissionModel(title:"Photo Usage", subtitle:"Permission to access the photo usage", image: "photos"),
                                          PermissionModel(title:"Location", subtitle:"Permission to access the device location", image:"signs"),
@@ -54,12 +53,11 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate,RemoveAlea
                                          PermissionModel(title:"Motion & Fitness", subtitle:"Permission to access the motion data and fitness", image:"signs"),
     ]
     
-    // permissionscrollView
+    // MARK: - permissionscrollView
     
     lazy var permissionscrollView: UIScrollView = {
         let thisScrollView = UIScrollView()
         thisScrollView.showsVerticalScrollIndicator = false
-        //        thisScrollView.isDirectionalLockEnabled = true
         thisScrollView.showsHorizontalScrollIndicator = false
         thisScrollView.contentSize.height = .init(h:950)
         thisScrollView.isScrollEnabled = true
@@ -67,7 +65,7 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate,RemoveAlea
         return thisScrollView
     }()
     
-    //  permissionTitle
+    // MARK: - permissionTitle
     
     var permissionTitle:UILabel = {
         let hexColor = UIColor(hex:"#000000")
@@ -76,7 +74,7 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate,RemoveAlea
         
     }()
     
-    // permissionSubTitle
+    // MARK: - permissionSubTitle
     
     var permissionSubTitle:UILabel = {
         let hexColor = UIColor(hex:"#5A5F73")
@@ -84,7 +82,7 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate,RemoveAlea
         return thisLabel
     }()
     
-    // permissionGroupImage
+    // MARK: - permissionGroupImage
     
     var permissionGroupImage:UIImageView = {
         let thisImage = UIImageView().Image(contantMode:.scaleAspectFit)
@@ -93,7 +91,8 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate,RemoveAlea
         
     }()
     
-    // finishButton
+    // MARK: - finishButton
+    
     lazy var finishButton:UIButton = {
         let thisButton = UIButton().button(title:"Finish", titleColor:UIColor(hex:"#FFFFFF"), cornerRadius: .init(w:16))
         thisButton.backgroundColor = .orange.withAlphaComponent(.init(h:1))
@@ -101,7 +100,7 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate,RemoveAlea
         return thisButton
     }()
     
-    // crossButton
+    // MARK: - crossButton
     
     lazy var crossButton:UIButton = {
         let thisButton = UIButton().button(backgroundImage:UIImage(systemName:"multiply"))
@@ -111,13 +110,14 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate,RemoveAlea
         
     }()
     
-    // shadowView
+    // MARK: -  shadowView
+    
     let shadowView:UIView = {
         let thisShadowView = UIView()
         return thisShadowView
     }()
     
-    // mainStackView
+    // MARK: - mainStackView
     
     let mainStackView:UIStackView = {
         let thisStackView = UIStackView()
@@ -135,6 +135,8 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate,RemoveAlea
         loadUI()
     }
     
+    // MARK: - viewWillAppear
+    
     override func viewWillAppear(_ animated: Bool) {
         checkPermissions()
     }
@@ -146,27 +148,94 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate,RemoveAlea
         
     }
     
-    // MARK: - checkPermissions()
+    // MARK: - checkPermissions() for UI update change when navigate
     
     private func checkPermissions(){
         ///photo
         if PHPhotoLibrary.authorizationStatus(for: .readWrite) == .authorized{
             toggleUI(id: 0)
         }
+        
+        if CLLocationManager.authorizationStatus() == .authorizedAlways {
+            toggleUI(id:1)
+        }
+        
+        if EKEventStore.authorizationStatus(for:.event) == .authorized {
+            toggleUI(id:2)
+        }
+        
+        
+        if CMPedometer.authorizationStatus() == .authorized {
+            toggleUI(id:4)
+        }
+        
+        UNUserNotificationCenter.current().getNotificationSettings { settings in
+            DispatchQueue.main.async { [self] in
+                if settings.authorizationStatus == .authorized  {
+                    toggleUI(id:3)
+                }
+            }
+        }
     }
     
-    // MARK: -  toggleUI
+    // MARK: -  toggleUI for change UI of Permissions Buttons
     
     func toggleUI(id: Int){
         switch id{
         case 0:
-            let sender = permissionButtons[0]
-            sender.setImage(UIImage(systemName:"checkmark"), for:.normal)
-            sender.tintColor = UIColor(hex:"#FFFFFF")
-            sender.setTitleColor(.clear, for:.normal)
-            sender.imageEdgeInsets = .init(top:0, left:16, bottom: 0, right: 0)
-            sender.backgroundColor = .orange
-            sender.layer.borderWidth = 0
+            DispatchQueue.main.async {
+                let sender = self.permissionButtons[0]
+                sender.setImage(UIImage(systemName:"checkmark"), for:.normal)
+                sender.tintColor = UIColor(hex:"#FFFFFF")
+                sender.setTitleColor(.clear, for:.normal)
+                sender.imageEdgeInsets = .init(top:0, left:16, bottom: 0, right: 0)
+                sender.backgroundColor = .orange
+                sender.layer.borderWidth = 0
+            }
+        case 1:
+            DispatchQueue.main.async {
+                let sender = self.permissionButtons[1]
+                sender.setImage(UIImage(systemName:"checkmark"), for:.normal)
+                sender.tintColor = UIColor(hex:"#FFFFFF")
+                sender.setTitleColor(.clear, for:.normal)
+                sender.imageEdgeInsets = .init(top:0, left:16, bottom: 0, right: 0)
+                sender.backgroundColor = .orange
+                sender.layer.borderWidth = 0
+            }
+            
+        case 2:
+            DispatchQueue.main.async {
+                let sender = self.permissionButtons[2]
+                sender.setImage(UIImage(systemName:"checkmark"), for:.normal)
+                sender.tintColor = UIColor(hex:"#FFFFFF")
+                sender.setTitleColor(.clear, for:.normal)
+                sender.imageEdgeInsets = .init(top:0, left:16, bottom: 0, right: 0)
+                sender.backgroundColor = .orange
+                sender.layer.borderWidth = 0
+            }
+            
+        case 3:
+            
+            DispatchQueue.main.async {
+                let sender = self.permissionButtons[3]
+                sender.setImage(UIImage(systemName:"checkmark"), for:.normal)
+                sender.tintColor = UIColor(hex:"#FFFFFF")
+                sender.setTitleColor(.clear, for:.normal)
+                sender.imageEdgeInsets = .init(top:0, left:16, bottom: 0, right: 0)
+                sender.backgroundColor = .orange
+                sender.layer.borderWidth = 0
+            }
+        case 4:
+            DispatchQueue.main.async {
+                let sender = self.permissionButtons[0]
+                sender.setImage(UIImage(systemName:"checkmark"), for:.normal)
+                sender.tintColor = UIColor(hex:"#FFFFFF")
+                sender.setTitleColor(.clear, for:.normal)
+                sender.imageEdgeInsets = .init(top:0, left:16, bottom: 0, right: 0)
+                sender.backgroundColor = .orange
+                sender.layer.borderWidth = 0
+            }
+            
         default:
             break
         }
@@ -265,20 +334,18 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate,RemoveAlea
             
         }
         // end of the foor loop
-    }
+    } // end of the loadui fuction
     
     // MARK: - pressFinish function
     
     @objc func pressFinish() {
         navigationController?.popViewController(animated:true)
-        
     }
     
     // MARK: - pressForPermission function
     
     @objc func presscross() {
         navigationController?.popViewController(animated:true)
-        
     }
     
     // MARK: - pressForPermission function
@@ -303,8 +370,7 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate,RemoveAlea
             
         default:
             getMotionAccess(sender:sender)
-            
-        }
+        } // end of switch case
         
         
         // MARK: - getPermissionOfPhoto fuction
@@ -336,10 +402,10 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate,RemoveAlea
             @unknown default:
                 print("default")
             }
-        }
+        } // end of the function
     }
     
-    // MARK: - gotoSettings fuction
+    // MARK: -  go to Settings app on iphone
     
     func gotoSettings() {
         if let url = URL(string:UIApplication.openSettingsURLString) {
@@ -360,14 +426,9 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate,RemoveAlea
                         manager.requestAlwaysAuthorization()
                         manager.requestWhenInUseAuthorization()
                         
-                    case.authorizedAlways,.authorizedWhenInUse:
+                    case .authorizedAlways,.authorizedWhenInUse:
                         DispatchQueue.main.async {
-                            sender.setImage(UIImage(systemName:"checkmark"), for:.normal)
-                            sender.tintColor = UIColor(hex:"#FFFFFF")
-                            sender.setTitleColor(.clear, for:.normal)
-                            sender.imageEdgeInsets = .init(top:0, left:16, bottom: 0, right: 0)
-                            sender.backgroundColor = .orange
-                            sender.layer.borderWidth = 0
+                            self.toggleUI(id: 1)
                         }
                         
                     case .restricted:
@@ -383,7 +444,8 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate,RemoveAlea
         }
     }
     
-    // MARK: -  getaccesfromCalender fuction
+    
+    // MARK: - showDoubleButton Function view aleart Message
     
     func showDoubleButton(messageTitle:String) {
         let limited = doubleButtonAleart(tittle:messageTitle,subTitle:AlertMessage.limited.messageSubTitle, firstButtonTitle:AlertMessage.limited.firstButtonTitle, firstButtonBackGrounColor:.clear, secondButtonTitle:AlertMessage.limited.secondButtonTitle, secondButtonBackGroundColor:.red) { [self] in
@@ -403,13 +465,8 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate,RemoveAlea
             case .notDetermined:
                 self.eventStore.requestAccess(to:.event) { succes, error in
                     if succes,error == nil {
-                        DispatchQueue.main.async {
-                            sender.setImage(UIImage(systemName:"checkmark"), for:.normal)
-                            sender.tintColor = UIColor(hex:"#FFFFFF")
-                            sender.setTitleColor(.clear, for:.normal)
-                            sender.imageEdgeInsets = .init(top:0, left:16, bottom: 0, right: 0)
-                            sender.backgroundColor = .orange
-                            sender.layer.borderWidth = 0
+                        DispatchQueue.main.async { [self] in
+                            toggleUI(id: 2)
                         }
                     }
                 }
@@ -436,33 +493,26 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate,RemoveAlea
                 case .notDetermined:
                     UNUserNotificationCenter.current().requestAuthorization(options:[.alert, .sound]) { grand, error in
                         if grand == true && error == nil {
-                            DispatchQueue.main.async {
-                                sender.setImage(UIImage(systemName:"checkmark"), for:.normal)
-                                sender.tintColor = UIColor(hex:"#FFFFFF")
-                                sender.setTitleColor(.clear, for:.normal)
-                                sender.imageEdgeInsets = .init(top:0, left:16, bottom: 0, right: 0)
-                                sender.backgroundColor = .orange
-                                sender.layer.borderWidth = 0
-                            }
-                            
+                            self.toggleUI(id: 3)
                         }
+                        
                     }
                 case .denied:
                     self.showDoubleButton(messageTitle:AlertMessage.denied.messageTitle)
-                    
                 case .authorized:
                     self.showDoubleButton(messageTitle:AlertMessage.authorized.messageTitle)
                 case .provisional:
                     self.showDoubleButton(messageTitle:AlertMessage.restricted.messageTitle)
                 case .ephemeral:
                     self.showDoubleButton(messageTitle:AlertMessage.denied.messageTitle)
-                    
                 @unknown default:
-                    print("Default")
+                    print("default")
                 }
+                
             }
         }
     }
+    
     
     // MARK: -  getMotionAccess fuction
     
@@ -481,12 +531,7 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate,RemoveAlea
                     
                 case .authorized:
                     DispatchQueue.main.async {
-                        sender.setImage(UIImage(systemName:"checkmark"), for:.normal)
-                        sender.tintColor = UIColor(hex:"#FFFFFF")
-                        sender.setTitleColor(.clear, for:.normal)
-                        sender.imageEdgeInsets = .init(top:0, left:16, bottom: 0, right: 0)
-                        sender.backgroundColor = .orange
-                        sender.layer.borderWidth = 0
+                        self.toggleUI(id: 4)
                     }
                 @unknown default:
                     fatalError()
@@ -530,13 +575,11 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate,RemoveAlea
         switch manager.authorizationStatus{
         case .authorizedAlways, .authorizedWhenInUse:
             print("Authorized")
-            
         default:
             print("Not Authorized")
         }
     }
 }
-
 
 
 
