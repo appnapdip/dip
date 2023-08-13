@@ -38,7 +38,7 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView {
         
     }()
     
-     // MARK: headerButtonsStack
+    // MARK: headerButtonsStack
     
     lazy var headerButtonsStack:UIStackView = {
         let thisStackView = UIStackView()
@@ -50,7 +50,7 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView {
     }()
     
     // MARK: secondStackView
-   
+    
     
     lazy var secondStackView:UIStackView = {
         let thisStackView = UIStackView()
@@ -82,7 +82,7 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView {
     
     lazy var settingButton:UIButton = {
         let image = UIImage(named:"setting")
-        var thisButton = UIButton().button(backgroundImage:image, cornerRadius:.init(w:10))
+        var thisButton = UIButton().button(backgroundImage:image,cornerRadius: .init(w:10))
         thisButton.tintColor = .black
         thisButton.layer.borderColor = UIColor(hex:"#D6D8E2").cgColor
         thisButton.layer.borderWidth = .init(h:1.0)
@@ -206,6 +206,18 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView {
         
     }()
     
+    // MARK: - searchButton
+    
+    lazy var searchButton:UIButton = {
+        let thisButton = UIButton().button(backgroundImage:UIImage(systemName:"magnifyingglass"), cornerRadius: .init(w:10))
+        thisButton.tintColor = .black
+        thisButton.layer.borderColor = UIColor(hex:"#D6D8E2").cgColor
+        thisButton.layer.borderWidth = .init(w:1)
+        thisButton.addTarget(self, action:#selector(pressOnSearch), for:.touchUpInside)
+        return thisButton
+    }()
+    
+    
     // MARK: - viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -245,7 +257,7 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView {
     func pinDismissCall() {
         dismiss(animated:true) {
             self.loadUI()
-          }
+        }
     }
     
     // MARK: - ShowAleart Function
@@ -324,8 +336,12 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView {
         firstStackView.addArrangedSubview(headerTitleView)
         firstStackView.addArrangedSubview(headerButtonsStack)
         
+        
+        
+        headerButtonsStack.addArrangedSubview(searchButton)
         headerButtonsStack.addArrangedSubview(homeButton)
         headerButtonsStack.addArrangedSubview(settingButton)
+        
         
         headerView.addSubview(secondStackView)
         secondStackView.addArrangedSubview(albumsButton)
@@ -407,6 +423,17 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView {
         let svc = SettingsViewController()
         navigationController?.pushViewController(svc, animated:true)
     }
+    
+    //
+    
+    @objc func pressOnSearch() {
+        let svc = searchController()
+        svc.modalPresentationStyle = .overFullScreen
+        svc.modalTransitionStyle = .crossDissolve
+        present(svc, animated:true)
+    }
+    
+    
     
     // MARK: - checkReachability()
     
