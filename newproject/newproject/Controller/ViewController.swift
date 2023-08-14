@@ -324,7 +324,7 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView {
     
     private func loadUI() {
         
-        ///  All Delegates
+    ///  All Delegates
         
         mainScrollView.delegate = self
         

@@ -10,7 +10,7 @@ import UIKit
 
 // MARK: - Create collectionViewController  Extension
 
-extension collectionViewController {
+extension UIViewController {
     // create data of onboading model
     
     func onBoradingModelData()->[onBoardingModel] {
@@ -25,7 +25,7 @@ extension collectionViewController {
 
 // MARK: - Main Page ViewController Extension
 
-extension ViewController {
+extension UIViewController {
     
     func albums() ->[Album] {
         let album1 = Album(id: "", icon: "📁", name: "Main Album", size:"\(200) items・\(200) mb", isLocked:false, items: [])
@@ -37,10 +37,10 @@ extension ViewController {
     }
     
     func Items() -> [Item] {
-        let item1 = Item(id: "", name: "", type: "", Size: 0, resource: "Rectangle 10")
-        let item2 = Item(id: "", name: "", type: "", Size: 0, resource: "Rectangle 10")
-        let item3 = Item(id: "", name: "", type: "", Size: 0, resource: "Rectangle 10")
-        let item4 = Item(id: "", name: "", type: "", Size: 0, resource: "Rectangle 10")
+        let item1 = Item(id: "", name: "Bangladesh Nature", type: "", Size: 0, resource: "Rectangle 10")
+        let item2 = Item(id: "", name: "American Nature", type: "", Size: 0, resource: "Rectangle 10")
+        let item3 = Item(id: "", name: "Indian Nature", type: "", Size: 0, resource: "Rectangle 10")
+        let item4 = Item(id: "", name: "Australian Nature", type: "", Size: 0, resource: "Rectangle 10")
         return[item1,item2,item3,item4]
     }
     
