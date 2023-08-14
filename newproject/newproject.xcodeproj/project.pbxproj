@@ -48,6 +48,7 @@
 		B29DBA772A5FEBF300A49225 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B29DBA762A5FEBF300A49225 /* ContentView.swift */; };
 		B29E5B242A89DFE10055345C /* MainViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B29E5B232A89DFE10055345C /* MainViewControllerExtension.swift */; };
 		B29E5B262A89EFE00055345C /* OnboardingViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B29E5B252A89EFE00055345C /* OnboardingViewControllerExtension.swift */; };
+		B29E5B282A8A43A70055345C /* SearchController Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B29E5B272A8A43A70055345C /* SearchController Extension.swift */; };
 		B2BCFC7E2A7F7DB100B86E95 /* permissionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2BCFC7D2A7F7DB100B86E95 /* permissionModel.swift */; };
 		B2BF5B9B2A88CC5F00B488EB /* SearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2BF5B9A2A88CC5F00B488EB /* SearchController.swift */; };
 		B2CE5D3D2A5EBC2B0022720D /* onboardingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2CE5D3C2A5EBC2B0022720D /* onboardingModel.swift */; };
@@ -100,6 +101,7 @@
 		B29DBA762A5FEBF300A49225 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		B29E5B232A89DFE10055345C /* MainViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewControllerExtension.swift; sourceTree = "<group>"; };
 		B29E5B252A89EFE00055345C /* OnboardingViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewControllerExtension.swift; sourceTree = "<group>"; };
+		B29E5B272A8A43A70055345C /* SearchController Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchController Extension.swift"; sourceTree = "<group>"; };
 		B2BCFC7D2A7F7DB100B86E95 /* permissionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = permissionModel.swift; sourceTree = "<group>"; };
 		B2BF5B9A2A88CC5F00B488EB /* SearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchController.swift; sourceTree = "<group>"; };
 		B2CE5D3C2A5EBC2B0022720D /* onboardingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = onboardingModel.swift; sourceTree = "<group>"; };
@@ -265,6 +267,7 @@
 				B258B8CC2A8790200081D470 /* CollectionViewExtensioncontroller.swift */,
 				B29E5B232A89DFE10055345C /* MainViewControllerExtension.swift */,
 				B29E5B252A89EFE00055345C /* OnboardingViewControllerExtension.swift */,
+				B29E5B272A8A43A70055345C /* SearchController Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -422,6 +425,7 @@
 				B29DBA752A5FEA6F00A49225 /* MainView.swift in Sources */,
 				B258B8CB2A8770640081D470 /* customLoaderController.swift in Sources */,
 				B217A4A82A5678C00012A133 /* SceneDelegate.swift in Sources */,
+				B29E5B282A8A43A70055345C /* SearchController Extension.swift in Sources */,
 				B258B8CD2A8790200081D470 /* CollectionViewExtensioncontroller.swift in Sources */,
 				B2CE5D3D2A5EBC2B0022720D /* onboardingModel.swift in Sources */,
 				B20369CA2A78D64F00331E0F /* AWM_Reachability.swift in Sources */,

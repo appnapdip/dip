@@ -33,7 +33,12 @@ extension UIViewController {
         let album3 = Album(id: "", icon: "🗃", name: "Texts Limit 1 2 3 ...", size: "\(7.7)k items・(3.5) gb", isLocked:false, items: [])
         let album4 = Album(id: "", icon: "📁",name: "Empty Album", size:"Empty", isLocked:true, items: [])
         let album5 = Album(id: "", icon: "🗄", name: "Travel", size:"\(200) items・\(200) mb", isLocked:true, items: [])
-        return [album1,album2,album3,album4,album5]
+        let album6 = Album(id: "", icon: "📁", name: "Main Album", size:"\(200) items・\(200) mb", isLocked:false, items: [])
+        let album7 = Album(id: "", icon: "🔒", name: "Locked Album", size:"Locked", isLocked:true, items: [])
+        let album8 = Album(id: "", icon: "🗃", name: "Texts Limit 1 2 3 ...", size: "\(7.7)k items・(3.5) gb", isLocked:false, items: [])
+        let album9 = Album(id: "", icon: "📁",name: "Empty Album", size:"Empty", isLocked:true, items: [])
+        let album10 = Album(id: "", icon: "🗄", name: "Travel", size:"\(200) items・\(200) mb", isLocked:true, items: [])
+        return [album1,album2,album3,album4,album5,album6,album7,album8,album9,album10]
     }
     
     func Items() -> [Item] {
@@ -41,7 +46,19 @@ extension UIViewController {
         let item2 = Item(id: "", name: "American Nature", type: "", Size: 0, resource: "Rectangle 10")
         let item3 = Item(id: "", name: "Indian Nature", type: "", Size: 0, resource: "Rectangle 10")
         let item4 = Item(id: "", name: "Australian Nature", type: "", Size: 0, resource: "Rectangle 10")
-        return[item1,item2,item3,item4]
+        let item5 = Item(id: "", name: "Bangladesh Nature", type: "", Size: 0, resource: "Rectangle 10")
+        let item6 = Item(id: "", name: "American Nature", type: "", Size: 0, resource: "Rectangle 10")
+        let item7 = Item(id: "", name: "Indian Nature", type: "", Size: 0, resource: "Rectangle 10")
+        let item8 = Item(id: "", name: "Australian Nature", type: "", Size: 0, resource: "Rectangle 10")
+        let item9 = Item(id: "", name: "Bangladesh Nature", type: "", Size: 0, resource: "Rectangle 10")
+        let item10 = Item(id: "", name: "American Nature", type: "", Size: 0, resource: "Rectangle 10")
+        let item11 = Item(id: "", name: "Indian Nature", type: "", Size: 0, resource: "Rectangle 10")
+        let item12 = Item(id: "", name: "Australian Nature", type: "", Size: 0, resource: "Rectangle 10")
+        let item13 = Item(id: "", name: "Bangladesh Nature", type: "", Size: 0, resource: "Rectangle 10")
+        let item14 = Item(id: "", name: "American Nature", type: "", Size: 0, resource: "Rectangle 10")
+        let item15 = Item(id: "", name: "Indian Nature", type: "", Size: 0, resource: "Rectangle 10")
+        let item16 = Item(id: "", name: "Australian Nature", type: "", Size: 0, resource: "Rectangle 10")
+        return[item1,item2,item3,item4,item5,item6,item7,item8,item9,item10,item11,item12,item13,item14,item15,item16]
     }
     
 }

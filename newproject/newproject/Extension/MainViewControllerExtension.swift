@@ -20,9 +20,9 @@ extension ViewController :  UICollectionViewDataSource, UICollectionViewDelegate
         
         if collectionView == buttonsCollectioView {
             if isAlbumSeleted {
-                return usermainDevice.allAlbumCategories.count // album catagorie count
+                return usermainDevice.allAlbumCategories.count // album  button catagorie count
             }
-            return usermainDevice.itemCatagories.count // items catagorie count
+            return usermainDevice.itemCatagories.count // items button catagorie count
         }
         
         else if collectionView == itemCollectionView {
