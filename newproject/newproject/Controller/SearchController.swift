@@ -10,10 +10,11 @@ import UIKit
 
 // MARK: - Serach  On Items Page
 
-class searchController:UIViewController, UISearchBarDelegate {
+class searchController:UIViewController {
     
     // MARK: - Properties
     var data: [Any] = []
+    var allData:[Any] = []
     
     // backButton
     
@@ -94,6 +95,15 @@ class searchController:UIViewController, UISearchBarDelegate {
     @objc func pressBackAction() {
         navigationController?.popToRootViewController(animated:true)
     }
+    
+}
+
+extension searchController:UISearchBarDelegate {
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+    }
+    
     
 }
 
