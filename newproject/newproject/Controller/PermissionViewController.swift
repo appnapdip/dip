@@ -154,7 +154,7 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate,RemoveAlea
             toggleUI(id: 0)
         }
         
-        if CLLocationManager.authorizationStatus() == .authorizedAlways {
+        if CLLocationManager().authorizationStatus == .authorizedAlways {
             toggleUI(id:1)
         }
         
