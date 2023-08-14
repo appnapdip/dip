@@ -71,10 +71,10 @@ class SettingsViewController:UIViewController , RemoveAleartView {
         logOutButton.centerX(inView:view)
         ///backButton
         view.addSubview(backButton)
-        backButton.anchorView(top:view.topAnchor,left:view.leftAnchor, paddingTop: .init(h:50),width:.init(h:38),height: .init(h:38))
+        backButton.anchorView(top:view.topAnchor,left:view.leftAnchor, paddingTop: .init(h:50),width:.init(h:78),height: .init(h:78,for:.init(w:78)))
         /// permissionButton
         view.addSubview(permissionButton)
-        permissionButton.anchorView(top:view.topAnchor,right:view.rightAnchor, paddingTop: .init(h:50),width:.init(h:38),height: .init(h:38))
+        permissionButton.anchorView(top:view.topAnchor,right:view.rightAnchor, paddingTop: .init(h:50),width:.init(h:78),height: .init(h:78,for:.init(w:78)))
         fetchApi()
     }
     
