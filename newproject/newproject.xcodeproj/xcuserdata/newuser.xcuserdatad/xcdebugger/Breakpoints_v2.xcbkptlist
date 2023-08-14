@@ -30,8 +30,8 @@
             filePath = "newproject/Controller/PermissionViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "525"
-            endingLineNumber = "525"
+            startingLineNumber = "526"
+            endingLineNumber = "526"
             landmarkName = "getMotionAccess(sender:)"
             landmarkType = "7">
             <Locations>

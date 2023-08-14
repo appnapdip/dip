@@ -27,6 +27,7 @@ class customLoaderController:UIViewController {
     }()
     
     //   MARK: - viewDidLoad()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         loaderUI()

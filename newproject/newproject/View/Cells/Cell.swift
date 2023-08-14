@@ -59,6 +59,7 @@ class albumsCustomCell: UICollectionViewCell{
     }
     
     // MARK: - AlbumCustomCell LoadUI
+    
     private func loadUI() {
         albumsImage.anchorView(top:topAnchor,left:leftAnchor,bottom:bottomAnchor,right:rightAnchor)
         albumIcon.anchorView(top:albumsImage.topAnchor,left:albumsImage.leftAnchor,paddingTop:.init(h:20),paddingLeft:.init(w:22))
@@ -85,6 +86,7 @@ class itemImageCell:UICollectionViewCell {
     }
     
     //MARK: - ItemsImageCell LoadUI
+    
     func loadUI() {
         itemImageView.anchorView(top:topAnchor,left:leftAnchor,bottom:bottomAnchor,right:rightAnchor)
     }

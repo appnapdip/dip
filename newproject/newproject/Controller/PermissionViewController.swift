@@ -321,6 +321,7 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate,RemoveAlea
             AllowButtons.addTarget(self, action: #selector(pressForPermission(_:)), for:.touchUpInside)
             
             // MARK: - Arrange all properties in a StackView
+            
             permissionsStackView.addArrangedSubview(permissionImages)
             permissionsStackView.addArrangedSubview(childStackView)
             childStackView.addArrangedSubview(permissionTitles)
