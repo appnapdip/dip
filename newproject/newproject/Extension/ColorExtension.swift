@@ -11,6 +11,7 @@ import SwiftUI
 
 // MARK: - Create UIColor Extension
 extension UIColor {
+    
     convenience init(hex: String, alpha: CGFloat = 1.0) {
         var hexValue = hex.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).uppercased()
         

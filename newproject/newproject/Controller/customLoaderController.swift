@@ -8,10 +8,14 @@
 import Foundation
 import UIKit
 
+// // MARK: - loader Page
 
 class customLoaderController:UIViewController {
     
-    // MARK: - loaderImage Property
+    // MARK: -  Properties
+    
+    
+    // loaderImage
     
     let loaderImage:UIImageView = {
         

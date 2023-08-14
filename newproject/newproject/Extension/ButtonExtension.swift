@@ -33,4 +33,4 @@ extension UIButton{
 }
 
 
-//UIDevice.current.userInterfaceIdiom == .pad ? font.pointSize*1.5 : font.pointSize
+

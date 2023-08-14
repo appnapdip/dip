@@ -8,6 +8,12 @@
 import Foundation
 import UIKit
 
+
+// MARK: - Pin Page
+
+
+// MARK: - Protocol Function
+
 protocol PinDismiss {
     func pinDismissCall()
     
@@ -18,6 +24,14 @@ class PinViewController: UIViewController {
     
     //MARK: - Properties
     
+    
+    var pinviews:[UIView] = []
+    var currentItem:Int = -1
+    var currentPin:String  = ""
+    var delegate:PinDismiss?
+    
+    
+    // pinTitle
     var pinTitle:UILabel = {
         let hexColor = UIColor(hex:"#000000")
         let thisLabel = UILabel().label(title:"Create PIN", textColor:hexColor,fontStyle:UIFont(name: "Poppins-Regular", size:28),allignment:.center)
@@ -25,6 +39,8 @@ class PinViewController: UIViewController {
         return thisLabel
         
     }()
+    
+    // pinSubTitle
     
     var pinSubTitle:UILabel = {
         let hexColor = UIColor(hex:"#5A5F73")
@@ -34,14 +50,7 @@ class PinViewController: UIViewController {
     }()
     
     
-    var pinviews:[UIView] = []
-    
-    var currentItem:Int = -1
-    var currentPin:String  = ""
-    var delegate:PinDismiss?
-    
-    
-    //MARK: - StackItems
+    // pinStackView
     
     let pinStackView:UIStackView = {
         let thisPinStackView = UIStackView()
@@ -52,7 +61,7 @@ class PinViewController: UIViewController {
         
     }()
     
-    
+    // ButtonStackView1
     
     let ButtonStackView1:UIStackView = {
         let thisPinStackView = UIStackView()
@@ -63,6 +72,7 @@ class PinViewController: UIViewController {
         
     }()
     
+    // ButtonStackView2
     
     let ButtonStackView2:UIStackView = {
         let thisPinStackView = UIStackView()
@@ -72,6 +82,7 @@ class PinViewController: UIViewController {
         return thisPinStackView
     }()
     
+    // ButtonStackView3
     
     let ButtonStackView3:UIStackView = {
         let thisPinStackView = UIStackView()
@@ -81,7 +92,7 @@ class PinViewController: UIViewController {
         return thisPinStackView
     }()
     
-    
+    // ButtonStackView4
     
     let ButtonStackView4:UIStackView = {
         let thisPinStackView = UIStackView()
@@ -93,6 +104,7 @@ class PinViewController: UIViewController {
     
     
     //MARK: - viewDidLoad
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         let backgroundColor = UIColor(hex:"#F2F3FA")
@@ -100,17 +112,8 @@ class PinViewController: UIViewController {
         loadUI()
     }
     
-    // //MARK: - viewWillAppear
-    
-    override func viewWillAppear(_ animated: Bool) {
-        
-    }
-    
-    //MARK: - viewDidAppear
-    override func viewDidAppear(_ animated: Bool) {
-        
-    }
     // MARK: - loading userInterface
+    
     private func loadUI(){
         view.addSubview(pinTitle)
         view.addSubview(pinSubTitle)
@@ -122,6 +125,7 @@ class PinViewController: UIViewController {
         
         
         // MARK: - LOOP FOR UIVIEWS
+        
         for i in 1...6 {
             let backgroundColor = UIColor(hex:"#D6D8E2")
             let PinView = UIView()
@@ -133,7 +137,7 @@ class PinViewController: UIViewController {
             
         }
         
-        //MARK: - PinTitleSubTilte and PinStackView Anchoring
+        // MARK: - PinTitleSubTilte and PinStackView Anchoring
         
         pinTitle.anchorView(top: view.topAnchor,paddingTop:.init(h:66),width: UIdeviceSize.width - .init(w:173))
         pinTitle.centerX(inView:view)
@@ -142,7 +146,7 @@ class PinViewController: UIViewController {
         pinStackView.anchorView(top:pinSubTitle.bottomAnchor,paddingTop: .init(h:108), width: .init(w: 156), height: .init(w:16))
         pinStackView.centerX(inView:view)
         
-        //MARK: - ButtonStacksAnchoring
+        // MARK: - ButtonStacksAnchoring
         
         ButtonStackView1.anchorView(top:pinStackView.bottomAnchor,paddingTop: .init(h: .init(h:84)))
         ButtonStackView1.centerX(inView:view)
@@ -158,6 +162,7 @@ class PinViewController: UIViewController {
         
         
         // MARK: - LOOP FOR Buttons
+        
         for i in 1...12{
             lazy var thisButton = UIButton().button(title:"\(i)", titleColor:.black,backgroundColor:.white,font:UIFont(name:"Poppins-Light", size:32)!)
             thisButton.tag = i
@@ -190,6 +195,7 @@ class PinViewController: UIViewController {
     }
     
     //MARK: - Action Button Fuction
+    
     @objc private func  clickButtonAction(_ sender: UIButton){
         switch sender.tag  {
         case 1,2,3,4,5,6,7,8,9,11:
@@ -238,10 +244,10 @@ class PinViewController: UIViewController {
             }
             
             
-            // MARK: - Checking Pin Save
+            // MARK: - Checking Pin Saving
             
             if let PreviousPin = UserDefaults.standard.string(forKey:"savePin") {
-                // check the pin
+                // check the pin is correct
                 if PreviousPin == currentPin {
                     delegate?.pinDismissCall()
                 }
@@ -258,9 +264,6 @@ class PinViewController: UIViewController {
                 UserDefaults.standard.set(currentPin, forKey:"savePin")
                 currentPin = ""
             }
-            
         }
-        
     }
-    
 }

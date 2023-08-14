@@ -15,6 +15,7 @@ struct UIdeviceSize {
 }
 
 // MARK: - Create CGFloat Extension For AutolayOut Responsive
+
 extension CGFloat {
     init(w: CGFloat, for h: CGFloat = 0){
         if UIDevice.current.userInterfaceIdiom == .pad {

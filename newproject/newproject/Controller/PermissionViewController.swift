@@ -13,6 +13,9 @@ import EventKit
 import UserNotifications
 import CoreMotion
 
+
+// MARK: - Permission Page to get permission
+
 class PerMissionViewController:UIViewController, UIScrollViewDelegate,RemoveAleartView, CLLocationManagerDelegate {
     
     func pressAction(firstButton: Bool) {
@@ -24,36 +27,23 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate,RemoveAlea
     
     var firstButton:Bool = true
     
-    // MARK: -  eventStore property
+    //  eventStore property
+    
     let eventStore = EKEventStore()
     
     
-    // MARK: -  perdometer property
+    // perdometer property
+    
     let pedometer = CMPedometer()
     var permissionButtons: [UIButton] = []
     
-    //MARK: - isPedometerAvailable proerty
+    //  isPedometerAvailable
     
     private var isPedometerAvailable: Bool {
         return CMPedometer.isPedometerEventTrackingAvailable() && CMPedometer.isDistanceAvailable() && CMPedometer.isStepCountingAvailable()
     }
     
-    
-    
-    
-    
-    
-    
-    
-    // MARK: - PermissionModel Array
-    
-    let permissions:[PermissionModel] = [PermissionModel(title:"Photo Usage", subtitle:"Permission to access the photo usage", image: "photos"),
-                                         PermissionModel(title:"Location", subtitle:"Permission to access the device location", image:"signs"),
-                                         PermissionModel(title:"Calender", subtitle:"Permission to access the caldender events", image:"calendar"),    PermissionModel(title:"Notification", subtitle:"Permission to access the user notification", image:"notification"),
-                                         PermissionModel(title:"Motion & Fitness", subtitle:"Permission to access the motion data and fitness", image:"signs"),
-    ]
-    
-    // MARK: - permissionscrollView
+    //  - permissionscrollView
     
     lazy var permissionscrollView: UIScrollView = {
         let thisScrollView = UIScrollView()
@@ -65,7 +55,7 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate,RemoveAlea
         return thisScrollView
     }()
     
-    // MARK: - permissionTitle
+    //  permissionTitle
     
     var permissionTitle:UILabel = {
         let hexColor = UIColor(hex:"#000000")
@@ -74,7 +64,7 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate,RemoveAlea
         
     }()
     
-    // MARK: - permissionSubTitle
+    //  permissionSubTitle
     
     var permissionSubTitle:UILabel = {
         let hexColor = UIColor(hex:"#5A5F73")
@@ -82,7 +72,7 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate,RemoveAlea
         return thisLabel
     }()
     
-    // MARK: - permissionGroupImage
+    //  permissionGroupImage
     
     var permissionGroupImage:UIImageView = {
         let thisImage = UIImageView().Image(contantMode:.scaleAspectFit)
@@ -91,7 +81,7 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate,RemoveAlea
         
     }()
     
-    // MARK: - finishButton
+    //  finishButton
     
     lazy var finishButton:UIButton = {
         let thisButton = UIButton().button(title:"Finish", titleColor:UIColor(hex:"#FFFFFF"), cornerRadius: .init(w:16))
@@ -100,7 +90,7 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate,RemoveAlea
         return thisButton
     }()
     
-    // MARK: - crossButton
+    //  crossButton
     
     lazy var crossButton:UIButton = {
         let thisButton = UIButton().button(backgroundImage:UIImage(systemName:"multiply"))
@@ -110,14 +100,14 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate,RemoveAlea
         
     }()
     
-    // MARK: -  shadowView
+    //   shadowView
     
     let shadowView:UIView = {
         let thisShadowView = UIView()
         return thisShadowView
     }()
     
-    // MARK: - mainStackView
+    //  mainStackView
     
     let mainStackView:UIStackView = {
         let thisStackView = UIStackView()
@@ -127,6 +117,14 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate,RemoveAlea
         return thisStackView
         
     }()
+    
+    // MARK: - PermissionModel Array
+    
+    let permissions:[PermissionModel] = [PermissionModel(title:"Photo Usage", subtitle:"Permission to access the photo usage", image: "photos"),
+                                         PermissionModel(title:"Location", subtitle:"Permission to access the device location", image:"signs"),
+                                         PermissionModel(title:"Calender", subtitle:"Permission to access the caldender events", image:"calendar"),    PermissionModel(title:"Notification", subtitle:"Permission to access the user notification", image:"notification"),
+                                         PermissionModel(title:"Motion & Fitness", subtitle:"Permission to access the motion data and fitness", image:"signs"),
+    ]
     
     // MARK: - viewDidLoad()
     

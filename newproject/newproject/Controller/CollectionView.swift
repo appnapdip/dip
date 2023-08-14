@@ -7,19 +7,22 @@
 
 import UIKit
 
+// MARK: - Onboarding Page
+
 
 protocol Onboarding {
     func OnboradingdismissCall()
 }
 
-class collectionViewController:UIViewController {
+class collectionViewController: UIViewController {
     
     // MARK: - creating properties
+    
     var onboardingmodels:[onBoardingModel] = []
     var currentcell = 0
     var delegate:Onboarding?
     
-    // MARK: - creating collectionview
+    //  creating collectionview
     let collectioView: UICollectionView = {
         let thisLayout =  UICollectionViewFlowLayout()
         thisLayout.scrollDirection = .horizontal
@@ -30,7 +33,7 @@ class collectionViewController:UIViewController {
         return thisCollection
     }()
     
-    // MARK: - creating nextButton
+    //  creating nextButton
     lazy var nextButton:UIButton = {
         let hexColor = UIColor(hex:"#2EA7FF")
         let image = UIImage(named:"arrow-right")
@@ -40,7 +43,7 @@ class collectionViewController:UIViewController {
         return thisButton
     }()
     
-    // MARK: - creating skipButton
+    //  creating skipButton
     lazy var skipButton:UIButton = {
         let hexColor = UIColor(hex:"#323336")
         var thisButton = UIButton().button(title:"Skip",titleColor:.black,font: UIFont(name:"Poppins-Regular", size: 16)!)
@@ -48,7 +51,7 @@ class collectionViewController:UIViewController {
         return thisButton
     }()
     
-    // MARK: - creating UIPagecontroll
+    //  creating UIPagecontroll
     lazy var onboradinpageControll:UIPageControl = {
         let thispagecontrol = UIPageControl()
         let hexColor = UIColor(hex:"#D6D8E2")
@@ -68,7 +71,8 @@ class collectionViewController:UIViewController {
         onboardingmodels = onBoradingModelData()
     }
     
-    // MARK: - creating uiload function
+    // MARK: - creating loadUI function
+    
     private func loadUI(){
         view.addSubview(collectioView)
         collectioView.delegate = self
@@ -85,14 +89,18 @@ class collectionViewController:UIViewController {
         onboradinpageControll.anchorView(bottom:nextButton.topAnchor,paddingBottom:.init(h:54))
         onboradinpageControll.centerX(inView:view)
     }
+    
     // MARK: - creating page changebutton
+    
     @objc func changepage(_ pageControl: UIPageControl) {
         print("changebutton \(pageControl.currentPage)")
         currentcell = pageControl.currentPage
         collectioView.scrollToItem(at: [0, currentcell], at: .centeredHorizontally, animated: true)
         
     }
+    
     // MARK: - create pressbutton fuction to scrollling the cell
+    
     @objc func press(_ button: UIButton) {
         currentcell += 1
         if currentcell > 4 {
@@ -103,6 +111,7 @@ class collectionViewController:UIViewController {
             collectioView.scrollToItem(at: [0, currentcell], at: .centeredHorizontally, animated: true)
         }
     }
+    
     // MARK: - create skipbuton fuction
     
     @objc func skippress() {
@@ -110,66 +119,9 @@ class collectionViewController:UIViewController {
     }
 }
 
-// MARK: create extension of collectionViewController
 
-extension collectionViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return onboardingmodels.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier:"CustomCell", for: indexPath) as! CustomCell
-        let onboadingModel = onboardingmodels[indexPath.item]
-        cell.onboardingimageView.image = onboadingModel.onboardingImage
-        cell.onboardingTitle.text = onboadingModel.onboardingText
-        cell.onboardingSubTitle.text = onboadingModel.onboradingSubTitle
-        return cell
-        
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width:UIdeviceSize.width, height:UIdeviceSize.height)
-    }
-    
-    // pagescrolling section
-    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        onboradinpageControll.currentPage = Int(floorf(Float(scrollView.contentOffset.x) / Float(scrollView.frame.size.width)))
-        currentcell = onboradinpageControll.currentPage
-        print("scorllview \(currentcell)")
-    }
-    
-}
-// MARK: - create customcell
-class CustomCell: UICollectionViewCell{
-    
-    let onboardingimageView = UIImageView()
-    let onboardingTitle = UILabel().label(lines: 1, fontStyle:UIFont(name: "Poppins-SemiBold", size:24), allignment:.center)
-    let onboardingSubTitle = UILabel().label(lines: 2, fontStyle:UIFont(name: "Poppins-Regular", size:16), allignment:.center)
-    
-    override init(frame: CGRect) {
-        super.init(frame:frame)
-        loadonboradingUI()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    private func loadonboradingUI() {
-        contentView.addSubview(onboardingimageView)
-        contentView.addSubview(onboardingTitle)
-        contentView.addSubview(onboardingSubTitle)
-        
-        onboardingimageView.contentMode = .scaleAspectFill
-        onboardingimageView.anchorView(top:topAnchor,paddingTop:.init(h:UIdeviceSize.width < 376 ? 32 : 75),width:UIdeviceSize.width)
-        onboardingimageView.centerX(inView:contentView)
-        onboardingTitle.anchorView(bottom:bottomAnchor, paddingBottom: .init(h:UIdeviceSize.width < 376 ? 300 : 341), width:.init(w:UIdeviceSize.width - .init(w:64)))
-        onboardingTitle.centerX(inView:contentView)
-        onboardingSubTitle.anchorView(top:onboardingTitle.bottomAnchor, paddingTop:.init(h:12),width:.init(w:UIdeviceSize.width - .init(w:64)))
-        onboardingSubTitle.centerX(inView: contentView)
-    }
-}
+
+
 
 
 

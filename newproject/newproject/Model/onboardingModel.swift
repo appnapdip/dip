@@ -10,6 +10,7 @@ import SwiftUI
 
 // // MARK: - OnboardingModel For SwiftUI VIEW
 struct AppOnboardingModel:Hashable,Identifiable {
+    
     static let instance = AppOnboardingModel(id: 0, imageName: "", title: "", subTitle: "")
     let id: Int
     let imageName:String

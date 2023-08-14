@@ -69,6 +69,7 @@ class albumsCustomCell: UICollectionViewCell{
 }
 
 //MARK: - ITEMS IMAGE CELL
+
 class itemImageCell:UICollectionViewCell {
     let itemImageView = UIImageView().Image(contantMode:.scaleAspectFit)
     
@@ -86,6 +87,39 @@ class itemImageCell:UICollectionViewCell {
     //MARK: - ItemsImageCell LoadUI
     func loadUI() {
         itemImageView.anchorView(top:topAnchor,left:leftAnchor,bottom:bottomAnchor,right:rightAnchor)
+    }
+}
+
+
+// MARK: - create customcell of onborading Page
+
+class CustomCell: UICollectionViewCell {
+    
+    let onboardingimageView = UIImageView()
+    let onboardingTitle = UILabel().label(lines: 1, fontStyle:UIFont(name: "Poppins-SemiBold", size:24), allignment:.center)
+    let onboardingSubTitle = UILabel().label(lines: 2, fontStyle:UIFont(name: "Poppins-Regular", size:16), allignment:.center)
+    
+    override init(frame: CGRect) {
+        super.init(frame:frame)
+        loadonboradingUI()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func loadonboradingUI() {
+        contentView.addSubview(onboardingimageView)
+        contentView.addSubview(onboardingTitle)
+        contentView.addSubview(onboardingSubTitle)
+        
+        onboardingimageView.contentMode = .scaleAspectFill
+        onboardingimageView.anchorView(top:topAnchor,paddingTop:.init(h:UIdeviceSize.width < 376 ? 32 : 75),width:UIdeviceSize.width)
+        onboardingimageView.centerX(inView:contentView)
+        onboardingTitle.anchorView(bottom:bottomAnchor, paddingBottom: .init(h:UIdeviceSize.width < 376 ? 300 : 341), width:.init(w:UIdeviceSize.width - .init(w:64)))
+        onboardingTitle.centerX(inView:contentView)
+        onboardingSubTitle.anchorView(top:onboardingTitle.bottomAnchor, paddingTop:.init(h:12),width:.init(w:UIdeviceSize.width - .init(w:64)))
+        onboardingSubTitle.centerX(inView: contentView)
     }
 }
 

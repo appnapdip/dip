@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 import SwiftUI
 
+// MARK: - Settings Page
 
 class SettingsViewController:UIViewController , RemoveAleartView {
     
@@ -19,9 +20,12 @@ class SettingsViewController:UIViewController , RemoveAleartView {
     func pressAction(firstButton: Bool) {
         self.firstButton = firstButton
     }
+    
+    // MARK: - Propertieds
+    
     var firstButton: Bool = true
     
-    // MARK: - logOutButton
+    //  logOutButton
     lazy var logOutButton:UIButton = {
         let thisButton = UIButton().button(title:"Log Out" , titleColor:UIColor(hex:"#FFFFFF"),backgroundColor:UIColor(hex:"#FF4D4D"),font: UIFont(name:"Poppins-SemiBold", size:.init(h:16))!,cornerRadius:
                 .init(h:16))
@@ -30,7 +34,7 @@ class SettingsViewController:UIViewController , RemoveAleartView {
         
     }()
     
-    // MARK: - backButton
+    //  backButton
     lazy var backButton: UIButton = {
         let thisButton = UIButton().button(backgroundImage: UIImage(systemName:"chevron.backward"))
         thisButton.tintColor = .black
@@ -38,7 +42,7 @@ class SettingsViewController:UIViewController , RemoveAleartView {
         return thisButton
     }()
     
-    // MARK: - permissionButton
+    //  permissionButton
     lazy var permissionButton: UIButton = {
         let thisButton = UIButton().button(backgroundImage:UIImage(named:"images"))
         thisButton.tintColor = UIColor(hex:"#838BA7")
@@ -74,6 +78,8 @@ class SettingsViewController:UIViewController , RemoveAleartView {
         fetchApi()
     }
     
+    // MARK: showLoader To Present Customloader
+    
     private func showLoader(){
         DispatchQueue.main.async { [self] in
             loadervC.modalPresentationStyle = .overFullScreen
@@ -82,8 +88,9 @@ class SettingsViewController:UIViewController , RemoveAleartView {
         }
     }
     
+    // MARK: - Added SwiftUIView In SettingsViewController
+    
     private func addUserView(){
-        // MARK: - Added SwiftUIView In SettingsViewController
         let SettingsView = UIHostingController(rootView: SettingsView(user: user))
         addChild(SettingsView)
         view.addSubview(SettingsView.view)
@@ -92,6 +99,7 @@ class SettingsViewController:UIViewController , RemoveAleartView {
     }
     
     // MARK: - pressBackAction()
+    
     @objc func pressBackAction() {
         navigationController?.popToRootViewController(animated:true)
         
@@ -108,6 +116,7 @@ class SettingsViewController:UIViewController , RemoveAleartView {
     }
     
     // MARK: - pressOnPermission()
+    
     @objc func pressOnPermission() {
         let svc = PerMissionViewController()
         navigationController?.pushViewController(svc, animated:true)
@@ -115,6 +124,7 @@ class SettingsViewController:UIViewController , RemoveAleartView {
     }
     
     // MARK: - fetchApi()
+    
     func fetchApi() {
         Task{
             showLoader()
@@ -150,6 +160,9 @@ class SettingsViewController:UIViewController , RemoveAleartView {
             }
         }
         
+        
+        // MARK: - getUsers function json decoding
+        
         func getUsers() async throws -> GitHubUsers {
             guard let url = URL(string:userApi) else {throw Erros.invalidURL}
             let(data,response) = try await URLSession.shared.data(from:url)
@@ -164,13 +177,8 @@ class SettingsViewController:UIViewController , RemoveAleartView {
             } catch  {
                 throw Erros.inValidData
             }
-            
         }
-        
-        
     }
-    
-    
 }
 
 

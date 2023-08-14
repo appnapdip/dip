@@ -8,7 +8,8 @@
 import UIKit
 import ImageIO
 
-// create loaderImageExtension
+// MARK: UIImageView
+
 extension UIImageView {
     public func loadGif(name: String) {
         DispatchQueue.global().async {
@@ -19,7 +20,9 @@ extension UIImageView {
         }
     }
 }
+
 extension UIImage {
+    
     public class func gif(data: Data) -> UIImage? {
         // Create source from data
         guard let source = CGImageSourceCreateWithData(data as CFData, nil) else {

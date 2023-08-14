@@ -7,10 +7,11 @@
 
 import UIKit
 
+// MARK: - Main Page
+
 class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView {
     
     var firstButton: Bool = false
-    //var buttonsCatagory:[Catagorie] = []
     var currentIndexItem = 0
     var currentIndexAlbum = 0
     var isAlbumSeleted:Bool = true
@@ -19,7 +20,7 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView {
     // MARK: - Properties
     
     
-    // MARK: headerView
+    //  headerView
     let headerView:UIView = {
         let thisView = UIView()
         thisView.backgroundColor = UIColor(hex:"#FFFFFF")
@@ -27,7 +28,7 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView {
         
     }()
     
-    // MARK: firstStackView
+    // firstStackView
     
     lazy var firstStackView:UIStackView = {
         let thisStackView = UIStackView()
@@ -38,7 +39,7 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView {
         
     }()
     
-    // MARK: headerButtonsStack
+    //  headerButtonsStack
     
     lazy var headerButtonsStack:UIStackView = {
         let thisStackView = UIStackView()
@@ -49,7 +50,7 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView {
         return thisStackView
     }()
     
-    // MARK: secondStackView
+    //  secondStackView
     
     
     lazy var secondStackView:UIStackView = {
@@ -60,14 +61,14 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView {
         return thisStackView
     }()
     
-    // MARK: headerTitleView
+    //  headerTitleView
     
     lazy var headerTitleView:UILabel = {
         let thislabel = UILabel().label(title:"Photo Vault",textColor:UIColor(hex:"#323336"),fontStyle:UIFont(name:"Poppins-SemiBold", size:.init(h:28)), allignment: .left)
         return thislabel
     }()
     
-    // MARK: homeButton
+    // homeButton
     
     lazy var homeButton:UIButton = {
         let image = UIImage(named:"cloud")
@@ -78,7 +79,7 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView {
         return thisButton
     }()
     
-    // MARK: - settingButton
+    // settingButton
     
     lazy var settingButton:UIButton = {
         let image = UIImage(named:"setting")
@@ -90,7 +91,7 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView {
         return thisButton
     }()
     
-    // MARK: - albumsButton
+    //  albumsButton
     
     lazy var albumsButton:UIButton = {
         let image = UIImage(named:"albums")
@@ -100,7 +101,7 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView {
         return thisButton
     }()
     
-    // MARK: - itemsButton
+    //  itemsButton
     
     lazy var itemsButton:UIButton = {
         let image = UIImage(named:"items-grid")
@@ -110,7 +111,7 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView {
         return thisButton
     }()
     
-    // MARK: mainScrollView to set two collectionView
+    //  mainScrollView to set two collectionView
     
     lazy var mainScrollView: UIScrollView = {
         let thisScrollView = UIScrollView()
@@ -119,7 +120,7 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView {
         
     }()
     
-    // MARK: - addAlbumButton
+    //  addAlbumButton
     
     lazy var addAlbumButton:UIButton = {
         let image = UIImage(named:"album")
@@ -129,7 +130,7 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView {
         return thisButton
     }()
     
-    // MARK: - buttonsCollectioView for Albums and Item
+    //  buttonsCollectioView for Albums and Item
     
     lazy var buttonsCollectioView: UICollectionView = {
         let thisLayout =  UICollectionViewFlowLayout()
@@ -144,7 +145,7 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView {
         return thisCollection
     }()
     
-    // MARK: - albumsCollectioView (folders images show)
+    // albumsCollectioView (folders images show)
     
     lazy var albumsCollectioView: UICollectionView = {
         let thisLayout =  UICollectionViewFlowLayout()
@@ -159,7 +160,7 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView {
     }()
     
     
-    // MARK: - Add Buttons
+    //  Add Buttons
     
     lazy var addButton:UIButton = {
         let image = UIImage(named:"add-circle")
@@ -173,6 +174,8 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView {
         return thisButton
     }()
     
+    // AlbumUnderline
+    
     lazy var AlbumUnderline:UIView = {
         let  thisView = UIView()
         thisView.backgroundColor = UIColor(hex: "#2EA7FF")
@@ -181,6 +184,7 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView {
         
     }()
     
+    // itemsUnderline
     
     lazy var itemsUnderline:UIView = {
         let  thisView = UIView()
@@ -190,7 +194,7 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView {
         
     }()
     
-    // MARK: - itemCollectionView to show images
+    //  itemCollectionView to show images
     
     lazy var itemCollectionView: UICollectionView = {
         let thisLayout =  UICollectionViewFlowLayout()
@@ -206,7 +210,7 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView {
         
     }()
     
-    // MARK: - searchButton
+    //  searchButton
     
     lazy var searchButton:UIButton = {
         let thisButton = UIButton().button(backgroundImage:UIImage(systemName:"magnifyingglass"), cornerRadius: .init(w:10))
@@ -219,6 +223,7 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView {
     
     
     // MARK: - viewDidLoad
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         let backgroundColor = UIColor(hex:"#F2F3FA")
@@ -242,6 +247,7 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView {
     // MARK: - Protocol Function
     
     func OnboradingdismissCall() {
+        
         dismiss(animated: true) {
             UserDefaults.standard.set(true, forKey:ONBOARDING_SHOWN_KEY)
             let pin = PinViewController()
@@ -315,6 +321,7 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView {
     }
     
     // MARK: - UI Loading
+    
     private func loadUI() {
         
         ///  All Delegates
@@ -428,7 +435,7 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView {
         navigationController?.pushViewController(svc, animated:true)
     }
     
-    //
+    // MARK: - pressOnSearch()
     
     @objc func pressOnSearch() {
         let searchVC = searchController()
@@ -493,140 +500,8 @@ class ViewController: UIViewController,Onboarding,PinDismiss,RemoveAleartView {
 }
 
 
-// MARK: - Button Catagories Extension
 
-extension ViewController :  UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
-    
-    //MARK: - numbers of items
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
-        if collectionView == buttonsCollectioView {
-            if isAlbumSeleted {
-                return usermainDevice.allAlbumCategories.count // album catagorie count
-            }
-            return usermainDevice.itemCatagories.count // items catagorie count
-        }
-        
-        else if collectionView == itemCollectionView {
-            return  usermainDevice.itemCatagories[currentIndexItem].items.count
-        }
-        
-        else {
-            return usermainDevice.allAlbumCategories[currentIndexAlbum].albums.count // folders count
-        }
-        
-    }
-    
-    //MARK: - Cell For Item
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if collectionView == buttonsCollectioView {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier:"VCCustomCell", for: indexPath) as! buttonsCustomCell
-            cell.allcatagoriesTiltle.text = isAlbumSeleted ? usermainDevice.allAlbumCategories[indexPath.item].name : usermainDevice.itemCatagories[indexPath.item].name
-            if indexPath.item == (isAlbumSeleted ? currentIndexAlbum : currentIndexItem)  {
-                cell.backgroundColor = UIColor(hex:"#323336")
-                cell.allcatagoriesTiltle.textColor = UIColor(hex:"#FFFFFF")
-                
-            }
-            else {
-                cell.backgroundColor = UIColor(hex:"#FFFFFF")
-                cell.allcatagoriesTiltle.textColor = UIColor(hex:"#838BA7") // album catagorie and item catagorie data
-                
-            }
-            return cell
-        }
-        
-        else if collectionView == itemCollectionView {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier:"ITCustomCell", for:indexPath) as! itemImageCell
-            cell.itemImageView.image = UIImage(named:usermainDevice.itemCatagories[currentIndexItem].items[indexPath.item].resource)
-            return cell
-        }
-        
-        else {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier:"ACCustomCell", for: indexPath) as! albumsCustomCell
-            let folderTypes = usermainDevice.allAlbumCategories[currentIndexAlbum].albums[indexPath.item]
-            cell.albumsTitle.text = folderTypes.name
-            cell.albumsizeTitle.text = folderTypes.size
-            cell.albumIcon.text = folderTypes.icon // folders data
-            return cell
-        }
-        
-    }
-    
-    // MARK: - Size For Item
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        if collectionView == buttonsCollectioView {
-            return CGSize(width: .init(w:96), height: .init(h:46))   // album and item cell size
-        }
-        else if collectionView == itemCollectionView {
-            return CGSize(width: .init(w:136), height: .init(h:136,for:136))
-        }
-        else {
-            return CGSize(width: .init(w:183), height: .init(h:140,for:183)) // folder cell size
-        }
-    }
-    
-    // MARK: - Edgeinsects Layout
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        if collectionView == buttonsCollectioView {
-            return UIEdgeInsets(top:.init(h:0), left:.init(w:16), bottom: .init(h:0), right: .init(w:0))  // album and item cell edege insects
-        }
-        
-        else if collectionView == itemCollectionView {
-            return UIEdgeInsets(top:.init(h:0), left:.init(w:0), bottom: .init(h:0), right: .init(w:0))
-        }
-        
-        else {
-            return UIEdgeInsets(top:.init(h:0), left:.init(w:0), bottom: .init(h:0), right: .init(w:0))  // folders cell edege insects
-        }
-    }
-    
-    // MARK: - SELECTION OF CELL
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        // update the index of  button cell
-        if collectionView == buttonsCollectioView {
-            if isAlbumSeleted{
-                currentIndexAlbum = indexPath.item
-                print("select \(currentIndexAlbum)")
-                collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
-                collectionView.reloadData()
-                albumsCollectioView.reloadData()
-                
-            }else{
-                currentIndexItem = indexPath.item
-                print("select \(currentIndexItem)")
-                collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
-                collectionView.reloadData()
-                itemCollectionView.reloadData()
-            }
-            
-            
-        }
-    }
-}
 
-// MARK: - Create Array Of Function
-
-func albums() ->[Album] {
-    let album1 = Album(id: "", icon: "📁", name: "Main Album", size:"\(200) items・\(200) mb", isLocked:false, items: [])
-    let album2 = Album(id: "", icon: "🔒", name: "Locked Album", size:"Locked", isLocked:true, items: [])
-    let album3 = Album(id: "", icon: "🗃", name: "Texts Limit 1 2 3 ...", size: "\(7.7)k items・(3.5) gb", isLocked:false, items: [])
-    let album4 = Album(id: "", icon: "📁",name: "Empty Album", size:"Empty", isLocked:true, items: [])
-    let album5 = Album(id: "", icon: "🗄", name: "Travel", size:"\(200) items・\(200) mb", isLocked:true, items: [])
-    return [album1,album2,album3,album4,album5]
-}
-
-func Items() -> [Item] {
-    let item1 = Item(id: "", name: "", type: "", Size: 0, resource: "Rectangle 10")
-    let item2 = Item(id: "", name: "", type: "", Size: 0, resource: "Rectangle 10")
-    let item3 = Item(id: "", name: "", type: "", Size: 0, resource: "Rectangle 10")
-    let item4 = Item(id: "", name: "", type: "", Size: 0, resource: "Rectangle 10")
-    return[item1,item2,item3,item4]
-}
 
 
 

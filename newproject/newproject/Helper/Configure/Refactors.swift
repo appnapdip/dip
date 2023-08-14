@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 
 // MARK: - ToastMessage Types
+
 enum ToastMessage {
     case welcome
     case networkError
@@ -77,7 +78,7 @@ enum AlertMessage {
         case .limited:
             return "Limited"
         case .authorized:
-           return  "Authorized"
+            return  "Authorized"
             
         }
     }
@@ -97,9 +98,9 @@ enum AlertMessage {
         case .inProgress:
             return "We Are Woking On It, Please try again Later"
         case .restricted:
-           return  "You can change photo access permission from settings"
+            return  "You can change photo access permission from settings"
         case .limited:
-           return "You can change photo access permission from settings"
+            return "You can change photo access permission from settings"
         case .denied:
             return "You can change photo access permission from settings"
         case .authorized:
@@ -123,7 +124,7 @@ enum AlertMessage {
             return "Ok"
             
         case .restricted:
-           return "Ok"
+            return "Ok"
         case .limited:
             return "Ok"
         case .denied:
@@ -149,7 +150,7 @@ enum AlertMessage {
             return "Done"
             
         case .restricted:
-           return  "Settings"
+            return  "Settings"
         case .limited:
             return  "Settings"
         case .denied:

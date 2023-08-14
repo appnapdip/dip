@@ -8,8 +8,10 @@
 import Foundation
 import UIKit
 
-// // MARK: - Create UIViewController Functions For Store Data
-extension UIViewController {
+//  MARK: - Create UIViewController Functions For Store Data
+
+extension ViewController {
+    
     func catagorie() -> [Catagorie] {
         let albums1:[Album] = albums()
         let albums2:[Album] = albums()

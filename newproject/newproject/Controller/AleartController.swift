@@ -8,16 +8,22 @@
 import Foundation
 import UIKit
 
+// MARK: - Aleart Page
+
+
 // MARK: - Protocol Function
+
 protocol RemoveAleartView {
     func pressAction(firstButton: Bool)
 }
 
 class AleartViewController: ViewController  {
     // MARK: - PROPERTIES
+    
     var buttonAction: (()->Void)? = nil
     
-    // MARK: - AleartTitle
+    //  AleartTitle
+    
     var AleartTitle:UILabel = {
         let hexColor = UIColor(hex:"#323336")
         let thisLabel = UILabel().label(title:"Remove Album Password", textColor:hexColor,fontStyle:UIFont(name: "Poppins-SemiBold", size: .init(w:16)),allignment:.center)
@@ -25,14 +31,16 @@ class AleartViewController: ViewController  {
         
     }()
     
-    // MARK: - AleartSubTitle
+    //  AleartSubTitle
+    
     var  AleartSubTitle:UILabel = {
         let hexColor = UIColor(hex:"#5A5F73")
         let thisLabel = UILabel().label(title:"This album will no longer required any password to be viewed", textColor:hexColor,fontStyle:UIFont(name: "Poppins-Regular", size: .init(w:14)),allignment:.center)
         return thisLabel
     }()
     
-    // MARK: - AleartView
+    // AleartView
+    
     var AleartView: UIView = {
         let thisView = UIView()
         thisView.backgroundColor = .white
@@ -41,7 +49,8 @@ class AleartViewController: ViewController  {
     }()
     
     
-    // MARK: - create Cancel Button
+    // Cancel Button
+    
     lazy var primrayButton:UIButton = {
         let hexColor = UIColor(hex:"#5A5F73")
         var thisButton = UIButton().button(title:"Cancel",titleColor:hexColor,font:UIFont(name:"Poppins-Medium", size: .init(h:16))!,cornerRadius:.init(w:12))
@@ -51,7 +60,8 @@ class AleartViewController: ViewController  {
         return thisButton
     }()
     
-    // MARK: - create Remove Button
+    //   Remove Button
+    
     lazy var secondaryButton:UIButton = {
         let hexColor = UIColor(hex:"#FFFFFF")
         var thisButton = UIButton().button(title:"Remove",titleColor:hexColor,backgroundColor: UIColor(hex: "#FF4D4D"),font:UIFont(name:"Poppins-Medium", size:.init(h:16))!,cornerRadius:.init(w:12))
@@ -60,7 +70,8 @@ class AleartViewController: ViewController  {
         
     }()
     
-    // MARK: - ButtonSStackView
+    //  ButtonSStackView
+    
     let ButtonSStackView:UIStackView = {
         let ButtonSStackView = UIStackView()
         ButtonSStackView.axis = NSLayoutConstraint.Axis.horizontal
@@ -100,13 +111,18 @@ class AleartViewController: ViewController  {
         ButtonSStackView.centerX(inView:view)
     }
     
-    //MARK: -  BUTTON ACTIONS
+    // MARK: -  BUTTON ACTIONS
+    
+    // single aleart dismiss
+    
     @objc func primary() {
         delegate?.pressAction(firstButton: true)
         dismiss(animated:true) {
             self.buttonAction?()
         }
     }
+    
+    // double aleart dismiss
     
     @objc func secondary() {
         delegate?.pressAction(firstButton: false)

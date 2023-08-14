@@ -8,11 +8,14 @@
 import Foundation
 import UIKit
 
-
+// MARK: - Serach  On Items Page
 
 class searchController:UIViewController, UISearchBarDelegate {
     
-    // MARK: - backButton
+    // MARK: - Properties
+    
+    
+    // backButton
     
     lazy var backButton: UIButton = {
         let thisButton = UIButton().button(backgroundImage: UIImage(systemName:"chevron.backward"))
@@ -21,7 +24,7 @@ class searchController:UIViewController, UISearchBarDelegate {
         return thisButton
     }()
     
-    // MARK: - searchBar
+    //  searchBar
     
     lazy var searchBar:UISearchBar = {
         let thisSearchBar = UISearchBar()

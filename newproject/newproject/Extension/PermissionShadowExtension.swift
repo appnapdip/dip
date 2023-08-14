@@ -12,6 +12,7 @@ import UIKit
 // MARK: - create PerMissionViewController extension
 
 extension PerMissionViewController {
+    
     func showGradient() {
         let gradient = CAGradientLayer()
         gradient.frame = shadowView.bounds
