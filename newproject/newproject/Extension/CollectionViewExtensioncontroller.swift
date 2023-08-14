@@ -28,16 +28,16 @@ extension UIViewController {
 extension UIViewController {
     
     func albums() ->[Album] {
-        let album1 = Album(id: "", icon: "📁", name: "Main Album", size:"\(200) items・\(200) mb", isLocked:false, items: [])
+      let album1 = Album(id: "", icon: " 📕", name: "Main Album", size:"\(200) items・\(200) mb", isLocked:false, items: [])
         let album2 = Album(id: "", icon: "🔒", name: "Locked Album", size:"Locked", isLocked:true, items: [])
-        let album3 = Album(id: "", icon: "🗃", name: "Texts Limit 1 2 3 ...", size: "\(7.7)k items・(3.5) gb", isLocked:false, items: [])
+        let album3 = Album(id: "", icon: "📜", name: "Texts Limit 1 2 3 ...", size: "\(7.7)k items・(3.5) gb", isLocked:false, items: [])
         let album4 = Album(id: "", icon: "📁",name: "Empty Album", size:"Empty", isLocked:true, items: [])
-        let album5 = Album(id: "", icon: "🗄", name: "Travel", size:"\(200) items・\(200) mb", isLocked:true, items: [])
-        let album6 = Album(id: "", icon: "📁", name: "Main Album", size:"\(200) items・\(200) mb", isLocked:false, items: [])
-        let album7 = Album(id: "", icon: "🔒", name: "Locked Album", size:"Locked", isLocked:true, items: [])
-        let album8 = Album(id: "", icon: "🗃", name: "Texts Limit 1 2 3 ...", size: "\(7.7)k items・(3.5) gb", isLocked:false, items: [])
-        let album9 = Album(id: "", icon: "📁",name: "Empty Album", size:"Empty", isLocked:true, items: [])
-        let album10 = Album(id: "", icon: "🗄", name: "Travel", size:"\(200) items・\(200) mb", isLocked:true, items: [])
+        let album5 = Album(id: "", icon: "🚝", name: "Travel", size:"\(300) items・\(300) mb", isLocked:true, items: [])
+        let album6 = Album(id: "", icon: "📙", name: "Main Album", size:"\(100) items・\(100) mb", isLocked:false, items: [])
+        let album7 = Album(id: "", icon: "🔒", name: "Locked Album", size:" Show Locked Here", isLocked:true, items: [])
+        let album8 = Album(id: "", icon: "🗃", name: "Texts Limit 4 5 6 ...", size: "\(8.7)k items・(5.5) gb", isLocked:false, items: [])
+        let album9 = Album(id: "", icon: "📋",name: "Empty Album", size:" Find Empty", isLocked:true, items: [])
+        let album10 = Album(id: "", icon: "🗄", name: "Travel", size:"\(400) items・\(400) mb", isLocked:true, items: [])
         return [album1,album2,album3,album4,album5,album6,album7,album8,album9,album10]
     }
     
