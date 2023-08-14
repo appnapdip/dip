@@ -65,8 +65,7 @@ class searchController:UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         loadUI()
-        data = albums()
-        data = Items()
+        data = [albums(), Items()] as [Any]
         
     }
     
@@ -101,6 +100,8 @@ class searchController:UIViewController {
 extension searchController:UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        
         
     }
     
