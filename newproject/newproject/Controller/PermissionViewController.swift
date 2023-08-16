@@ -154,7 +154,8 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate,RemoveAlea
             toggleUI(id: 0)
         }
         
-        if CLLocationManager().authorizationStatus == .authorizedAlways {
+        if CLLocationManager().authorizationStatus == .authorizedAlways ||
+            CLLocationManager().authorizationStatus == .authorizedWhenInUse{
             toggleUI(id:1)
         }
         
@@ -426,10 +427,7 @@ class PerMissionViewController:UIViewController, UIScrollViewDelegate,RemoveAlea
                         manager.requestWhenInUseAuthorization()
                         
                     case .authorizedAlways,.authorizedWhenInUse:
-                        DispatchQueue.main.async {
-                            self.toggleUI(id: 1)
-                        }
-                        
+                        self.showDoubleButton(messageTitle:AlertMessage.authorized.messageTitle)
                     case .restricted:
                         self.showDoubleButton(messageTitle:AlertMessage.restricted.messageTitle)
                     case .denied:
