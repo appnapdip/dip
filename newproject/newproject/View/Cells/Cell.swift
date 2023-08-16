@@ -88,7 +88,7 @@ class itemImageCell:UICollectionViewCell {
     //MARK: - ItemsImageCell LoadUI
     
     func loadUI() {
-        itemImageView.anchorView(top:topAnchor,left:leftAnchor,bottom:bottomAnchor,right:rightAnchor)
+        itemImageView.anchorView(top:topAnchor,left:leftAnchor,bottom:bottomAnchor,right:rightAnchor,paddingLeft:.init(w:22), paddingRight: .init(w:22))
     }
 }
 

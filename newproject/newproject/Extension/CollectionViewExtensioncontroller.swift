@@ -54,9 +54,9 @@ extension UIViewController {
         let item10 = Item(id: "", name: "Portugal Flag", type: "", Size: 0, resource: "Portugal")
         let item11 = Item(id: "", name: "Srilanka Flag", type: "", Size: 0, resource: "SriLanka")
         let item12 = Item(id: "", name: "Sweden Flag", type: "", Size: 0, resource: "Sweden")
-        let item13 = Item(id: "", name: "Switzerland Flag", type: "", Size: 0, resource: "SwitzerLand")
+        let item13 = Item(id: "", name: "Switzerland Flag", type: "", Size: 0, resource: "Switzerland")
         let item14 = Item(id: "", name: "Uganda Flag", type: "", Size: 0, resource: "Uganda")
-        return[item1,item2,item3,item4,item5,item6,item7,item8,item9,item10,item11,item12,item13]
+        return[item1,item2,item3,item4,item5,item6,item7,item8,item9,item10,item11,item12,item13,item14]
     }
     
 }
